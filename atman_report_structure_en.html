@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#E5DFD0;padding:0;font-family:"DejaVu Sans","Liberation Sans",sans-serif;color:#14181F;line-height:1.5;letter-spacing:-.005em}
+  .canvas{width:880px;background:#FBF8F2;padding:46px 56px 50px;margin:0 auto}
+
+  .mast{text-align:center;border-bottom:1px solid #D9D3C4;padding-bottom:22px;margin-bottom:30px}
+  .mast .brand{font-family:"DejaVu Serif","Liberation Serif",serif;font-size:13px;letter-spacing:.32em;color:#6B7077;margin-bottom:10px}
+  .mast .brand b{color:#16191F;font-weight:700}
+  .mast h1{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:28px;line-height:1.32;color:#16191F;letter-spacing:-.01em}
+  .mast h1 em{font-style:italic;color:#B8893A;font-weight:700}
+  .mast .lead{margin-top:12px;font-size:13px;color:#6B7077;line-height:1.65;max-width:62ch;margin-left:auto;margin-right:auto}
+
+  table.frame{width:100%;border-collapse:separate;border-spacing:10px 0;margin:0 -5px 30px;table-layout:fixed}
+  table.frame td{background:#FFFFFF;border-radius:12px;padding:14px 16px;border-top:3px solid;vertical-align:top;box-shadow:0 1px 2px rgba(20,24,31,.04);width:33%}
+  table.frame td.fund{border-top-color:#3D5A38}
+  table.frame td.price{border-top-color:#B8893A}
+  table.frame td.expect{border-top-color:#C0392B}
+  .axn{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:15px;letter-spacing:.04em}
+  td.fund .axn{color:#3D5A38} td.price .axn{color:#B8893A} td.expect .axn{color:#C0392B}
+  .axk{font-size:10.5px;color:#8B8E94;margin-left:8px;letter-spacing:.12em;text-transform:uppercase}
+  .axlist{margin-top:8px;padding:0;list-style:none}
+  .axlist li{font-size:11.5px;line-height:1.55;color:#4A5057;padding:3px 0 3px 11px;position:relative}
+  .axlist li::before{content:"·";position:absolute;left:0;color:#8B8E94;font-weight:700}
+
+  .stage{margin-bottom:13px;overflow:hidden}
+  .stage .num{float:left;width:26px;height:26px;border-radius:50%;color:#fff;font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:13px;text-align:center;line-height:26px;margin-right:11px}
+  .stage.s1 .num{background:#3D5A38} .stage.s2 .num{background:#C0392B} .stage.s3 .num{background:#C0392B}
+  .stage .tt{font-family:"DejaVu Serif","Liberation Serif",serif;font-size:17px;font-weight:700;color:#16191F;line-height:26px;float:left}
+  .stage .sub{float:right;font-size:11px;letter-spacing:.06em;color:#8B8E94;line-height:26px}
+
+  .daily{background:#FFFFFF;border:1px solid #E8E3D5;border-radius:16px;padding:20px 22px 18px;box-shadow:0 1px 2px rgba(20,24,31,.04);margin-bottom:26px}
+  .daily-lead{font-size:12.5px;color:#6B7077;line-height:1.6;margin-bottom:18px;text-align:center}
+
+  .axis-label{display:inline-block;font-family:"DejaVu Serif","Liberation Serif",serif;font-size:10.5px;letter-spacing:.1em;padding:2px 9px;border-radius:11px;margin-bottom:8px;font-weight:700}
+  .axis-label.fund{color:#3D5A38;background:#EAF0E8;border:1px solid #3D5A38}
+  .axis-label.price{color:#B8893A;background:#F6EFE0;border:1px solid #B8893A}
+
+  table.chain3{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;margin-bottom:14px}
+  table.chain3 td.node{background:#EAF0E8;border:1px solid #3D5A38;border-radius:10px;padding:11px 9px;text-align:center;vertical-align:middle}
+  table.chain3 td.arr{width:24px;text-align:center;color:#3D5A38;font-size:14px;font-weight:700;vertical-align:middle}
+  table.chain3 td.node .en{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:13px;color:#3D5A38;letter-spacing:.04em;display:block}
+  table.chain3 td.node .ko{font-size:10.5px;color:#4A5057;margin-top:3px;line-height:1.4;display:block}
+
+  .bridge{text-align:center;margin:10px 0;font-family:"DejaVu Serif","Liberation Serif",serif;font-size:12px;color:#B8893A;font-weight:600;letter-spacing:.03em}
+
+  table.chain2{width:100%;border-collapse:separate;border-spacing:10px 0;margin:0 -5px 0;table-layout:fixed}
+  table.chain2 td{background:#F6EFE0;border:1px solid #B8893A;border-radius:10px;padding:11px 9px;text-align:center;vertical-align:middle;width:50%}
+  table.chain2 td .en{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:13px;color:#B8893A;letter-spacing:.04em;display:block}
+  table.chain2 td .ko{font-size:10.5px;color:#4A5057;margin-top:3px;line-height:1.4;display:block}
+  table.chain2 td .side-note{font-size:9.5px;color:#8B8E94;margin-top:3px;font-style:italic;display:block}
+
+  .merge{text-align:center;margin-top:14px}
+  .merge .down{display:inline-block;width:1px;height:14px;background:#A09060;margin-bottom:6px}
+  .summary{background:#F1ECDC;border:1px solid #C8C2B5;border-radius:11px;padding:12px 24px;text-align:center;display:inline-block}
+  .summary .en{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:14px;color:#16191F;letter-spacing:.04em;display:block}
+  .summary .ko{font-size:11px;color:#4A5057;margin-top:3px;display:block}
+
+  .between{text-align:center;margin:8px 0 18px}
+  .between .ar{font-size:18px;color:#C0392B;display:block;line-height:1}
+  .between .lbl{font-family:"DejaVu Serif","Liberation Serif",serif;font-size:12.5px;letter-spacing:.03em;color:#C0392B;margin-top:6px;display:block;font-style:italic}
+
+  .inspir{background:#FFFFFF;border:1px solid #C0392B;border-radius:16px;padding:20px 24px;box-shadow:0 8px 30px rgba(20,24,31,.07);margin-bottom:26px;border-top:4px solid #C0392B}
+  .inspir-head{margin-bottom:8px;overflow:hidden}
+  .inspir-head .en{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:18px;color:#C0392B;letter-spacing:.04em;float:left}
+  .inspir-head .ko{font-size:13px;color:#4A5057;margin-left:12px;float:left;line-height:24px}
+  .inspir-head .axis-tag{float:right;font-family:"DejaVu Serif","Liberation Serif",serif;font-size:10.5px;color:#C0392B;background:#F7E8E4;border:1px solid #C0392B;border-radius:11px;padding:2px 10px;letter-spacing:.08em;line-height:1.4;font-weight:700}
+  .inspir-body{font-size:13px;line-height:1.7;color:#4A5057;clear:both;padding-top:6px}
+  .inspir-body b{color:#16191F;font-weight:700}
+  .inspir-tags{margin-top:12px}
+  .inspir-tags span{display:inline-block;font-family:"DejaVu Serif","Liberation Serif",serif;font-size:11.5px;color:#C0392B;background:#F7E8E4;border:1px solid #C0392B;border-radius:14px;padding:3px 11px;margin-right:6px;margin-bottom:4px;font-weight:600}
+
+  .meta{background:#FFFFFF;border:1.5px solid #C0392B;border-radius:16px;padding:20px 24px;box-shadow:0 8px 30px rgba(20,24,31,.07);margin-bottom:20px;border-top:4px solid #C0392B}
+  .meta-head{margin-bottom:8px;overflow:hidden}
+  .meta-head .en{font-family:"DejaVu Serif","Liberation Serif",serif;font-weight:700;font-size:18px;color:#C0392B;letter-spacing:.04em;float:left}
+  .meta-head .ko{font-size:13px;color:#4A5057;margin-left:12px;float:left;line-height:24px}
+  .meta-head .axis-tag{float:right;font-family:"DejaVu Serif","Liberation Serif",serif;font-size:10.5px;color:#C0392B;background:#F7E8E4;border:1px solid #C0392B;border-radius:11px;padding:2px 10px;letter-spacing:.08em;line-height:1.4;font-weight:700}
+  .meta-body{font-size:13px;line-height:1.7;color:#4A5057;margin-bottom:12px;clear:both;padding-top:6px}
+  .meta-body b{color:#16191F;font-weight:700}
+
+  table.meta-grid{width:100%;border-collapse:separate;border-spacing:8px 0;margin:0 -4px;table-layout:fixed}
+  table.meta-grid td{background:#F7E8E4;border-radius:8px;padding:10px 8px;text-align:center;vertical-align:top;width:25%}
+  table.meta-grid .ck{font-family:"DejaVu Serif","Liberation Serif",serif;font-size:12.5px;color:#C0392B;font-weight:700;margin-bottom:4px;display:block}
+  table.meta-grid .cv{font-size:10.5px;color:#4A5057;line-height:1.4;display:block}
+
+  .foot{margin-top:22px;padding-top:18px;border-top:1px solid #D9D3C4;text-align:center}
+  .foot .line{font-family:"DejaVu Serif","Liberation Serif",serif;font-size:13.5px;color:#16191F;line-height:1.65;margin-bottom:8px}
+  .foot .line b{color:#B8893A;font-weight:700}
+  .foot .disc{font-size:11px;color:#8B8E94;letter-spacing:.03em;line-height:1.6}
+  .foot .disc b{color:#6B7077;font-weight:700}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="mast">
+    <div class="brand"><b>ATMAN</b> FLOW INTELLIGENCE</div>
+    <h1>The market flows along three axes — <em>capital, price, expectation</em></h1>
+    <div class="lead">Every morning, after the U.S. close and before the Korean open, ATMAN's AI reads the day's market through these three axes — where capital is moving, where price now stands, and what the market expects from that price.</div>
+  </div>
+
+  <table class="frame"><tr>
+    <td class="fund">
+      <div><span class="axn">Capital</span><span class="axk">FUND</span></div>
+      <ul class="axlist">
+        <li>Where is money flowing in</li>
+        <li>Which industries or themes are it crowding</li>
+        <li>Is it a one-off, or spreading across clusters</li>
+      </ul>
+    </td>
+    <td class="price">
+      <div><span class="axn">Price</span><span class="axk">PRICE</span></div>
+      <ul class="axlist">
+        <li>Where does the price that capital built stand</li>
+        <li>Is it a cheap level, or an expensive one</li>
+        <li>Strong or weak versus other sectors</li>
+      </ul>
+    </td>
+    <td class="expect">
+      <div><span class="axn">Expectation</span><span class="axk">EXPECTATION</span></div>
+      <ul class="axlist">
+        <li>What does the market expect from this price</li>
+        <li>Is that expectation still alive</li>
+        <li>Or already overheated, ready to release supply</li>
+      </ul>
+    </td>
+  </tr></table>
+
+  <div class="stage s1">
+    <div class="num">1</div>
+    <div class="tt">Each day — from capital to price</div>
+    <div class="sub">After U.S. close · before Korea open</div>
+  </div>
+  <div class="daily">
+    <div class="daily-lead">We start with the widest view — the global economy — and narrow it down step by step: where capital is flowing (the capital axis), and what kind of price that capital has built (the price axis).</div>
+
+    <span class="axis-label fund">— Capital axis — Where is money flowing</span>
+    <table class="chain3"><tr>
+      <td class="node"><span class="en">MACRO</span><span class="ko">The global economy</span></td>
+      <td class="arr">→</td>
+      <td class="node"><span class="en">ETF</span><span class="ko">U.S.–Korea sector linkage</span></td>
+      <td class="arr">→</td>
+      <td class="node"><span class="en">SECTOR</span><span class="ko">Korean industries &amp; themes</span></td>
+    </tr></table>
+
+    <div class="bridge">↓ Into the price that capital built ↓</div>
+
+    <span class="axis-label price">— Price axis — Where capital landed</span>
+    <table class="chain2"><tr>
+      <td><span class="en">SECTOR ITEM</span><span class="ko">Stocks within sectors · price level</span></td>
+      <td><span class="en">HOT ITEM</span><span class="ko">Stocks of the day</span><span class="side-note">Outside the hierarchy — where today's flow is heaviest</span></td>
+    </tr></table>
+
+    <div class="merge">
+      <div class="down"></div>
+      <div class="summary"><span class="en">SUMMARY</span><span class="ko">Today's market map — capital and price on one page</span></div>
+    </div>
+  </div>
+
+  <div class="between"><span class="ar">↓</span><span class="lbl">On top of capital and price — we read the market's expectation</span></div>
+
+  <div class="stage s2">
+    <div class="num">2</div>
+    <div class="tt">The day's expectation</div>
+    <div class="sub">One per trading day</div>
+  </div>
+  <div class="inspir">
+    <div class="inspir-head"><span class="en">INSPIRATION</span><span class="ko">The day's expectation flow</span><span class="axis-tag">EXPECTATION</span></div>
+    <div class="inspir-body">Once capital and price are read, one question remains — <b>what does the market expect from this price, and is that expectation still alive?</b> INSPIRATION compresses the day's expectation flow into a single page. Glance at it in seconds; open only the panels you want to read deeper.</div>
+    <div class="inspir-tags"><span>One-line intuition</span><span>The flow of expectation</span><span>Today's brake</span><span>What to watch</span></div>
+  </div>
+
+  <div class="between"><span class="ar">↓</span><span class="lbl">When a week accumulates — we revisit our own judgment</span></div>
+
+  <div class="stage s3">
+    <div class="num">3</div>
+    <div class="tt">Weekend — revisiting the week's expectations</div>
+    <div class="sub">One per weekend</div>
+  </div>
+  <div class="meta">
+    <div class="meta-head"><span class="en">SECTOR META</span><span class="ko">The week's metacognition</span><span class="axis-tag">EXPECTATION · WEEKLY</span></div>
+    <div class="meta-body">Taking in the whole week of capital, price, and expectation, we re-analyze how the market's expectations stayed alive — and where they cooled. We revisit where our own judgment landed and where it was shaken, and leave the questions to carry into next week — <b>a single page that closes the week.</b></div>
+    <table class="meta-grid"><tr>
+      <td><span class="ck">Intuition</span><span class="cv">This week<br>in one sentence</span></td>
+      <td><span class="ck">Logic</span><span class="cv">Leading · spreading ·<br>weakening clusters</span></td>
+      <td><span class="ck">Review</span><span class="cv">Where our judgment<br>was shaken</span></td>
+      <td><span class="ck">Questions</span><span class="cv">What to watch<br>next week</span></td>
+    </tr></table>
+  </div>
+
+  <div class="foot">
+    <div class="line">Daily capital and price · the day's expectation · the week's metacognition — <b>ATMAN's three views</b> read the Korean market with you.</div>
+    <div class="disc">Every report is <b>AI-generated from ATMAN data</b> · <b>AI-generated analysis · for reference only</b> · investment decisions and outcomes remain the reader's own responsibility</div>
+  </div>
+
+</div>
+</body>
+</html>

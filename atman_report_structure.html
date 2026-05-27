@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN 리포트 구조 한 장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F2; --surface:#FFFFFF; --surface-soft:#F4F0E6;
+    --text:#14181F; --text-secondary:#4A5057; --text-soft:#6B7077; --text-muted:#8B8E94;
+    --border:#E8E3D5; --border-strong:#C8C2B5; --rule:#D9D3C4;
+    --strong:#3D5A38; --strong-soft:#EAF0E8;
+    --flow:#B8893A; --flow-soft:#F6EFE0;
+    --caution:#C0392B; --caution-soft:#F7E8E4;
+    --title:#16191F;
+    --shadow:0 1px 2px rgba(20,24,31,.04); --shadow-lift:0 8px 30px rgba(20,24,31,.07);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased}
+  body{background:#E5DFD0;min-height:100vh;padding:24px;display:flex;justify-content:center;font-family:'IBM Plex Sans KR',sans-serif}
+
+  .canvas{width:880px;background:var(--bg);color:var(--text);position:relative;overflow:hidden;
+    background-image:radial-gradient(circle at 15% 8%,rgba(184,137,58,.05),transparent 40%),
+      radial-gradient(circle at 88% 92%,rgba(74,103,65,.045),transparent 44%);
+    border-radius:8px;box-shadow:0 4px 24px rgba(20,24,31,.12);padding:46px 56px 50px}
+
+  /* ── 상단 ── */
+  .mast{text-align:center;border-bottom:1px solid var(--rule);padding-bottom:22px;margin-bottom:30px}
+  .mast .brand{font-family:'Gowun Batang',serif;font-size:13px;letter-spacing:.28em;color:var(--text-soft);margin-bottom:10px}
+  .mast .brand b{color:var(--title);font-weight:700}
+  .mast h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:27px;line-height:1.35;color:var(--title);letter-spacing:-.015em}
+  .mast h1 em{font-style:normal;color:var(--flow)}
+  .mast .lead{margin-top:12px;font-size:13px;color:var(--text-soft);line-height:1.6;max-width:58ch;margin-left:auto;margin-right:auto}
+
+  /* ── 3축 안내 ── */
+  .frame{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:30px}
+  .ax{background:var(--surface);border-radius:12px;padding:14px 16px;border-top:3px solid;box-shadow:var(--shadow)}
+  .ax.fund{border-color:var(--strong)} .ax.price{border-color:var(--flow)} .ax.expect{border-color:var(--caution)}
+  .ax .axh{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+  .ax .axn{font-family:'Gowun Batang',serif;font-weight:700;font-size:14px;letter-spacing:.04em}
+  .ax.fund .axn{color:var(--strong)} .ax.price .axn{color:var(--flow)} .ax.expect .axn{color:var(--caution)}
+  .ax .axk{font-size:11px;color:var(--text-muted)}
+  .ax ul{list-style:none;margin:0;padding:0}
+  .ax li{font-size:11.5px;line-height:1.55;color:var(--text-secondary);padding:2px 0 2px 11px;position:relative}
+  .ax li::before{content:'·';position:absolute;left:0;color:var(--text-muted);font-weight:700}
+
+  /* ── 단계 마커 ── */
+  .stage{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+  .stage .num{flex:none;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Gowun Batang',serif;font-weight:700;font-size:13px;color:#fff}
+  .stage.s1 .num{background:var(--strong)} .stage.s2 .num{background:var(--flow)} .stage.s3 .num{background:var(--caution)}
+  .stage .tt{font-family:'Gowun Batang',serif;font-size:17px;font-weight:700;color:var(--title)}
+  .stage .sub{margin-left:auto;font-size:11px;letter-spacing:.06em;color:var(--text-muted)}
+
+  /* ── 1단계: 매일 ── */
+  .daily{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px 18px;box-shadow:var(--shadow);margin-bottom:26px}
+  .daily-lead{font-size:12.5px;color:var(--text-soft);line-height:1.55;margin-bottom:18px;text-align:center}
+
+  /* 자금 축 — MACRO → ETF → SECTOR */
+  .axis-row{margin-bottom:14px}
+  .axis-label{display:inline-block;font-family:'Gowun Batang',serif;font-size:10.5px;letter-spacing:.1em;padding:2px 9px;border-radius:11px;margin-bottom:7px}
+  .axis-label.fund{color:var(--strong);background:var(--strong-soft);border:1px solid var(--strong)}
+  .axis-label.price{color:var(--flow);background:var(--flow-soft);border:1px solid var(--flow)}
+  .chain-fund{display:grid;grid-template-columns:1fr 18px 1fr 18px 1fr;align-items:stretch;gap:0}
+  .node{background:var(--strong-soft);border:1px solid var(--strong);border-radius:10px;padding:11px 9px;text-align:center}
+  .node .en{font-family:'Gowun Batang',serif;font-weight:700;font-size:13px;color:var(--strong);letter-spacing:.04em}
+  .node .ko{font-size:10.5px;color:var(--text-secondary);margin-top:3px;line-height:1.4}
+  .arrow{display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--strong)}
+  .arrow.toprice{color:var(--flow)}
+
+  /* 가격 축 — SECTOR ITEM + HOT ITEM 같이 */
+  .chain-price{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .node.p{background:var(--flow-soft);border:1px solid var(--flow)} .node.p .en{color:var(--flow)}
+  .node.hot{background:var(--flow-soft);border:1px solid var(--flow);border-style:solid}
+  .node.hot .en{color:var(--flow)}
+  .node .side-note{font-size:9.5px;color:var(--text-muted);margin-top:3px;font-style:italic}
+
+  /* 자금→가격 연결 */
+  .bridge{display:flex;justify-content:center;align-items:center;margin:8px 0;gap:8px}
+  .bridge .bln{flex:1;height:1px;background:var(--rule);max-width:200px}
+  .bridge .bah{color:var(--flow);font-size:14px;font-weight:700}
+
+  /* SUMMARY — 자금+가격 합류 */
+  .merge{display:flex;flex-direction:column;align-items:center;margin-top:14px}
+  .merge .down{width:1px;height:14px;background:linear-gradient(to bottom,var(--strong),var(--flow));margin-bottom:6px}
+  .summary{background:linear-gradient(135deg,var(--strong-soft),var(--flow-soft));border:1px solid var(--border-strong);border-radius:11px;padding:12px 24px;text-align:center;display:inline-block}
+  .summary .en{font-family:'Gowun Batang',serif;font-weight:700;font-size:14px;color:var(--title);letter-spacing:.04em}
+  .summary .ko{font-size:11px;color:var(--text-secondary);margin-top:3px}
+
+  /* 단계 사이 화살표 */
+  .between{display:flex;flex-direction:column;align-items:center;gap:6px;margin:-4px 0 18px}
+  .between svg{width:22px;height:22px}
+  .between.s12 svg{color:var(--caution)} .between.s23 svg{color:var(--caution)}
+  .between .lbl{font-family:'Gowun Batang',serif;font-size:12.5px;letter-spacing:.04em}
+  .between.s12 .lbl{color:var(--caution)} .between.s23 .lbl{color:var(--caution)}
+
+  /* 2단계: INSPIRATION (기대 축) */
+  .inspir{background:var(--surface);border:1px solid var(--caution);border-radius:16px;padding:20px 24px;box-shadow:var(--shadow-lift);margin-bottom:26px;position:relative;overflow:hidden}
+  .inspir::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--caution)}
+  .inspir-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+  .inspir-head .en{font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;color:var(--caution);letter-spacing:.04em}
+  .inspir-head .ko{font-size:13px;color:var(--text-secondary)}
+  .inspir-head .axis-tag{margin-left:auto;font-family:'Gowun Batang',serif;font-size:10.5px;color:var(--caution);background:var(--caution-soft);border:1px solid var(--caution);border-radius:11px;padding:2px 10px;letter-spacing:.08em}
+  .inspir-body{font-size:13px;line-height:1.7;color:var(--text-secondary)}
+  .inspir-body b{color:var(--title);font-weight:600}
+  .inspir-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .inspir-tags span{font-family:'Gowun Batang',serif;font-size:11.5px;color:var(--caution);background:var(--caution-soft);border:1px solid var(--caution);border-radius:14px;padding:3px 11px}
+
+  /* 3단계: META (기대 축의 종합) */
+  .meta{background:var(--surface);border:1px solid var(--caution);border-radius:16px;padding:20px 24px;box-shadow:var(--shadow-lift);position:relative;overflow:hidden;margin-bottom:20px;border-width:1.5px}
+  .meta::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--caution)}
+  .meta-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+  .meta-head .en{font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;color:var(--caution);letter-spacing:.04em}
+  .meta-head .ko{font-size:13px;color:var(--text-secondary)}
+  .meta-head .axis-tag{margin-left:auto;font-family:'Gowun Batang',serif;font-size:10.5px;color:var(--caution);background:var(--caution-soft);border:1px solid var(--caution);border-radius:11px;padding:2px 10px;letter-spacing:.08em}
+  .meta-body{font-size:13px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px}
+  .meta-body b{color:var(--title);font-weight:600}
+  .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .meta-grid .cell{background:var(--caution-soft);border-radius:8px;padding:10px 8px;text-align:center}
+  .meta-grid .cell .ck{font-family:'Gowun Batang',serif;font-size:12.5px;color:var(--caution);font-weight:700;margin-bottom:2px}
+  .meta-grid .cell .cv{font-size:10.5px;color:var(--text-secondary);line-height:1.35}
+
+  /* 하단 */
+  .foot{margin-top:22px;padding-top:18px;border-top:1px solid var(--rule);text-align:center}
+  .foot .line{font-family:'Gowun Batang',serif;font-size:13.5px;color:var(--title);line-height:1.65;margin-bottom:8px}
+  .foot .line b{color:var(--flow);font-weight:700}
+  .foot .disc{font-size:11px;color:var(--text-muted);letter-spacing:.04em;line-height:1.6}
+  .foot .disc b{color:var(--text-soft);font-weight:600}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- ── 상단 ── -->
+  <div class="mast">
+    <div class="brand"><b>ATMAN</b> FLOW INTELLIGENCE</div>
+    <h1>시장은 <em>자금 · 가격 · 기대</em>의 세 축으로 흐릅니다</h1>
+    <div class="lead">매일 미국 시장이 닫히는 한국 시각 아침, ATMAN 데이터를 AI가 분석해 그날의 시장을 세 축으로 풀어 드립니다 — 자금이 어디로 흐르고, 가격이 어느 자리에 있으며, 시장은 그 가격에 무엇을 기대하는지.</div>
+  </div>
+
+  <!-- ── 3축 프레임 ── -->
+  <div class="frame">
+    <div class="ax fund">
+      <div class="axh"><div class="axn">자금</div><div class="axk">FUND</div></div>
+      <ul>
+        <li>돈이 어디로 들어오는가</li>
+        <li>어느 업종·테마에 집중되나</li>
+        <li>단발인가, 군집으로 번지나</li>
+      </ul>
+    </div>
+    <div class="ax price">
+      <div class="axh"><div class="axn">가격</div><div class="axk">PRICE</div></div>
+      <ul>
+        <li>자금이 만든 가격은 어느 자리</li>
+        <li>싼 자리인가, 비싼 자리인가</li>
+        <li>다른 섹터 대비 강한가 약한가</li>
+      </ul>
+    </div>
+    <div class="ax expect">
+      <div class="axh"><div class="axn">기대</div><div class="axk">EXPECTATION</div></div>
+      <ul>
+        <li>시장은 이 가격에 무엇을 기대</li>
+        <li>그 기대는 아직 살아 있는가</li>
+        <li>과열되어 매물이 나올 자리인가</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 1단계: 매일 ── -->
+  <div class="stage s1">
+    <div class="num">1</div>
+    <div class="tt">매일, 자금에서 가격으로</div>
+    <div class="sub">미국 마감 후 · 한국 개장 전</div>
+  </div>
+  <div class="daily">
+    <div class="daily-lead">큰 시야(세계 경제)에서 시작해 단계적으로 좁혀 갑니다 — 자금이 어디로 흐르는지(자금 축), 그 자금이 어떤 가격을 만들었는지(가격 축)까지.</div>
+
+    <!-- 자금 축 -->
+    <div class="axis-row">
+      <span class="axis-label fund">— 자금 축 — 돈이 어디로 흐르는가</span>
+      <div class="chain-fund">
+        <div class="node"><div class="en">MACRO</div><div class="ko">세계 경제의 흐름</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="en">ETF</div><div class="ko">미·한 섹터의 동조</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="en">SECTOR</div><div class="ko">한국 업종·테마의 자금</div></div>
+      </div>
+    </div>
+
+    <!-- 자금→가격 다리 -->
+    <div class="bridge"><div class="bln"></div><div class="bah">↓ 자금이 만든 가격으로 ↓</div><div class="bln"></div></div>
+
+    <!-- 가격 축 -->
+    <div class="axis-row">
+      <span class="axis-label price">— 가격 축 — 자금이 만든 자리</span>
+      <div class="chain-price">
+        <div class="node p"><div class="en">SECTOR ITEM</div><div class="ko">섹터별 종목 · 가격까지</div></div>
+        <div class="node hot"><div class="en">HOT ITEM</div><div class="ko">오늘의 종목</div><div class="side-note">위계 밖, 오늘 자금이 가장 두꺼운 자리</div></div>
+      </div>
+    </div>
+
+    <!-- SUMMARY 합류 -->
+    <div class="merge">
+      <div class="down"></div>
+      <div class="summary"><div class="en">SUMMARY</div><div class="ko">오늘의 시장 종합 지도 — 자금과 가격을 한 장으로</div></div>
+    </div>
+  </div>
+
+  <!-- 1→2 화살표 -->
+  <div class="between s12">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    <div class="lbl">자금과 가격 위에 — 시장의 기대를 읽다</div>
+  </div>
+
+  <!-- ── 2단계: INSPIRATION ── -->
+  <div class="stage s2">
+    <div class="num">2</div>
+    <div class="tt">그날의 기대로</div>
+    <div class="sub">평일 매일 1종</div>
+  </div>
+  <div class="inspir">
+    <div class="inspir-head"><div class="en">INSPIRATION</div><div class="ko">직감 리포트 · 오늘의 기대 흐름</div><div class="axis-tag">기대 축</div></div>
+    <div class="inspir-body">자금과 가격을 읽고 나면 마지막 질문이 남습니다 — <b>시장은 이 가격에 무엇을 기대하고 있는가, 그 기대는 아직 살아 있는가</b>. INSPIRATION은 그날 시장의 기대 흐름을 한 장에 압축합니다. 0.5초에 훑고, 더 알고 싶은 칸만 펼쳐 보세요.</div>
+    <div class="inspir-tags"><span>한 줄 직감</span><span>기대의 흐름 그림</span><span>오늘의 브레이크</span><span>지켜볼 자리</span></div>
+  </div>
+
+  <!-- 2→3 화살표 -->
+  <div class="between s23">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    <div class="lbl">한 주가 쌓이면 — 우리 판단을 되짚는 자리</div>
+  </div>
+
+  <!-- ── 3단계: META ── -->
+  <div class="stage s3">
+    <div class="num">3</div>
+    <div class="tt">주말, 한 주의 기대를 되짚다</div>
+    <div class="sub">주말 1종</div>
+  </div>
+  <div class="meta">
+    <div class="meta-head"><div class="en">SECTOR META</div><div class="ko">주간 메타 리포트 · 한 주의 메타인지</div><div class="axis-tag">기대 축의 종합</div></div>
+    <div class="meta-body">한 주의 자금·가격·기대를 모두 받아, 시장의 기대가 어떻게 살아 있었고 어디서 식었는지 다시 분석합니다. 우리 판단이 어디서 적중했고 어디서 흔들렸는지 되짚고, 다음 주에 들고 갈 질문을 남깁니다 — <b>주말에 이 한 장이면 한 주가 정리됩니다.</b></div>
+    <div class="meta-grid">
+      <div class="cell"><div class="ck">직감</div><div class="cv">이번 주<br>한 문장으로</div></div>
+      <div class="cell"><div class="ck">논리</div><div class="cv">선도·확산·약화<br>군집 상세</div></div>
+      <div class="cell"><div class="ck">리뷰</div><div class="cv">우리 판단이<br>흔들린 자리</div></div>
+      <div class="cell"><div class="ck">질문</div><div class="cv">다음 주<br>지켜볼 것</div></div>
+    </div>
+  </div>
+
+  <!-- ── 하단 ── -->
+  <div class="foot">
+    <div class="line">매일의 자금과 가격 · 그날의 기대 · 한 주의 메타인지 — <b>ATMAN의 세 시야</b>로 한국 시장을 함께 읽습니다.</div>
+    <div class="disc">모든 리포트는 <b>ATMAN 데이터를 AI가 분석</b>해 자동으로 생성합니다 · <b>AI 자동분석 · 투자 참고용</b> · 투자 결정과 그 손익은 투자자 본인의 책임입니다</div>
+  </div>
+
+</div>
+</body>
+</html>
