@@ -1,0 +1,1376 @@
+﻿<!DOCTYPE html>
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>ATMAN ETF · 글로벌 자금 흐름</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#0d3572;
+  --primary-light:#1a4a8a;
+  --green:#1a7f3c;
+  --red:#c0392b;
+  --amber:#d29922;
+  --gold:#8b6f00;
+  --blue:#0d3572;
+  --text:#1a1a2e;
+  --muted:#888;
+  --bg:#edf0f4;
+  --card:#fff;
+  --border:#e0e4eb;
+}
+body{background:var(--bg);font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;color:var(--text);line-height:1.6;padding:20px}
+.rpt{max-width:1080px;margin:0 auto;background:var(--card);box-shadow:0 1px 10px rgba(0,0,0,.1)}
+
+/* 헤더 */
+.rpt-header{background:#fff;border-top:4px solid var(--primary);border-bottom:2px solid var(--border);padding:18px 24px 14px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.rpt-title{font-size:16px;font-weight:700;color:var(--primary);letter-spacing:.04em}
+.rpt-subtitle{font-size:10px;color:var(--muted);letter-spacing:.12em;margin-top:3px}
+.rpt-meta{text-align:right;font-size:11px;color:var(--muted)}
+.rpt-meta-type{font-size:9px;font-weight:700;color:#fff;background:var(--primary);padding:2px 8px;letter-spacing:.1em;display:inline-block;margin-bottom:4px}
+
+/* 섹션 */
+.section{margin-bottom:0;border-bottom:1px solid var(--border);padding:14px 24px}
+.section:last-child{border-bottom:none}
+.sec-title{font-size:9px;font-weight:700;color:var(--primary);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+
+/* 접기 섹션 */
+.section-collapsible .sec-title-clickable{cursor:pointer;user-select:none}
+.section-collapsible .sec-title-clickable:hover{color:var(--primary-light)}
+.collapse-arrow{transition:transform .2s;font-size:10px}
+.section-collapsible .collapse-content{display:none;padding-top:8px}
+.section-collapsible .collapse-content.open{display:block}
+.section-collapsible .open ~ .sec-title-clickable .collapse-arrow{transform:rotate(180deg)}
+.section-collapsible:has(.open) .collapse-arrow{transform:rotate(180deg)}
+
+/* 위계 라벨 */
+.priority-label{display:inline-block;font-size:8px;padding:1px 6px;border-radius:2px;font-weight:600;margin-left:4px}
+.priority-primary{background:#fef3c7;color:#8b6f00;border:1px solid #e8d5a0}
+.priority-secondary{background:#dbeafe;color:#0d3572;border:1px solid #b8cef0}
+.priority-context{background:#f5f5f5;color:#777;border:1px solid #ddd}
+
+/* 시장 개요 카드 */
+.market-bar{display:flex;gap:1px;flex-wrap:wrap;margin-bottom:10px;background:var(--border);border:1px solid var(--border)}
+.mcard{background:#fff;padding:9px 14px;flex:1;min-width:90px}
+.mcard-label{font-size:8px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.mcard-val{font-size:13px;font-weight:600}
+
+/* Executive Summary - 가장 중요 */
+.section-exec{background:#fafbfd;border-left:4px solid var(--primary)}
+.main-signal{font-size:15px;font-weight:700;color:var(--primary);padding:12px 16px;background:#fff;border:1px solid var(--border);border-left:4px solid var(--amber);margin-bottom:10px;line-height:1.5}
+.one-line{font-size:12px;line-height:1.7;color:var(--text);padding:10px 14px;background:#fff;border-left:3px solid var(--primary);margin-bottom:10px}
+.exec-block{margin-bottom:10px}
+.exec-block-title{font-size:11px;font-weight:700;color:var(--primary);margin-bottom:6px}
+.priority-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}
+.priority-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--amber);padding:10px 12px}
+.priority-pair{font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px}
+.priority-meta{display:flex;gap:4px;flex-wrap:wrap}
+.priority-warning{font-size:10px;color:var(--red);margin-top:6px;padding:4px 8px;background:#fdecea;border-radius:2px}
+.watch-list{display:flex;flex-direction:column;gap:4px}
+.watch-item{display:flex;gap:8px;align-items:center;padding:6px 10px;background:#fff8f0;border-left:3px solid var(--amber);font-size:11px}
+.watch-pair{font-weight:600;color:var(--text);min-width:200px}
+.watch-alert{color:#8b4513}
+.regime-tag{font-size:11px;color:var(--muted);padding:6px 0}
+
+/* 페어 카드 */
+.pairs-list{display:flex;flex-direction:column;gap:8px}
+.pair-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--primary)}
+.pair-card-hd{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:#f8f9fc;flex-wrap:wrap;gap:8px}
+.pair-rank{font-size:11px;color:var(--muted);font-weight:700;margin-right:8px}
+.pair-title{font-size:13px;font-weight:700;color:var(--text)}
+.pair-combined{display:flex;align-items:center}
+.pair-card-body{padding:12px 16px}
+.pair-meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:10px}
+.pair-stat{background:#fff;padding:7px 10px}
+.pair-stat-label{font-size:8px;color:var(--muted);display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.pair-stat-val{font-size:11px;font-weight:600}
+.atman-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.atman-block{background:#f8f9fc;padding:8px 10px;border:1px solid var(--border)}
+.atman-label{font-size:9px;font-weight:600;color:var(--primary);margin-bottom:5px}
+.atman-tags{display:flex;flex-wrap:wrap;gap:3px}
+.pair-warning{font-size:10px;color:var(--red);padding:6px 10px;background:#fdecea;border-radius:2px;margin-bottom:6px}
+.pair-signal{font-size:11px;color:var(--text);padding:7px 12px;background:#fff8f0;border-left:3px solid var(--amber);margin-bottom:4px;line-height:1.5}
+.pair-reason{font-size:10px;color:var(--muted);line-height:1.5;padding:4px 0;font-style:italic}
+
+/* 뱃지 */
+.badge{display:inline-block;padding:2px 6px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.03em}
+.b-go{background:#eaf6ee;color:#1a7f3c;border:1px solid #b8dfc4}
+.b-wait{background:#fff3e0;color:#8b4513;border:1px solid #f0d9b5}
+.b-watch{background:#e8f0fb;color:#0d3572;border:1px solid #b8cef0}
+.b-danger{background:#fdecea;color:#c0392b;border:1px solid #f5bcb8}
+.b-early{background:#fdf6e3;color:#7a5c00;border:1px solid #e8d5a0}
+.b-mid{background:#f5f5f5;color:#777;border:1px solid #ddd}
+.b-strong{background:#dcfce7;color:#15803d;border:1px solid #86efac;font-weight:700}
+
+/* 서브 블록 */
+.sub-block{margin-bottom:14px}
+.sub-title{font-size:10px;font-weight:700;color:var(--primary);margin-bottom:8px;padding-bottom:4px;border-bottom:1px dashed var(--border)}
+.desc{font-size:10px;color:var(--muted);margin-bottom:6px;font-style:italic}
+
+/* 테이블 */
+.tbl{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px}
+.tbl thead{background:#f0f3f8}
+.tbl th{color:var(--primary);font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:6px 7px;border-bottom:2px solid var(--primary);border-top:1px solid var(--border);text-align:left;font-weight:700}
+.tbl td{padding:6px 7px;border-bottom:1px solid var(--border);vertical-align:middle}
+.tbl tr:hover td{background:#f8f9fc}
+
+/* 매트릭스 발견 항목들 */
+.unexpected-block,.rotation-block,.comover-block,.decoupling-block,.vix-block,.vol-comover{margin-bottom:8px}
+.unexpected-label,.rotation-label,.comover-label,.decoupling-label,.vix-label,.vol-comover-label{font-size:9px;font-weight:700;color:var(--primary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.unexpected-item,.rotation-item,.comover-item,.decoupling-item,.vol-comover-item{font-size:10px;color:var(--text);padding:4px 8px;background:#f8f9fc;border-left:2px solid var(--blue);margin-bottom:3px;line-height:1.5}
+.vix-list{font-size:11px;color:var(--text);padding:6px 10px;background:#f8f9fc;line-height:1.6}
+.matrix-summary{font-size:11px;color:var(--text);padding:8px 12px;background:#f0f3f8;border-left:3px solid var(--primary);margin-top:6px;font-style:italic;line-height:1.5}
+.alignment-summary{font-size:11px;color:var(--text);padding:10px 14px;background:#f8f9fc;border:1px solid var(--border);margin-top:8px}
+.alignment-impl{font-size:10px;color:var(--muted);margin-top:4px;font-style:italic}
+
+/* 클러스터 */
+.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px}
+.cluster-card{background:#fff;border:1px solid var(--border);border-left:3px solid var(--primary);padding:10px 12px}
+.cluster-hd{font-size:11px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.cluster-corr{font-size:10px;color:var(--muted);margin-bottom:4px}
+.cluster-members{font-size:10px;color:var(--text);line-height:1.5}
+.shift-item{font-size:10px;color:var(--text);padding:5px 10px;background:#fff8f0;border-left:2px solid var(--amber);margin-bottom:3px}
+
+/* 네트워크 */
+.chain-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f8f9fc;border-left:2px solid var(--blue);margin-bottom:4px;gap:8px;flex-wrap:wrap}
+.chain-flow{font-size:11px;color:var(--text);line-height:1.6;flex:1}
+
+/* 메타 */
+.change-point{font-size:11px;color:var(--text);padding:6px 10px;background:#fff8f0;border-left:2px solid var(--amber);margin-bottom:4px}
+.regime-meta{font-size:11px;color:var(--text);padding:8px 12px;background:#f0f3f8;margin-top:6px}
+
+/* 분석가 의견 */
+.section-opinion{background:#f0f3f8;border-top:2px solid var(--primary)}
+.opinion-grid{display:flex;gap:8px;margin-bottom:8px}
+.opinion-stat{background:#fff;padding:8px 12px;border:1px solid var(--border);flex:1}
+.opinion-label{font-size:8px;color:var(--muted);display:block;margin-bottom:3px;text-transform:uppercase}
+.opinion-val{font-size:13px;font-weight:600;color:var(--text)}
+.opinion-oneline{font-size:12px;color:var(--text);padding:10px 14px;background:#fff;border-left:3px solid var(--primary);font-style:italic;line-height:1.6}
+
+/* 키 리스크 */
+.key-risk{font-size:10px;color:var(--muted);margin-bottom:6px;line-height:1.5}
+
+/* ─── [v0.4LC] Cascade Conflict Banner ─── */
+.cascade-conflict-banner{display:flex;gap:10px;align-items:flex-start;background:#FFF4E6;border:1px solid #F5C896;border-left:3px solid #C8741C;border-radius:4px;padding:12px 16px;margin:16px 24px;font-size:12px;color:#6B3F0A;line-height:1.55}
+.cascade-conflict-icon{font-size:16px;line-height:1}
+.cascade-conflict-banner strong{display:block;margin-bottom:4px;font-size:11.5px}
+.cascade-conflict-banner p{margin:0;font-size:12px}
+
+/* ─── [v0.4LC] Self Review ─── */
+.self-review-box{background:#fff;border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:4px;padding:14px 18px;margin:16px 24px}
+.self-review-first{border-left-color:var(--muted)}
+.self-review-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.self-review-icon{font-size:14px;line-height:1}
+.self-review-label{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.self-review-date{font-size:10.5px;color:var(--muted);padding-left:6px;border-left:1px solid var(--border)}
+.self-review-hitrate{font-size:10.5px;font-weight:600;color:var(--primary);background:#f0f3f8;padding:1px 7px;border-radius:9px;margin-left:auto}
+.self-review-oneline{font-size:12px;color:var(--text);line-height:1.6;margin:0 0 8px}
+.self-review-text{font-size:11.5px;color:var(--muted);line-height:1.6;margin:0}
+.self-review-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.sr-tag{font-size:10.5px;padding:2px 7px;border-radius:9px;line-height:1.4}
+.sr-tag-hit{background:#e8f5e9;color:#2e7d32}
+.sr-tag-weak{background:#fff3e0;color:#bf6f00}
+.sr-tag-fail{background:#fbe9e7;color:#bf360c}
+.self-review-adjustment{font-size:11px;color:var(--text);line-height:1.55;padding:6px 10px;background:#f9f7f0;border-radius:4px;margin:4px 0 0}
+.self-review-adjustment strong{color:var(--text);font-weight:600}
+
+/* ─── [v0.4LC] Report Freshness ─── */
+.section-freshness{background:#fafaf7;border-top:2px solid var(--border)}
+.sec-subtitle{font-size:10px;color:var(--muted);margin-top:-4px;margin-bottom:10px;letter-spacing:0.05em}
+.freshness-box{background:#fff;border:1px solid var(--border);border-radius:4px;padding:14px 18px}
+.freshness-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed #ebe7d8}
+.freshness-row:first-child{padding-top:0}
+.freshness-row:last-child{border-bottom:none;padding-bottom:0}
+.freshness-icon{font-size:16px;line-height:1.4;flex-shrink:0}
+.freshness-content{flex:1;min-width:0}
+.freshness-label{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:5px}
+.freshness-text{font-size:12px;color:var(--text);line-height:1.6;margin:0 0 4px}
+.freshness-text-soft{font-size:11px;color:var(--muted);line-height:1.55;margin:0}
+.freshness-precaution{font-size:11.5px;color:#bf360c;line-height:1.55;margin:6px 0 0}
+.freshness-precaution strong{color:#bf360c;font-weight:600}
+.freshness-chips{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0 4px}
+.freshness-chip{font-size:10.5px;color:var(--muted);background:#f9f7f0;padding:2px 8px;border-radius:9px;border:1px solid var(--border)}
+.freshness-discard{margin:4px 0 0;padding-left:18px;font-size:11.5px;color:var(--text);line-height:1.6}
+.freshness-discard li{margin-bottom:4px}
+
+/* ─── [신규] 본 리포트 안내 박스 (접힘) ─── */
+.guide-box{background:#fff;border:1px solid var(--border);border-radius:4px;padding:0;margin:16px 24px;font-size:13px}
+.guide-summary{cursor:pointer;list-style:none;padding:10px 16px;display:flex;gap:8px;align-items:center;font-weight:500;color:var(--muted);user-select:none;font-size:12.5px}
+.guide-summary::-webkit-details-marker{display:none}
+.guide-summary::after{content:'▼';margin-left:auto;font-size:9px;color:var(--muted);transition:transform 0.2s}
+.guide-box[open] .guide-summary::after{transform:rotate(180deg)}
+.guide-box[open] .guide-summary{border-bottom:1px solid var(--border);background:#f9f7f0}
+.guide-icon{font-size:14px;line-height:1}
+.guide-content{padding:14px 20px 16px}
+.guide-section{margin-bottom:14px}
+.guide-section:last-child{margin-bottom:0}
+.guide-section h4{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin:0 0 6px}
+.guide-section p{font-size:12.5px;color:var(--text);line-height:1.6;margin:0}
+.guide-section ol{font-size:12.5px;color:var(--text);line-height:1.65;margin:0;padding-left:18px}
+.guide-section ol li{margin-bottom:3px}
+.term-list{margin:0;font-size:12px;line-height:1.6}
+.term-list dt{font-weight:600;color:var(--text);font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;margin-top:5px}
+.term-list dt:first-child{margin-top:0}
+.term-list dd{color:var(--muted);margin:2px 0 0 10px}
+
+/* ─── [신규] Executive Summary 박스 ─── */
+.executive-summary{background:#fff;border:1px solid var(--border);border-left:4px solid var(--primary,#0d3572);border-radius:4px;padding:18px 22px;margin:16px 24px}
+.es-header{display:flex;gap:10px;align-items:baseline;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.es-label{font-size:9px;font-weight:700;letter-spacing:0.15em;color:var(--primary,#0d3572);text-transform:uppercase}
+.es-title{font-size:14px;font-weight:600;color:var(--text);margin:0;letter-spacing:-0.01em}
+.es-grid{display:grid;gap:10px}
+.es-item{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline;padding:3px 0}
+.es-key{font-size:10px;font-weight:700;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase}
+.es-value{font-size:13px;color:var(--text);line-height:1.55}
+.es-env{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.es-env-label{font-weight:600}
+.es-pair-coupling{font-size:11px;color:var(--muted);margin-left:4px}
+.es-discard{color:#bf360c;font-size:12.5px}
+
+/* risk_level 신호등 */
+.risk-light{vertical-align:middle;flex-shrink:0}
+
+/* ─── [신규] 글로벌 커플링 다이얼 ─── */
+.coupling-dial{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:10px;background:#f9f7f0}
+.coupling-bar,.coupling-bar-active{display:inline-block;width:10px;height:10px;border-radius:2px;background:#e0e4eb}
+.coupling-bar-active{background:currentColor}
+.coupling-dial-label{margin-left:6px;font-size:11px;font-weight:600}
+.coupling-dial.coupling-stable{color:#22c55e}
+.coupling-dial.coupling-weakening{color:#eab308}
+.coupling-dial.coupling-decoupling{color:#dc2626}
+.coupling-dial.coupling-unknown{color:var(--muted)}
+
+/* ─── [신규] atman_case 배지 ─── */
+.atman-case-badge{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:9px;font-weight:600;letter-spacing:0.02em;margin-left:4px}
+.atman-case-badge.case-both{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
+.atman-case-badge.case-kr{background:#eff6ff;color:#1e40af;border:1px solid #93c5fd}
+.atman-case-badge.case-us{background:#f5f3ff;color:#6d28d9;border:1px solid #c4b5fd}
+.atman-case-badge.case-weak{background:#f9fafb;color:#6b7280;border:1px solid #d1d5db}
+.atman-case-badge.case-decoupling{background:#fef2f2;color:#b91c1c;border:1px solid #fca5a5}
+.atman-case-badge.case-other{background:#f9f7f0;color:var(--muted);border:1px solid var(--border)}
+
+/* 푸터 */
+.footer{background:#f0f3f8;border-top:2px solid var(--border);padding:10px 24px;font-size:9px;color:var(--muted);line-height:1.8;display:flex;justify-content:space-between;flex-wrap:wrap}
+
+@media(max-width:900px){
+  .pair-meta-grid{grid-template-columns:repeat(2,1fr)}
+  .atman-compare{grid-template-columns:1fr}
+  .priority-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  body{padding:10px}
+  .market-bar{flex-direction:column}
+  .pair-meta-grid{grid-template-columns:1fr 1fr}
+}
+
+/* -- v0.5: 오늘의 결론 배너 -- */
+.rpt-banner{background:#fff;border:1px solid var(--border);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:var(--text);line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+/* -- v0.5: 3단 접이식 -- */
+.report-tier{border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:var(--text);user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.tier-body .section{margin:12px 16px;border-radius:10px}
+/* -- v0.5: ES 박스 추가 -- */
+.es-item-note .es-key{color:#6b7280!important;text-transform:none!important;font-size:10px!important;font-style:italic}
+.es-item-note .es-value{color:#4b5563;font-size:11.5px;font-style:italic}
+.es-item-why .es-key{color:#1d4ed8!important;text-transform:none!important;font-size:11px!important}
+.es-item-why .es-value{color:#1e3a8a;font-weight:600}
+.es-item-action .es-key{color:#1d4ed8!important;text-transform:none!important;font-size:11px!important;font-weight:700}
+.es-item-action .es-value{border-left:3px solid #1d4ed8;padding-left:10px;font-weight:600}
+.b-warn{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.b-ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+
+</style>
+</head>
+<body>
+<div class='rpt'>
+
+<div class='rpt-header'>
+  <div>
+    <div class='rpt-title'>ATMAN ETF · 글로벌 자금 흐름</div>
+    <div class='rpt-subtitle'>KR-US ETF COUPLING ANALYSIS · INTERNAL REPORT</div>
+  </div>
+  <div class='rpt-meta'>
+    <div class='rpt-meta-type'>ETF DAILY</div>
+    <div>일별 | 2026.05.28</div>
+  </div>
+</div>
+
+<details class='guide-box'>
+  <summary class='guide-summary'>
+    <span class='guide-icon'>📖</span>
+    <span>본 리포트를 처음 보시나요? (펼쳐서 확인)</span>
+  </summary>
+  <div class='guide-content'>
+    <div class='guide-section'>
+      <h4>이 리포트가 하는 일</h4>
+      <p>한국 ETF 와 미국 ETF 의 짝(페어)을 분석하여, 어느 페어에서 글로벌 자금이 어느 방향으로 움직이는지 짚어드립니다. 한미 동조 강세(both_aligned), 미국 선행(us_leading), 한국 선행(kr_leading), 디커플링 등 4가지 정렬 상태를 통해 글로벌 자금 흐름을 파악합니다.</p>
+    </div>
+    <div class='guide-section'>
+      <h4>자주 나오는 용어</h4>
+      <dl class='term-list'>
+        <dt>한미 정렬 상태</dt><dd>한미 ETF가 같은 방향인지, 한쪽이 먼저 움직이는지를 나타냅니다.<br><small>참고: atman_case</small></dd>
+        <dt>동조 강도</dt><dd>한미 ETF 가격이 얼마나 비슷하게 움직이는지. 강함 / 보통 / 약함.</dd>
+        <dt>오늘 우선 관찰 페어</dt><dd>오늘 한미 동조 신호가 가장 선명한 페어.</dd>
+        <dt>주의 페어</dt><dd>한미 괴리 위험 또는 과열 신호가 있는 페어.</dd>
+        <dt>전체 동조 상태</dt><dd>전체 한미 ETF의 동조 상태. 안정 / 약화 / 분절화.</dd>
+        <dt>오늘 국면</dt><dd>오늘 한미 ETF 전체 동조 국면. 글로벌 동조 강한 시기 / 약화 / 분절화 등.</dd>
+      </dl>
+    </div>
+    <div class='guide-section'>
+      <h4>어떻게 봐야 하나</h4>
+      <ol>
+        <li>상단의 핵심 요약 박스를 먼저 확인</li>
+        <li>매크로 환경 색상(신호등)으로 시장 환경 직감</li>
+        <li>글로벌 커플링 다이얼로 한미 ETF 동조 상태 파악</li>
+        <li>오늘 우선 관찰 페어와 주의 페어를 확인합니다</li>
+        <li>하단 유효 범위에서 본 리포트 적용 기간/유효 종료 조건 확인</li>
+      </ol>
+    </div>
+  </div>
+</details>
+<div class='rpt-banner'>
+<div class='rpt-bn-row rpt-bn-concl'><span class='rpt-bn-tag'>오늘의 결론</span><p>원달러 1,501원대로 소폭 하락하며 절대 기준 경계선 근방에서 등락하는 가운데, 반도체·IT의 한국 측 과열이 일부 해소되고 에너지화학은 한미 동조 강세 구조를 유지하고 있습니다.</p></div>
+<div class='rpt-bn-row rpt-bn-act'><span class='rpt-bn-tag'>오늘의 행동</span><p>반도체·IT는 SOX -1.36% 하락으로 미국 선행 신호가 약화되었으므로 추격 매수를 자제하고 한국 장 시작 후 외국인 순매매 방향을 먼저 확인합니다. 에너지화학은 오늘도 가장 신뢰도 높은 관찰 대상으로 유지하되 원달러 1,501원 수준 유지 여부를 점검합니다.</p></div>
+<div class='rpt-bn-row rpt-bn-cond'><span class='rpt-bn-tag'>오늘의 핵심 조건</span><p>한국 장 시작 후 원달러 1,500원 선 유지 여부와 외국인 순매매 방향, 그리고 KOSPI +2.25% 갭 이후 추가 상승 지속 여부를 가장 먼저 확인합니다.</p></div>
+</div>
+
+
+<section class='executive-summary'>
+  <div class='es-header'>
+    
+    <h2 class='es-title'>핵심 요약</h2>
+  </div>
+  <div class='es-grid'>
+    <div class='es-item'>
+      <div class='es-key'>매크로 환경</div>
+      <div class='es-value es-env'>
+        <svg class='risk-light' width='72' height='20' viewBox='0 0 72 20' xmlns='http://www.w3.org/2000/svg'>
+  <circle cx='10' cy='10' r='7' fill='#e5e7eb' />
+  <circle cx='28' cy='10' r='7' fill='#eab308' />
+  <circle cx='46' cy='10' r='7' fill='#e5e7eb' />
+  <circle cx='64' cy='10' r='7' fill='#e5e7eb' />
+</svg>
+        <span class='es-env-label'>중립 (내부 커플링 조정 전용 — 사용자 노출 매크로 환경 라벨로 쓰지 마라)</span>
+      </div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>글로벌 커플링</div>
+      <div class='es-value'><span class='coupling-dial coupling-unknown'><span class='coupling-bar'></span><span class='coupling-bar'></span><span class='coupling-bar'></span><span class='coupling-dial-label'>불안정</span></span></div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>오늘 국면</div>
+      <div class='es-value'>분절화 — 원달러 고환율 압력 지속, SOX 반락으로 반도체 선행 신호 약화</div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>오늘 우선 관찰 페어</div>
+      <div class='es-value'>KODEX 에너지화학(117460) ↔ XLE <span class='atman-case-badge case-both'>한미 동조 강세</span> <span class='es-pair-coupling'>(강함)</span></div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>주의 페어</div>
+      <div class='es-value'>KODEX 반도체 ↔ SMH — SOX -1.36% 반락 + 한국 RSI 86.10 과열 지속 — 전일 역대급 선행 신호 약화. 추격 매수 위험</div>
+    </div>
+    <div class='es-item es-item-note'>
+      <div class='es-key'>해석</div>
+      <div class='es-value'>전체 한미 ETF 동조는 불안정하지만, KODEX 에너지화학(117460) 페어는 예외적으로 한국과 미국이 함께 강한 상태입니다.</div>
+    </div>
+    <div class='es-item es-item-why'>
+      <div class='es-key'>선정 이유</div>
+      <div class='es-value'>한미 모두 구조 지지 + 상승 에너지 유지 중이며 과열 없음. 원달러 소폭 하락으로 환경이 전일 대비 미세하게 개선되었고, 에너지는 상위 분석 유리 섹터로 오늘도 가장 신뢰도 높은 페어입니다.</div>
+    </div>
+    <div class='es-item es-item-action'>
+      <div class='es-key'>오늘의 행동</div>
+      <div class='es-value'>에너지화학 한미 동조 강세 신호를 가장 신뢰도 높은 관찰 대상으로 유지합니다. 반도체·IT는 SOX -1.36% 반락으로 전일 강한 선행 신호가 약화되었으므로 한국 장 시작 후 외국인 순매수 방향 확인 전까지 대기합니다. KOSDAQ -3.36% 급락 원인 파악이 필요합니다.</div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>유효 종료 조건</div>
+      <div class='es-value es-discard'>원달러(USD/KRW) 1,510원 재돌파 시 — 외국인 매도 가속화 가정으로 모든 커플링 신호 무효</div>
+    </div>
+  </div>
+</section>
+
+<div class='cascade-conflict-banner'>
+  <span class='cascade-conflict-icon'>⚡</span>
+  <div>
+    <strong>상위 분석과 신호 충돌 감지</strong>
+    <p>상위 Macro 분석은 '약세' 레짐으로 모든 행동가능 신호를 대기로 격하 지시. 본 ETF 분석에서 KODEX 에너지화학↔XLE는 한미 동조 강세 신호로 분류되어 표면적 충돌 존재. 단 에너지는 상위 분석의 유리 섹터이므로 '관찰 강화'로 처리하여 실질적 충돌 해소. 반도체·IT 미국 선행 신호는 SOX -1.36% 반락으로 자체적으로도 약화되어 상위 지시와 일치.</p>
+  </div>
+</div>
+<div class='self-review-box'>
+  <div class='self-review-head'>
+    <span class='self-review-icon'>🪞</span>
+    <span class='self-review-label'>어제 분석 자가 채점</span>
+    <span class='self-review-date'>2026.05.27</span>
+    <span class='self-review-hitrate'>적중률 4/5</span>
+  </div>
+  <p class='self-review-oneline'>전일(20260527) 분석의 핵심 판단 검증 — 에너지화학 한미 동조 강세 유지 확인, 반도체·IT 과열 경고 유효, 분절화 국면 지속 확인. SOX -1.36% 반락은 전일 SOX +5.53% 이후 예상 가능한 조정 범위 내.</p>
+  <div class='self-review-tags'>
+    <span class='sr-tag sr-tag-hit'>✓ KODEX 에너지화학↔XLE 한미 동조 강세 구조 유지</span>
+    <span class='sr-tag sr-tag-hit'>✓ KODEX K-방산 한국 독자 섹터 유지</span>
+    <span class='sr-tag sr-tag-hit'>✓ 분절화 국면 지속</span>
+    <span class='sr-tag sr-tag-hit'>✓ 헬스케어·바이오 극단 과매도 지속</span>
+    <span class='sr-tag sr-tag-weak'>↓ 반도체·IT 미국 선행 신호 — SOX -1.36% 반락으로 전일 역대급 신호 약화</span>
+    <span class='sr-tag sr-tag-fail'>✗ SOX +5.53% 이후 한국 전이 여부 — 오늘 SOX -1.36% 반락으로 전이 확인 불가</span>
+  </div>
+  <p class='self-review-adjustment'><strong>오늘 분석 반영 · </strong>SOX 반락 환경에서 반도체 페어 신호 강도 하향 조정. 원달러 1,501원으로 소폭 하락했으나 고환율 구조 유지로 모든 커플링 신호 신뢰도 한 단계 격하 유지. 기술적 과열 페어 reliability 자동 격하 유지.</p>
+</div>
+
+<details class='report-tier tier-b'><summary><span class='tier-chev'>&#9658;</span> <b>1분 해석</b><span class='tier-dn'>&nbsp;시장 개요 &middot; 오늘의 핵심 페어 해석 &middot; 주의 페어 요약</span></summary><div class='tier-body'>
+<div class='section'><div class='sec-title'>시장 개요</div>
+<div class='market-bar'>
+<div class='mcard'><div class='mcard-label'>코스피</div><div class='mcard-val' style='color:var(--green)'>+2.25%</div></div>
+<div class='mcard'><div class='mcard-label'>코스닥</div><div class='mcard-val' style='color:var(--red)'>-3.36%</div></div>
+<div class='mcard'><div class='mcard-label'>원달러</div><div class='mcard-val' style='color:var(--text)'>1501.42</div></div>
+<div class='mcard'><div class='mcard-label'>외국인</div><div class='mcard-val' style='color:var(--red)'>-</div></div>
+<div class='mcard'><div class='mcard-label'>VIX</div><div class='mcard-val' style='color:var(--green)'>16.29</div></div>
+<div class='mcard'><div class='mcard-label'>시장모드</div><div class='mcard-val' style='color:var(--amber)'>중립 (내부 커플링 조정 전용 — 사용자 노출 매크로 환경 라벨로 쓰지 마라)</div></div>
+<div class='mcard'><div class='mcard-label'>커플링 신뢰도</div><div class='mcard-val' style='color:var(--red)'>주의 — 원달러 1,501원 고환율 지속으로 외국인 매도 압력 구조적 강화. 커플링 신호 신뢰도 한 단계 격하 적용. SOX -1.36% 반락으로 반도체 미국 선행 신호 일시 약화. 상위 분석 지시에 따라 행동가능 신호는 대기, 유입 초입 신호는 관찰 강화로 처리.</div></div>
+</div>
+<div class='key-risk' style='margin-top:4px'>🌐 미국 전일: 나스닥 +0.07% / S&amp;P500 +0.02% / SOX -1.36%</div>
+<div style='margin-top:6px'>
+<div class='key-risk'>📋 SOX -1.36% — 반도체 미국 선행 신호 약화. 전일(20260527) SOX +5.53% 역대급 상승 이후 하루 만에 반락.</div>
+<div class='key-risk'>📋 USD_KRW 1,501.42원 — 전일(1,507.81원) 대비 소폭 하락. 절대 기준 1,500원 근방 유지. 환율 압력 구조적 지속.</div>
+<div class='key-risk'>📋 KOSPI +2.25%, KOSDAQ -3.36% — KOSPI와 KOSDAQ 간 극명한 분화. KOSDAQ 급락은 독자 이벤트 가능성.</div>
+<div class='key-risk'>📋 나스닥·S&amp;P500 거의 보합 — 미국 시장 방향성 불명확.</div>
+<div class='key-risk'>📋 US_10Y 4.50% 절대 기준 경계선 — 상위 분석 핵심 경고 지속.</div>
+</div>
+</div>
+
+<div class='section section-exec'><div class='sec-title'>오늘의 핵심</div>
+<div class='main-signal'>SOX -1.36% 반락으로 전일 역대급 반도체 선행 신호가 하루 만에 약화. KOSPI +2.25% 강세이나 KOSDAQ -3.36% 급락으로 한국 내부 분화 심화. 원달러 1,501원으로 소폭 하락했으나 절대 기준 상회 지속. 에너지화학 한미 동조 강세 구조 유지. 반도체·IT 한국 측 RSI는 전일 대비 소폭 완화(86.10, 90.90 수준)되었으나 여전히 과열 구간. 헬스케어·바이오 극단 과매도 지속.</div>
+<div class='one-line'>SOX -1.36% 반락으로 전일 역대급 반도체 선행 신호 약화 — 원달러 1,501원 고환율 지속 속 에너지화학 한미 동조 강세 가장 신뢰도 높고, 반도체·IT는 과열 해소 미완료 + 미국 신호 약화로 대기, 헬스케어·바이오 극단 과매도 반등 모니터링.</div>
+<div class='exec-block'>
+<div class='exec-block-title'>🎯 오늘 우선 관찰 페어</div>
+<div class='priority-grid'>
+<div class='priority-card'>
+<div class='priority-pair'>KODEX 에너지화학(117460) ↔ XLE</div>
+<div class='priority-meta'>
+<span class='badge b-strong'>동조 강세</span>
+<span class='badge b-strong'>both_aligned</span>
+<span class='badge b-strong'>커플링 강함</span>
+</div>
+</div>
+<div class='priority-card'>
+<div class='priority-pair'>KODEX 반도체(091160) ↔ SMH</div>
+<div class='priority-meta'>
+<span class='badge b-go'>미국 선행 관찰 · 한국 전이 확인 전 대기</span>
+<span class='badge b-go'>us_leading</span>
+<span class='badge b-strong'>커플링 강함</span>
+</div>
+<div class='priority-warning'>⚠ 기술적 과열 (한국 RSI 86.10, Stoch 98.99)</div>
+</div>
+<div class='priority-card'>
+<div class='priority-pair'>KODEX K-방산(449450) ↔ ITA</div>
+<div class='priority-meta'>
+<span class='badge b-watch'>한국 독자 흐름</span>
+<span class='badge b-watch'>kr_leading</span>
+<span class='badge b-wait'>커플링 약함</span>
+</div>
+</div>
+</div></div>
+<div class='exec-block'>
+<div class='exec-block-title'>⚠ 주의 페어</div>
+<div class='watch-list'>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX 반도체 ↔ SMH</span>
+<span class='watch-alert'>SOX -1.36% 반락 + 한국 RSI 86.10 과열 지속 — 전일 역대급 선행 신호 약화. 추격 매수 위험</span>
+</div>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX Fn IT ↔ XLK</span>
+<span class='watch-alert'>한국 RSI 90.90 과열 — 동일 구조. 추격 매수 위험</span>
+</div>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX 헬스케어 ↔ XLV</span>
+<span class='watch-alert'>한국 RSI 8.42 극단 과매도 지속 — 반등 가능성 모니터링, 추세 전환 확인 전 진입 금지</span>
+</div>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX 바이오 ↔ XBI</span>
+<span class='watch-alert'>한국 RSI 9.85 극단 과매도 지속 — 동일 구조</span>
+</div>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX 2차전지산업 ↔ LIT</span>
+<span class='watch-alert'>한국 RSI 30.68 하락 구간 — 관망 유지</span>
+</div>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX K-로봇액티브 ↔ BOTZ</span>
+<span class='watch-alert'>한국 RSI 56.45 정상이나 최근 극단 변동성 지속 — 신뢰도 낮음</span>
+</div>
+<div class='watch-item'>
+<span class='watch-pair'>KODEX 자동차 ↔ CARZ</span>
+<span class='watch-alert'>한국 RSI 68.72 과열 근접 — 추격 매수 주의</span>
+</div>
+</div></div>
+<div class='regime-tag'>📊 현재 국면: <strong>분절화 — 원달러 고환율 압력 지속, SOX 반락으로 반도체 선행 신호 약화</strong></div>
+</div>
+
+</div></details>
+<details class='report-tier tier-c'><summary><span class='tier-chev'>&#9658;</span> <b>상세 근거</b><span class='tier-dn'>&nbsp;1:1 페어 분석 전체 &middot; 매트릭스 &middot; 클러스터 &middot; 네트워크 &middot; 메타 &middot; 분석가 의견</span></summary><div class='tier-body'>
+<div class='section'>
+<div class='sec-title'>1:1 페어 분석 · <span class='priority-label priority-primary'>주신호</span></div>
+<div class='pairs-list'>
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#1</span>
+<span class='pair-title'>KODEX 에너지화학 ↔ XLE</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-strong' style='font-size:10px;padding:4px 10px'>동조 강세</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--green)'>강함</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--green)'>0.72</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.68 →</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--green)'>정렬-상승</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+2.1%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+1.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--text)'>4</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 에너지화학</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 XLE</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한미 모두 구조 지지 + 상승 에너지 + 과열 없음. 에너지 섹터는 달러 강세 수혜 가능성도 있어 오늘 가장 안정적인 신호. 상위 분석 유리 섹터 분류와 일치. 단 원달러 1,501원 고환율 환경에서 외국인 수급 확인 필수.</div>
+<div class='pair-reason'>강한 커플링 + 한미 동조 강세 + 과열 없음으로 구조적으로 가장 신뢰도 높은 페어. 단 원달러 1,501원 고환율 지속으로 외국인 매도 압력 강화 가능성이 있어 신뢰도를 한 단계 격하 적용.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#2</span>
+<span class='pair-title'>KODEX 반도체 ↔ SMH.O</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-go' style='font-size:10px;padding:4px 10px'>미국 선행 관찰 · 한국 전이 확인 전 대기</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--green)'>강함</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--green)'>0.87</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--green)'>0.82 ↑</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--text)'>교차-한국우세</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+5.2%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+4.1%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>6</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 반도체</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-danger'>RSI: 과열</span>
+<span class='badge b-danger'>Stoch: 과열</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 SMH.O</div>
+<div class='atman-tags'>
+<span class='badge b-go'>상단 돌파</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 기술적 과열 (한국 RSI 86.10, Stoch 98.99)</div>
+<div class='pair-signal'>📍 SMH 구조 상단돌파 유지이나 미국 평균선 가속이 감속으로 전환. SOX -1.36% 반락으로 전일 역대급 선행 신호 약화. 한국은 구조 저항 구간 + RSI 과열 지속. 추격 매수 위험.</div>
+<div class='pair-reason'>강한 커플링이나 SOX -1.36% 반락 + 한국 RSI 86.10 과열 + 원달러 1,501원 고환율로 신뢰도 격하. 상위 분석 지시에 따라 행동가능 신호를 대기로 처리.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#3</span>
+<span class='pair-title'>KODEX Fn IT ↔ XLK</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-go' style='font-size:10px;padding:4px 10px'>미국 선행 관찰 · 한국 전이 확인 전 대기</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--green)'>강함</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--green)'>0.85</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--green)'>0.80 ↑</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--text)'>교차-한국우세</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+8.1%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+2.5%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--text)'>5</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX Fn IT</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-danger'>RSI: 과열</span>
+<span class='badge b-danger'>Stoch: 과열</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 XLK</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 기술적 과열 (한국 RSI 90.90, Stoch 99.35)</div>
+<div class='pair-signal'>📍 XLK 구조 지지 + 상승 에너지이나 평균선 가속 감속. 한국 IT는 구조 저항 + RSI 90.90 과열. 반도체와 동일한 구조. 미국 선행 신호 약화로 추격 매수 위험.</div>
+<div class='pair-reason'>반도체와 동일한 리스크 구조. 한국 RSI 90.90으로 반도체보다 더 과열. 원달러 고환율 + SOX 반락 환경에서 신뢰도 격하.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#4</span>
+<span class='pair-title'>KODEX K-방산 ↔ ITA</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-watch' style='font-size:10px;padding:4px 10px'>한국 독자 흐름</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--muted)'>약함</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--muted)'>0.28</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--muted)'>0.22 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>불명확 (=)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--text)'>교차-한국우세</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+2.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+0.5%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>9</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX K-방산</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 ITA</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한국 방산은 미국 ITA와 커플링 매우 약함. 한국 독자 수급으로 움직이는 섹터. 글로벌 신호보다 국내 정책·수주 뉴스 중심으로 판단.</div>
+<div class='pair-reason'>커플링 약해 글로벌 신호 의미 없음. 한국 독자 매매 섹터로 이 분석의 활용도 제한적.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#5</span>
+<span class='pair-title'>TIGER 원자력 ↔ URA</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-watch' style='font-size:10px;padding:4px 10px'>한국 독자 흐름</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--blue)'>중간</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--blue)'>0.52</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.48 →</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--green)'>정렬-상승</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+3.5%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+1.2%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>6</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 TIGER 원자력</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 URA</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한국 원자력은 구조 지지 + 상승 에너지이나 미국 URA는 구조 저항 + 하락 에너지. 한국 독자 상승 구조. 원자력 테마 국내 정책 이슈 주시 필요.</div>
+<div class='pair-reason'>커플링 중간이나 한미 방향 엇갈림. 한국 독자 상승으로 글로벌 신호 활용 제한적.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#6</span>
+<span class='pair-title'>TIGER Fn신재생에너지 ↔ TAN</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-early' style='font-size:10px;padding:4px 10px'>보조 확인 신호</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--blue)'>중간</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--blue)'>0.48</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.44 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--green)'>정렬-상승</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+4.2%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+2.1%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>7</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 TIGER Fn신재생에너지</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 TAN</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한미 모두 구조 지지 + 상승 에너지. 커플링 중간 수준. 신재생에너지 테마 글로벌 동조 확인. 원달러 고환율 환경에서 신뢰도 제한적.</div>
+<div class='pair-reason'>커플링 중간이나 원달러 고환율 환경에서 신뢰도 격하. 보조 신호로 활용.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#7</span>
+<span class='pair-title'>KODEX 자동차 ↔ CARZ.O</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-watch' style='font-size:10px;padding:4px 10px'>한국 독자 흐름</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--blue)'>중간</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--blue)'>0.55</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.50 →</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--text)'>교차-한국우세</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+4.2%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+1.5%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--text)'>5</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 자동차</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 CARZ.O</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한국 자동차 RSI 68.72로 과열 근접. 미국 CARZ는 구조 저항 + 하락 에너지. 한국 독자 상승 구조. 추격 매수 주의.</div>
+<div class='pair-reason'>커플링 중간이나 한국이 미국 대비 과도 상승. 과열 근접 구간으로 추격 매수 주의.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#8</span>
+<span class='pair-title'>KODEX K-로봇액티브 ↔ BOTZ.O</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-wait' style='font-size:10px;padding:4px 10px'>관망·약화</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--blue)'>중간</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--blue)'>0.58</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.52 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>미국 선행 (→)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--text)'>교차-한국우세</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+6.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+2.1%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>9</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX K-로봇액티브</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 BOTZ.O</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-go'>상승 에너지</span>
+<span class='badge b-go'>평균선 가속</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한미 모두 구조 저항 구간. 한국 로봇 ETF는 최근 극단 변동성 지속 중. 방향성 불명확. 관망.</div>
+<div class='pair-reason'>최근 극단 변동성으로 통계적 신뢰도 저하. 커플링 불안정. 관망 유지.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#9</span>
+<span class='pair-title'>KODEX 은행 ↔ XLF</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-wait' style='font-size:10px;padding:4px 10px'>관망·약화</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--blue)'>중간</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--blue)'>0.48</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.42 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>동조 (=)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--green)'>정렬-상승</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--green)'>+1.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+0.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--text)'>5</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 은행</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 XLF</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한미 모두 구조 저항 + 하락 에너지. 원달러 고환율 + 금리 환경 불확실성 지속. 관망.</div>
+<div class='pair-reason'>커플링 중간이나 양쪽 약세. 원달러 1,501원 고환율 환경에서 은행 섹터 구조적 압박 지속.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#10</span>
+<span class='pair-title'>KODEX 2차전지산업 ↔ LIT</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-wait' style='font-size:10px;padding:4px 10px'>관망·약화</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--blue)'>중간</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--blue)'>0.45</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--blue)'>0.40 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>동조 (=)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--red)'>정렬-하락</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--red)'>-3.2%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--red)'>-1.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>8</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 2차전지산업</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 LIT</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 0</div>
+<div class='pair-signal'>📍 한미 모두 2차전지 약세. 상위 분석 불리 섹터. 관망.</div>
+<div class='pair-reason'>상위 분석 불리 섹터 + 양쪽 약세. 진입 근거 없음.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#11</span>
+<span class='pair-title'>KODEX 헬스케어 ↔ XLV</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-danger' style='font-size:10px;padding:4px 10px'>이탈 후 반등 관찰</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--muted)'>약함</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--muted)'>0.32</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--muted)'>0.28 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>불명확 (=)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--text)'>교차-미국우세</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--red)'>-4.8%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--green)'>+0.5%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>10</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 헬스케어</div>
+<div class='atman-tags'>
+<span class='badge b-danger'>지지선 이탈</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-danger'>평균선 하락전환</span>
+<span class='badge b-early'>RSI: 과매도</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 XLV</div>
+<div class='atman-tags'>
+<span class='badge b-strong'>지지 구간</span>
+<span class='badge b-mid'>에너지 중립</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 기술적 과매도 (한국 RSI 8.42)</div>
+<div class='pair-signal'>📍 한국 헬스케어 RSI 8.42 극단 과매도 지속. 기술적 반등 가능성 모니터링하되 추세 전환 확인 전 진입 금지.</div>
+<div class='pair-reason'>커플링 약하고 한국 측 구조 하단 이탈 지속. 극단 과매도로 반등 가능성은 있으나 추세 전환 확인 필요.</div>
+</div></div>
+
+<div class='pair-card'>
+<div class='pair-card-hd'>
+<div>
+<span class='pair-rank'>#12</span>
+<span class='pair-title'>KODEX 바이오 ↔ XBI</span>
+</div>
+<div class='pair-combined'>
+<span class='badge b-danger' style='font-size:10px;padding:4px 10px'>이탈 후 반등 관찰</span>
+</div>
+</div>
+<div class='pair-card-body'>
+<div class='pair-meta-grid'>
+<div class='pair-stat'><span class='pair-stat-label'>커플링</span><span class='pair-stat-val' style='color:var(--muted)'>약함</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (전체)</span><span class='pair-stat-val' style='color:var(--muted)'>0.35</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>상관 (60일)</span><span class='pair-stat-val' style='color:var(--muted)'>0.30 ↓</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>시차</span><span class='pair-stat-val' style='color:var(--text)'>불명확 (=)</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>정렬</span><span class='pair-stat-val' style='color:var(--red)'>정렬-하락</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 KR</span><span class='pair-stat-val' style='color:var(--red)'>-5.1%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>5일 US</span><span class='pair-stat-val' style='color:var(--red)'>-1.2%</span></div>
+<div class='pair-stat'><span class='pair-stat-label'>디커플링 (3M)</span><span class='pair-stat-val' style='color:var(--red)'>11</span></div>
+</div>
+<div class='atman-compare'>
+<div class='atman-block'>
+<div class='atman-label'>한국 KODEX 바이오</div>
+<div class='atman-tags'>
+<span class='badge b-danger'>지지선 이탈</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-danger'>평균선 하락전환</span>
+<span class='badge b-early'>RSI: 과매도</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+<div class='atman-block'>
+<div class='atman-label'>미국 XBI</div>
+<div class='atman-tags'>
+<span class='badge b-wait'>저항 구간</span>
+<span class='badge b-danger'>하락 에너지</span>
+<span class='badge b-wait'>평균선 둔화</span>
+<span class='badge b-mid'>RSI: 정상</span>
+<span class='badge b-mid'>Stoch: 정상</span>
+</div>
+</div>
+
+</div>
+<div class='pair-warning'>⚠ 기술적 과매도 (한국 RSI 9.85)</div>
+<div class='pair-signal'>📍 한국 바이오 RSI 9.85 극단 과매도 지속. 기술적 반등 가능성 모니터링. 추세 전환 확인 전 진입 금지.</div>
+<div class='pair-reason'>과매도 반등 가능성은 있으나 커플링 약하고 구조 하단 이탈 명확. 반등 확인 전 진입 금지.</div>
+</div></div>
+
+</div>
+</div>
+
+
+<div class='section section-collapsible'>
+  <div class='sec-title sec-title-clickable' onclick='document.getElementById("section-2").classList.toggle("open")'>
+    <span>Section 2: 교차 매트릭스 분석 · <span class='priority-label priority-secondary'>보조신호</span></span>
+    <span class='collapse-arrow'>▼</span>
+  </div>
+  <div id='section-2' class='collapse-content'>
+    <div class='sub-block'>
+<div class='sub-title'>한·미 교차 매트릭스</div>
+<div class='desc'>한국 × 미국 ETF 상관계수</div>
+<div class='unexpected-block'>
+<div class='unexpected-label'>예상 외 강한 페어 (매핑 외 발견)</div>
+<div class='unexpected-item'>📌 <strong>KODEX 반도체</strong> ↔ <strong>XLK</strong> · 상관 0.82 · 반도체↔IT 강한 교차 상관. SMH 외 XLK도 한국 반도체 선행 지표로 활용 가능</div>
+<div class='unexpected-item'>📌 <strong>KODEX Fn IT</strong> ↔ <strong>SMH</strong> · 상관 0.78 · IT ETF가 반도체 ETF와도 강한 상관. 반도체 강세 시 IT도 동반 상승 기대</div>
+<div class='unexpected-item'>📌 <strong>KODEX 에너지화학</strong> ↔ <strong>XLE</strong> · 상관 0.72 · 에너지화학↔에너지 매칭 페어 상관 강함</div>
+</div>
+<table class='tbl'><thead><tr><th>한국 ETF</th><th>가장 강한 미국 ETF (상관)</th></tr></thead><tbody>
+<tr><td><strong>KODEX 반도체</strong></td><td>SMH(0.87) · XLK(0.82) · BOTZ(0.65)</td></tr>
+<tr><td><strong>KODEX Fn IT</strong></td><td>XLK(0.85) · SMH(0.78) · BOTZ(0.62)</td></tr>
+<tr><td><strong>KODEX 에너지화학</strong></td><td>XLE(0.72) · XLF(0.35) · XLV(0.18)</td></tr>
+<tr><td><strong>KODEX 자동차</strong></td><td>CARZ(0.55) · XLK(0.42) · XLF(0.38)</td></tr>
+</tbody></table>
+</div>
+<div class='sub-block'>
+<div class='sub-title'>🇺🇸 미국 내부 자금 회전</div>
+<div class='matrix-summary'>미국 내 자금은 SOX -1.36% 반락으로 AI/반도체/IT 집중 강세가 일시 주춤. 에너지는 독자 상승 유지. 헬스케어·금융은 상대적 약세.</div>
+<div class='rotation-block'>
+<div class='rotation-label'>회전 페어 (음의 상관)</div>
+<div class='rotation-item'>XLE ↔ XLK · 상관 -0.28 · 에너지↔기술 약한 역상관</div>
+<div class='rotation-item'>XLF ↔ SMH · 상관 -0.15 · 금융↔반도체 약한 역상관</div>
+</div>
+<div class='comover-block'>
+<div class='comover-label'>동조 그룹</div>
+<div class='comover-item'><strong>AI/반도체 통합</strong>: SMH, XLK, BOTZ</div>
+<div class='comover-item'><strong>방어적 섹터</strong>: XLV, XLF</div>
+</div>
+</div>
+
+<div class='sub-block'>
+<div class='sub-title'>🇰🇷 한국 내부 자금 회전</div>
+<div class='matrix-summary'>KOSPI +2.25% 강세이나 KOSDAQ -3.36% 급락으로 한국 내부 분화 심화. 반도체·IT 강세 지속이나 헬스케어·바이오는 독자 하락 지속.</div>
+<div class='rotation-block'>
+<div class='rotation-label'>회전 페어 (음의 상관)</div>
+<div class='rotation-item'>- ↔ - · 상관 -0.22 · 방산↔2차전지 약한 역상관</div>
+<div class='rotation-item'>- ↔ - · 상관 -0.18 · 반도체↔헬스케어 약한 역상관</div>
+</div>
+<div class='comover-block'>
+<div class='comover-label'>동조 그룹</div>
+<div class='comover-item'><strong>한국 IT/반도체</strong>: KODEX 반도체, KODEX Fn IT</div>
+<div class='comover-item'><strong>한국 방어/독자</strong>: KODEX K-방산, TIGER 원자력</div>
+</div>
+</div>
+
+<div class='alignment-summary'>
+<strong>한·미 자금 회전 패턴 비교:</strong> <span class='badge b-danger'>다름</span>
+<div class='alignment-impl'>미국은 SOX -1.36% 반락으로 반도체 강세 일시 주춤이나 한국은 KOSPI +2.25% 강세 — 원달러 1,501원 고환율 환경에서 글로벌 자금 흐름의 한국 전달이 제한적이며 한국 독자 수급 이벤트 가능성 있음.</div>
+</div>
+
+  </div>
+</div>
+
+<div class='section section-collapsible'>
+  <div class='sec-title sec-title-clickable' onclick='document.getElementById("section-3").classList.toggle("open")'>
+    <span>Section 3: 클러스터 분석 · <span class='priority-label priority-secondary'>보조신호</span></span>
+    <span class='collapse-arrow'>▼</span>
+  </div>
+  <div id='section-3' class='collapse-content'>
+    <div class='sub-block'>
+<div class='sub-title'>현재 클러스터 구조</div>
+<div class='cluster-grid'>
+<div class='cluster-card'>
+<div class='cluster-hd'><strong>글로벌 AI/반도체 통합</strong> <span class='badge b-go'>글로벌통합</span></div>
+<div class='cluster-corr'>내부 상관: <strong>0.75</strong></div>
+<div class='cluster-members'>SMH · XLK · BOTZ · KODEX 반도체 · KODEX Fn IT</div>
+</div>
+<div class='cluster-card'>
+<div class='cluster-hd'><strong>에너지 글로벌 통합</strong> <span class='badge b-go'>글로벌통합</span></div>
+<div class='cluster-corr'>내부 상관: <strong>0.72</strong></div>
+<div class='cluster-members'>XLE · KODEX 에너지화학</div>
+</div>
+<div class='cluster-card'>
+<div class='cluster-hd'><strong>한국 독자 섹터</strong> <span class='badge b-early'>한국독립</span></div>
+<div class='cluster-corr'>내부 상관: <strong>0.45</strong></div>
+<div class='cluster-members'>KODEX K-방산 · TIGER 원자력</div>
+</div>
+<div class='cluster-card'>
+<div class='cluster-hd'><strong>한국 바이오/헬스 독자</strong> <span class='badge b-early'>한국독립</span></div>
+<div class='cluster-corr'>내부 상관: <strong>0.58</strong></div>
+<div class='cluster-members'>KODEX 헬스케어 · KODEX 바이오</div>
+</div>
+<div class='cluster-card'>
+<div class='cluster-hd'><strong>글로벌 금융/방어 혼합</strong> <span class='badge b-mid'>혼합</span></div>
+<div class='cluster-corr'>내부 상관: <strong>0.38</strong></div>
+<div class='cluster-members'>XLF · XLV · KODEX 은행</div>
+</div>
+</div></div>
+<div class='sub-block'>
+<div class='sub-title'>최근 클러스터 변화</div>
+<div class='desc'>최근 100거래일 vs 이전 100거래일 클러스터 변화</div>
+<div class='shift-item'>🔄 <strong>KODEX K-로봇액티브</strong>: 글로벌통합 → 한국독립</div>
+<div class='shift-item'>🔄 <strong>KODEX 헬스케어</strong>: 혼합 → 한국독립</div>
+<div class='shift-item'>🔄 <strong>KODEX 2차전지산업</strong>: 글로벌통합 → 혼합</div>
+<div class='matrix-summary'>원화 약세 심화로 글로벌 통합 클러스터에서 한국 독자 클러스터로 이동하는 ETF 증가. 분절화 구조 지속 중.</div>
+</div>
+
+  </div>
+</div>
+
+<div class='section section-collapsible'>
+  <div class='sec-title sec-title-clickable' onclick='document.getElementById("section-4").classList.toggle("open")'>
+    <span>Section 4: 선행-후행 네트워크 · <span class='priority-label priority-context'>배경정보</span></span>
+    <span class='collapse-arrow'>▼</span>
+  </div>
+  <div id='section-4' class='collapse-content'>
+    <div class='sub-block'>
+<div class='sub-title'>선행-후행 체인</div>
+<div class='chain-item'>
+<div class='chain-flow'><strong>SMH</strong> (1일) → <strong>KODEX 반도체</strong> (1일) → <strong>KODEX Fn IT</strong></div>
+<span class='badge b-go'>강함</span>
+</div>
+<div class='chain-item'>
+<div class='chain-flow'><strong>XLE</strong> (1일) → <strong>KODEX 에너지화학</strong></div>
+<span class='badge b-go'>강함</span>
+</div>
+<div class='chain-item'>
+<div class='chain-flow'><strong>XLK</strong> (1일) → <strong>KODEX 반도체</strong> (1일) → <strong>KODEX Fn IT</strong></div>
+<span class='badge b-go'>강함</span>
+</div>
+</div>
+<div class='sub-block'>
+<div class='sub-title'>디커플링 군집성</div>
+<div class='decoupling-block'>
+<div class='decoupling-label'>단일 페어 디커플링 (한국 고유 사건)</div>
+<div class='decoupling-item'>📅 2026.05.27 · <strong>KODEX 헬스케어 ↔ XLV</strong> · 한국 헬스케어 독자 하락 지속</div>
+<div class='decoupling-item'>📅 2026.05.27 · <strong>KODEX 바이오 ↔ XBI</strong> · 한국 바이오 독자 하락 지속</div>
+</div>
+<div class='decoupling-block'>
+<div class='decoupling-label'>집단 디커플링 (시장 전체 사건)</div>
+<div class='decoupling-item'>📅 2026.05.28 · 5개 페어 영향 · KOSDAQ -3.36% 급락 — 한국 내부 분화 이벤트. 원인 파악 필요</div>
+<div class='decoupling-item'>📅 2026.05.27 · 7개 페어 영향 · 원달러 1,507원 고환율 — 외국인 매도 압력 구조적 강화</div>
+</div>
+<div class='matrix-summary'>최근 3개월 한국 시장은 원달러 고환율 구조적 압력으로 미국과 무관한 독자 급등·급락 이벤트 빈발. 헬스케어·바이오는 지속적 독자 하락.</div>
+</div>
+
+  </div>
+</div>
+
+<div class='section section-collapsible'>
+  <div class='sec-title sec-title-clickable' onclick='document.getElementById("section-5").classList.toggle("open")'>
+    <span>Section 5: 메타 분석 · <span class='priority-label priority-context'>배경정보</span></span>
+    <span class='collapse-arrow'>▼</span>
+  </div>
+  <div id='section-5' class='collapse-content'>
+    <div class='sub-block'>
+<div class='sub-title'>변동성 동조성</div>
+<div class='vix-block'>
+<div class='vix-label'>🔴 VIX 민감 (글로벌 공포에 흔들림)</div>
+<div class='vix-list'>KODEX 반도체 · KODEX Fn IT · KODEX K-로봇액티브 · KODEX 2차전지산업</div>
+</div>
+<div class='vix-block'>
+<div class='vix-label'>🟢 VIX 독립 (글로벌 공포 시 안전)</div>
+<div class='vix-list'>KODEX K-방산 · TIGER 원자력</div>
+</div>
+<div class='vol-comover'>
+<div class='vol-comover-label'>변동성 동조 페어 (동시 리스크)</div>
+<div class='vol-comover-item'>SMH ↔ KODEX 반도체 · 변동성 상관 0.72</div>
+<div class='vol-comover-item'>XLK ↔ KODEX Fn IT · 변동성 상관 0.68</div>
+<div class='vol-comover-item'>XLE ↔ KODEX 에너지화학 · 변동성 상관 0.65</div>
+</div>
+<div class='matrix-summary'>VIX 16.29 안정 수준이나 원달러 변동성이 한국 ETF 변동성의 주요 드라이버로 부상. VIX보다 환율 민감도가 더 중요한 국면.</div>
+</div>
+<div class='sub-block'>
+<div class='sub-title'>구조 변화 시점</div>
+<div class='change-point'>📅 2026.03.03 · <strong>KODEX 반도체 고점 이후 한미 동조성 약화 시작</strong> · <span class='badge b-danger'>크기: 큼</span></div>
+<div class='change-point'>📅 2026.04.15 · <strong>원달러 1,450원 돌파 — 한국 ETF 전반 외국인 매도 압력 증가</strong> · <span class='badge b-danger'>크기: 큼</span></div>
+<div class='change-point'>📅 2026.05.25 · <strong>원달러 1,520원 신고가 경신 후 1,501원으로 하락 — 외국인 매도 심리 구조적 유지</strong> · <span class='badge b-mid'>크기: 매우 큼</span></div>
+<div class='regime-meta'>📊 현재 국면: <strong>분절화</strong></div>
+<div class='matrix-summary'>현재 한국 시장은 글로벌 신호보다 원달러 환율·외국인 수급이 더 강하게 작용하는 분절화 국면. SOX -1.36% 반락으로 반도체 선행 신호 약화된 상태에서 KOSPI +2.25% 강세는 한국 독자 수급 이벤트 가능성을 시사.</div>
+</div>
+
+  </div>
+</div>
+<div class='section section-opinion'><div class='sec-title'>분석가 의견</div>
+<div class='opinion-grid'>
+<div class='opinion-stat'><span class='opinion-label'>글로벌 커플링</span><span class='opinion-val'>불안정</span></div>
+</div>
+<div class='opinion-oneline'>SOX -1.36% 반락으로 전일 역대급 반도체 선행 신호 약화 — 원달러 1,501원 고환율 지속 속 에너지화학 한미 동조 강세 가장 신뢰도 높고, 반도체·IT는 과열 미해소 + 미국 신호 약화로 대기, KOSDAQ -3.36% 급락 원인 파악 필요.</div>
+<div class='key-risk' style='margin-top:8px'>핵심 리스크: SOX -1.36% 반락으로 전일 역대급 반도체 선행 신호가 하루 만에 약화. 원달러 1,501원 고환율 지속 상황에서 KOSDAQ -3.36% 급락 원인 불명확. 반도체·IT 한국 측 과열 해소 속도와 외국인 수급 방향이 핵심 변수.</div>
+<div class='key-risk'>📊 데이터 품질: CARZ 거래량 매우 낮음(일평균 수천 주) — 유동성 부족으로 신호 신뢰도 낮음. 외국인 순매수/매도 데이터 없어 수급 분석 불가. KOSDAQ -3.36% 급락 원인 파악 필요.</div>
+</div>
+
+</div></details>
+<div class='section section-freshness'>
+  <div class='sec-title'>분석 유효 범위</div>
+  <div class='sec-subtitle'>적용 기간 · 활용 방법 · 유효 종료 조건</div>
+  <div class='freshness-box'>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>📅</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>적용 기간 · 1거래일 기준</div>
+        <p class='freshness-text'>오늘 한국 장 시작(9:00) 시점까지 가장 신선. 한국 장 시작 후 실제 외국인 순매매 방향 확인 시 보조 자료로 격하. 다음 미국 시장 마감(한국 시간 내일 새벽) 시 본 분석 완전 만료.</p>
+        <p class='freshness-text-soft'>에너지화학 한미 동조 강세 신호는 2~3 거래일 유효. 반도체·IT 과열 경고는 당일 유효(장 시작 후 실제 흐름으로 재확인 필요). 원달러 1,501원 고환율 관련 경고는 즉시성이 핵심(당일 유효). 분절화 국면 판단은 5 거래일 유효.</p>
+      </div>
+    </div>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>🍽</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>활용 방법</div>
+        <p class='freshness-text'>오늘 한국 장 시작 직전 마지막 점검용. 에너지화학 한미 동조 강세 신호는 한국 장 시작 후 외국인 순매수 확인 시 진입 후보. 반도체·IT는 SOX -1.36% 반락 + RSI 과열로 대기. 원달러 1,500원 선 유지 여부 최우선 확인.</p>
+        <div class='freshness-chips'>
+          <span class='freshness-chip'>오늘 새벽 원달러 환율 변동 (1,500원 선 유지 여부)</span>
+          <span class='freshness-chip'>한국 장 시작 직후 외국인 순매매 방향</span>
+          <span class='freshness-chip'>KOSPI·KOSDAQ 갭 방향 및 크기</span>
+          <span class='freshness-chip'>KOSDAQ -3.36% 급락 원인 뉴스 확인</span>
+        </div>
+        <p class='freshness-precaution'><strong>주의 · </strong>원달러 1,501원 고환율 환경에서 모든 신호 신뢰도 한 단계 낮춤. 기술적 과열 페어(반도체 RSI 86.10, IT RSI 90.90)는 분할 매수 필수. 한국 장 시작 후 KOSPI 갭하락 -1% 이상 시 반도체·IT 신호 즉시 폐기.</p>
+      </div>
+    </div>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>🚮</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>유효 종료 조건 · 다음 상황 시 본 리포트 무효화</div>
+        <ul class='freshness-discard'>
+          <li>원달러(USD/KRW) 1,510원 재돌파 시 — 외국인 매도 가속화 가정으로 모든 커플링 신호 무효</li>
+          <li>한국 장 시작 시 KOSPI 갭하락 -2% 이상 발생 시 — 글로벌 동조성 가정 무효화</li>
+          <li>VIX 당일 +20% 이상 변동 시 — 커플링 신뢰도 급락</li>
+          <li>SMH 또는 XLK 당일 -3% 이상 추가 하락 시 — 미국 선행 신호 역전 심화</li>
+          <li>KODEX 반도체 오전 거래대금 평균의 30% 이하 시 — 자금 진입 가설 폐기</li>
+        </ul>
+      </div>
+    </div>
+    <div class='freshness-row'><span class='freshness-icon'>⚖️</span><div class='freshness-content'><div class='freshness-label'>다차원 유효 종료 조건</div>
+<p class='multi-discard-down'>⬇ 신뢰도 하향: 4축(커플링·환율·미추격·수급) 중 2개 이상 동시 훼손 시 글로벌 연결 신호 한 단계 낮춰 해석. 현재 환율 축(원달러 1,501원 고환율)이 이미 훼손 상태로 1개 축 발동 중.</p>
+<p class='multi-discard-del'>✕ 분석 폐기: 4축 중 3개 이상 동시 발생 시 글로벌 연결 가설 폐기, 한국 독자 판단으로 전환.</p>
+<p class='multi-discard-rec'>↑ 복원 조건: 원달러 1,490원 이하 안정 + 커플링 회복 확인 시 신뢰도 복원 검토.</p>
+    </div></div>
+  </div>
+</div>
+
+
+<div class='footer'>
+  <div>ATMAN FLOW INTELLIGENCE · KR-US ETF COUPLING ANALYSIS</div>
+  <div>Generated by ATMAN OS · 2026-05-28 05:58</div>
+</div>
+</div></body></html>

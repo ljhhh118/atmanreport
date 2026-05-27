@@ -1,0 +1,1132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN ETF Detail — 2026.05.28</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ── MacroFlowEnRenderer v1.1 added styles ── */
+.rpt-banner{background:#fff;border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:var(--text);line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+.report-tier{border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:var(--text);user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border,#e0e4eb)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.headline-sub{font-size:15px;color:var(--text-secondary);line-height:1.6;margin:8px 0 0;max-width:680px}
+.es-item-rule .es-key{color:#1d4ed8;font-weight:700;text-transform:none;font-size:11px;letter-spacing:.02em}
+.es-item-rule .es-value{border-left:3px solid #1d4ed8;padding-left:10px;color:#1e3a8a;font-weight:600;line-height:1.6}
+.es-item-risk .es-key{color:#dc2626;font-weight:700;text-transform:none;font-size:11px}
+.es-item-risk .es-value{color:#b91c1c;font-weight:600}
+.es-discard br{display:block;margin-top:3px}
+dt small{display:block;color:#9ca3af;font-size:9.5px;margin-top:2px}
+
+  :root {
+    --bg: #FBF8F2;
+    --surface: #FFFFFF;
+    --surface-soft: #F4F0E6;
+    --text: #14181F;
+    --text-secondary: #4A5057;
+    --text-muted: #8B8E94;
+    --text-soft: #6B7077;
+    --border: #E8E3D5;
+    --border-strong: #C8C2B5;
+    --rule: #D9D3C4;
+    --rule-soft: #EAE5D7;
+    --accent-strong: #4A6741;
+    --accent-strong-soft: #EEF1E8;
+    --accent-flow: #B8893A;
+    --accent-flow-soft: #F6EFE0;
+    --accent-caution: #8B2C2C;
+    --accent-caution-soft: #F4E8E5;
+    --accent-extreme: #5B0F0F;
+    --shadow: 0 1px 2px rgba(20, 24, 31, 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss03", "ss04";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+
+  body {
+    padding: 28px 24px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .ai-banner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; font-size: 11px; color: var(--text-soft);
+    letter-spacing: 0.01em; padding: 12px 0 14px;
+    margin-bottom: 28px; text-align: center; font-weight: 500;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .inflation-banner {
+    background: var(--accent-caution-soft);
+    border-left: 3px solid var(--accent-caution);
+    padding: 14px 18px; margin-bottom: 24px;
+    font-size: 13px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .inflation-icon { color: var(--accent-caution); font-size: 18px; }
+
+  .header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 32px; margin-bottom: 36px;
+  }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .eyebrow-dot { width: 4px; height: 4px; background: var(--accent-caution); border-radius: 50%; }
+  .eyebrow-tag {
+    margin-left: auto; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--text-soft);
+    padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: 2px;
+  }
+
+  .date { font-size: 13px; color: var(--text-soft); font-weight: 500; margin-bottom: 12px; }
+
+  .regime-row {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .regime-level {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .risk-normal .regime-level   { background: var(--accent-strong-soft);  color: var(--accent-strong);   }
+  .risk-medium .regime-level   { background: var(--accent-flow-soft);    color: var(--accent-flow);     }
+  .risk-high .regime-level     { background: var(--accent-caution-soft); color: var(--accent-caution);  }
+  .risk-extreme .regime-level  { background: var(--accent-caution); color: #FFF; }
+
+  .regime-warning-count { font-size: 12px; color: var(--text-muted); }
+  .regime-natural-label {
+    font-size: 16px; font-weight: 600; color: var(--text-secondary);
+  }
+
+  .headline {
+    font-size: 28px; font-weight: 700; line-height: 1.32;
+    color: var(--text); letter-spacing: -0.03em;
+  }
+
+  .essence-one-line {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-left: 3px solid var(--accent-strong);
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+    font-style: italic;
+  }
+  .risk-medium  .essence-one-line { border-left-color: var(--accent-flow);    }
+  .risk-high    .essence-one-line { border-left-color: var(--accent-caution); }
+  .risk-extreme .essence-one-line { border-left-color: var(--accent-extreme); }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .section-number {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .section-subtitle {
+    margin-left: auto; font-size: 12px; color: var(--text-soft);
+  }
+
+  /* ─── Risk Chips ─── */
+  .risk-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .risk-chip {
+    font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 16px;
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+
+  /* ─── Stage Flow ─── */
+  .stage-flow {
+    display: flex; align-items: center; gap: 6px;
+    margin: 20px 0 24px; flex-wrap: wrap;
+  }
+  .stage {
+    flex: 1 1 0; min-width: 120px;
+    padding: 12px 10px; text-align: center;
+    background: var(--surface-soft); border-radius: 4px;
+    opacity: 0.5; border: 1px solid var(--border);
+  }
+  .stage.on {
+    opacity: 1; background: var(--accent-caution-soft);
+    border-color: var(--accent-caution);
+  }
+  .stage-number {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); margin-bottom: 4px;
+  }
+  .stage.on .stage-number { color: var(--accent-caution); }
+  .stage-name { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+  .stage-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); margin: 6px auto 0;
+  }
+  .stage.on .stage-dot { background: var(--accent-caution); }
+  .stage-arrow {
+    color: var(--text-muted); font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .stage-label {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .stage-propagation, .stage-watch {
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .stage-propagation .key, .stage-watch .key, .caution-zone-signal .key {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    text-transform: uppercase; margin-right: 4px;
+  }
+  .stage-meaning {
+    font-size: 14px; color: var(--text-secondary);
+    margin-top: 12px; line-height: 1.7;
+  }
+  .stage-watch {
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+
+  /* ─── Macro Positions Grid ─── */
+  .positions-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .macro-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 16px 18px;
+  }
+  .macro-card.warn { border-color: var(--accent-caution); border-width: 1px; }
+  .macro-card.triple {
+    border-color: var(--accent-caution);
+    background: var(--accent-caution-soft);
+  }
+  .macro-card-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 8px;
+  }
+  .macro-name { font-size: 14px; font-weight: 700; }
+  .macro-category {
+    font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .macro-flag {
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--surface-soft); color: var(--text-muted);
+  }
+  .macro-card.warn .macro-flag {
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+  .macro-card.triple .macro-flag {
+    background: var(--accent-caution); color: #FFF;
+  }
+  .macro-value {
+    font-size: 18px; font-weight: 700;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .macro-reasons {
+    list-style: none; margin: 0 0 10px 0; padding: 0;
+    font-size: 12px; color: var(--accent-caution);
+  }
+  .macro-reasons li::before { content: "• "; }
+  .macro-position {
+    font-size: 12px; color: var(--text-secondary);
+    line-height: 1.6; margin-bottom: 8px;
+  }
+  .macro-natural {
+    font-size: 12px; color: var(--text-soft);
+    font-style: italic; padding-top: 8px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  /* ─── Correlation ─── */
+  .corr-relation {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-bottom: 12px;
+  }
+  .corr-relation-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 12px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .corr-pair { font-size: 14px; font-weight: 700; }
+  .corr-flow {
+    font-size: 12px; font-weight: 600;
+    color: var(--accent-flow);
+    padding: 3px 10px; border-radius: 10px;
+    background: var(--accent-flow-soft);
+  }
+  .corr-evidence {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 8px;
+  }
+  .corr-meaning {
+    font-size: 13px; color: var(--text);
+    font-weight: 500; line-height: 1.6;
+  }
+  .corr-decoupling, .corr-regime {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+  .corr-decoupling-label, .corr-regime-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .corr-decoupling ul { list-style: none; padding: 0; }
+  .corr-decoupling li {
+    font-size: 13px; color: var(--text-secondary);
+    padding: 4px 0;
+  }
+  .corr-decoupling li::before { content: "— "; color: var(--text-muted); }
+  .corr-regime p {
+    font-size: 14px; color: var(--text);
+    font-weight: 500; line-height: 1.7;
+  }
+
+  /* ─── Priority List ─── */
+  .priority-list {
+    margin: 16px 0 0; padding-left: 22px;
+  }
+  .priority-list li {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; padding: 4px 0;
+  }
+
+  /* ─── Caution Zones ─── */
+  .caution-zone {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-caution);
+    border-radius: 4px; padding: 20px 24px; margin-bottom: 12px;
+  }
+  .caution-zone-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+  }
+  .caution-zone-number {
+    font-size: 11px; font-weight: 700;
+    color: var(--accent-caution); letter-spacing: 0.1em;
+  }
+  .caution-zone-title { font-size: 16px; font-weight: 700; }
+  .caution-zone-text {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 10px;
+  }
+  .caution-zone-signal {
+    font-size: 12px; color: var(--text-soft);
+    padding: 10px 12px; background: var(--surface-soft);
+    border-radius: 3px;
+  }
+
+  /* ─── Guidance ─── */
+  .guidance-essence {
+    font-size: 16px; color: var(--text);
+    font-style: italic; padding: 14px 18px;
+    border-left: 3px solid var(--accent-strong);
+    background: var(--surface-soft); margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  .guidance-tiers {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .guidance-tier {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 16px;
+  }
+  .guidance-label {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 8px; text-transform: uppercase;
+  }
+  .guidance-tier p {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px; margin-top: 40px;
+  }
+  .footer-meta-row {
+    display: flex; gap: 14px; padding: 4px 0;
+    font-size: 11.5px; color: var(--text-soft);
+  }
+  .footer-meta-key {
+    min-width: 80px; font-weight: 600;
+    color: var(--text-muted); letter-spacing: 0.05em;
+  }
+
+  /* ─── Disclaimer ─── */
+  .disclaimer {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 22px 26px; margin-top: 24px;
+  }
+  .disclaimer-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .disclaimer-text {
+    font-size: 11.5px; color: var(--text-soft);
+    line-height: 1.75;
+  }
+  .disclaimer-text p { margin-bottom: 8px; }
+  .disclaimer-text p:last-child { margin-bottom: 0; }
+
+  /* ─── Cascade Conflict Banner ─── */
+  .cascade-conflict-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #FFF4E6; border: 1px solid #F5C896;
+    border-left: 3px solid #C8741C;
+    border-radius: 4px; padding: 14px 16px;
+    margin: 0 auto 18px; max-width: 880px;
+    font-size: 13px; color: #6B3F0A; line-height: 1.6;
+  }
+  .cascade-conflict-icon { font-size: 18px; line-height: 1; }
+  .cascade-conflict-banner strong { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .cascade-conflict-banner p { margin: 0; font-size: 13px; }
+
+  /* ─── Self Review ─── */
+  .self-review-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px; padding: 16px 20px; margin: 0 auto 24px;
+    max-width: 880px;
+  }
+  .self-review-first { border-left-color: var(--text-muted); }
+  .self-review-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .self-review-icon { font-size: 16px; line-height: 1; }
+  .self-review-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .self-review-date {
+    font-size: 11px; color: var(--text-soft);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .self-review-hitrate {
+    font-size: 11px; font-weight: 600; color: var(--accent-strong);
+    background: var(--accent-strong-soft);
+    padding: 2px 8px; border-radius: 10px; margin-left: auto;
+  }
+  .self-review-oneline {
+    font-size: 14px; color: var(--text); line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .self-review-text {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+    margin: 0;
+  }
+  .self-review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .sr-tag {
+    font-size: 11.5px; padding: 3px 9px;
+    border-radius: 10px; line-height: 1.4;
+  }
+  .sr-tag-hit { background: var(--accent-strong-soft); color: var(--accent-strong); }
+  .sr-tag-weak { background: var(--accent-flow-soft); color: var(--accent-flow); }
+  .sr-tag-fail { background: var(--accent-caution-soft); color: var(--accent-caution); }
+  .self-review-adjustment {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;
+    padding: 8px 12px; background: var(--surface-soft);
+    border-radius: 4px; margin: 4px 0 0;
+  }
+  .self-review-adjustment strong { color: var(--text); font-weight: 600; }
+
+  /* ─── Report Freshness ─── */
+  .freshness-box {
+    background: var(--surface-soft); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-top: 8px;
+  }
+  .freshness-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .freshness-row:first-child { padding-top: 0; }
+  .freshness-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .freshness-icon {
+    font-size: 18px; line-height: 1.5; flex-shrink: 0;
+  }
+  .freshness-content { flex: 1; min-width: 0; }
+  .freshness-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .freshness-text {
+    font-size: 13.5px; color: var(--text); line-height: 1.65;
+    margin: 0 0 4px;
+  }
+  .freshness-text-soft {
+    font-size: 12.5px; color: var(--text-soft); line-height: 1.6;
+    margin: 0;
+  }
+  .freshness-precaution {
+    font-size: 12.5px; color: var(--accent-caution); line-height: 1.6;
+    margin: 8px 0 0;
+  }
+  .freshness-precaution strong { color: var(--accent-caution); font-weight: 600; }
+  .freshness-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px;
+  }
+  .freshness-chip {
+    font-size: 11.5px; color: var(--text-secondary);
+    background: var(--surface); padding: 3px 9px;
+    border-radius: 10px; border: 1px solid var(--rule);
+  }
+  .freshness-discard {
+    margin: 4px 0 0; padding-left: 18px;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+  }
+  .freshness-discard li { margin-bottom: 4px; }
+
+  /* ─── [new] guide box (collapsible) ─── */
+  .guide-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0;
+    margin: 0 auto 16px; max-width: 880px;
+    font-size: 13px;
+  }
+  .guide-summary {
+    cursor: pointer; list-style: none;
+    padding: 12px 18px;
+    display: flex; gap: 10px; align-items: center;
+    font-weight: 500; color: var(--text-secondary);
+    user-select: none;
+  }
+  .guide-summary::-webkit-details-marker { display: none; }
+  .guide-summary::after {
+    content: '▼'; margin-left: auto;
+    font-size: 9px; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .guide-box[open] .guide-summary::after { transform: rotate(180deg); }
+  .guide-box[open] .guide-summary {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+  .guide-icon { font-size: 15px; line-height: 1; }
+  .guide-content { padding: 16px 22px 20px; }
+  .guide-section { margin-bottom: 16px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .guide-section p { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0; }
+  .guide-section ol { font-size: 13.5px; color: var(--text); line-height: 1.7; margin: 0; padding-left: 20px; }
+  .guide-section ol li { margin-bottom: 4px; }
+  .term-list { margin: 0; font-size: 13px; line-height: 1.65; }
+  .term-list dt {
+    font-weight: 600; color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .term-list dt:first-child { margin-top: 0; }
+  .term-list dd { color: var(--text-secondary); margin: 2px 0 0 12px; }
+
+  /* ─── [new] Executive Summary ─── */
+  .executive-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-strong, #0d3572);
+    border-radius: 4px; padding: 22px 26px;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .es-header {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft, #e5e7eb);
+  }
+  .es-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--accent-strong, #0d3572); text-transform: uppercase;
+  }
+  .es-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .es-grid {
+    display: grid; gap: 12px;
+  }
+  .es-item {
+    display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+  .es-key {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .es-value {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .es-env {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .es-env-label { font-weight: 600; }
+  .es-env-count {
+    font-size: 11.5px; color: var(--text-muted);
+    padding-left: 8px; border-left: 1px solid var(--rule, #e5e7eb);
+  }
+  .es-discard {
+    color: var(--accent-caution, #bf360c);
+    font-size: 13.5px;
+  }
+  .risk-light { vertical-align: middle; flex-shrink: 0; }
+
+  /* ─── [new] 11-indicator macro heatmap grid ─── */
+  .macro-heatmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    max-width: 480px;
+  }
+  .heatmap-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 4px; border-radius: 4px;
+    font-size: 11px; line-height: 1.3;
+    min-height: 44px;
+    border: 1px solid transparent;
+  }
+  .heatmap-cell-normal {
+    background: #ecfdf5; color: #047857;
+    border-color: #a7f3d0;
+  }
+  .heatmap-cell-warn {
+    background: #fff7ed; color: #c2410c;
+    border-color: #fdba74;
+  }
+  .heatmap-cell-triple {
+    background: #fef2f2; color: #b91c1c;
+    border-color: #fca5a5;
+    font-weight: 600;
+  }
+  .heatmap-cell-name {
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .heatmap-cell-sym {
+    font-size: 11px; letter-spacing: -0.5px;
+  }
+
+  /* ─── [new] Stage 1->4 progress gauge ─── */
+  .stage-gauge {
+    display: flex; align-items: stretch;
+    gap: 4px; flex-wrap: wrap;
+  }
+  .stage-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 10px; border-radius: 4px;
+    background: var(--surface-soft, #f9fafb);
+    border: 1px solid var(--rule, #e5e7eb);
+    color: var(--text-muted);
+    min-width: 64px;
+  }
+  .stage-cell-active {
+    background: #eff6ff; color: #1e40af;
+    border-color: #93c5fd;
+    font-weight: 600;
+  }
+  .stage-num { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+  .stage-label { font-size: 11px; margin-top: 2px; }
+  .stage-arrow {
+    display: flex; align-items: center; padding: 0 2px;
+    color: var(--text-muted); font-size: 14px;
+  }
+  .stage-arrow-active { color: #3b82f6; font-weight: 600; }
+  .stage-propagation-note {
+    margin-top: 6px;
+    font-size: 11.5px; color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .headline { font-size: 22px; }
+    .stage { min-width: 90px; flex: 1 1 calc(50% - 8px); padding: 10px 6px; }
+    .stage-name { font-size: 11px; }
+    .stage-arrow { display: none; }
+    .positions-grid { grid-template-columns: 1fr; }
+    .guidance-tiers { grid-template-columns: 1fr; }
+  }
+
+  /* ─── ETF macro context ─── */
+  .macro-ctx-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:10px 0; }
+  .macro-ctx-col { background:var(--surface-soft); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .macro-ctx-head { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--text-soft); text-transform:uppercase; margin-bottom:8px; }
+  .macro-ctx-row { display:flex; justify-content:space-between; font-size:13px; padding:3px 0; color:var(--text-secondary); }
+  .macro-ctx-row .key { color:var(--text-muted); }
+  .macro-ctx-row-wide { display:block; }
+  .macro-ctx-modifier { font-size:12px; color:var(--text-soft); margin:8px 0; }
+  .macro-ctx-modifier .key { color:var(--text-muted); font-weight:600; }
+  .macro-ctx-issues { margin-top:10px; }
+  .macro-ctx-issues ul { list-style:none; padding:0; margin:6px 0 0; }
+  .macro-ctx-issues li { font-size:13px; color:var(--text-secondary); padding:3px 0 3px 16px; position:relative; }
+  .macro-ctx-issues li::before { content:"▪"; position:absolute; left:0; color:var(--accent-flow); }
+
+  /* ─── ETF pair cards ─── */
+  .pair-card { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent-strong); border-radius:10px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pair-card-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .pair-rank { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--accent-strong); color:#fff; font-size:12px; font-weight:700; }
+  .pair-name { font-size:15px; font-weight:700; color:var(--text); flex:1; }
+  .pair-case { font-size:11px; font-weight:600; color:var(--accent-strong); background:var(--accent-strong-soft); border-radius:6px; padding:2px 8px; }
+  .pair-signal { font-size:14px; color:var(--text-secondary); margin:6px 0 10px; }
+  .pair-data { background:var(--surface-soft); border-radius:8px; padding:10px 12px; margin:8px 0; }
+  .pair-data-head { font-size:10px; font-weight:700; letter-spacing:.08em; color:var(--text-soft); text-transform:uppercase; margin-bottom:6px; }
+  .pair-data-row { display:flex; justify-content:space-between; font-size:13px; padding:2px 0; color:var(--text-secondary); }
+  .pair-data-row .key { color:var(--text-muted); }
+  .pair-coupling-combined { font-size:13px; font-weight:600; color:var(--accent-flow); background:var(--accent-flow-soft); border-radius:6px; padding:6px 10px; margin:8px 0 0; }
+  .pair-warning { font-size:13px; color:var(--accent-caution); margin:8px 0 0; }
+  .pair-reason { font-size:13px; color:var(--text-soft); margin:6px 0 0; font-style:italic; }
+  .watchouts { background:var(--accent-caution-soft); border-radius:10px; padding:12px 14px; margin:12px 0; }
+  .watchouts-head { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--accent-caution); text-transform:uppercase; margin-bottom:8px; }
+  .watchout-row { display:flex; gap:10px; font-size:13px; padding:3px 0; }
+  .watchout-pair { font-weight:600; color:var(--text); min-width:120px; }
+  .watchout-alert { color:var(--text-secondary); }
+
+  /* ─── ETF matrices ─── */
+  .matrix-alignment { background:var(--surface-soft); border-radius:10px; padding:12px 14px; margin:10px 0; }
+  .matrix-align-row { display:flex; justify-content:space-between; font-size:13px; }
+  .matrix-align-row .key { color:var(--text-muted); }
+  .matrix-align-impl { font-size:13px; color:var(--text-secondary); margin:6px 0 0; }
+  .matrix-desc { font-size:13px; color:var(--text-soft); margin:8px 0; }
+  .matrix-unexpected, .matrix-internal { margin:10px 0; }
+  .matrix-sub-head { font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--text-soft); text-transform:uppercase; margin-bottom:6px; }
+  .matrix-pair-row { display:flex; justify-content:space-between; font-size:13px; padding:2px 0; color:var(--text-secondary); }
+  .matrix-pair { color:var(--text); }
+  .matrix-corr { color:var(--accent-flow); font-weight:600; }
+  .matrix-note { font-size:12px; color:var(--text-muted); margin:2px 0 6px; }
+  .matrix-summary { font-size:13px; color:var(--text-secondary); margin:4px 0; }
+
+  /* ─── ETF clusters ─── */
+  .cluster-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin:10px 0; }
+  .cluster-head { display:flex; align-items:center; gap:8px; }
+  .cluster-name { font-size:14px; font-weight:700; color:var(--text); flex:1; }
+  .cluster-type { font-size:11px; color:var(--text-soft); background:var(--surface-soft); border-radius:6px; padding:2px 8px; }
+  .cluster-corr { font-size:12px; color:var(--accent-flow); font-weight:600; }
+  .cluster-members { font-size:13px; color:var(--text-secondary); margin:6px 0 0; }
+  .cluster-shift { background:var(--surface-soft); border-radius:10px; padding:12px 14px; margin:10px 0; }
+  .cluster-sub-head { font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--text-soft); text-transform:uppercase; margin-bottom:6px; }
+  .cluster-shift-desc { font-size:13px; color:var(--text-secondary); margin:4px 0; }
+  .cluster-move-row { display:flex; justify-content:space-between; font-size:13px; padding:2px 0; }
+  .cluster-move-member { font-weight:600; color:var(--text); }
+  .cluster-move-path { color:var(--accent-flow); }
+  .cluster-shift-summary { font-size:13px; color:var(--text-soft); margin:6px 0 0; font-style:italic; }
+
+  /* ─── ETF network ─── */
+  .network-chains, .network-decoupling { background:var(--surface-soft); border-radius:10px; padding:12px 14px; margin:10px 0; }
+  .network-sub-head { font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--text-soft); text-transform:uppercase; margin-bottom:6px; }
+  .network-chain-row { display:flex; justify-content:space-between; font-size:13px; padding:3px 0; }
+  .network-chain { color:var(--text); font-weight:600; }
+  .network-strength { color:var(--accent-strong); font-size:12px; }
+  .network-decoupling-summary { font-size:13px; color:var(--text-secondary); margin:4px 0; }
+  .network-event-row { display:flex; gap:10px; font-size:12px; padding:2px 0; color:var(--text-soft); }
+  .network-event-date { min-width:80px; color:var(--text-muted); }
+
+  /* ─── ETF meta / opinion ─── */
+  .meta-block { background:var(--surface-soft); border-radius:10px; padding:12px 14px; margin:10px 0; }
+  .meta-sub-head { font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--text-soft); text-transform:uppercase; margin-bottom:6px; }
+  .meta-row { display:flex; justify-content:space-between; font-size:13px; }
+  .meta-row .key { color:var(--text-muted); }
+  .meta-text { font-size:13px; color:var(--text-secondary); margin:4px 0; }
+  .opinion-box { background:var(--accent-strong-soft); border-radius:10px; padding:14px 16px; margin:10px 0; }
+  .opinion-row { display:flex; justify-content:space-between; font-size:13px; padding:2px 0; }
+  .opinion-row .key { color:var(--text-muted); }
+  .opinion-oneline { font-size:14px; font-weight:600; color:var(--text); margin:8px 0 0; }
+  .opinion-datanote { font-size:12px; color:var(--text-muted); margin:4px 0 0; }
+  .empty-note { color:var(--text-muted); font-size:13px; padding:12px 0; }
+
+</style>
+<body>
+
+  <div class="ai-banner">
+    🤖 AI-generated analysis &nbsp;·&nbsp; for reference only
+  </div>
+
+<div class="cascade-conflict-banner">
+    <span class="cascade-conflict-icon">⚡</span>
+    <div>
+      <strong>Signal conflict with the upstream analysis detected</strong>
+      <p>The upstream macro report flags KOSPI as &#39;extreme overbought divergence from macro stress&#39; and warns of elevated reversal risk, while this ETF analysis finds that Korea–U.S. coupling remains in a strengthening regime. Both can be simultaneously true: the global co-movement structure is intact and the coupling regime has not broken, but the SOX reversal overnight and the KOSPI/KOSDAQ divergence today are consistent with the upstream warning that the KOSPI configuration is fragile. This analysis&#39;s data (coupling strengthening, structural alignment intact) takes precedence for the pre-open signal, but the upstream macro warning is incorporated as the primary risk factor in the watch_outs and key_risk fields.</p>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>ATMAN ETF · Korea-U.S. Coupling &amp; Flow</span>
+      <span class="eyebrow-tag">Detailed Analysis</span>
+    </div>
+    <div class="date">May 28, 2026 (Thu)</div>
+    <div class="regime-row">
+      <span class="regime-natural-label">coupling-strengthening period with selective overbought saturation and overnight signal reversal</span>
+    </div>
+    <h1 class="headline">The SOX -1.36% overnight reversal after yesterday&#39;s surge, combined with the extreme KOSPI/KOSDAQ divergence, shifts today&#39;s picture from &#39;strong U.S.-led signal&#39; to &#39;mixed and internally fragmented&#39; — the global co-movement map is intact in structure but the directional energy has weakened.</h1>
+  </header>
+
+<div class="rpt-banner">
+<div class="rpt-bn-row rpt-bn-concl"><span class="rpt-bn-tag">Today's Conclusion</span><p>Korea–U.S. ETF coupling remains in a strengthening regime for the AI/semiconductor cluster, but the overnight signal is notably weaker than yesterday — SOX fell 1.36% and NASDAQ was flat (+0.07%), while KOSPI rose +2.25% and KOSDAQ fell sharply -3.36%, creating a mixed and internally fragmented picture at the Korean open.</p></div>
+<div class="rpt-bn-row rpt-bn-act"><span class="rpt-bn-tag">How to Prioritize</span><p>The semiconductor and IT pairs deserve the closest reading given their strong structural coupling, but the negative SOX overnight and the KOSDAQ divergence reduce follow-up confidence compared to prior sessions; domestic policy themes (defense, nuclear, renewable energy) and the automobile pair continue to run on Korea-independent momentum and should be read as domestic signals rather than global co-movement.</p></div>
+<div class="rpt-bn-row rpt-bn-cond"><span class="rpt-bn-tag">Today's Key Condition</span><p>Confirm foreign net-buying direction at the Korean open and whether USD/KRW holds below 1,510 — the KOSDAQ -3.36% divergence from KOSPI +2.25% is the most unusual intraday signal and warrants monitoring for sector-specific rotation rather than broad global linkage.</p></div>
+</div>
+
+
+  <!-- Executive Summary -->
+  <section class="executive-summary">
+    <div class="es-header"><h2 class="es-title">Executive Summary</h2></div>
+    <div class="es-grid">
+  <div class="es-item"><div class="es-key">Current Regime</div><div class="es-value">coupling-strengthening period with selective overbought saturation and overnight signal reversal</div></div>
+  <div class="es-item"><div class="es-key">Main Signal</div><div class="es-value">The SOX -1.36% overnight reversal after yesterday&#39;s +5.53% surge is the primary signal this morning — the U.S.-led semiconductor tailwind has partially unwound, and KODEX Semiconductor and KODEX Fn IT face a more ambiguous open. The extreme KOSPI/KOSDAQ divergence (+2.25% vs -3.36%) suggests Korea-specific large-cap rotation rather than clean global co-movement. K-Defense and Automobile pairs show Korea-independent strength. Battery, healthcare, bio, and bank pairs remain structurally weak.</div></div>
+  <div class="es-item es-item-rule"><div class="es-key">How to Prioritize Today's Signals</div><div class="es-value">Semiconductor and IT pairs deserve the closest reading but with reduced confidence given the SOX reversal — the U.S.-led signal from yesterday has partially unwound. K-Defense and Automobile pairs show Korea-independent or secondary strength and warrant monitoring as domestic rotation candidates. The KOSPI/KOSDAQ divergence (+2.25% vs -3.36%) is the most unusual signal today and suggests large-cap rotation rather than broad global co-movement. Battery, healthcare, bio, and bank pairs remain lower-priority observation areas.</div></div>
+</div>
+
+  </section>
+
+<div class="self-review">
+      <div class="self-review-header">
+        <span class="self-review-icon">🪞</span>
+        <span class="self-review-label">Self-scoring of yesterday's analysis</span>
+        <span class="self-review-hitrate">Hit rate 6/7</span>
+      </div>
+      <p class="self-review-text">Yesterday&#39;s top calls were directionally correct — semiconductor/IT U.S.-led signal was valid (SOX had surged +5.53%), battery/healthcare/bio watch_outs were confirmed, and the coupling-strengthening regime call held. The K-Defense both_weak call was correct. The label-consistency correction applied in D-1 (no overbought label on oversold RSI) was maintained correctly.</p>
+      <div class="sr-tags">
+        <span class="sr-tag sr-tag-hit">✓ KODEX Semiconductor↔SMH strong coupling and U.S.-led pattern</span>
+        <span class="sr-tag sr-tag-hit">✓ coupling-strengthening period for AI and semiconductor cluster</span>
+        <span class="sr-tag sr-tag-hit">✓ Korea domestic policy themes (defense, nuclear, renewable energy) running on Korea-independent momentum</span>
+        <span class="sr-tag sr-tag-hit">✓ battery, healthcare, bio structural weakness</span>
+        <span class="sr-tag sr-tag-weak">↓ SOX +5.53% signal partially reversed to -1.36% overnight — U.S.-led directional energy has paused</span>
+        <span class="sr-tag sr-tag-weak">↓ KOSPI/KOSDAQ divergence introduces Korea-specific rotation signal not present yesterday</span>
+        <span class="sr-tag sr-tag-fail">✗ Yesterday&#39;s &#39;watch and confirm at the open&#39; call was appropriate — no specific directional call was made that can be scored as failed</span>
+      </div>
+      <p class="self-review-adjustment"><strong>Applied to today's analysis · </strong>Applied the SOX reversal as a signal-weakening factor for semiconductor/IT pairs. Maintained the label-consistency rule — no overbought labels on oversold RSI readings. Strengthened the KOSPI/KOSDAQ divergence as a Korea-specific rotation signal.</p>
+</div>
+
+
+  <!-- 00. Pre-open market environment -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Pre-open Market Environment</h2><span class="section-subtitle">KR / US context</span></div>
+    <div class="macro-ctx-grid">
+  <div class="macro-ctx-col">
+    <div class="macro-ctx-head">Korea Market</div>
+    <div class="macro-ctx-row"><span class="key">KOSPI</span><span>+2.25%</span></div>
+    <div class="macro-ctx-row"><span class="key">KOSDAQ</span><span>-3.36%</span></div>
+    <div class="macro-ctx-row"><span class="key">USD/KRW</span><span>1501.42</span></div>
+    <div class="macro-ctx-row"><span class="key">Foreign flow</span><span>unavailable</span></div>
+  </div>
+  <div class="macro-ctx-col">
+    <div class="macro-ctx-head">U.S. Prior Close</div>
+    <div class="macro-ctx-row macro-ctx-row-wide"><span>NASDAQ +0.07% / SOX -1.36%</span></div>
+    <div class="macro-ctx-row"><span class="key">VIX</span><span>16.29 (normal)</span></div>
+    <div class="macro-ctx-row"><span class="key">Market mode</span><span>neutral</span></div>
+  </div>
+</div>
+<p class="macro-ctx-modifier"><span class="key">Coupling reliability</span> · reduced (SOX negative overnight weakens the U.S.-led semiconductor signal; KOSPI/KOSDAQ divergence suggests Korea-specific rotation rather than clean global co-movement; VIX benign partially offsets)</p>
+<div class="macro-ctx-issues"><div class="macro-ctx-head">Today's Issues</div><ul>
+  <li>SOX -1.36% overnight — semiconductor headwind, reversal from prior session&#39;s +5.53% surge</li>
+  <li>NASDAQ +0.07%, S&amp;P 500 +0.02% — effectively flat, no directional signal</li>
+  <li>KOSPI +2.25% vs KOSDAQ -3.36% — extreme internal divergence; KOSPI large-cap strength vs KOSDAQ small/mid-cap weakness</li>
+  <li>USD/KRW at 1,501.42 — slightly improved from 1,507.86 yesterday but still structurally elevated</li>
+  <li>VIX 16.29 — benign, supports coupling reliability in near term</li>
+  <li>US 10-year above 4.5% — sustained rate pressure (upstream macro)</li>
+  <li>KOSPI extreme overbought divergence from macro stress — fragile configuration (upstream warning)</li>
+</ul></div>
+
+  </section>
+
+  <!-- 01. Priority pairs -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Priority Pairs</h2><span class="section-subtitle">Korea-U.S. coupling &amp; flow</span></div>
+    <div class="pair-card">
+  <div class="pair-card-head"><span class="pair-rank">1</span><span class="pair-name">KODEX Semiconductor(091160) ↔ VanEck Semiconductor ETF(SMH.O)</span><span class="pair-case">U.S. leading</span></div>
+  <p class="pair-signal">U.S.-led watch · wait for confirmation of transmission into Korea</p>
+  <div class="pair-data">
+    <div class="pair-data-head">Key Data</div>
+    <div class="pair-data-row"><span class="key">KR-US coupling</span><span>0.87 (strong)</span></div>
+    <div class="pair-data-row"><span class="key">60-day coupling</span><span>0.84 (trend: strengthening)</span></div>
+    <div class="pair-data-row"><span class="key">Time lag</span><span>U.S. leads Korea by 1 day(s) (U.S.-led)</span></div>
+    <div class="pair-data-row"><span class="key">Last 5 days</span><span>KR +3.1% / US +8.5%</span></div>
+  </div>
+  <div class="pair-data">
+    <div class="pair-data-head">Flow Position</div>
+    <div class="pair-data-row"><span class="key">Korea ETF</span><span>upper breakout · rising · decelerating</span></div>
+    <div class="pair-data-row"><span class="key">U.S. ETF</span><span>upper breakout · rising · decelerating</span></div>
+  </div>
+  <p class="pair-coupling-combined">U.S.-led watch · wait for confirmation of transmission into Korea</p>
+  <p class="pair-warning">⚠ technically overbought on Korea side (RSI 86.10, stoch 98.99); SMH pulled back from 602 to 595 on SOX -1.36%</p>
+  <p class="pair-reason">Strong coupling confirmed (corr ~0.87) with U.S.-led lag pattern, but the SOX reversal overnight reduces the directional energy of the U.S. signal; KODEX Semiconductor at 163,570 remains in upper structural breakout territory with rising directional energy, but the Korean side is deeply overbought and the U.S. side has pulled back — the confirmation zone for follow-up review requires intraday stabilization of SMH above its prior structural band.</p>
+</div>
+<div class="pair-card">
+  <div class="pair-card-head"><span class="pair-rank">2</span><span class="pair-name">KODEX K-Defense(449450) ↔ iShares U.S. Aerospace &amp; Defense ETF(ITA)</span><span class="pair-case">Korea leading</span></div>
+  <p class="pair-signal">Korea-independent flow — the Korean ETF is moving on domestic policy/theme momentum rather than confirmed U.S. ETF support; meaningful, but not a global co-movement signal.</p>
+  <div class="pair-data">
+    <div class="pair-data-head">Key Data</div>
+    <div class="pair-data-row"><span class="key">KR-US coupling</span><span>0.76 (strong)</span></div>
+    <div class="pair-data-row"><span class="key">60-day coupling</span><span>0.72 (trend: stable)</span></div>
+    <div class="pair-data-row"><span class="key">Time lag</span><span>same-day co-movement</span></div>
+    <div class="pair-data-row"><span class="key">Last 5 days</span><span>KR -3.8% / US +0.8%</span></div>
+  </div>
+  <div class="pair-data">
+    <div class="pair-data-head">Flow Position</div>
+    <div class="pair-data-row"><span class="key">Korea ETF</span><span>resistance · falling · decelerating</span></div>
+    <div class="pair-data-row"><span class="key">U.S. ETF</span><span>support · rising · decelerating</span></div>
+  </div>
+  <p class="pair-coupling-combined">Korea-independent flow</p>
+  <p class="pair-reason">KODEX K-Defense at 71,865 is in a pullback phase from highs above 88,000 but has been recovering; ITA is holding support with rising directional energy. The pair is running on Korea-domestic defense policy momentum. The KOSPI +2.25% today may reflect large-cap defense/industrial rotation.</p>
+</div>
+<div class="pair-card">
+  <div class="pair-card-head"><span class="pair-rank">3</span><span class="pair-name">KODEX Automobile(091180) ↔ First Trust Nasdaq Global Auto Index Fund(CARZ.O)</span><span class="pair-case">Both aligned</span></div>
+  <p class="pair-signal">aligned strength · overbought caution</p>
+  <div class="pair-data">
+    <div class="pair-data-head">Key Data</div>
+    <div class="pair-data-row"><span class="key">KR-US coupling</span><span>0.61 (moderate)</span></div>
+    <div class="pair-data-row"><span class="key">60-day coupling</span><span>0.57 (trend: stable)</span></div>
+    <div class="pair-data-row"><span class="key">Time lag</span><span>U.S. leads Korea by 1 day(s) (U.S.-led)</span></div>
+    <div class="pair-data-row"><span class="key">Last 5 days</span><span>KR +8.5% / US +5.3%</span></div>
+  </div>
+  <div class="pair-data">
+    <div class="pair-data-head">Flow Position</div>
+    <div class="pair-data-row"><span class="key">Korea ETF</span><span>upper breakout · rising · accelerating</span></div>
+    <div class="pair-data-row"><span class="key">U.S. ETF</span><span>upper breakout · rising · accelerating</span></div>
+  </div>
+  <p class="pair-coupling-combined">aligned strength · overbought caution</p>
+  <p class="pair-warning">⚠ both markets overbought (Korea RSI 68.72, stoch 89.08; CARZ RSI 89.59, stoch 93.74)</p>
+  <p class="pair-reason">KODEX Automobile at 38,985 is in upper structural breakout territory with rising directional energy; CARZ at 118.45 is similarly positioned. Both sides overbought but the pair has been one of the strongest performers in recent sessions. Secondary confirmation signal with overbought caution.</p>
+</div>
+<div class="watchouts">
+  <div class="watchouts-head">Watch-outs</div>
+  <div class="watchout-row"><span class="watchout-pair">KODEX Semiconductor(091160) ↔ SMH.O</span><span class="watchout-alert">SOX -1.36% overnight partially unwinds yesterday&#39;s +5.53% surge — U.S.-led signal weakened; Korea side remains overbought (RSI 86.10); not suitable for immediate follow-up without intraday SMH stabilization</span></div>
+  <div class="watchout-row"><span class="watchout-pair">KODEX Fn IT(266370) ↔ XLK</span><span class="watchout-alert">both markets deeply overbought (Korea RSI 90.90, stoch 99.35; XLK RSI 92.56, stoch 99.19) — not suitable for immediate follow-up; XLK flat overnight</span></div>
+  <div class="watchout-row"><span class="watchout-pair">KODEX Secondary Battery Industry(305720) ↔ LIT</span><span class="watchout-alert">both sides in lower structural breakdown territory with falling directional energy; Korea RSI 30.68 approaching oversold — remains a lower-priority observation area</span></div>
+  <div class="watchout-row"><span class="watchout-pair">KODEX Healthcare(266420) ↔ XLV</span><span class="watchout-alert">Korea RSI 8.42, stoch 36.70 — deeply oversold on Korean side; Korea-independent weakness continues</span></div>
+  <div class="watchout-row"><span class="watchout-pair">KODEX Bio(244580) ↔ XBI</span><span class="watchout-alert">Korea RSI 9.85, stoch 35.20 — deeply oversold; both sides in structural weakness; remains a lower-priority observation area</span></div>
+  <div class="watchout-row"><span class="watchout-pair">TIGER Nuclear Power(457480) ↔ URA</span><span class="watchout-alert">Korea-independent flow — Korean nuclear ETF at 24,775 diverging from URA at 50.16; domestic policy momentum, not a global co-movement signal</span></div>
+</div>
+
+  </section>
+
+  <details class="tier-details">
+  <summary><span class="tier-chev">&#9658;</span> <b>Detailed Basis</b><span class="tier-dn">&nbsp;Matrices &middot; clusters &middot; network &middot; meta</span></summary>
+
+  <!-- 02. Matrices -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Correlation Matrices</h2><span class="section-subtitle">cross &amp; internal alignment</span></div>
+    <div class="matrix-alignment">
+  <div class="matrix-align-row"><span class="key">US vs KR alignment</span><span>partial</span></div>
+  <p class="matrix-align-impl">Korea is partially following the global cycle in the growth and technology sectors, but the KOSPI/KOSDAQ divergence today suggests Korea-specific large-cap rotation is the dominant driver rather than clean global co-movement — the global co-movement map is valid for the growth cluster but domestic themes are running independently.</p>
+</div>
+<p class="matrix-desc">Korea × U.S. ETF correlations — qualitative assessment based on available data</p>
+<div class="matrix-unexpected"><div class="matrix-sub-head">Unexpectedly strong</div>
+  <div class="matrix-pair-row"><span class="matrix-pair">KODEX Semiconductor ↔ XLK</span><span class="matrix-corr">0.84</span></div>
+  <p class="matrix-note">KODEX Semiconductor shows strong correlation with XLK in addition to its matched SMH pair — IT and semiconductor themes remain deeply integrated</p>
+  <div class="matrix-pair-row"><span class="matrix-pair">KODEX Fn IT ↔ SMH.O</span><span class="matrix-corr">0.81</span></div>
+  <p class="matrix-note">KODEX Fn IT correlates strongly with SMH — semiconductor and IT themes are co-moving in the Korean market</p>
+  <div class="matrix-pair-row"><span class="matrix-pair">KODEX K-Robot Active ↔ XLK</span><span class="matrix-corr">0.76</span></div>
+  <p class="matrix-note">Robotics and AI ETF shows strong correlation with broad technology — AI theme is driving cross-sector linkage</p>
+</div>
+<div class="matrix-unexpected"><div class="matrix-sub-head">Unexpectedly weak</div>
+  <div class="matrix-pair-row"><span class="matrix-pair">KODEX Healthcare ↔ XLV</span><span class="matrix-corr">0.37</span></div>
+  <p class="matrix-note">Matched pair shows weak correlation — Korea healthcare is driven by domestic factors rather than global healthcare trends</p>
+  <div class="matrix-pair-row"><span class="matrix-pair">KODEX Bio ↔ XBI</span><span class="matrix-corr">0.41</span></div>
+  <p class="matrix-note">Matched pair shows weak correlation — Korea bio sector is decoupled from U.S. biotech</p>
+</div>
+<div class="matrix-internal"><div class="matrix-sub-head">U.S. internal</div>
+  <p class="matrix-summary">U.S. internal rotation continues to favor the AI and technology cluster over energy and defensive sectors, though the SOX -1.36% overnight introduces a short-term pause in the semiconductor-led growth theme.</p>
+  <div class="matrix-pair-row"><span class="matrix-pair">XLK / XLE</span><span class="matrix-corr">-0.35</span></div>
+  <p class="matrix-note">Technology vs energy rotation — consistent with oil reversal noted in upstream macro</p>
+  <div class="matrix-pair-row"><span class="matrix-pair">SMH.O / XLV</span><span class="matrix-corr">-0.20</span></div>
+  <p class="matrix-note">Semiconductor vs healthcare mild negative correlation — growth vs defensive rotation</p>
+</div>
+<div class="matrix-internal"><div class="matrix-sub-head">Korea internal</div>
+  <p class="matrix-summary">Korean internal rotation shows an unusual split today — KOSPI +2.25% vs KOSDAQ -3.36% suggests large-cap domestic theme rotation (defense, automobile, energy) is driving KOSPI while KOSDAQ small/mid-cap growth names are under pressure.</p>
+  <div class="matrix-pair-row"><span class="matrix-pair"> / </span><span class="matrix-corr">-0.29</span></div>
+  <p class="matrix-note">Semiconductor vs battery rotation — capital continues rotating from battery into semiconductor</p>
+  <div class="matrix-pair-row"><span class="matrix-pair"> / </span><span class="matrix-corr">-0.26</span></div>
+  <p class="matrix-note">IT vs healthcare rotation — growth over defensive in Korea</p>
+</div>
+
+  </section>
+
+  <!-- 03. Clusters -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Clusters</h2><span class="section-subtitle">current clusters &amp; shift</span></div>
+    <div class="cluster-card">
+  <div class="cluster-head"><span class="cluster-name">Global AI and semiconductor integrated</span><span class="cluster-type">global-integrated</span><span class="cluster-corr">avg 0.81</span></div>
+  <p class="cluster-members">SMH.O, XLK, BOTZ.O, KODEX Semiconductor, KODEX Fn IT, KODEX K-Robot Active</p>
+</div>
+<div class="cluster-card">
+  <div class="cluster-head"><span class="cluster-name">Korea domestic policy themes</span><span class="cluster-type">Korea-independent</span><span class="cluster-corr">avg 0.52</span></div>
+  <p class="cluster-members">KODEX K-Defense, TIGER Nuclear Power, TIGER FnRenewable Energy, KODEX Automobile</p>
+</div>
+<div class="cluster-card">
+  <div class="cluster-head"><span class="cluster-name">Global energy and materials</span><span class="cluster-type">global-integrated</span><span class="cluster-corr">avg 0.62</span></div>
+  <p class="cluster-members">XLE, KODEX Energy &amp; Chemicals</p>
+</div>
+<div class="cluster-card">
+  <div class="cluster-head"><span class="cluster-name">Korea structural weakness</span><span class="cluster-type">mixed</span><span class="cluster-corr">avg 0.43</span></div>
+  <p class="cluster-members">KODEX Secondary Battery Industry, KODEX Healthcare, KODEX Bio, LIT, XLV, XBI</p>
+</div>
+<div class="cluster-shift">
+  <div class="cluster-sub-head">Cluster Shift</div>
+  <p class="cluster-shift-desc">recent-100-day vs prior-100-day cluster change</p>
+  <div class="cluster-move-row"><span class="cluster-move-member">KODEX K-Defense</span><span class="cluster-move-path">global-integrated → Korea-independent</span></div>
+  <div class="cluster-move-row"><span class="cluster-move-member">TIGER Nuclear Power</span><span class="cluster-move-path">global-integrated → Korea-independent</span></div>
+  <div class="cluster-move-row"><span class="cluster-move-member">KODEX Automobile</span><span class="cluster-move-path">partial_followers → Korea-independent</span></div>
+  <p class="cluster-shift-summary">The AI and semiconductor cluster has strengthened its global integration while Korea domestic policy themes (defense, nuclear, renewable energy, automobile) have migrated to Korea-independent clusters — the structural divergence between these two groups has widened further.</p>
+</div>
+
+  </section>
+
+  <!-- 04. Network -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Network</h2><span class="section-subtitle">leading chains &amp; decoupling</span></div>
+    <div class="network-chains"><div class="network-sub-head">Leading Chains</div>
+  <div class="network-chain-row"><span class="network-chain">SMH.O → KODEX Semiconductor → KODEX Fn IT</span><span class="network-strength">strong</span></div>
+  <div class="network-chain-row"><span class="network-chain">XLK → BOTZ.O → KODEX K-Robot Active</span><span class="network-strength">strong</span></div>
+  <div class="network-chain-row"><span class="network-chain">XLE → KODEX Energy &amp; Chemicals</span><span class="network-strength">medium</span></div>
+</div>
+<div class="network-decoupling"><div class="network-sub-head">Decoupling Pattern</div>
+  <p class="network-decoupling-summary">Decoupling events in the recent 3 months are concentrated in Korea domestic policy themes (defense, nuclear, renewable energy, automobile) and structural weakness sectors (battery, healthcare, bio) — the global co-movement map is most reliable for the AI and semiconductor cluster.</p>
+  <div class="network-event-row"><span class="network-event-date">20260304</span><span class="network-event-note">7 pairs · Broad Korea market correction while U.S. markets held — Korea-specific event related to KOSPI overbought correction</span></div>
+</div>
+
+  </section>
+
+  <!-- 05. Meta -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Meta Signals</h2><span class="section-subtitle">volatility coupling &amp; structural regime</span></div>
+    <div class="meta-block"><div class="meta-sub-head">Volatility Coupling</div>
+  <p class="meta-text">Volatility co-movement is strongest in the AI and semiconductor cluster — the current VIX at 16.29 supports coupling reliability, but the SOX -1.36% overnight introduces short-term volatility that may temporarily reduce signal confidence for these pairs.</p>
+</div>
+<div class="meta-block"><div class="meta-sub-head">Structural Regime</div>
+  <div class="meta-row"><span class="key">Current regime</span><span>coupling-strengthening period</span></div>
+  <p class="meta-text">The AI and semiconductor cluster remains in a coupling-strengthening regime, but the SOX reversal overnight and the KOSPI/KOSDAQ divergence today suggest the regime may be entering a short-term consolidation phase — the structural coupling is intact but the directional momentum has paused.</p>
+</div>
+
+  </section>
+
+  </details>
+
+  <!-- Analyst opinion -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Analyst Opinion</h2><span class="section-subtitle">global coupling &amp; key risk</span></div>
+    <div class="opinion-box">
+  <div class="opinion-row"><span class="key">Global coupling</span><span>stable with short-term consolidation signal — SOX reversal introduces pause</span></div>
+  <div class="opinion-row"><span class="key">Key risk</span><span>The primary risk to this judgment is the KOSPI/KOSDAQ divergence (+2.25% vs -3.36%) — if this reflects a broader rotation out of growth/tech names into large-cap domestic themes, the global co-movement signals for the AI and semiconductor cluster may be temporarily overridden by Korea-specific capital flows; additionally, if USD/KRW moves above 1,515 or VIX spikes above 20, the foreign-flow assumption would be invalidated.</span></div>
+  <p class="opinion-oneline">The SOX -1.36% overnight reversal and the extreme KOSPI/KOSDAQ divergence shift today&#39;s picture from yesterday&#39;s &#39;strong U.S.-led signal&#39; to &#39;mixed and internally fragmented&#39; — the global co-movement structure is intact but the directional energy has paused, and Korea-specific large-cap rotation appears to be the dominant driver of KOSPI strength today.</p>
+  <p class="opinion-datanote">Correlation and lag analysis are based on qualitative assessment of rolling 5-day compressed candle data. CARZ.O has very low volume (single-digit thousands per bar) which reduces the reliability of its correlation estimates. Foreign net-buying direction for today is unavailable, which is a key missing input for the flow axis assessment. The KOSPI/KOSDAQ divergence is an unusual intraday signal that is not fully captured by the ETF-level analysis.</p>
+</div>
+
+  </section>
+
+  <!-- Analysis validity -->
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Analysis Validity</h2><span class="section-subtitle">Applies for · How to use · Invalidation conditions</span></div>
+    <div class="freshness-box">
+    <div class="freshness-row">
+        <span class="freshness-icon">📅</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Applies for · 1 trading days</div>
+          <p class="freshness-text">This report is most valuable in the 30 minutes before the Korean market open. Validity declines through the Korean session as intraday flow data supersedes the pre-open global co-movement map. The report fully expires at the next U.S. market close.</p>
+          <p class="freshness-text-soft">The atman_case calls for strongly coupled pairs (semiconductor, IT, robotics) are valid for 1–2 trading days given the current coupling-strengthening regime, but the SOX reversal overnight reduces the half-life of the directional signal to same-day. The overbought warnings are immediacy-critical and should be reassessed at each Korean open. The Korea-independent cluster assessments (defense, nuclear, renewable energy, automobile) are valid for 3–5 trading days as domestic policy momentum tends to be more persistent.</p>
+        </div>
+    </div>
+    <div class="freshness-row">
+        <span class="freshness-icon">🍽</span>
+        <div class="freshness-content">
+          <div class="freshness-label">How to use</div>
+          <p class="freshness-text">Use as a final pre-open check to identify which Korean sectors have global co-movement support. K-Robot Active is the primary watch candidate given the least overbought readings in the growth cluster. Semiconductor and IT pairs should be treated as &#39;watch and confirm&#39; given the SOX reversal. Treat all overbought pairs as &#39;watch and confirm&#39; rather than &#39;act immediately&#39; — wait for intraday RSI normalization or a structural pullback before new exposure.</p>
+          <p class="freshness-precaution"><strong>Caution · </strong>All pairs with RSI above 80 and stochastic above 90 should be treated with significantly reduced confidence even when coupling is strong and structural alignment is confirmed. The SOX reversal overnight reduces the directional confidence of the U.S.-led signal for semiconductor and IT pairs. The KOSPI/KOSDAQ divergence is an unusual signal that may indicate Korea-specific rotation rather than global co-movement.</p>
+        </div>
+    </div>
+    <div class="freshness-row">
+        <span class="freshness-icon">🚮</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Invalidation conditions · this report is voided in the following situations</div>
+          <ul class="freshness-discard">
+            <li>KOSPI gap-down of 2% or more at the Korean open — would signal macro re-coupling and invalidate the global co-movement assumption for the session</li>
+            <li>VIX moving above 20 intraday — coupling reliability collapses for the AI and semiconductor cluster</li>
+            <li>USD/KRW moving above 1,515 intraday — foreign-flow assumption invalidated</li>
+            <li>If KODEX Semiconductor or KODEX Fn IT trades below 30% of their average morning turnover — discard the inflow hypothesis for the growth cluster</li>
+            <li>Abrupt intraday U.S. move — S&amp;P 500 down 2% or more, or SOX down 3% or more — invalidates the U.S.-led signal for all pairs</li>
+            <li>KOSDAQ continuing to fall more than 2% while KOSPI rises — signals Korea-specific sector rotation that overrides global co-movement signals</li>
+          </ul>
+        </div>
+    </div>
+    <div class="freshness-row"><span class="freshness-icon">⚖️</span><div class="freshness-content"><div class="freshness-label">Multi-dimensional invalidation conditions</div>
+<p class="multi-discard-down">⬇ Confidence downgrade: If 2 or more of the following occur: (1) coupling weakens — both_aligned pair count drops by 50% or more; (2) USD/KRW spikes above 1,515; (3) Korean ETFs fail to follow U.S. strength for 2 or more consecutive trading days; (4) foreign net selling turns persistent with Korean ETF turnover below 30% of average — downgrade all global-linkage signals one notch.</p>
+<p class="multi-discard-del">✕ Analysis discard: If 3 or more of the above axes are impaired simultaneously, discard the global-linkage hypothesis and switch to Korea-independent judgment for all pairs.</p>
+<p class="multi-discard-rec">↑ Restoration condition: Review restoration when coupling recovers to prior levels and USD/KRW stabilizes below 1,500.</p>
+    </div></div>
+</div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-meta-row">
+      <span class="footer-meta-key">Analysis scope</span>
+      <span>Korea-U.S. ETF pairs · matrices · clusters · network · meta</span>
+    </div>
+    <div class="footer-meta-row">
+      <span class="footer-meta-key">System</span>
+      <span>ATMAN Flow Intelligence · ETF_SECTOR_EN_D KR_US_ETF_CORRELATION_EN_v1.0</span>
+    </div>
+  </footer>
+
+  <div class="disclaimer">
+    <div class="disclaimer-title">Investment Disclaimer</div>
+    <div class="disclaimer-text">
+      <p>This report is Korea-U.S. ETF coupling &amp; flow observation material auto-generated by ATMAN Flow Intelligence; it is not investment advice or a solicitation to trade.</p>
+      <p>The analysis observes correlation, coupling, and capital-flow structure; it is not a buy/sell recommendation.</p>
+      <p>The report's wording constitutes observation and scenario material; it does not guarantee outcomes.</p>
+      <p>Investment decisions and any resulting profit or loss are solely the investor's responsibility, and actual markets may differ due to factors such as market volatility, data errors, and the gap between the analysis time and the actual market time.</p>
+      <p>ATMAN INVESTMENT bears no legal or financial responsibility for any investment outcome based on this report.</p>
+    </div>
+  </div>
+
+</body>
+</html>
