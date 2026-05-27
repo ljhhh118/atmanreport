@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#E5DFD0;padding:0;font-family:"Noto Sans CJK KR",sans-serif}
+  .banner{width:1200px;height:360px;background:#FBF8F2;position:relative;overflow:hidden;
+    border:1px solid #E8E3D5;box-shadow:0 8px 30px rgba(20,24,31,.10);margin:0 auto;
+    background-image:radial-gradient(circle at 12% 30%,rgba(184,137,58,.08),transparent 45%),
+      radial-gradient(circle at 92% 70%,rgba(74,103,65,.06),transparent 48%)}
+
+  /* 배경 흐름 SVG — 일별 INSPIRATION 시각 언어 */
+  .flowbg{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+
+  /* 좌측 */
+  .left{position:absolute;left:60px;top:0;bottom:0;width:680px;display:table;height:100%}
+  .left-inner{display:table-cell;vertical-align:middle}
+  .brand{font-family:"Noto Serif CJK KR",serif;font-size:13px;letter-spacing:.32em;color:#6B7077;margin-bottom:18px}
+  .brand b{color:#16191F;font-weight:700}
+  .brand .badge{margin-left:12px;font-size:10.5px;letter-spacing:.16em;color:#B8893A;border:1px solid #B8893A;border-radius:20px;padding:2px 10px;font-family:"Noto Serif CJK KR",serif;font-weight:600}
+  .headline{font-family:"Noto Serif CJK KR",serif;font-weight:700;font-size:38px;line-height:1.3;color:#16191F;letter-spacing:-.02em}
+  .headline em{font-style:normal;color:#B8893A}
+  .subline{margin-top:14px;font-size:14.5px;color:#4A5057;line-height:1.6;max-width:46ch}
+
+  /* 우측 버튼 */
+  .right{position:absolute;right:60px;top:0;bottom:0;display:table;height:100%}
+  .right-inner{display:table-cell;vertical-align:middle}
+  .btn{background:#3D5A38;color:#FBF8F2;border-radius:14px;padding:22px 36px;text-align:center;box-shadow:0 6px 20px rgba(61,90,56,.28);position:relative}
+  .btn .lbl{font-family:"Noto Serif CJK KR",serif;font-size:21px;font-weight:700;letter-spacing:.02em;line-height:1.2}
+  .btn .arr{font-size:21px;margin-left:10px;display:inline-block;font-weight:700}
+  .btn .hint{margin-top:7px;font-size:11px;letter-spacing:.12em;color:rgba(251,248,242,.72);text-transform:uppercase;font-weight:600}
+
+  /* 좌→우 시선 유도 점선 */
+  .lead-dots{position:absolute;left:740px;right:280px;top:50%;height:2px;transform:translateY(-50%);
+    background-image:repeating-linear-gradient(90deg,rgba(184,137,58,.5) 0 5px,transparent 5px 11px)}
+</style>
+</head>
+<body>
+<div class="banner">
+
+  <!-- 배경 흐름 SVG -->
+  <svg class="flowbg" viewBox="0 0 1200 360" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#B8893A" stop-opacity="0"/>
+        <stop offset=".25" stop-color="#B8893A" stop-opacity=".35"/>
+        <stop offset=".75" stop-color="#3D5A38" stop-opacity=".4"/>
+        <stop offset="1" stop-color="#3D5A38" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#3D5A38" stop-opacity="0"/>
+        <stop offset=".3" stop-color="#3D5A38" stop-opacity=".28"/>
+        <stop offset=".7" stop-color="#B8893A" stop-opacity=".25"/>
+        <stop offset="1" stop-color="#B8893A" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#C0392B" stop-opacity="0"/>
+        <stop offset=".5" stop-color="#C0392B" stop-opacity=".18"/>
+        <stop offset="1" stop-color="#C0392B" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="M-50,90 C200,90 400,150 600,160 C800,170 1000,120 1250,120" fill="none" stroke="url(#g1)" stroke-width="40" stroke-linecap="round"/>
+    <path d="M-50,250 C200,250 400,200 600,200 C800,200 1000,260 1250,260" fill="none" stroke="url(#g2)" stroke-width="28" stroke-linecap="round"/>
+    <path d="M-50,180 C300,180 600,180 1250,180" fill="none" stroke="url(#g3)" stroke-width="16" stroke-linecap="round"/>
+  </svg>
+
+  <!-- 좌→우 시선 점선 -->
+  <div class="lead-dots"></div>
+
+  <!-- 좌측 -->
+  <div class="left">
+    <div class="left-inner">
+      <div class="brand"><b>ATMAN</b> INSPIRATION<span class="badge">매일 발행</span></div>
+      <div class="headline">오늘의 자금 흐름을<br><em>한 장으로</em></div>
+      <div class="subline">매크로에서 종목까지, 자금이 어디로 흘렀고 시장이 어떤 기대를 품었는지 — ATMAN 데이터를 AI가 분석한 오늘의 흐름.</div>
+    </div>
+  </div>
+
+  <!-- 우측 버튼 -->
+  <div class="right">
+    <div class="right-inner">
+      <div class="btn">
+        <div class="lbl">리포트 읽기<span class="arr">→</span></div>
+        <div class="hint">CLICK TO OPEN</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
