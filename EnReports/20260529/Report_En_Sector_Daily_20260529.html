@@ -1,0 +1,892 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>ATMAN SECTOR · Korea Capital Rotation</title>
+<style>
+/* ── ATMAN internal research report (Multi-Layer Correlation) ── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#edf0f4;font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;color:#1a1a2e;line-height:1.6;padding:20px}
+.rpt{max-width:1080px;margin:0 auto;background:#fff;box-shadow:0 1px 10px rgba(0,0,0,.1)}
+
+/* header */
+.rpt-header{background:#fff;border-top:4px solid #0d3572;border-bottom:2px solid #e0e4eb;padding:18px 24px 14px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.rpt-title{font-size:16px;font-weight:700;color:#0d3572;letter-spacing:.04em}
+.rpt-subtitle{font-size:10px;color:#888;letter-spacing:.12em;margin-top:3px}
+.rpt-meta{text-align:right;font-size:11px;color:#888}
+.rpt-meta-type{font-size:9px;font-weight:700;color:#fff;background:#0d3572;padding:2px 8px;letter-spacing:.1em;display:inline-block;margin-bottom:4px}
+
+/* section */
+.section{margin-bottom:0;border-bottom:1px solid #e0e4eb;padding:14px 24px}
+.section:last-child{border-bottom:none}
+.sec-title{font-size:9px;font-weight:700;color:#0d3572;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e0e4eb}
+
+/* market overview cards */
+.market-bar{display:flex;gap:1px;flex-wrap:wrap;margin-bottom:10px;background:#e0e4eb;border:1px solid #e0e4eb}
+.mcard{background:#fff;padding:9px 14px;flex:1;min-width:90px}
+.mcard-label{font-size:8px;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.mcard-val{font-size:13px;font-weight:600}
+
+/* key sentence */
+.one-line{font-size:12px;line-height:1.7;color:#1a1a2e;padding:10px 14px;background:#f8f9fc;border-left:3px solid #0d3572;margin-bottom:8px}
+.key-risk{font-size:10px;color:#888;margin-bottom:8px;line-height:1.5}
+.issue-item{font-size:11px;color:#444;padding:4px 0;border-bottom:1px solid #f0f2f5;line-height:1.5}
+
+/* multi-layer insight */
+.multi-layer-insight{font-size:11px;color:#1a1a2e;background:linear-gradient(135deg,#fdf6e3,#fffbe6);border:1px solid #e8d5a0;border-left:3px solid var(--gold);padding:8px 12px;margin-top:8px;line-height:1.6}
+
+/* 2-col grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:0}
+.grid2 .section{border-right:1px solid #e0e4eb}
+.grid2 .section:last-child{border-right:none}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl thead{background:#f0f3f8}
+.tbl th{color:#0d3572;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:6px 7px;border-bottom:2px solid #0d3572;border-top:1px solid #e0e4eb;text-align:left;font-weight:700}
+.tbl td{padding:6px 7px;border-bottom:1px solid #e0e4eb;vertical-align:middle}
+.tbl tr:hover td{background:#f8f9fc}
+
+/* action confidence */
+.action-conf{display:inline-block;font-size:10px;color:var(--gold);font-weight:700;margin-left:4px;letter-spacing:.05em;cursor:help}
+.cluster-tag{font-size:9px;color:var(--blue);margin-top:3px;background:#e8f0fb;display:inline-block;padding:1px 6px;border-radius:2px}
+.decoupling-mark{color:var(--red);font-size:11px;cursor:help}
+.action-comment-row td{background:#fafbfd !important;border-bottom:1px dashed #e0e4eb !important}
+.action-comment{font-size:10px;color:#555;font-style:italic;padding:4px 7px !important;line-height:1.5}
+
+/* badge */
+.badge{display:inline-block;padding:2px 7px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.03em}
+.b-go{background:#eaf6ee;color:#1a7f3c;border:1px solid #b8dfc4}
+.b-wait{background:#fff3e0;color:#8b4513;border:1px solid #f0d9b5}
+.b-watch{background:#e8f0fb;color:#0d3572;border:1px solid #b8cef0}
+.b-danger{background:#fdecea;color:#c0392b;border:1px solid #f5bcb8}
+.b-early{background:#fdf6e3;color:#7a5c00;border:1px solid #e8d5a0}
+.b-mid{background:#f5f5f5;color:#777;border:1px solid #ddd}
+.b-strong{background:#dcfce7;color:#15803d;border:1px solid #86efac;font-weight:700}
+
+/* rotation map */
+.rotation-grid{display:flex;gap:1px;flex-wrap:wrap;background:#e0e4eb;border:1px solid #e0e4eb;margin-bottom:4px}
+.rot-group-title{font-size:8px;color:#0d3572;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.rot-tags{display:flex;flex-wrap:wrap;gap:4px}
+.rot-item{padding:2px 7px;border-radius:2px;font-size:9px;border:1px solid}
+.rot-in{border-color:#b8dfc4;color:#1a7f3c;background:#eaf6ee}
+.rot-mid{border-color:#f0d9b5;color:#8b4513;background:#fff3e0}
+.rot-wait{border-color:#b8cef0;color:#0d3572;background:#e8f0fb}
+.rot-out{border-color:#f5bcb8;color:#c0392b;background:#fdecea}
+
+/* cross flow */
+.cross-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.cross-card{background:#fff;border:1px solid #e0e4eb;border-top:2px solid #ddd;padding:10px 12px;flex:1;min-width:200px}
+.cross-card-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.flow-summary{font-size:10px;color:#555;background:#f8f9fc;border:1px solid #e0e4eb;padding:7px 12px;margin-top:4px}
+.cross-lag{font-size:9px;color:var(--blue);background:#f0f6ff;border-left:2px solid var(--blue);padding:3px 7px;margin-top:5px}
+
+/* v10.0: Water Status */
+.section-water{background:linear-gradient(135deg,#fafbfd,#fff);border-left:4px solid var(--blue)}
+.water-main{background:#fff;border:1px solid #e0e4eb;border-left-width:4px;padding:14px 18px;margin-bottom:10px}
+.water-case-row{display:flex;gap:14px;align-items:center}
+.water-case-icon{font-size:32px;line-height:1}
+.water-case-body{flex:1}
+.water-case-label{font-size:8px;color:#888;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.water-case-name{font-size:18px;font-weight:700;letter-spacing:.02em;margin-bottom:5px}
+.water-case-detail{font-size:11px;color:#444;line-height:1.6}
+.water-frame{font-size:10px;color:#555;background:#f0f3f8;border-left:3px solid #0d3572;padding:7px 12px;margin-top:8px;font-style:italic}
+
+/* cluster */
+.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.cluster-card{background:#fff;border:1px solid #e0e4eb;border-top:3px solid;padding:11px 13px}
+.cluster-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:6px}
+.cluster-name{font-size:13px;font-weight:700;color:#1a1a2e}
+.cluster-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:7px;font-size:9px;color:#888}
+.cluster-cycle strong,.cluster-corr strong{color:#1a1a2e}
+.cluster-stats{display:flex;gap:8px;background:#f8f9fc;padding:6px 8px;margin-bottom:6px;border:1px solid #e0e4eb}
+.cstat{flex:1;display:flex;flex-direction:column}
+.cstat-label{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.cstat-val{font-size:11px;font-weight:600;color:#1a1a2e}
+.cluster-members{font-size:10px;color:#555;line-height:1.5;background:#fafbfd;padding:5px 8px;border-radius:2px;margin-bottom:6px}
+.cluster-rotation{font-size:10px;color:var(--gold);background:#fdf6e3;border-left:2px solid var(--gold);padding:4px 8px;margin-bottom:5px;line-height:1.5}
+.cluster-interp{font-size:10px;color:#555;font-style:italic;line-height:1.5;border-top:1px dashed #e0e4eb;padding-top:5px;margin-top:3px}
+
+/* v10.0: Rotation Landscape */
+.section-landscape{background:#fafbfd}
+.rotation-speed{font-size:11px;color:#555;margin-bottom:10px;padding:6px 0}
+.speed-val{font-weight:700;font-size:13px}
+.landscape-flow{display:flex;gap:6px;align-items:stretch;margin-bottom:10px;flex-wrap:wrap}
+.landscape-box{flex:1;min-width:160px;background:#fff;border:1px solid #e0e4eb;border-top:3px solid;padding:9px 11px}
+.landscape-box.departing{border-top-color:var(--red)}
+.landscape-box.transit{border-top-color:var(--amber)}
+.landscape-box.arriving{border-top-color:var(--green)}
+.landscape-box.candidates{border-top-color:var(--gold)}
+.landscape-label{font-size:8px;color:#888;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.landscape-items{display:flex;flex-wrap:wrap;gap:3px}
+.landscape-item{font-size:10px;padding:2px 7px;border-radius:2px;background:#f8f9fc;border:1px solid #e0e4eb;color:#444}
+.landscape-empty{font-size:9px;color:#aaa;font-style:italic}
+.landscape-arrow{display:flex;align-items:center;color:var(--blue);font-size:18px;font-weight:700}
+.time-flow{font-size:10px;color:#555;background:#f0f6ff;border-left:3px solid var(--blue);padding:6px 11px;margin-bottom:6px;line-height:1.6}
+
+/* decoupling */
+.decoupling-card{background:#fff;border:1px solid #e0e4eb;border-left:3px solid;padding:10px 13px;margin-bottom:6px}
+.dc-hd{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.dc-icon{font-size:14px}
+.dc-type{font-size:11px;font-weight:700;letter-spacing:.02em}
+.dc-sector{font-size:12px;font-weight:700;color:#1a1a2e}
+.dc-verify{font-size:9px;color:var(--red);background:#fdecea;padding:1px 6px;border-radius:2px;margin-left:auto}
+.dc-detail{font-size:10px;color:#666;margin-bottom:5px;display:flex;gap:12px;flex-wrap:wrap}
+.dc-cluster strong,.dc-change strong,.dc-change-cluster strong{color:#1a1a2e}
+.dc-alert{font-size:11px;color:#444;background:#f8f9fc;border-left:2px solid #0d3572;padding:5px 9px;line-height:1.5}
+
+/* v10.0: Leading Chains */
+.leading-chain{background:#fff;border:1px solid #e0e4eb;border-left:3px solid var(--blue);padding:10px 13px;margin-bottom:8px}
+.chain-hd{display:flex;gap:8px;align-items:center;margin-bottom:7px}
+.chain-label{font-size:9px;color:#888;letter-spacing:.1em;text-transform:uppercase}
+.chain-flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:6px}
+.chain-node{font-size:11px;color:#1a1a2e;background:#f0f6ff;border:1px solid #b8cef0;padding:3px 9px;border-radius:14px;font-weight:600}
+.chain-node.chain-start{background:#fdf6e3;border-color:#e8d5a0;color:var(--gold)}
+.chain-arrow{font-size:10px;color:var(--blue);font-weight:700}
+.chain-arrow strong{color:#1a1a2e;background:#fff;padding:0 5px;border-radius:2px}
+.chain-interp{font-size:10px;color:#555;line-height:1.5;border-top:1px dashed #e0e4eb;padding-top:5px;margin-top:3px;font-style:italic}
+
+/* intersection stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e0e4eb;border:1px solid #e0e4eb;margin-top:8px}
+.scard{background:#fff;padding:9px 10px;cursor:pointer}
+.scard:hover{background:#f8f9fc}
+.scard-code{font-size:8px;color:#888}
+.scard-name{font-size:11px;font-weight:600;margin:3px 0;color:#1a1a2e}
+.scard-src{font-size:8px;color:#0d3572;line-height:1.4}
+
+/* stock card */
+.stock-card{background:#fff;border:1px solid #e0e4eb;border-top:3px solid #0d3572;margin-bottom:10px}
+.stock-card-hd{padding:10px 16px;border-bottom:1px solid #e0e4eb;display:flex;justify-content:space-between;align-items:center;background:#f8f9fc}
+.stock-name{font-size:14px;font-weight:700;color:#1a1a2e}
+.stock-code{font-size:10px;color:#888;margin-left:6px}
+.stock-card-body{padding:14px 16px}
+.stock-verdict{font-size:13px;font-weight:700;margin-bottom:12px;color:#0d3572;padding-bottom:8px;border-bottom:1px solid #e0e4eb}
+.stock-grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e0e4eb;border:1px solid #e0e4eb;margin-bottom:12px}
+.stock-stat{background:#fff;padding:8px 10px}
+.stat-label{font-size:8px;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.stat-val{font-size:12px;font-weight:600;color:#1a1a2e}
+.stock-caution{font-size:10px;color:#8b4513;background:#fff8f0;border:1px solid #f0d9b5;padding:7px 10px;margin-bottom:8px;line-height:1.6}
+.stock-exit{font-size:10px;margin-bottom:8px;line-height:1.9;color:#444}
+.stock-oneline{font-size:11px;color:#555;font-style:italic;line-height:1.6;border-left:3px solid #0d3572;padding:7px 12px;background:#f8f9fc}
+
+/* ─── [v1.0LC] Cascade Conflict Banner ─── */
+.cascade-conflict-banner{display:flex;gap:10px;align-items:flex-start;background:#FFF4E6;border:1px solid #F5C896;border-left:3px solid #C8741C;border-radius:4px;padding:12px 16px;margin:16px 24px;font-size:12px;color:#6B3F0A;line-height:1.55}
+.cascade-conflict-icon{font-size:16px;line-height:1}
+.cascade-conflict-banner strong{display:block;margin-bottom:4px;font-size:11.5px}
+.cascade-conflict-banner p{margin:0;font-size:12px}
+
+/* ─── [v1.0LC] Self Review ─── */
+.self-review-box{background:#fff;border:1px solid #e0e4eb;border-left:3px solid #c08800;border-radius:4px;padding:14px 18px;margin:16px 24px}
+.self-review-first{border-left-color:#888}
+.self-review-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.self-review-icon{font-size:14px;line-height:1}
+.self-review-label{font-size:10px;font-weight:700;letter-spacing:0.1em;color:#888;text-transform:uppercase}
+.self-review-date{font-size:10.5px;color:#888;padding-left:6px;border-left:1px solid #e0e4eb}
+.self-review-hitrate{font-size:10.5px;font-weight:600;color:#0d3572;background:#f0f3f8;padding:1px 7px;border-radius:9px;margin-left:auto}
+.self-review-oneline{font-size:12px;color:#1a1a2e;line-height:1.6;margin:0 0 8px}
+.self-review-text{font-size:11.5px;color:#888;line-height:1.6;margin:0}
+.self-review-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.sr-tag{font-size:10.5px;padding:2px 7px;border-radius:9px;line-height:1.4}
+.sr-tag-hit{background:#e8f5e9;color:#2e7d32}
+.sr-tag-weak{background:#fff3e0;color:#bf6f00}
+.sr-tag-fail{background:#fbe9e7;color:#bf360c}
+.self-review-adjustment{font-size:11px;color:#1a1a2e;line-height:1.55;padding:6px 10px;background:#f9f7f0;border-radius:4px;margin:4px 0 0}
+.self-review-adjustment strong{color:#1a1a2e;font-weight:600}
+
+/* ─── [v1.0LC] Report Freshness ─── */
+.section-freshness{background:#fafaf7;border-top:2px solid #e0e4eb;padding:18px 24px}
+.section-freshness .sec-title{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:2px}
+.section-freshness .sec-subtitle{font-size:10px;color:#888;margin-bottom:10px;letter-spacing:0.05em}
+.freshness-box{background:#fff;border:1px solid #e0e4eb;border-radius:4px;padding:14px 18px}
+.freshness-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed #ebe7d8}
+.freshness-row:first-child{padding-top:0}
+.freshness-row:last-child{border-bottom:none;padding-bottom:0}
+.freshness-icon{font-size:16px;line-height:1.4;flex-shrink:0}
+.freshness-content{flex:1;min-width:0}
+.freshness-label{font-size:10px;font-weight:700;letter-spacing:0.1em;color:#888;text-transform:uppercase;margin-bottom:5px}
+.freshness-text{font-size:12px;color:#1a1a2e;line-height:1.6;margin:0 0 4px}
+.freshness-text-soft{font-size:11px;color:#888;line-height:1.55;margin:0}
+.freshness-precaution{font-size:11.5px;color:#bf360c;line-height:1.55;margin:6px 0 0}
+.freshness-precaution strong{color:#bf360c;font-weight:600}
+.freshness-chips{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0 4px}
+.freshness-chip{font-size:10.5px;color:#888;background:#f9f7f0;padding:2px 8px;border-radius:9px;border:1px solid #e0e4eb}
+.freshness-discard{margin:4px 0 0;padding-left:18px;font-size:11.5px;color:#1a1a2e;line-height:1.6}
+.freshness-discard li{margin-bottom:4px}
+
+/* ─── guide box (collapsible) ─── */
+.guide-box{background:#fff;border:1px solid #e0e4eb;border-radius:4px;padding:0;margin:16px 24px;font-size:13px}
+.guide-summary{cursor:pointer;list-style:none;padding:10px 16px;display:flex;gap:8px;align-items:center;font-weight:500;color:#888;user-select:none;font-size:12.5px}
+.guide-summary::-webkit-details-marker{display:none}
+.guide-summary::after{content:'▼';margin-left:auto;font-size:9px;color:#888;transition:transform 0.2s}
+.guide-box[open] .guide-summary::after{transform:rotate(180deg)}
+.guide-box[open] .guide-summary{border-bottom:1px solid #e0e4eb;background:#f9f7f0}
+.guide-icon{font-size:14px;line-height:1}
+.guide-content{padding:14px 20px 16px}
+.guide-section{margin-bottom:14px}
+.guide-section:last-child{margin-bottom:0}
+.guide-section h4{font-size:10px;font-weight:700;letter-spacing:0.1em;color:#888;text-transform:uppercase;margin:0 0 6px}
+.guide-section p{font-size:12.5px;color:#1a1a2e;line-height:1.6;margin:0}
+.guide-section ol{font-size:12.5px;color:#1a1a2e;line-height:1.65;margin:0;padding-left:18px}
+.guide-section ol li{margin-bottom:3px}
+.term-list{margin:0;font-size:12px;line-height:1.6}
+.term-list dt{font-weight:600;color:#1a1a2e;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;margin-top:5px}
+.term-list dt:first-child{margin-top:0}
+.term-list dd{color:#888;margin:2px 0 0 10px}
+
+/* ─── Executive Summary box ─── */
+.executive-summary{background:#fff;border:1px solid #e0e4eb;border-left:4px solid #0d3572;border-radius:4px;padding:18px 22px;margin:16px 24px}
+.es-header{display:flex;gap:10px;align-items:baseline;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0e4eb}
+.es-label{font-size:9px;font-weight:700;letter-spacing:0.15em;color:#0d3572;text-transform:uppercase}
+.es-title{font-size:14px;font-weight:600;color:#1a1a2e;margin:0;letter-spacing:-0.01em}
+.es-grid{display:grid;gap:10px}
+.es-item{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:baseline;padding:3px 0}
+.es-key{font-size:10px;font-weight:700;letter-spacing:0.05em;color:#888;text-transform:uppercase}
+.es-value{font-size:13px;color:#1a1a2e;line-height:1.55}
+.es-env{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.es-env-label{font-weight:600}
+.es-pair-coupling{font-size:11px;color:#888;margin-left:4px}
+.es-stage{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:9px;background:#f9f7f0;color:#5a5a7a;margin-left:4px}
+.es-discard{color:#bf360c;font-size:12.5px}
+.risk-light{vertical-align:middle;flex-shrink:0}
+
+/* ─── capital_case color badge (6) ─── */
+.water-case-badge{display:inline-block;font-size:11px;padding:3px 9px;border-radius:10px;font-weight:600;letter-spacing:0.02em}
+.water-case-badge.wc-case1{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
+.water-case-badge.wc-case2{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.water-case-badge.wc-case3{background:#eff6ff;color:#1e40af;border:1px solid #93c5fd}
+.water-case-badge.wc-case4{background:#f5f3ff;color:#6d28d9;border:1px solid #c4b5fd}
+.water-case-badge.wc-case5{background:#f9fafb;color:#6b7280;border:1px solid #d1d5db}
+.water-case-badge.wc-case6{background:#fef2f2;color:#b91c1c;border:1px solid #fca5a5}
+.water-case-badge.wc-other{background:#f9f7f0;color:#888;border:1px solid #e0e4eb}
+
+/* ─── active_sector_ratio gauge ─── */
+.active-sector-gauge{display:inline-flex;align-items:center;gap:8px}
+.asg-bar{display:inline-block;width:140px;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;vertical-align:middle}
+.asg-fill{display:inline-block;height:100%;border-radius:4px;transition:width 0.3s}
+.asg-fill.asg-weak{background:#dc2626}
+.asg-fill.asg-medium{background:#eab308}
+.asg-fill.asg-strong{background:#22c55e}
+.asg-label{font-size:12px;font-weight:600;color:#1a1a2e;min-width:36px}
+
+/* footer */
+.footer{background:#f0f3f8;border-top:2px solid #e0e4eb;padding:10px 24px;font-size:9px;color:#888;line-height:1.8}
+
+@media(max-width:900px){
+  .grid2{grid-template-columns:1fr}
+  .stock-grid{grid-template-columns:repeat(3,1fr)}
+  .cluster-grid{grid-template-columns:1fr}
+  .landscape-flow{flex-direction:column}
+  .landscape-arrow{transform:rotate(90deg);justify-content:center}
+}
+@media(max-width:600px){
+  body{padding:10px}
+  .stock-grid{grid-template-columns:repeat(2,1fr)}
+  .stock-grid2{grid-template-columns:repeat(2,1fr)}
+  .water-case-row{flex-direction:column;align-items:flex-start}
+  .water-case-icon{font-size:24px}
+  .water-case-name{font-size:15px}
+}
+
+/* ── CSS variables ── */
+:root{--gold:#c9a000;--blue:#1d4ed8;--red:#dc2626;--green:#16a34a;--amber:#d97706;--text:#1a1a2e;--border:#e0e4eb;--bg-card:#ffffff;--muted:#888;--dim:#555}
+
+/* ── today's conclusion banner ── */
+.rpt-banner{background:#fff;border:1px solid var(--border);border-radius:14px;margin:14px 0;padding:6px;box-shadow:0 2px 12px rgba(20,25,40,.05);overflow:hidden}
+.rpt-bn-row{padding:14px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#1a1a2e}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0d8a9e}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:#1a1a2e;line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+
+/* ── collapsible tiers (B/C) ── */
+.report-tier{border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:#1a1a2e;user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.tier-body .section{margin:12px 16px;border-radius:10px}
+
+/* ── 3-card summary ── */
+.tier-3cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 16px 2px}
+.tcard{background:#fff;border:1px solid var(--border);border-radius:11px;padding:13px;text-align:center}
+.tcard-icon{font-size:18px;margin-bottom:3px}
+.tcard-label{font-size:8px;font-weight:700;letter-spacing:.12em;color:#888;text-transform:uppercase;margin-bottom:5px}
+.tcard-val{font-size:12px;color:#1a1a2e;line-height:1.4;margin-bottom:3px}
+.tcard-sub{font-size:9.5px;color:#888;line-height:1.4}
+.tcard-market{border-top:3px solid #1d4ed8}
+.tcard-flow  {border-top:3px solid #0891b2}
+.tcard-sector{border-top:3px solid #c9a000}
+
+/* ── ES box extra items ── */
+.es-item-why .es-key{color:#1d4ed8!important;text-transform:none!important;font-size:11px!important}
+.es-item-why .es-value{color:#1e3a8a;font-weight:600}
+.es-item-warn{background:#fff8f8;border-radius:6px;padding:4px 8px}
+.es-item-warn .es-key{color:#dc2626!important;font-weight:700;text-transform:none!important;font-size:11px!important}
+.es-warn{color:#b91c1c;font-weight:700}
+
+/* ── abbr tooltip ── */
+abbr[title]{border-bottom:1px dotted #888;cursor:help;text-decoration:none}
+abbr[title]:hover{position:relative}
+abbr[title]:hover::after{content:attr(title);position:absolute;z-index:99;background:#1a1a2e;color:#fff;font-size:9px;padding:5px 9px;border-radius:6px;white-space:pre-wrap;max-width:200px;line-height:1.5;margin-top:4px;margin-left:-40px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+
+@media(max-width:640px){.tier-3cards{grid-template-columns:1fr}}
+
+
+/* ── capital acceleration + compression ── */
+.cluster-flow-accel{margin-top:8px;padding:8px 10px;background:#f0f6ff;border-radius:6px;border-left:3px solid #1d4ed8}
+.fa-label{font-size:9px;font-weight:700;color:#1d4ed8;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+.fa-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px}
+.badge-accel-up{background:#dbeafe;color:#1e40af}
+.badge-accel-down{background:#fee2e2;color:#991b1b}
+.badge-accel-turn{background:#fef3c7;color:#92400e}
+.badge-accel-flat{background:#f3f4f6;color:#6b7280}
+.fa-signal{font-size:11.5px;color:#374151;margin:4px 0 0;line-height:1.5}
+.cluster-compression{margin-top:8px;padding:8px 10px;background:#f8fdf8;border-radius:6px;border-left:3px solid #16a34a}
+.cp-label{font-size:9px;font-weight:700;color:#16a34a;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+.cp-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px}
+.badge-comp-real{background:#dcfce7;color:#166534}
+.badge-comp-dist{background:#fee2e2;color:#991b1b}
+.badge-comp-idle{background:#f3f4f6;color:#6b7280}
+.badge-comp-none{background:#f3f4f6;color:#9ca3af}
+.cp-signal{font-size:11.5px;color:#374151;margin:4px 0 0;line-height:1.5}
+/* ── multi-dimensional invalidation ── */
+.multi-discard-down{font-size:12px;color:#1d4ed8;margin:4px 0;line-height:1.5}
+.multi-discard-del{font-size:12px;color:#dc2626;margin:4px 0;font-weight:600;line-height:1.5}
+.multi-discard-rec{font-size:12px;color:#16a34a;margin:4px 0;line-height:1.5}
+
+</style>
+</head>
+<body>
+<div class='rpt'>
+
+<div class='rpt-header'>
+  <div>
+    <div class='rpt-title'>ATMAN SECTOR · Korea Capital Rotation</div>
+    <div class='rpt-subtitle'>SECTOR CAPITAL FLOW ANALYSIS · INTERNAL REPORT · MULTI-LAYER CORRELATION</div>
+  </div>
+  <div class='rpt-meta'>
+    <div class='rpt-meta-type'>DAILY REPORT</div>
+    <div>Daily | May 29, 2026 (Fri)</div>
+  </div>
+</div>
+
+<details class='guide-box'>
+  <summary class='guide-summary'>
+    <span class='guide-icon'>📖</span>
+    <span>New to this report? (expand to read)</span>
+  </summary>
+  <div class='guide-content'>
+    <div class='guide-section'>
+      <h4>What this report does</h4>
+      <p>It re-reads how capital rotated across Korean industries and themes — which clusters lead, where capital is arriving, and what to watch next. Sector interpretation sits under the macro environment as an upper constraint.</p>
+    </div>
+    <div class='guide-section'>
+      <h4>How to read it</h4>
+      <ol>
+        <li>Start with the executive summary and the capital environment (the basis of interpretation)</li>
+        <li>Check the capital-flow map (out → transit → arriving)</li>
+        <li>See which clusters lead and which show decoupling alerts</li>
+        <li>Review the full selected industries / themes tables for the basis</li>
+      </ol>
+    </div>
+  </div>
+</details>
+<div class='rpt-banner'>
+<div class='rpt-bn-row rpt-bn-concl'><span class='rpt-bn-tag'>Today's Conclusion</span><p>On May 29, 2026, capital is rotating within a concentrated-consolidation environment as the AI infrastructure cluster pulls back from extreme overbought levels while battery/ESS names surge on fresh catalyst momentum and the defense cluster holds structural inflow — the KOSPI remains at extreme overbought levels above 8,200 with macro stress intact.</p></div>
+<div class='rpt-bn-row rpt-bn-act'><span class='rpt-bn-tag'>How to Prioritize</span><p>The battery and ESS cluster (Samsung SDI, LG Energy Solution, SamwhaCapacitor, L&amp;F, NanoTIM) carries the highest observation priority today as a fresh breakout with exceptional volume acceleration — same-day monitoring of intraday traded-value sustainability is the primary focus. The AI infrastructure cluster (Semiconductors, Electronic Equipment, Communications Equipment, Electrical Equipment) requires pullback confirmation before follow-up given extreme overbought conditions and the moderate SOX +1.00% overnight signal. The defense cluster (Aerospace &amp; Defense, Shipbuilding) warrants secondary monitoring as structural inflow continues with moderating momentum. Sectors with 3-day surges exceeding 20% remain in overheating territory where cleaner follow-up requires a pullback.</p></div>
+<div class='rpt-bn-row rpt-bn-cond'><span class='rpt-bn-tag'>Today's Key Condition</span><p>Confirm whether the battery and ESS cluster sustains intraday traded-value acceleration following today&#39;s exceptional volume surge in Samsung SDI, LG Energy Solution, SamwhaCapacitor, and L&amp;F, and whether the AI infrastructure cluster holds structural support levels after the moderate SOX +1.00% overnight signal.</p></div>
+</div>
+
+<div class='section section-exec'><div class='sec-title'>Executive Summary</div>
+<div class='exec-oneline'>Capital is rotating into a fresh battery and ESS breakout while the AI infrastructure cluster consolidates — Samsung SDI, LG Energy Solution, SamwhaCapacitor, and L&amp;F are today&#39;s leading edge on structural demand catalysts, with IT Services confirming its event-driven nature by giving back prior gains.</div>
+<div class='exec-grid'>
+<div class='exec-item'><span class='exec-key'>Flow quality</span><span>Event-driven inflow with exceptional volume acceleration in battery/ESS names; AI infrastructure consolidating</span></div>
+<div class='exec-item exec-caution'><span class='exec-key'>Caution</span><span>Case_4 concentrated-consolidation environment — cautious engagement beyond rank-1 sectors. Communications Equipment and Electrical Equipment correcting sharply after multi-day surges — sell-pressure signals confirmed. IT Services giving back yesterday&#39;s gains confirms event-driven nature. Macro Stressed regime (USD/KRW above 1,490 + U.S. 10-year near 4.5%) downgrades all signals one notch. SOX +1.00% overnight is a moderate signal — significantly weaker than prior +5.53%. KOSPI at extreme overbought levels above 8,200 — elevated reversal risk.</span></div>
+</div></div>
+
+
+<div class='cascade-conflict-banner'>
+  <span class='cascade-conflict-icon'>⚡</span>
+  <div>
+    <strong>Signal conflict with the upstream analysis detected</strong>
+    <p>ETF upstream notes SOX +1.00% overnight as a moderate directional recovery signal for the semiconductor cluster, which this analysis confirms — both agree that intraday confirmation is required before acting on AI infrastructure names. ETF upstream also notes Korea domestic policy themes (defense, nuclear, automobile) as Korea-independent signals, which this analysis confirms with the defense cluster in pullback phase. The primary conflict is that ETF upstream did not anticipate the battery/ESS breakout as a leading signal today — this analysis identifies it as the primary inflow destination. No directional conflict exists on the AI infrastructure or defense assessments.</p>
+  </div>
+</div>
+<div class='self-review'>
+  <div class='self-review-header'>
+    <span class='self-review-icon'>🪞</span>
+    <span class='self-review-label'>Self-scoring of yesterday's analysis</span>
+    <span class='self-review-hitrate'>Hit rate 4/6 direction calls correct; 1 major miss (battery/ESS breakout)</span>
+  </div>
+  <p class='self-review-text'>Yesterday&#39;s IT Services rank-1 call was partially correct (Samsung SDS +29.78% confirmed intraday but now giving back); healthcare cluster observation was correct (one-off nature confirmed); AI infrastructure observation was correct (SOX reversal confirmed); defense waiting call was correct. Battery/ESS breakout was not anticipated — missed today&#39;s leading catalyst.</p>
+  <div class='sr-tags'>
+    <span class='sr-tag sr-tag-hit'>✓ Semiconductors (holding gains)</span>
+    <span class='sr-tag sr-tag-hit'>✓ Electronic Equipment (holding)</span>
+    <span class='sr-tag sr-tag-hit'>✓ Aerospace &amp; Defense (moderating as predicted)</span>
+    <span class='sr-tag sr-tag-weak'>↓ IT Services (giving back gains as predicted — event-driven confirmed)</span>
+    <span class='sr-tag sr-tag-weak'>↓ Communications Equipment (correcting sharply as predicted)</span>
+    <span class='sr-tag sr-tag-weak'>↓ Biotechnology (fading as predicted)</span>
+    <span class='sr-tag sr-tag-weak'>↓ Venture Capital (continuing giveback)</span>
+    <span class='sr-tag sr-tag-fail'>✗ Battery/ESS breakout — Samsung SDI, LG Energy Solution, SamwhaCapacitor, L&amp;F surge was not anticipated; the structural battery demand catalyst was not in yesterday&#39;s watchlist</span>
+  </div>
+  <p class='self-review-adjustment'><strong>Applied to today's analysis · </strong>Added battery and ESS cluster as primary observation area; maintained overheating caution on Communications Equipment and Electrical Equipment; downgraded IT Services given pullback confirmation; added battery/ESS next candidates to watchlist.</p>
+</div>
+
+<details class='report-tier tier-b'><summary><span class='tier-chev'>&#9658;</span> <b>1-Minute Read</b><span class='tier-dn'>&nbsp;Market overview &middot; capital environment &middot; capital flow (out&#8594;transit&#8594;arriving)</span></summary><div class='tier-body'>
+<div class='tier-3cards'>
+  <div class='tcard tcard-market'>
+    <div class='tcard-icon'>&#128202;</div>
+    <div class='tcard-label'>Today's Market</div>
+    <div class='tcard-val'>Capital phase <b>Neutral</b> &middot; phase <b>advance</b></div>
+    <div class='tcard-sub'>risk-on</div>
+  </div>
+  <div class='tcard tcard-flow'>
+    <div class='tcard-icon'>&#128167;</div>
+    <div class='tcard-label'>Capital Distribution</div>
+    <div class='tcard-val'><b>Concentrated Consolidation</b> &middot; active <b>36%</b></div>
+    <div class='tcard-sub'>Concentrated consolidation (case_4)</div>
+  </div>
+  <div class='tcard tcard-sector'>
+    <div class='tcard-icon'>&#127919;</div>
+    <div class='tcard-label'>Top Priority</div>
+    <div class='tcard-val'><b>Electrical Products</b></div>
+    <div class='tcard-sub'>Secondary Battery (Cell Makers)</div>
+  </div>
+</div>
+<div class='section'><div class='sec-title'>Market Overview</div>
+<div class='market-bar'>
+<div class='meta-card'><div class='meta-card-label'>Capital Phase</div><div class='meta-card-value' style='color:var(--amber)'>Neutral</div></div>
+<div class='meta-card'><div class='meta-card-label'>Market Phase</div><div class='meta-card-value' style='color:#d29922'>advance</div></div>
+<div class='meta-card'><div class='meta-card-label'>Top Sector</div><div class='meta-card-value' style='color:var(--gold)'>Electrical Products</div></div>
+<div class='meta-card'><div class='meta-card-label'>Top Theme</div><div class='meta-card-value' style='color:var(--blue)'>Secondary Battery (Cell Makers)</div></div>
+<div class='meta-card'><div class='meta-card-label'>Conviction</div><div class='meta-card-value' style='color:var(--red)'>low</div></div>
+</div>
+<div class='market-bar' style='margin-top:6px'>
+<div class='meta-card'><div class='meta-card-label'>KOSPI</div><div class='meta-card-value' style='color:var(--red)'>KOSPI at 8,228 — extreme overbought (RSI 88.52, stochastic 99.24)</div></div>
+<div class='meta-card'><div class='meta-card-label'>KOSDAQ</div><div class='meta-card-value' style='color:var(--red)'>KOSDAQ divergence from KOSPI continues</div></div>
+<div class='meta-card'><div class='meta-card-label'>USD/KRW</div><div class='meta-card-value' style='color:var(--text)'>1,495.35 (structurally elevated above 1,490, extreme overbought RSI 79.06)</div></div>
+<div class='meta-card'><div class='meta-card-label'>Foreign</div><div class='meta-card-value' style='color:var(--red)'>Structurally pressured by USD/KRW above 1,490 Structurally pressured; confirmation required at open</div></div>
+<div class='meta-card'><div class='meta-card-label'>VIX</div><div class='meta-card-value' style='color:var(--green)'>17.19</div></div>
+<div class='meta-card'><div class='meta-card-label'>Market Mode</div><div class='meta-card-value' style='color:var(--green)'>risk-on</div></div>
+</div>
+<div class='key-risk' style='margin-top:4px'>🌐 U.S. prior session: SOX +1.00% (moderate recovery signal, significantly weaker than prior +5.53%) / NASDAQ positive</div>
+<div class='key-risk'>📌 Sector bias: Weighting battery/ESS fresh breakout; downgrading AI infrastructure given overbought conditions and moderate overnight signal; downgrading IT Services given pullback confirmation</div>
+<div style='margin-top:6px'>
+<div class='key-risk'>📋 SOX +1.00% overnight — moderate positive signal, significantly weaker than prior +5.53%; directional confidence lower than two sessions ago</div>
+<div class='key-risk'>📋 USD/KRW at 1,495.35 — structurally elevated above 1,490; extreme overbought (RSI 79.06, stochastic 96.63)</div>
+<div class='key-risk'>📋 U.S. 10-year yield at 4.48% — first close below 4.5% in recent sessions, critical juncture; rolling basis still above upper structural band</div>
+<div class='key-risk'>📋 KOSPI at 8,228 in extreme overbought territory — most fragile element; elevated reversal risk from macro stress divergence</div>
+<div class='key-risk'>📋 Battery and ESS cluster fresh breakout — Samsung SDI +7.3% (+98% volume), LG Energy Solution +15.25% (+259% volume), SamwhaCapacitor +24.07% (+82% volume), L&amp;F +13.03% (+310% volume), NanoTIM +16.64% (+119% volume)</div>
+<div class='key-risk'>📋 AI infrastructure cluster consolidating — Communications Equipment, Electrical Equipment, Electronic Equipment pulling back after multi-day surges</div>
+<div class='key-risk'>📋 IT Services cluster giving back gains — Samsung SDS -4.97%, HyundaiAutoever -2.48%, LG CNS -7.4% confirming event-driven nature of prior surge</div>
+</div>
+<div class='one-line'>Today&#39;s market is a concentrated-consolidation advance led by a fresh battery and ESS breakout while AI infrastructure consolidates — the rotation from overheated AI names to fresh battery catalysts is the dominant driver, and the KOSPI extreme overbought divergence from macro stress remains the primary tail risk.</div>
+<div class='key-risk'>Key risk: The primary risk is that today&#39;s battery and ESS surge is a one-day event-driven move that reverses tomorrow — if intraday traded-value acceleration does not sustain, the case_4 consolidation environment will reassert and the rotation hypothesis will need to be discarded. Additionally, the KOSPI at extreme overbought levels above 8,200 with macro stress intact represents the most important tail risk.</div>
+<div class='multi-layer-insight'>💡 Multi-layer insight: Today&#39;s market is characterized by a sharp bifurcation — the battery and ESS cluster is breaking out on fresh structural demand catalysts while the AI infrastructure cluster consolidates after multi-day surges and IT Services confirms its event-driven nature by giving back gains. The rotation from AI infrastructure to battery/ESS is the dominant driver today, with the battery cluster showing the cleanest early-cycle setup. The Communications Equipment and Electrical Equipment corrections are the most important signals to monitor — they confirm that the AI infrastructure cluster&#39;s most overheated sub-sectors are distributing.</div>
+</div>
+
+<div class='section section-water'>
+<div class='sec-title'>★ Market Capital Environment (the basis of multi-layer interpretation)</div>
+
+<div class='water-main' style='border-color:#8B6B2C'>
+  <div class='water-case-row'>
+    <div class='water-case-icon'>◈</div>
+    <div class='water-case-body'>
+      <div class='water-case-label'>Today's capital distribution</div>
+      <div class='water-case-name' style='color:#8B6B2C'>Concentrated Consolidation</div>
+      <div class='water-case-detail'>Capital is holding rather than expanding, concentrated in a narrow set of fresh catalyst themes (battery/ESS) while prior leaders (AI infrastructure, IT Services) consolidate. Possible late rotation; reassess after consolidation ends. Cautious engagement — consider downgrading SECTOR_STRONG signals to SECTOR_POSSIBLE.</div>
+    </div>
+  </div>
+</div>
+<div class='market-bar' style='margin-top:8px'>
+<div class='meta-card'><div class='meta-card-label'>Capital Volume</div><div class='meta-card-value' style='color:var(--amber)'>1.09x</div></div>
+<div class='meta-card'><div class='meta-card-label'>Volume State</div><div class='meta-card-value' style='color:var(--amber)'>holding</div></div>
+<div class='meta-card'><div class='meta-card-label'>Top-5 Concentration</div><div class='meta-card-value' style='color:var(--amber)'>47%</div></div>
+<div class='meta-card'><div class='meta-card-label'>Distribution</div><div class='meta-card-value' style='color:var(--red)'>concentrated</div></div>
+<div class='meta-card'><div class='meta-card-label'>Active Sectors</div><div class='meta-card-value' style='color:var(--amber)'>36%</div></div>
+</div>
+<div class='water-frame'>🔍 Interpretation frame: All signals interpreted within concentrated-consolidation context. Battery/ESS fresh breakout is the primary event-driven catalyst today. AI infrastructure cluster is consolidating after multi-day surges. Macro Stressed regime (USD/KRW above 1,490 + U.S. 10-year near 4.5%) downgrades all signals one notch. SOX +1.00% overnight provides moderate but not strong global co-movement support.</div>
+</div>
+
+<div class='section section-landscape'>
+<div class='sec-title'>★ Capital Flow (out → transit → arriving)</div>
+<div class='rotation-speed'>🌊 Rotation speed: <span class='speed-val' style='color:var(--red)'>fast</span></div>
+<div class='landscape-flow'>
+<div class='landscape-box ls-departing'><div class='ls-title'>◀ Departing</div><div class='ls-item'>AI infrastructure capital (Communications Equipment, Electrical Equipment correcting)</div><div class='ls-item'>Domestic AI and cloud services (IT Services giving back gains)</div><div class='ls-item'>Defense and reconstruction capital (momentum moderating)</div><div class='ls-item'>Real Estate</div><div class='ls-item'>Gaming</div><div class='ls-item'>Consumer staples</div></div>
+<div class='landscape-arrow'>→</div>
+<div class='landscape-box ls-transit'><div class='ls-title'>◆ In transit</div><div class='ls-item'>AI infrastructure capital (Semiconductors, Electronic Equipment holding)</div><div class='ls-item'>Industrial conglomerates and value-up (SK group holding)</div></div>
+<div class='landscape-arrow'>→</div>
+<div class='landscape-box ls-arriving'><div class='ls-title'>▶ Arriving</div><div class='ls-item'>Battery and ESS capital (fresh event-driven breakout)</div></div>
+<div class='landscape-arrow'>→</div>
+<div class='landscape-box ls-candidates'><div class='ls-title'>★ Next candidates</div><div class='ls-item'>Secondary Battery (Materials/Parts) (446) — following cell maker/ESS breakout with 1-day lag</div><div class='ls-item'>Electric Vehicles (227) — following battery cluster expansion</div><div class='ls-item'>Smart Grid (229) — adjacent to ESS via power infrastructure demand</div><div class='ls-item'>Semiconductor Substrate (FC-BGA/PCB/MLB) (608) — if AI infrastructure stabilizes</div><div class='ls-item'>MLCC (405) — SamwhaCapacitor cross-membership with battery cluster</div></div>
+</div>
+<div class='time-flow'>⏱ Time flow: Yesterday: IT Services / healthcare event-driven breakout → Today: IT Services giving back gains + battery/ESS fresh breakout + AI infrastructure consolidating → Tomorrow candidates: Secondary Battery Materials/Parts, Electric Vehicles, Smart Grid</div>
+<div class='flow-summary'>Capital is rotating from the overheated AI infrastructure and IT Services clusters into a fresh battery and ESS breakout — Samsung SDI, LG Energy Solution, SamwhaCapacitor, and L&amp;F are today&#39;s leading edge driven by structural battery demand catalysts, while the AI infrastructure cluster consolidates after multi-day surges.</div>
+</div>
+
+</div></details>
+<details class='report-tier tier-c'><summary><span class='tier-chev'>&#9658;</span> <b>Detailed Basis</b><span class='tier-dn'>&nbsp;Rotation map &middot; clusters &middot; decoupling alerts &middot; full selected industries/themes</span></summary><div class='tier-body'>
+<div class='section'><div class='sec-title'>Capital Rotation Map</div>
+<div class='rotation-grid'>
+<div class='rot-group rot-in'><div class='rot-title'>▲ Early inflow</div><div class='rot-items'><span class='rot-item'>Electrical Products (283) — Samsung SDI, LG Energy Solution, SamwhaCapacitor, L&amp;F fresh breakout</span><span class='rot-item'>Semiconductors &amp; Semiconductor Equipment (278) — SK Hynix +2.05%, moderate SOX support</span><span class='rot-item'>Electronic Equipment &amp; Instruments (282) — SamsungElectroMechanics +13.44%, NanoTIM +16.64%</span><span class='rot-item'>Handsets (292) — UJU Electronics +19.45%, Pentastone +6.82%</span><span class='rot-item'>Auto Parts (270) — SamsungClimateControl +10.63%, HyundaiMobis holding</span><span class='rot-item'>Automobiles (273) — HyundaiMotor holding</span><span class='rot-item'>Display Panels (327) — LG Display +2.05%, volume surge</span><span class='rot-item'>Marine Shipping (323) — HeungaShipping +3.1%, exceptional volume</span><span class='rot-item'>Road &amp; Rail Transport (329) — YOOSUNG T&amp;S +29.86%, exceptional volume</span><span class='rot-item'>Oil &amp; Gas (313) — HeunguOil +2.96%, exceptional volume</span><span class='rot-item'>Chemicals (272) — LG Chem +4.08%, POSCO Future M +3.93%</span><span class='rot-item'>Non-ferrous Metals (322) — SamaAluminium +6.11%</span><span class='rot-item'>Airlines (305) — Korean Air +0.56%</span><span class='rot-item'>Life Insurance (330) — Samsung Life +0.85%</span><span class='rot-item'>Interactive Media &amp; Services (300) — NAVER +3.12%</span><span class='rot-item'>Cosmetics (266) — APR +4.03%</span></div></div>
+<div class='rot-group rot-mid'><div class='rot-title'>◆ Mid inflow</div><div class='rot-items'><span class='rot-item'>Aerospace &amp; Defense (284) — HANWHA AEROSPACE holding, broader cluster moderating</span><span class='rot-item'>Shipbuilding (291) — HD Hyundai Heavy, Hanwha Ocean holding</span><span class='rot-item'>Machinery (299) — DOOSAN ENERBILITY, Rainbow Robotics holding</span><span class='rot-item'>Construction &amp; Engineering (279) — DaewooE&amp;C, Hyundai E&amp;C holding</span></div></div>
+<div class='rot-group rot-wait'><div class='rot-title'>◇ Waiting</div><div class='rot-items'><span class='rot-item'>Property &amp; Casualty Insurance (315) — Samsung Fire holding</span><span class='rot-item'>Banks (301) — KB Financial, Shinhan holding</span><span class='rot-item'>Securities (Brokerage) (321) — Mirae Asset, KIWOOM holding</span><span class='rot-item'>Steel (304) — POSCO Holdings holding</span><span class='rot-item'>Non-ferrous Metals (322) — Korea Zinc holding</span></div></div>
+<div class='rot-group rot-out'><div class='rot-title'>▼ Outflow</div><div class='rot-items'><span class='rot-item'>IT Services (267) — Samsung SDS -4.97%, HyundaiAutoever -2.48%, LG CNS -7.4% — event-driven pullback confirmed</span><span class='rot-item'>Communications Equipment (294) — TAIHAN Fiberoptics -15.76%, ICTK -13.76% — overheating correction</span><span class='rot-item'>Biotechnology (286) — Alteogen -4.4%, ABL Bio -3.38% — one-off volume fading</span><span class='rot-item'>Pharmaceuticals (261) — HANALL BIOPHARMA -11.6%, CHA Vaccine -6.44%</span><span class='rot-item'>Venture Capital (277) — AJU IB -10.32%, Mirae Asset Venture -5.16% — continued giveback</span><span class='rot-item'>Real Estate (280)</span><span class='rot-item'>Gaming &amp; Entertainment (263)</span><span class='rot-item'>Electric Utilities (325)</span><span class='rot-item'>Gas Utilities (312)</span><span class='rot-item'>Wireless Telecom Services (333)</span><span class='rot-item'>Broadcasting &amp; Entertainment (285)</span><span class='rot-item'>Healthcare Technology (288)</span><span class='rot-item'>Software (287) — MakinaRocks -6.74%, AXGATE -8.54%</span><span class='rot-item'>Energy Equipment &amp; Services (295)</span><span class='rot-item'>Electrical Equipment (306) — LS Electric -5.74%, HD Hyundai Electric -4.3%</span></div></div>
+</div></div>
+
+<div class='section'><div class='sec-title'>★ Capital Cluster Analysis</div>
+<div class='cluster-grid'>
+
+<div class='cluster-card' style='border-top-color:var(--gold)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>Battery and ESS capital</div>
+    <span class='badge badge-strong'>leading</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge badge-strong'>strong</span>
+    <span class='cluster-cycle'>Capital stage: <strong>early</strong></span>
+    <span class='cluster-corr'>Internal corr 0.82</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>Strength</span><span class='cstat-val'>3.80</span></span>
+    <span class='cstat'><span class='cstat-label'>Breadth</span><span class='cstat-val'>62%</span></span>
+    <span class='cstat'><span class='cstat-label'>Capital share</span><span class='cstat-val'>14%</span></span>
+  </div>
+  <div class='cluster-members'>Electrical Products (283) · Secondary Battery (Cell Makers) (449) · Energy Storage Systems (ESS) (329) · Secondary Battery (Materials/Parts) (446) · Electric Vehicles (227) · Solid-State Battery (472) · Secondary Battery (64)</div>
+  <div class='cluster-rotation'>🔄 Internal rotation: Cell Makers (today, event-driven breakout) → ESS (today, secondary) → Materials/Parts (next candidate)</div>
+  <div class='cluster-interp'>The battery and ESS cluster is in a fresh early-cycle breakout driven by structural demand catalysts — this is independent of the AI infrastructure consolidation and represents a new cluster formation today. Short holding horizon appropriate given event-driven nature.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>Capital acceleration</span><span class='fa-badge badge-accel-up'>accelerating</span><p class='fa-signal'>Capital acceleration is surging in the battery and ESS cluster today, driven by fresh structural demand catalysts in Samsung SDI, LG Energy Solution, SamwhaCapacitor, and L&amp;F. This is a fresh breakout independent of the AI infrastructure consolidation — battery policy momentum and structural demand are the primary drivers.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>Compression type</span><span class='cp-badge badge-comp-none'>none</span><p class='cp-signal'>No compression detected — price is advancing with exceptional volume, consistent with genuine event-driven inflow.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--blue)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>AI infrastructure capital</div>
+    <span class='badge badge-neutral'>rotation</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge badge-neutral'>mixed</span>
+    <span class='cluster-cycle'>Capital stage: <strong>early</strong></span>
+    <span class='cluster-corr'>Internal corr 0.72</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>Strength</span><span class='cstat-val'>3.20</span></span>
+    <span class='cstat'><span class='cstat-label'>Breadth</span><span class='cstat-val'>52%</span></span>
+    <span class='cstat'><span class='cstat-label'>Capital share</span><span class='cstat-val'>32%</span></span>
+  </div>
+  <div class='cluster-members'>Semiconductors &amp; Semiconductor Equipment (278) · Electronic Equipment &amp; Instruments (282) · On-Device AI (545) · Semiconductor Substrate (FC-BGA/PCB/MLB) (608) · PCB (FPCB etc.) (287) · HBM (High Bandwidth Memory) (536) · CXL (Compute Express Link) (547) · SOCAMM (599)</div>
+  <div class='cluster-rotation'>🔄 Internal rotation: Communications Equipment / Electrical Equipment (correcting) → Semiconductors / Electronic Equipment (holding) → On-Device AI / HBM (next candidates if SOX stabilizes)</div>
+  <div class='cluster-interp'>The AI infrastructure cluster is in internal rotation mode — the most overheated sub-sectors (Communications Equipment, Electrical Equipment) are correcting while Semiconductors and Electronic Equipment hold their gains. The moderate SOX overnight signal has reduced the cluster&#39;s directional energy. Pullback confirmation is required before new exposure.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>Capital acceleration</span><span class='fa-badge badge-accel-down'>slowing</span><p class='fa-signal'>Capital acceleration is slowing in the AI infrastructure cluster after multi-day surges — the moderate SOX +1.00% overnight signal has reduced directional energy. Semiconductors and Electronic Equipment are holding their gains but volume is declining from peak levels. Communications Equipment and Electrical Equipment are correcting sharply.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>Compression type</span><span class='cp-badge badge-comp-dist'>suspected distribution</span><p class='cp-signal'>High region + volume declining + price failing to advance further in Communications Equipment and Electrical Equipment — possible distribution at highs in the most overheated sub-sectors.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--red)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>Defense and reconstruction capital</div>
+    <span class='badge badge-avoid'>weak</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge badge-avoid'>weak</span>
+    <span class='cluster-cycle'>Capital stage: <strong>early</strong></span>
+    <span class='cluster-corr'>Internal corr 0.55</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>Strength</span><span class='cstat-val'>1.80</span></span>
+    <span class='cstat'><span class='cstat-label'>Breadth</span><span class='cstat-val'>38%</span></span>
+    <span class='cstat'><span class='cstat-label'>Capital share</span><span class='cstat-val'>8%</span></span>
+  </div>
+  <div class='cluster-members'>Aerospace &amp; Defense (284) · Shipbuilding (291) · Defense / War &amp; Terror (144) · Shipbuilding (30) · Post-War Reconstruction (517) · Construction &amp; Engineering (279)</div>
+  <div class='cluster-rotation'>🔄 Internal rotation: Defense (moderating) → Shipbuilding (moderating) → Construction (waiting)</div>
+  <div class='cluster-interp'>Defense and reconstruction cluster is losing momentum — ETF upstream notes K-Defense in pullback phase, and the cluster is transitioning from expanding to weak. Korea Aerospace Industries remains relatively strong but the broader cluster is moderating.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>Capital acceleration</span><span class='fa-badge badge-accel-down'>slowing</span><p class='fa-signal'>Capital acceleration is slowing in the defense cluster — HANWHA AEROSPACE, Hanwha Ocean, and HD Hyundai Heavy Industries are all declining today. ETF upstream notes K-Defense in pullback phase. The cluster is transitioning from expanding to weak.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>Compression type</span><span class='cp-badge badge-comp-none'>none</span><p class='cp-signal'>No compression detected — the cluster is simply losing momentum rather than distributing.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--red)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>Domestic AI and cloud services</div>
+    <span class='badge badge-avoid'>weak</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge badge-avoid'>weak</span>
+    <span class='cluster-cycle'>Capital stage: <strong>early</strong></span>
+    <span class='cluster-corr'>Internal corr 0.78</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>Strength</span><span class='cstat-val'>1.20</span></span>
+    <span class='cstat'><span class='cstat-label'>Breadth</span><span class='cstat-val'>32%</span></span>
+    <span class='cstat'><span class='cstat-label'>Capital share</span><span class='cstat-val'>6%</span></span>
+  </div>
+  <div class='cluster-members'>IT Services (267) · SI (System Integration) (17) · Cloud Computing (276) · AI Chatbots (ChatGPT etc.) (529)</div>
+  <div class='cluster-rotation'>🔄 Internal rotation: IT Services (giving back gains) → Cloud Computing (holding) → Smart Factory (secondary)</div>
+  <div class='cluster-interp'>The domestic AI and cloud services cluster is giving back yesterday&#39;s event-driven gains — Samsung SDS, HyundaiAutoever, and LG CNS are all declining, confirming the event-driven nature of the prior surge. The cluster is transitioning to weak.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>Capital acceleration</span><span class='fa-badge badge-accel-down'>slowing</span><p class='fa-signal'>Capital acceleration is slowing sharply in the domestic AI and cloud services cluster — Samsung SDS -4.97%, HyundaiAutoever -2.48%, LG CNS -7.4% are all giving back yesterday&#39;s event-driven gains. This confirms the event-driven nature of the prior surge.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>Compression type</span><span class='cp-badge badge-comp-none'>none</span><p class='cp-signal'>No compression detected — the cluster is simply giving back event-driven gains.</p></div>
+</div>
+</div></div>
+
+<div class='section'><div class='sec-title'>★ Anomaly Alerts (3 — anomaly / new-signal verification)</div>
+
+<div class='decoupling-card' style='border-left-color:var(--blue)'>
+  <div class='dc-hd'>
+    <span class='dc-icon'>⇄</span>
+    <span class='dc-type' style='color:var(--blue)'>single_decoupling</span>
+    <span class='dc-sector'>Electrical Products (283)</span>
+    <span class='dc-verify'>⚠ Verification needed</span>
+  </div>
+  <div class='dc-detail'>
+    <span class='dc-cluster'>Cluster: <strong>Battery and ESS capital</strong></span>
+    <span class='dc-change'>Sector: <strong>+7.3% (Samsung SDI), +15.25% (LG Energy Solution), +24.07% (SamwhaCapacitor), +13.03% (L&amp;F)</strong></span>
+    <span class='dc-change-cluster'>Cluster avg: <strong>+12%</strong></span>
+  </div>
+  <div class='dc-alert'>Battery and ESS names surging simultaneously while AI infrastructure consolidates — fresh structural demand catalyst driving the breakout. Bullish decoupling from the broader market consolidation. Verify whether this is genuine new capital entry or a one-day event-driven move before treating as a structural sector signal.</div>
+</div>
+
+<div class='decoupling-card' style='border-left-color:var(--blue)'>
+  <div class='dc-hd'>
+    <span class='dc-icon'>⇄</span>
+    <span class='dc-type' style='color:var(--blue)'>single_decoupling</span>
+    <span class='dc-sector'>IT Services (267)</span>
+    
+  </div>
+  <div class='dc-detail'>
+    <span class='dc-cluster'>Cluster: <strong>Domestic AI and cloud services</strong></span>
+    <span class='dc-change'>Sector: <strong>-4.97% (Samsung SDS), -2.48% (HyundaiAutoever), -7.4% (LG CNS)</strong></span>
+    <span class='dc-change-cluster'>Cluster avg: <strong>-5%</strong></span>
+  </div>
+  <div class='dc-alert'>IT Services is giving back yesterday&#39;s event-driven gains — Samsung SDS, HyundaiAutoever, and LG CNS all declining, confirming the event-driven nature of the prior surge. Bearish decoupling within the domestic AI cluster.</div>
+</div>
+
+<div class='decoupling-card' style='border-left-color:var(--blue)'>
+  <div class='dc-hd'>
+    <span class='dc-icon'>⇄</span>
+    <span class='dc-type' style='color:var(--blue)'>single_decoupling</span>
+    <span class='dc-sector'>Communications Equipment (294)</span>
+    
+  </div>
+  <div class='dc-detail'>
+    <span class='dc-cluster'>Cluster: <strong>AI infrastructure capital</strong></span>
+    <span class='dc-change'>Sector: <strong>-15.76% (TAIHAN Fiberoptics), -13.76% (ICTK), -12.09% (LIGHTRON)</strong></span>
+    <span class='dc-change-cluster'>Cluster avg: <strong>-8%</strong></span>
+  </div>
+  <div class='dc-alert'>Communications Equipment is correcting sharply after multi-day surges — TAIHAN Fiberoptics, ICTK, and LIGHTRON all declining significantly. Sell-pressure signal confirmed after 30%+ three-day surge. Bearish decoupling within the AI infrastructure cluster.</div>
+</div>
+</div>
+
+<div class='grid2'>
+<div class='section'><div class='sec-title'>Selected Industries</div>
+<table class='tbl'><thead><tr><th>Name</th><th>Cycle</th><th>flow_accel</th><th>Heat</th><th>Action</th></tr></thead><tbody>
+<tr><td>Electrical Products <span style='font-size:8px;color:var(--dim)'>283</span> <span class='decoupling-mark' title='bullish_decoupling — surging while AI infrastructure consolidates'>⚠</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>3.95</td><td style='color:var(--amber)'>caution</td><td><span class='badge badge-watch'>priority_watch</span> <span class='action-conf' title='short horizon'>★★</span><div class='cluster-tag'>🔗 Battery and ESS capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 Samsung SDI (+7.3%, +98% volume, V signal), LG Energy Solution (+15.25%, +259% volume, QR signal), SamwhaCapacitor (+24.07%, +82% volume), L&amp;F (+13.03%, +310% volume, Q signal), NanoTIM (+16.64%, +119% volume, QR signal) — exceptional volume acceleration across battery/ESS names. Fresh structural catalyst (battery demand + ESS policy). Case_4 environment downgrades one notch. Macro Stressed regime downgrades one additional notch. Short holding horizon given event-driven nature — verify intraday sustainability.</td></tr>
+<tr><td>Electronic Equipment &amp; Instruments <span style='font-size:8px;color:var(--dim)'>282</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--green)'>4.62</td><td style='color:var(--amber)'>caution</td><td><span class='badge badge-watch'>observation</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 AI infrastructure capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 SamsungElectroMechanics (+13.44%, +34% volume, V signal) and NanoTIM (+16.64%, +119% volume, QR signal) leading with capital-concentration confirmed. Weekly 20-week gain approaching early-expansion threshold. SOX +1.00% overnight provides moderate global support. Case_4 environment and Macro Stressed regime each downgrade one notch. Prefer pullback confirmation given multi-week surge.</td></tr>
+<tr><td>Semiconductors &amp; Semiconductor Equipment <span style='font-size:8px;color:var(--dim)'>278</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>3.85</td><td style='color:var(--green)'>normal</td><td><span class='badge badge-watch'>observation</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 AI infrastructure capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 SK Hynix (+2.05%, -22% volume, V signal) and Samsung Electronics (-2.44%) — SK Hynix holding gains but volume declining from peak. SOX +1.00% overnight is a moderate signal. ETF upstream notes extreme overbought conditions (RSI 87-93) — intraday SMH stabilization required. Case_4 environment and Macro Stressed regime each downgrade one notch. Prefer pullback confirmation.</td></tr>
+<tr><td>Aerospace &amp; Defense <span style='font-size:8px;color:var(--dim)'>284</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>2.42</td><td style='color:var(--green)'>normal</td><td><span class='badge badge-neutral'>waiting</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 Defense and reconstruction capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 HANWHA AEROSPACE (-3.54%, -16% volume), LIG Defense (-2.17%), HYUNDAI ROTEM (-0.48%) — broader cluster moderating as ETF upstream notes K-Defense in pullback phase. Korea Aerospace Industries (+1.33%, +21% volume) showing relative strength. Waiting for inflow confirmation before acting. Case_4 environment and Macro Stressed regime each downgrade one notch.</td></tr>
+<tr><td>Shipbuilding <span style='font-size:8px;color:var(--dim)'>291</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>2.18</td><td style='color:var(--green)'>normal</td><td><span class='badge badge-neutral'>waiting</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 Defense and reconstruction capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 HD Hyundai Heavy Industries (-5.38%), Hanwha Ocean (-7.93%), Samsung Heavy (-3.57%) — broader cluster pulling back after multi-week surge. HD Korea Shipbuilding (+41% volume) showing some capital interest. LNG and defense order backlog supports earnings durability but momentum is moderating. Waiting for inflow confirmation. Case_4 environment and Macro Stressed regime each downgrade one notch.</td></tr>
+</tbody></table>
+<div style='margin-top:8px'>
+<div style='font-size:8px;color:#888;letter-spacing:.1em;margin-bottom:4px'>Key stocks</div>
+<table class='tbl'><thead><tr><th>Code</th><th>Name</th><th>52w pos</th><th>Turnover%</th><th>Foreign%</th></tr></thead><tbody>
+<tr><td>006400</td><td><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank'>SAMSUNG SDI CO.,LTD.</a></td><td style='color:var(--red)'>high</td><td>1.95</td><td>26.2</td></tr>
+<tr><td>373220</td><td><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank'>LG Energy Solution</a></td><td style='color:inherit'>mid</td><td>0.70</td><td>5.2</td></tr>
+<tr><td>001820</td><td><a href='https://stock.naver.com/domestic/stock/001820/price' target='_blank'>SamwhaCapacitor</a></td><td style='color:var(--red)'>high</td><td>49.30</td><td>5.8</td></tr>
+<tr><td>009150</td><td><a href='https://stock.naver.com/domestic/stock/009150/price' target='_blank'>SamsungElectroMechanics</a></td><td style='color:var(--red)'>high</td><td>3.14</td><td>38.0</td></tr>
+<tr><td>417010</td><td><a href='https://stock.naver.com/domestic/stock/417010/price' target='_blank'>NanoTIM Co. Ltd.</a></td><td style='color:var(--red)'>high</td><td>97.50</td><td>0.2</td></tr>
+<tr><td>011070</td><td><a href='https://stock.naver.com/domestic/stock/011070/price' target='_blank'>LG Innotek</a></td><td style='color:var(--red)'>high</td><td>3.66</td><td>25.5</td></tr>
+<tr><td>000660</td><td><a href='https://stock.naver.com/domestic/stock/000660/price' target='_blank'>SK hynix</a></td><td style='color:var(--red)'>high</td><td>0.80</td><td>51.7</td></tr>
+<tr><td>005930</td><td><a href='https://stock.naver.com/domestic/stock/005930/price' target='_blank'>SamsungElectronics</a></td><td style='color:var(--red)'>high</td><td>0.51</td><td>48.4</td></tr>
+<tr><td>080220</td><td><a href='https://stock.naver.com/domestic/stock/080220/price' target='_blank'>Jeju Semiconductor Corp.</a></td><td style='color:var(--red)'>high</td><td>8.89</td><td>7.2</td></tr>
+<tr><td>047810</td><td><a href='https://stock.naver.com/domestic/stock/047810/price' target='_blank'>KOREA AEROSPACE INDUSTRIES</a></td><td style='color:inherit'>mid</td><td>0.65</td><td>26.8</td></tr>
+<tr><td>012450</td><td><a href='https://stock.naver.com/domestic/stock/012450/price' target='_blank'>HANWHA AEROSPACE</a></td><td style='color:var(--green)'>low</td><td>0.39</td><td>45.2</td></tr>
+<tr><td>064350</td><td><a href='https://stock.naver.com/domestic/stock/064350/price' target='_blank'>HYUNDAI ROTEM</a></td><td style='color:inherit'>mid</td><td>0.64</td><td>35.7</td></tr>
+<tr><td>009540</td><td><a href='https://stock.naver.com/domestic/stock/009540/price' target='_blank'>HD KOREA SHIPBUILDING &amp; OFFSHORE ENGINEERING</a></td><td style='color:inherit'>mid</td><td>0.47</td><td>33.9</td></tr>
+<tr><td>329180</td><td><a href='https://stock.naver.com/domestic/stock/329180/price' target='_blank'>HD HYUNDAI HEAVY INDUSTRIES</a></td><td style='color:var(--red)'>high</td><td>0.47</td><td>13.6</td></tr>
+<tr><td>042660</td><td><a href='https://stock.naver.com/domestic/stock/042660/price' target='_blank'>Hanwha Ocean</a></td><td style='color:var(--red)'>high</td><td>0.85</td><td>11.3</td></tr>
+</tbody></table></div></div>
+
+<div class='section'><div class='sec-title'>Selected Themes</div>
+<table class='tbl'><thead><tr><th>Name</th><th>Cycle</th><th>flow_accel</th><th>Heat</th><th>Action</th></tr></thead><tbody>
+<tr><td>Secondary Battery (Cell Makers) <span style='font-size:8px;color:var(--dim)'>449</span> <span class='decoupling-mark' title='bullish_decoupling'>⚠</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>3.92</td><td style='color:var(--amber)'>caution</td><td><span class='badge badge-watch'>priority_watch</span> <span class='action-conf' title='short horizon'>★★</span><div class='cluster-tag'>🔗 Battery and ESS capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 Samsung SDI (V, +7.3%, +98% volume) and LG Energy Solution (QR, +15.25%, +259% volume) — capital-concentration confirmed with exceptional volume. Structural battery demand catalyst. Case_4 environment downgrades one notch. Short holding horizon given event-driven nature — verify intraday sustainability.</td></tr>
+<tr><td>Energy Storage Systems (ESS) <span style='font-size:8px;color:var(--dim)'>329</span> <span class='decoupling-mark' title='bullish_decoupling'>⚠</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>3.45</td><td style='color:var(--amber)'>caution</td><td><span class='badge badge-watch'>priority_watch</span> <span class='action-conf' title='short horizon'>★★</span><div class='cluster-tag'>🔗 Battery and ESS capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 Samsung SDI (V), LG Energy Solution (QR), SamwhaCapacitor (VQR), LS Electric (Q), HD Hyundai Electric — ESS policy momentum driving simultaneous inflow. SamwhaCapacitor +24.07% (+82% volume) is the strongest signal. Case_4 environment downgrades one notch. Short holding horizon — verify intraday sustainability.</td></tr>
+<tr><td>Secondary Battery (Materials/Parts) <span style='font-size:8px;color:var(--dim)'>446</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>2.85</td><td style='color:var(--green)'>normal</td><td><span class='badge badge-watch'>observation</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 Battery and ESS capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 L&amp;F (Q, +13.03%, +310% volume), ECOPRO BM (+2.34%), LG Chem (+4.08%), POSCO Future M (+3.93%) — capital-concentration confirmed with broad participation. Following the cell maker breakout with a slight lag. Case_4 environment and Macro Stressed regime each downgrade one notch. Verify intraday sustainability before acting.</td></tr>
+<tr><td>On-Device AI <span style='font-size:8px;color:var(--dim)'>545</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>3.92</td><td style='color:var(--amber)'>caution</td><td><span class='badge badge-watch'>observation</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 AI infrastructure capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 SamsungElectroMechanics (QR, +13.44%, +34% volume) and SK Hynix (V, +2.05%) leading with structural AI infrastructure support. SOX +1.00% overnight is a moderate signal — significantly weaker than prior +5.53%. ETF upstream notes extreme overbought conditions. Intraday SMH stabilization required. Case_4 environment and Macro Stressed regime each downgrade one notch.</td></tr>
+<tr><td>Defense / War &amp; Terror <span style='font-size:8px;color:var(--dim)'>144</span></td><td><span class='badge badge-cycle-early'>early</span></td><td style='color:var(--muted)'>1.95</td><td style='color:var(--green)'>normal</td><td><span class='badge badge-neutral'>waiting</span> <span class='action-conf' title='cautious'>★</span><div class='cluster-tag'>🔗 Defense and reconstruction capital</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 TAIHAN Fiberoptics (VQ) cross-membership with AI infrastructure but -15.76% today — defense theme holding structurally but broader momentum moderating. Korea Aerospace Industries (+1.33%) showing relative strength. ETF upstream notes K-Defense in pullback phase. Waiting for inflow confirmation. Case_4 environment and Macro Stressed regime each downgrade one notch.</td></tr>
+</tbody></table>
+<div style='margin-top:8px'>
+<div style='font-size:8px;color:#888;letter-spacing:.1em;margin-bottom:4px'>Key stocks</div>
+<table class='tbl'><thead><tr><th>Code</th><th>Name</th><th>52w pos</th><th>Turnover%</th><th>Foreign%</th></tr></thead><tbody>
+<tr><td>006400</td><td><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank'>SAMSUNG SDI CO.,LTD.</a></td><td style='color:var(--red)'>high</td><td>1.95</td><td>26.2</td></tr>
+<tr><td>373220</td><td><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank'>LG Energy Solution</a></td><td style='color:inherit'>mid</td><td>0.70</td><td>5.2</td></tr>
+<tr><td>096770</td><td><a href='https://stock.naver.com/domestic/stock/096770/price' target='_blank'>SK Innovation</a></td><td style='color:inherit'>mid</td><td>0.35</td><td>14.5</td></tr>
+<tr><td>001820</td><td><a href='https://stock.naver.com/domestic/stock/001820/price' target='_blank'>SamwhaCapacitor</a></td><td style='color:var(--red)'>high</td><td>49.30</td><td>5.8</td></tr>
+<tr><td>006400</td><td><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank'>SAMSUNG SDI CO.,LTD.</a></td><td style='color:var(--red)'>high</td><td>1.95</td><td>26.2</td></tr>
+<tr><td>373220</td><td><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank'>LG Energy Solution</a></td><td style='color:inherit'>mid</td><td>0.70</td><td>5.2</td></tr>
+<tr><td>066970</td><td><a href='https://stock.naver.com/domestic/stock/066970/price' target='_blank'>L&amp;F</a></td><td style='color:inherit'>mid</td><td>4.99</td><td>19.5</td></tr>
+<tr><td>417010</td><td><a href='https://stock.naver.com/domestic/stock/417010/price' target='_blank'>NanoTIM Co. Ltd.</a></td><td style='color:var(--red)'>high</td><td>97.50</td><td>0.2</td></tr>
+<tr><td>247540</td><td><a href='https://stock.naver.com/domestic/stock/247540/price' target='_blank'>ECOPRO BM CO., LTD.</a></td><td style='color:inherit'>mid</td><td>0.77</td><td>14.6</td></tr>
+<tr><td>009150</td><td><a href='https://stock.naver.com/domestic/stock/009150/price' target='_blank'>SamsungElectroMechanics</a></td><td style='color:var(--red)'>high</td><td>3.14</td><td>38.0</td></tr>
+<tr><td>000660</td><td><a href='https://stock.naver.com/domestic/stock/000660/price' target='_blank'>SK hynix</a></td><td style='color:var(--red)'>high</td><td>0.80</td><td>51.7</td></tr>
+<tr><td>005930</td><td><a href='https://stock.naver.com/domestic/stock/005930/price' target='_blank'>SamsungElectronics</a></td><td style='color:var(--red)'>high</td><td>0.51</td><td>48.4</td></tr>
+<tr><td>000270</td><td><a href='https://stock.naver.com/domestic/stock/000270/price' target='_blank'>KIA CORPORATION</a></td><td style='color:inherit'>mid</td><td>0.36</td><td>38.2</td></tr>
+<tr><td>064350</td><td><a href='https://stock.naver.com/domestic/stock/064350/price' target='_blank'>HYUNDAI ROTEM</a></td><td style='color:inherit'>mid</td><td>0.64</td><td>35.7</td></tr>
+<tr><td>042660</td><td><a href='https://stock.naver.com/domestic/stock/042660/price' target='_blank'>Hanwha Ocean</a></td><td style='color:var(--red)'>high</td><td>0.85</td><td>11.3</td></tr>
+</tbody></table></div></div>
+
+</div>
+
+<div class='section'><div class='sec-title'>Cross Flow Network</div>
+<div class='cross-row'>
+
+<div class='cross-card' style='border-color:var(--gold)'>
+  <div class='cross-card-hd'>
+    <span style='color:var(--gold);font-size:10px'>Electrical Products ↔ Secondary Battery (Cell Makers)</span>
+    <span class='badge badge-strong'>strongest</span>
+  </div>
+  <div style='display:flex;gap:10px;align-items:baseline'>
+    <span style='font-size:18px;font-weight:700;color:var(--gold)'>19.00</span>
+    <span style='font-size:10px;color:var(--muted)'>simultaneous balanced inflow</span>
+  </div>
+  <div class='cross-lag'>⏱ co-moving (corr 0.91)</div>
+  <div style='font-size:9px;color:var(--muted);margin-top:3px'>Next: Energy Storage Systems (ESS) (329)</div>
+</div>
+
+<div class='cross-card' style='border-color:var(--gold)'>
+  <div class='cross-card-hd'>
+    <span style='color:var(--gold);font-size:10px'>Electrical Products ↔ Energy Storage Systems (ESS)</span>
+    <span class='badge badge-strong'>strongest</span>
+  </div>
+  <div style='display:flex;gap:10px;align-items:baseline'>
+    <span style='font-size:18px;font-weight:700;color:var(--gold)'>13.60</span>
+    <span style='font-size:10px;color:var(--muted)'>simultaneous balanced inflow</span>
+  </div>
+  <div class='cross-lag'>⏱ co-moving (corr 0.88)</div>
+  <div style='font-size:9px;color:var(--muted);margin-top:3px'>Next: Secondary Battery (Materials/Parts) (446)</div>
+</div>
+
+<div class='cross-card' style='border-color:var(--dim)'>
+  <div class='cross-card-hd'>
+    <span style='color:var(--dim);font-size:10px'>Electronic Equipment &amp; Instruments ↔ On-Device AI</span>
+    <span class='badge badge-neutral'>caution</span>
+  </div>
+  <div style='display:flex;gap:10px;align-items:baseline'>
+    <span style='font-size:18px;font-weight:700;color:var(--amber)'>18.10</span>
+    <span style='font-size:10px;color:var(--muted)'>simultaneous balanced inflow</span>
+  </div>
+  <div class='cross-lag'>⏱ co-moving (corr 0.85)</div>
+  <div style='font-size:9px;color:var(--muted);margin-top:3px'>Next: Semiconductor Substrate (FC-BGA/PCB/MLB) (608)</div>
+</div>
+</div>
+<div class='flow-summary'>Capital is rotating from the overheated AI infrastructure and IT Services clusters into a fresh battery and ESS breakout — the battery cluster (Samsung SDI, LG Energy Solution, SamwhaCapacitor, L&amp;F) is today&#39;s leading edge on structural demand catalysts, while Communications Equipment and Electrical Equipment correct sharply after multi-day surges.</div>
+</div>
+
+<div class='section'><div class='sec-title'>★ Leading-Lagging Chains (time flow)</div>
+
+<div class='leading-chain'>
+  <div class='chain-hd'>
+    <span class='badge badge-strong'>strong</span>
+    <span class='chain-label'>Chain</span>
+  </div>
+  <div class='chain-flow'><span class='chain-node chain-start'>Secondary Battery (Cell Makers) (449)</span><span class='chain-arrow'>→ <strong>0d</strong> →</span><span class='chain-node'>Energy Storage Systems (ESS) (329)</span><span class='chain-arrow'>→ <strong>1d</strong> →</span><span class='chain-node'>Secondary Battery (Materials/Parts) (446)</span></div>
+  <div class='chain-interp'>Battery cell makers and ESS are co-moving today on structural demand catalysts; Secondary Battery Materials/Parts is the next inflow candidate with a 1-day lag as capital expands along the battery supply chain</div>
+</div>
+
+<div class='leading-chain'>
+  <div class='chain-hd'>
+    <span class='badge badge-neutral'>moderate</span>
+    <span class='chain-label'>Chain</span>
+  </div>
+  <div class='chain-flow'><span class='chain-node chain-start'>On-Device AI (545)</span><span class='chain-arrow'>→ <strong>0d</strong> →</span><span class='chain-node'>Semiconductor Substrate (FC-BGA/PCB/MLB) (608)</span><span class='chain-arrow'>→ <strong>1d</strong> →</span><span class='chain-node'>PCB (FPCB etc.) (287)</span></div>
+  <div class='chain-interp'>On-Device AI and Semiconductor Substrate are co-moving with moderate SOX support; PCB theme is the next expansion candidate as the AI infrastructure cluster holds its gains</div>
+</div>
+</div>
+
+<div class='section'><div class='sec-title'>Intersection Stocks (4)</div>
+<div class='stock-grid'>
+
+<div class='scard'>
+  <div class='scard-code'>006400</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank'>SAMSUNG SDI CO.,LTD.</a></div>
+  <div class='scard-src'>Electrical Products · Secondary Battery (Cell Makers), Energy Storage Systems (ESS), Secondary Battery (Materials/Parts), Electric Vehicles, Solid-State Battery</div>
+</div>
+
+<div class='scard'>
+  <div class='scard-code'>373220</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank'>LG Energy Solution</a></div>
+  <div class='scard-src'>Electrical Products · Secondary Battery (Cell Makers), Energy Storage Systems (ESS), Electric Vehicles, Nickel, Lithium</div>
+</div>
+
+<div class='scard'>
+  <div class='scard-code'>009150</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/009150/price' target='_blank'>SamsungElectroMechanics</a></div>
+  <div class='scard-src'>Electronic Equipment &amp; Instruments · On-Device AI, Semiconductor Substrate (FC-BGA/PCB/MLB), PCB (FPCB etc.), Camera Modules / Parts, Galaxy Component Suppliers</div>
+</div>
+
+<div class='scard'>
+  <div class='scard-code'>000660</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/000660/price' target='_blank'>SK hynix</a></div>
+  <div class='scard-src'>Semiconductors &amp; Semiconductor Equipment · On-Device AI, Semiconductor Blue Chips (Foundry), HBM (High Bandwidth Memory), CXL (Compute Express Link), SOCAMM</div>
+</div>
+</div></div>
+
+</div></details>
+<div class='freshness-box'>
+<div class='sec-title'>Analysis Validity</div>
+<div class='freshness-row'><span class='freshness-icon'>📅</span><div class='freshness-content'><div class='freshness-label'>Applies for · 1 trading days</div>
+<p class='freshness-text'>Validity is highest during today&#39;s session. It declines after the close. On the next trading day, only the capital-flow-inertia portion stays partially valid.</p>
+<p class='freshness-text-soft'>capital_environment (case_4) is valid 1-2 trading days. Battery/ESS rank-1 action is same-day valid given event-driven nature — delayed action risks losing the catalyst momentum. AI infrastructure observation signals are valid 1-2 trading days pending SOX stabilization. next_candidates (Secondary Battery Materials/Parts, Electric Vehicles) are valid 2-3 trading days. rotation_landscape big picture is valid 3-5 trading days.</p>
+</div></div>
+<div class='freshness-row'><span class='freshness-icon'>🍽</span><div class='freshness-content'><div class='freshness-label'>How to use</div>
+<p class='freshness-text'>Use battery and ESS names (Samsung SDI, LG Energy Solution, SamwhaCapacitor, L&amp;F) as the primary intraday monitoring candidates — verify intraday traded-value sustainability before acting. Secondary Battery Materials/Parts (L&amp;F, ECOPRO BM) are secondary priority with verification required. AI infrastructure names (SamsungElectroMechanics, SK Hynix) require intraday SMH stabilization confirmation. next_candidates (Secondary Battery Materials/Parts, Electric Vehicles) for tomorrow&#39;s monitoring.</p>
+<p class='freshness-precaution'><strong>Caution · </strong>Battery/ESS names are event-driven — do not chase if intraday traded-value does not sustain. Communications Equipment and Electrical Equipment are in sell-pressure correction — do not engage. IT Services giving back gains confirms event-driven nature — do not treat as sector signal. Case_4 environment means beyond rank-1 carries late-stage risk. Macro Stressed regime requires one-notch confidence downgrade on all signals. KOSPI extreme overbought divergence from macro stress is the primary tail risk.</p>
+</div></div>
+<div class='freshness-row'><span class='freshness-icon'>🚮</span><div class='freshness-content'><div class='freshness-label'>Invalidation conditions · this report is voided in the following situations</div><ul class='freshness-discard'>
+<li>MACRO report raised to macro-pressure EXTREME → fully suspend this capital-flow analysis</li>
+<li>KOSPI gap-down -2%+ at the open → discard battery/ESS opening-session observation signals</li>
+<li>Battery/ESS morning traded value below 50% of today&#39;s basis → discard the event-driven inflow hypothesis</li>
+<li>Foreign investors consistently turn net sellers (intraday -300B KRW+) → invalidate the domestic rotation assumption</li>
+<li>U.S. 10-year yield re-breaks above 4.5% → downgrade all signals one additional notch</li>
+<li>rotation_landscape.next_candidates (Secondary Battery Materials/Parts) already surged today → action timing over, monitoring only</li>
+<li>Communications Equipment and Electrical Equipment continue to correct sharply → do not engage regardless of other signals</li>
+</ul></div></div>
+<div class='freshness-row'><span class='freshness-icon'>⚖️</span><div class='freshness-content'><div class='freshness-label'>Multi-dimensional invalidation conditions</div>
+<p class='multi-discard-down'>⬇ Confidence downgrade: If 2+ of the 4 axes (capital-accel / sector-ratio / anomalous-flow / macro) are impaired, lower rotation-hypothesis confidence one notch.</p>
+<p class='multi-discard-del'>✕ Analysis discard: If 3+ of the 4 axes occur, discard the sector-rotation hypothesis.</p>
+<p class='multi-discard-rec'>↑ Restoration condition: Leading-cluster capital acceleration reconfirmed + active-sector ratio recovers → review restoration.</p>
+</div></div>
+</div>
+
+
+<div class='rpt-footer'>
+  <div class='footer-meta-row'><span class='footer-meta-key'>Analysis scope</span><span>Korea industries / themes · clusters · cross-flow · capital rotation</span></div>
+  <div class='footer-meta-row'><span class='footer-meta-key'>System</span><span>ATMAN Flow Intelligence · THEMA_SWING_EN_D</span></div>
+</div>
+<div class='disclaimer'>
+  <div class='disclaimer-title'>Investment Disclaimer</div>
+  <div class='disclaimer-text'>
+    <p>This report is Korean sector capital-rotation observation material auto-generated by ATMAN Flow Intelligence; it is not investment advice or a solicitation to trade.</p>
+    <p>The analysis observes capital flow, rotation, and cluster structure; it is not a buy/sell recommendation.</p>
+    <p>Investment decisions and any resulting profit or loss are solely the investor's responsibility, and actual markets may differ due to factors such as market volatility, data errors, and timing gaps.</p>
+    <p>ATMAN INVESTMENT bears no legal or financial responsibility for any investment outcome based on this report.</p>
+  </div>
+</div>
+</div></body></html>

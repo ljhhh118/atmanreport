@@ -1,0 +1,1178 @@
+﻿<!DOCTYPE html>
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>ATMAN SECTOR · 한국 자금 회전</title>
+<style>
+/* ── ATMAN 내부 리서치 리포트 v10.0 (Multi-Layer Correlation) ── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#edf0f4;font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;color:#1a1a2e;line-height:1.6;padding:20px}
+.rpt{max-width:1080px;margin:0 auto;background:#fff;box-shadow:0 1px 10px rgba(0,0,0,.1)}
+
+/* 헤더 */
+.rpt-header{background:#fff;border-top:4px solid #0d3572;border-bottom:2px solid #e0e4eb;padding:18px 24px 14px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.rpt-title{font-size:16px;font-weight:700;color:#0d3572;letter-spacing:.04em}
+.rpt-subtitle{font-size:10px;color:#888;letter-spacing:.12em;margin-top:3px}
+.rpt-meta{text-align:right;font-size:11px;color:#888}
+.rpt-meta-type{font-size:9px;font-weight:700;color:#fff;background:#0d3572;padding:2px 8px;letter-spacing:.1em;display:inline-block;margin-bottom:4px}
+
+/* 섹션 */
+.section{margin-bottom:0;border-bottom:1px solid #e0e4eb;padding:14px 24px}
+.section:last-child{border-bottom:none}
+.sec-title{font-size:9px;font-weight:700;color:#0d3572;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e0e4eb}
+
+/* 시장 개요 카드 */
+.market-bar{display:flex;gap:1px;flex-wrap:wrap;margin-bottom:10px;background:#e0e4eb;border:1px solid #e0e4eb}
+.mcard{background:#fff;padding:9px 14px;flex:1;min-width:90px}
+.mcard-label{font-size:8px;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.mcard-val{font-size:13px;font-weight:600}
+
+/* 핵심 문장 */
+.one-line{font-size:12px;line-height:1.7;color:#1a1a2e;padding:10px 14px;background:#f8f9fc;border-left:3px solid #0d3572;margin-bottom:8px}
+.key-risk{font-size:10px;color:#888;margin-bottom:8px;line-height:1.5}
+.issue-item{font-size:11px;color:#444;padding:4px 0;border-bottom:1px solid #f0f2f5;line-height:1.5}
+
+/* v10.0: 다층 인사이트 */
+.multi-layer-insight{font-size:11px;color:#1a1a2e;background:linear-gradient(135deg,#fdf6e3,#fffbe6);border:1px solid #e8d5a0;border-left:3px solid var(--gold);padding:8px 12px;margin-top:8px;line-height:1.6}
+
+/* 2단 그리드 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:0}
+.grid2 .section{border-right:1px solid #e0e4eb}
+.grid2 .section:last-child{border-right:none}
+
+/* 테이블 */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl thead{background:#f0f3f8}
+.tbl th{color:#0d3572;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:6px 7px;border-bottom:2px solid #0d3572;border-top:1px solid #e0e4eb;text-align:left;font-weight:700}
+.tbl td{padding:6px 7px;border-bottom:1px solid #e0e4eb;vertical-align:middle}
+.tbl tr:hover td{background:#f8f9fc}
+
+/* v10.0: 액션 컨피던스 */
+.action-conf{display:inline-block;font-size:10px;color:var(--gold);font-weight:700;margin-left:4px;letter-spacing:.05em;cursor:help}
+.cluster-tag{font-size:9px;color:var(--blue);margin-top:3px;background:#e8f0fb;display:inline-block;padding:1px 6px;border-radius:2px}
+.decoupling-mark{color:var(--red);font-size:11px;cursor:help}
+.action-comment-row td{background:#fafbfd !important;border-bottom:1px dashed #e0e4eb !important}
+.action-comment{font-size:10px;color:#555;font-style:italic;padding:4px 7px !important;line-height:1.5}
+
+/* 뱃지 */
+.badge{display:inline-block;padding:2px 7px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.03em}
+.b-go{background:#eaf6ee;color:#1a7f3c;border:1px solid #b8dfc4}
+.b-wait{background:#fff3e0;color:#8b4513;border:1px solid #f0d9b5}
+.b-watch{background:#e8f0fb;color:#0d3572;border:1px solid #b8cef0}
+.b-danger{background:#fdecea;color:#c0392b;border:1px solid #f5bcb8}
+.b-early{background:#fdf6e3;color:#7a5c00;border:1px solid #e8d5a0}
+.b-mid{background:#f5f5f5;color:#777;border:1px solid #ddd}
+.b-strong{background:#dcfce7;color:#15803d;border:1px solid #86efac;font-weight:700}
+
+/* 로테이션 맵 */
+.rotation-grid{display:flex;gap:1px;flex-wrap:wrap;background:#e0e4eb;border:1px solid #e0e4eb;margin-bottom:4px}
+.rot-group-title{font-size:8px;color:#0d3572;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.rot-tags{display:flex;flex-wrap:wrap;gap:4px}
+.rot-item{padding:2px 7px;border-radius:2px;font-size:9px;border:1px solid}
+.rot-in{border-color:#b8dfc4;color:#1a7f3c;background:#eaf6ee}
+.rot-mid{border-color:#f0d9b5;color:#8b4513;background:#fff3e0}
+.rot-wait{border-color:#b8cef0;color:#0d3572;background:#e8f0fb}
+.rot-out{border-color:#f5bcb8;color:#c0392b;background:#fdecea}
+
+/* 크로스플로우 */
+.cross-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.cross-card{background:#fff;border:1px solid #e0e4eb;border-top:2px solid #ddd;padding:10px 12px;flex:1;min-width:200px}
+.cross-card-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.flow-summary{font-size:10px;color:#555;background:#f8f9fc;border:1px solid #e0e4eb;padding:7px 12px;margin-top:4px}
+.cross-lag{font-size:9px;color:var(--blue);background:#f0f6ff;border-left:2px solid var(--blue);padding:3px 7px;margin-top:5px}
+
+/* v10.0: Water Status */
+.section-water{background:linear-gradient(135deg,#fafbfd,#fff);border-left:4px solid var(--blue)}
+.water-main{background:#fff;border:1px solid #e0e4eb;border-left-width:4px;padding:14px 18px;margin-bottom:10px}
+.water-case-row{display:flex;gap:14px;align-items:center}
+.water-case-icon{font-size:32px;line-height:1}
+.water-case-body{flex:1}
+.water-case-label{font-size:8px;color:#888;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.water-case-name{font-size:18px;font-weight:700;letter-spacing:.02em;margin-bottom:5px}
+.water-case-detail{font-size:11px;color:#444;line-height:1.6}
+.water-frame{font-size:10px;color:#555;background:#f0f3f8;border-left:3px solid #0d3572;padding:7px 12px;margin-top:8px;font-style:italic}
+
+/* v10.0: 클러스터 */
+.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.cluster-card{background:#fff;border:1px solid #e0e4eb;border-top:3px solid;padding:11px 13px}
+.cluster-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:6px}
+.cluster-name{font-size:13px;font-weight:700;color:#1a1a2e}
+.cluster-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:7px;font-size:9px;color:#888}
+.cluster-cycle strong,.cluster-corr strong{color:#1a1a2e}
+.cluster-stats{display:flex;gap:8px;background:#f8f9fc;padding:6px 8px;margin-bottom:6px;border:1px solid #e0e4eb}
+.cstat{flex:1;display:flex;flex-direction:column}
+.cstat-label{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.cstat-val{font-size:11px;font-weight:600;color:#1a1a2e}
+.cluster-members{font-size:10px;color:#555;line-height:1.5;background:#fafbfd;padding:5px 8px;border-radius:2px;margin-bottom:6px}
+.cluster-rotation{font-size:10px;color:var(--gold);background:#fdf6e3;border-left:2px solid var(--gold);padding:4px 8px;margin-bottom:5px;line-height:1.5}
+.cluster-interp{font-size:10px;color:#555;font-style:italic;line-height:1.5;border-top:1px dashed #e0e4eb;padding-top:5px;margin-top:3px}
+
+/* v10.0: Rotation Landscape */
+.section-landscape{background:#fafbfd}
+.rotation-speed{font-size:11px;color:#555;margin-bottom:10px;padding:6px 0}
+.speed-val{font-weight:700;font-size:13px}
+.landscape-flow{display:flex;gap:6px;align-items:stretch;margin-bottom:10px;flex-wrap:wrap}
+.landscape-box{flex:1;min-width:160px;background:#fff;border:1px solid #e0e4eb;border-top:3px solid;padding:9px 11px}
+.landscape-box.departing{border-top-color:var(--red)}
+.landscape-box.transit{border-top-color:var(--amber)}
+.landscape-box.arriving{border-top-color:var(--green)}
+.landscape-box.candidates{border-top-color:var(--gold)}
+.landscape-label{font-size:8px;color:#888;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.landscape-items{display:flex;flex-wrap:wrap;gap:3px}
+.landscape-item{font-size:10px;padding:2px 7px;border-radius:2px;background:#f8f9fc;border:1px solid #e0e4eb;color:#444}
+.landscape-empty{font-size:9px;color:#aaa;font-style:italic}
+.landscape-arrow{display:flex;align-items:center;color:var(--blue);font-size:18px;font-weight:700}
+.time-flow{font-size:10px;color:#555;background:#f0f6ff;border-left:3px solid var(--blue);padding:6px 11px;margin-bottom:6px;line-height:1.6}
+
+/* v10.0: 디커플링 */
+.decoupling-card{background:#fff;border:1px solid #e0e4eb;border-left:3px solid;padding:10px 13px;margin-bottom:6px}
+.dc-hd{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.dc-icon{font-size:14px}
+.dc-type{font-size:11px;font-weight:700;letter-spacing:.02em}
+.dc-sector{font-size:12px;font-weight:700;color:#1a1a2e}
+.dc-verify{font-size:9px;color:var(--red);background:#fdecea;padding:1px 6px;border-radius:2px;margin-left:auto}
+.dc-detail{font-size:10px;color:#666;margin-bottom:5px;display:flex;gap:12px;flex-wrap:wrap}
+.dc-cluster strong,.dc-change strong,.dc-change-cluster strong{color:#1a1a2e}
+.dc-alert{font-size:11px;color:#444;background:#f8f9fc;border-left:2px solid #0d3572;padding:5px 9px;line-height:1.5}
+
+/* v10.0: Leading Chains */
+.leading-chain{background:#fff;border:1px solid #e0e4eb;border-left:3px solid var(--blue);padding:10px 13px;margin-bottom:8px}
+.chain-hd{display:flex;gap:8px;align-items:center;margin-bottom:7px}
+.chain-label{font-size:9px;color:#888;letter-spacing:.1em;text-transform:uppercase}
+.chain-flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:6px}
+.chain-node{font-size:11px;color:#1a1a2e;background:#f0f6ff;border:1px solid #b8cef0;padding:3px 9px;border-radius:14px;font-weight:600}
+.chain-node.chain-start{background:#fdf6e3;border-color:#e8d5a0;color:var(--gold)}
+.chain-arrow{font-size:10px;color:var(--blue);font-weight:700}
+.chain-arrow strong{color:#1a1a2e;background:#fff;padding:0 5px;border-radius:2px}
+.chain-interp{font-size:10px;color:#555;line-height:1.5;border-top:1px dashed #e0e4eb;padding-top:5px;margin-top:3px;font-style:italic}
+
+/* 교집합 종목 */
+.stock-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e0e4eb;border:1px solid #e0e4eb;margin-top:8px}
+.scard{background:#fff;padding:9px 10px;cursor:pointer}
+.scard:hover{background:#f8f9fc}
+.scard-code{font-size:8px;color:#888}
+.scard-name{font-size:11px;font-weight:600;margin:3px 0;color:#1a1a2e}
+.scard-src{font-size:8px;color:#0d3572;line-height:1.4}
+
+/* 종목 카드 */
+.stock-card{background:#fff;border:1px solid #e0e4eb;border-top:3px solid #0d3572;margin-bottom:10px}
+.stock-card-hd{padding:10px 16px;border-bottom:1px solid #e0e4eb;display:flex;justify-content:space-between;align-items:center;background:#f8f9fc}
+.stock-name{font-size:14px;font-weight:700;color:#1a1a2e}
+.stock-code{font-size:10px;color:#888;margin-left:6px}
+.stock-card-body{padding:14px 16px}
+.stock-verdict{font-size:13px;font-weight:700;margin-bottom:12px;color:#0d3572;padding-bottom:8px;border-bottom:1px solid #e0e4eb}
+.stock-grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e0e4eb;border:1px solid #e0e4eb;margin-bottom:12px}
+.stock-stat{background:#fff;padding:8px 10px}
+.stat-label{font-size:8px;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.stat-val{font-size:12px;font-weight:600;color:#1a1a2e}
+.stock-caution{font-size:10px;color:#8b4513;background:#fff8f0;border:1px solid #f0d9b5;padding:7px 10px;margin-bottom:8px;line-height:1.6}
+.stock-exit{font-size:10px;margin-bottom:8px;line-height:1.9;color:#444}
+.stock-oneline{font-size:11px;color:#555;font-style:italic;line-height:1.6;border-left:3px solid #0d3572;padding:7px 12px;background:#f8f9fc}
+
+/* ─── [v1.0LC] Cascade Conflict Banner ─── */
+.cascade-conflict-banner{display:flex;gap:10px;align-items:flex-start;background:#FFF4E6;border:1px solid #F5C896;border-left:3px solid #C8741C;border-radius:4px;padding:12px 16px;margin:16px 24px;font-size:12px;color:#6B3F0A;line-height:1.55}
+.cascade-conflict-icon{font-size:16px;line-height:1}
+.cascade-conflict-banner strong{display:block;margin-bottom:4px;font-size:11.5px}
+.cascade-conflict-banner p{margin:0;font-size:12px}
+
+/* ─── [v1.0LC] Self Review ─── */
+.self-review-box{background:#fff;border:1px solid #e0e4eb;border-left:3px solid #c08800;border-radius:4px;padding:14px 18px;margin:16px 24px}
+.self-review-first{border-left-color:#888}
+.self-review-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.self-review-icon{font-size:14px;line-height:1}
+.self-review-label{font-size:10px;font-weight:700;letter-spacing:0.1em;color:#888;text-transform:uppercase}
+.self-review-date{font-size:10.5px;color:#888;padding-left:6px;border-left:1px solid #e0e4eb}
+.self-review-hitrate{font-size:10.5px;font-weight:600;color:#0d3572;background:#f0f3f8;padding:1px 7px;border-radius:9px;margin-left:auto}
+.self-review-oneline{font-size:12px;color:#1a1a2e;line-height:1.6;margin:0 0 8px}
+.self-review-text{font-size:11.5px;color:#888;line-height:1.6;margin:0}
+.self-review-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.sr-tag{font-size:10.5px;padding:2px 7px;border-radius:9px;line-height:1.4}
+.sr-tag-hit{background:#e8f5e9;color:#2e7d32}
+.sr-tag-weak{background:#fff3e0;color:#bf6f00}
+.sr-tag-fail{background:#fbe9e7;color:#bf360c}
+.self-review-adjustment{font-size:11px;color:#1a1a2e;line-height:1.55;padding:6px 10px;background:#f9f7f0;border-radius:4px;margin:4px 0 0}
+.self-review-adjustment strong{color:#1a1a2e;font-weight:600}
+
+/* ─── [v1.0LC] Report Freshness ─── */
+.section-freshness{background:#fafaf7;border-top:2px solid #e0e4eb;padding:18px 24px}
+.section-freshness .sec-title{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:2px}
+.section-freshness .sec-subtitle{font-size:10px;color:#888;margin-bottom:10px;letter-spacing:0.05em}
+.freshness-box{background:#fff;border:1px solid #e0e4eb;border-radius:4px;padding:14px 18px}
+.freshness-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed #ebe7d8}
+.freshness-row:first-child{padding-top:0}
+.freshness-row:last-child{border-bottom:none;padding-bottom:0}
+.freshness-icon{font-size:16px;line-height:1.4;flex-shrink:0}
+.freshness-content{flex:1;min-width:0}
+.freshness-label{font-size:10px;font-weight:700;letter-spacing:0.1em;color:#888;text-transform:uppercase;margin-bottom:5px}
+.freshness-text{font-size:12px;color:#1a1a2e;line-height:1.6;margin:0 0 4px}
+.freshness-text-soft{font-size:11px;color:#888;line-height:1.55;margin:0}
+.freshness-precaution{font-size:11.5px;color:#bf360c;line-height:1.55;margin:6px 0 0}
+.freshness-precaution strong{color:#bf360c;font-weight:600}
+.freshness-chips{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0 4px}
+.freshness-chip{font-size:10.5px;color:#888;background:#f9f7f0;padding:2px 8px;border-radius:9px;border:1px solid #e0e4eb}
+.freshness-discard{margin:4px 0 0;padding-left:18px;font-size:11.5px;color:#1a1a2e;line-height:1.6}
+.freshness-discard li{margin-bottom:4px}
+
+/* ─── [신규] 본 리포트 안내 박스 (접힘) ─── */
+.guide-box{background:#fff;border:1px solid #e0e4eb;border-radius:4px;padding:0;margin:16px 24px;font-size:13px}
+.guide-summary{cursor:pointer;list-style:none;padding:10px 16px;display:flex;gap:8px;align-items:center;font-weight:500;color:#888;user-select:none;font-size:12.5px}
+.guide-summary::-webkit-details-marker{display:none}
+.guide-summary::after{content:'▼';margin-left:auto;font-size:9px;color:#888;transition:transform 0.2s}
+.guide-box[open] .guide-summary::after{transform:rotate(180deg)}
+.guide-box[open] .guide-summary{border-bottom:1px solid #e0e4eb;background:#f9f7f0}
+.guide-icon{font-size:14px;line-height:1}
+.guide-content{padding:14px 20px 16px}
+.guide-section{margin-bottom:14px}
+.guide-section:last-child{margin-bottom:0}
+.guide-section h4{font-size:10px;font-weight:700;letter-spacing:0.1em;color:#888;text-transform:uppercase;margin:0 0 6px}
+.guide-section p{font-size:12.5px;color:#1a1a2e;line-height:1.6;margin:0}
+.guide-section ol{font-size:12.5px;color:#1a1a2e;line-height:1.65;margin:0;padding-left:18px}
+.guide-section ol li{margin-bottom:3px}
+.term-list{margin:0;font-size:12px;line-height:1.6}
+.term-list dt{font-weight:600;color:#1a1a2e;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;margin-top:5px}
+.term-list dt:first-child{margin-top:0}
+.term-list dd{color:#888;margin:2px 0 0 10px}
+
+/* ─── [신규] Executive Summary 박스 ─── */
+.executive-summary{background:#fff;border:1px solid #e0e4eb;border-left:4px solid #0d3572;border-radius:4px;padding:18px 22px;margin:16px 24px}
+.es-header{display:flex;gap:10px;align-items:baseline;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0e4eb}
+.es-label{font-size:9px;font-weight:700;letter-spacing:0.15em;color:#0d3572;text-transform:uppercase}
+.es-title{font-size:14px;font-weight:600;color:#1a1a2e;margin:0;letter-spacing:-0.01em}
+.es-grid{display:grid;gap:10px}
+.es-item{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:baseline;padding:3px 0}
+.es-key{font-size:10px;font-weight:700;letter-spacing:0.05em;color:#888;text-transform:uppercase}
+.es-value{font-size:13px;color:#1a1a2e;line-height:1.55}
+.es-env{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.es-env-label{font-weight:600}
+.es-pair-coupling{font-size:11px;color:#888;margin-left:4px}
+.es-stage{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:9px;background:#f9f7f0;color:#5a5a7a;margin-left:4px}
+.es-discard{color:#bf360c;font-size:12.5px}
+.risk-light{vertical-align:middle;flex-shrink:0}
+
+/* ─── [신규] water_case 컬러 배지 (6가지) ─── */
+.water-case-badge{display:inline-block;font-size:11px;padding:3px 9px;border-radius:10px;font-weight:600;letter-spacing:0.02em}
+.water-case-badge.wc-case1{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
+.water-case-badge.wc-case2{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.water-case-badge.wc-case3{background:#eff6ff;color:#1e40af;border:1px solid #93c5fd}
+.water-case-badge.wc-case4{background:#f5f3ff;color:#6d28d9;border:1px solid #c4b5fd}
+.water-case-badge.wc-case5{background:#f9fafb;color:#6b7280;border:1px solid #d1d5db}
+.water-case-badge.wc-case6{background:#fef2f2;color:#b91c1c;border:1px solid #fca5a5}
+.water-case-badge.wc-other{background:#f9f7f0;color:#888;border:1px solid #e0e4eb}
+
+/* ─── [신규] active_sector_ratio 가로 게이지 ─── */
+.active-sector-gauge{display:inline-flex;align-items:center;gap:8px}
+.asg-bar{display:inline-block;width:140px;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;vertical-align:middle}
+.asg-fill{display:inline-block;height:100%;border-radius:4px;transition:width 0.3s}
+.asg-fill.asg-weak{background:#dc2626}
+.asg-fill.asg-medium{background:#eab308}
+.asg-fill.asg-strong{background:#22c55e}
+.asg-label{font-size:12px;font-weight:600;color:#1a1a2e;min-width:36px}
+
+/* 푸터 */
+.footer{background:#f0f3f8;border-top:2px solid #e0e4eb;padding:10px 24px;font-size:9px;color:#888;line-height:1.8}
+
+@media(max-width:900px){
+  .grid2{grid-template-columns:1fr}
+  .stock-grid{grid-template-columns:repeat(3,1fr)}
+  .cluster-grid{grid-template-columns:1fr}
+  .landscape-flow{flex-direction:column}
+  .landscape-arrow{transform:rotate(90deg);justify-content:center}
+}
+@media(max-width:600px){
+  body{padding:10px}
+  .stock-grid{grid-template-columns:repeat(2,1fr)}
+  .stock-grid2{grid-template-columns:repeat(2,1fr)}
+  .water-case-row{flex-direction:column;align-items:flex-start}
+  .water-case-icon{font-size:24px}
+  .water-case-name{font-size:15px}
+}
+
+/* ── v11.0: CSS 변수 정의 ── */
+:root{--gold:#c9a000;--blue:#1d4ed8;--red:#dc2626;--green:#16a34a;--amber:#d97706;--text:#1a1a2e;--border:#e0e4eb;--bg-card:#ffffff;--muted:#888;--dim:#555}
+
+/* ── v11.0: 오늘의 결론 배너 ── */
+.rpt-banner{background:#fff;border:1px solid var(--border);border-radius:14px;margin:14px 0;padding:6px;box-shadow:0 2px 12px rgba(20,25,40,.05);overflow:hidden}
+.rpt-bn-row{padding:14px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#1a1a2e}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0d8a9e}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:#1a1a2e;line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+
+/* ── v11.0: 3단 접이식 (Tier B/C) ── */
+.report-tier{border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:#1a1a2e;user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.tier-body .section{margin:12px 16px;border-radius:10px}
+
+/* ── v11.0: 3카드 요약 ── */
+.tier-3cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 16px 2px}
+.tcard{background:#fff;border:1px solid var(--border);border-radius:11px;padding:13px;text-align:center}
+.tcard-icon{font-size:18px;margin-bottom:3px}
+.tcard-label{font-size:8px;font-weight:700;letter-spacing:.12em;color:#888;text-transform:uppercase;margin-bottom:5px}
+.tcard-val{font-size:12px;color:#1a1a2e;line-height:1.4;margin-bottom:3px}
+.tcard-sub{font-size:9.5px;color:#888;line-height:1.4}
+.tcard-market{border-top:3px solid #1d4ed8}
+.tcard-flow  {border-top:3px solid #0891b2}
+.tcard-sector{border-top:3px solid #c9a000}
+
+/* ── v11.0: ES 박스 추가 항목 스타일 ── */
+.es-item-why .es-key{color:#1d4ed8!important;text-transform:none!important;font-size:11px!important}
+.es-item-why .es-value{color:#1e3a8a;font-weight:600}
+.es-item-warn{background:#fff8f8;border-radius:6px;padding:4px 8px}
+.es-item-warn .es-key{color:#dc2626!important;font-weight:700;text-transform:none!important;font-size:11px!important}
+.es-warn{color:#b91c1c;font-weight:700}
+
+/* ── v11.0: abbr 툴팁 ── */
+abbr[title]{border-bottom:1px dotted #888;cursor:help;text-decoration:none}
+abbr[title]:hover{position:relative}
+abbr[title]:hover::after{content:attr(title);position:absolute;z-index:99;background:#1a1a2e;color:#fff;font-size:9px;padding:5px 9px;border-radius:6px;white-space:pre-wrap;max-width:200px;line-height:1.5;margin-top:4px;margin-left:-40px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+
+@media(max-width:640px){.tier-3cards{grid-template-columns:1fr}}
+
+
+/* ── v1.2: 자금 가속도 + 압축도 ── */
+.cluster-flow-accel{margin-top:8px;padding:8px 10px;background:#f0f6ff;border-radius:6px;border-left:3px solid #1d4ed8}
+.fa-label{font-size:9px;font-weight:700;color:#1d4ed8;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+.fa-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px}
+.badge-accel-up{background:#dbeafe;color:#1e40af}
+.badge-accel-down{background:#fee2e2;color:#991b1b}
+.badge-accel-turn{background:#fef3c7;color:#92400e}
+.badge-accel-flat{background:#f3f4f6;color:#6b7280}
+.fa-signal{font-size:11.5px;color:#374151;margin:4px 0 0;line-height:1.5}
+.cluster-compression{margin-top:8px;padding:8px 10px;background:#f8fdf8;border-radius:6px;border-left:3px solid #16a34a}
+.cp-label{font-size:9px;font-weight:700;color:#16a34a;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+.cp-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px}
+.badge-comp-real{background:#dcfce7;color:#166534}
+.badge-comp-dist{background:#fee2e2;color:#991b1b}
+.badge-comp-idle{background:#f3f4f6;color:#6b7280}
+.badge-comp-none{background:#f3f4f6;color:#9ca3af}
+.cp-signal{font-size:11.5px;color:#374151;margin:4px 0 0;line-height:1.5}
+/* ── v1.2: 다차원 유효 종료 조건 ── */
+.multi-discard-down{font-size:12px;color:#1d4ed8;margin:4px 0;line-height:1.5}
+.multi-discard-del{font-size:12px;color:#dc2626;margin:4px 0;font-weight:600;line-height:1.5}
+.multi-discard-rec{font-size:12px;color:#16a34a;margin:4px 0;line-height:1.5}
+
+</style>
+</head>
+<body>
+<div class='rpt'>
+
+<div class='rpt-header'>
+  <div>
+    <div class='rpt-title'>ATMAN SECTOR · 한국 자금 회전</div>
+    <div class='rpt-subtitle'>SECTOR CAPITAL FLOW ANALYSIS · INTERNAL REPORT · MULTI-LAYER CORRELATION v10.0</div>
+  </div>
+  <div class='rpt-meta'>
+    <div class='rpt-meta-type'>DAILY REPORT</div>
+    <div>일별 | 2026.05.29</div>
+  </div>
+</div>
+
+<details class='guide-box'>
+  <summary class='guide-summary'>
+    <span class='guide-icon'>📖</span>
+    <span>본 리포트를 처음 보시나요? (펼쳐서 확인)</span>
+  </summary>
+  <div class='guide-content'>
+    <div class='guide-section'>
+      <h4>이 리포트가 하는 일</h4>
+      <p>한국 시장의 업종·테마·종목 사이 자금이 어디로 흐르고 어디로 회전하는지 짚어드립니다. 시장 전체 → 클러스터(군집) → 개별 섹터 순으로 자금의 회전 지도를 그리고, 다음 자금이 도착할 가능성이 큰 영역을 추출합니다.</p>
+    </div>
+    <div class='guide-section'>
+      <h4>자주 나오는 용어</h4>
+      <dl class='term-list'>
+        <dt>자금 상태 (water_case)</dt><dd>자금 분포 6가지 상태. 광범위유입/집중유입/재분배/응집/흩어진유출/극한집중</dd>
+        <dt>활성 섹터 비율 (active_sector_ratio)</dt><dd>활성 섹터 비율 — 자금 유입/충돌이 있는 섹터의 전체 대비 비중</dd>
+        <dt>자금 군집 (cluster)</dt><dd>자금 흐름이 비슷한 섹터들의 군집 — 회전 단위</dd>
+        <dt>자금 출발지 / 통과지 / 도착지</dt><dd>자금 출발지 / 통과지 / 도착지</dd>
+        <dt>섹터 판단 (action)</dt><dd>섹터 강도 판정. 행동가능 / 중립 / 회피</dd>
+        <dt>자금 단계 (cycle)</dt><dd>자금 유입 단계. 유입 초입 / 확산 중 / 후반 / 추격 위험</dd>
+      </dl>
+    </div>
+    <div class='guide-section'>
+      <h4>어떻게 봐야 하나</h4>
+      <ol>
+        <li>상단의 핵심 요약 박스를 먼저 확인</li>
+        <li>매크로 환경(신호등) + 자금 상태로 오늘 시장 자금 분포 직감</li>
+        <li>활성 섹터 비율 게이지로 시장 폭 파악</li>
+        <li>자금 회전 지도에서 출발 → 통과 → 도착 클러스터 흐름 추적</li>
+        <li>하단 유효 범위에서 본 리포트 적용 기간/유효 종료 조건 확인</li>
+      </ol>
+    </div>
+  </div>
+</details>
+<div class='rpt-banner'>
+<div class='rpt-bn-row rpt-bn-concl'><span class='rpt-bn-tag'>오늘의 결론</span><p>원달러 1,495원 하락과 미국 금리 4.48% 절대 기준 복귀 신호로 매크로 환경이 완화 분기점에 진입한 가운데, 반도체·전기장비·2차전지 군집에 거래대금이 집중되는 집중유입 국면이 지속되고 있습니다.</p></div>
+<div class='rpt-bn-row rpt-bn-act'><span class='rpt-bn-tag'>오늘의 행동</span><p>삼성전기·LG이노텍 중심 전자장비 군집과 삼성SDI·LG에너지솔루션 중심 2차전지 군집을 우선 관찰합니다. 통신장비·광통신 군집은 대한광통신 -15.76% 급락으로 거래대금 지속성 재확인이 필요하며 신규 추격을 피합니다.</p></div>
+<div class='rpt-bn-row rpt-bn-cond'><span class='rpt-bn-tag'>오늘의 핵심 조건</span><p>원달러 1,495원 안착 여부와 삼성전기·삼성SDI 오전 거래대금 지속성을 먼저 확인합니다.</p></div>
+</div>
+
+
+<section class='executive-summary'>
+  <div class='es-header'>
+    
+    <h2 class='es-title'>핵심 요약</h2>
+  </div>
+  <div class='es-grid'>
+    <div class='es-item'>
+      <div class='es-key'>매크로 환경</div>
+      <div class='es-value es-env'>
+        <svg class='risk-light' width='72' height='20' viewBox='0 0 72 20' xmlns='http://www.w3.org/2000/svg'>
+  <circle cx='10' cy='10' r='7' fill='#e5e7eb' />
+  <circle cx='28' cy='10' r='7' fill='#eab308' />
+  <circle cx='46' cy='10' r='7' fill='#e5e7eb' />
+  <circle cx='64' cy='10' r='7' fill='#e5e7eb' />
+</svg>
+        <span class='es-env-label'>리스크온(미국) + 완화 분기점(한국) — 내부 섹터 가중 조정 전용</span>
+      </div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>자금 분포</div>
+      <div class='es-value'><span class='water-case-badge wc-case2'>집중유입</span> <span class='es-pair-coupling'>집중유입</span></div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>활성 섹터 비율</div>
+      <div class='es-value'><span class='active-sector-gauge'>
+  <span class='asg-bar'><span class='asg-fill asg-medium' style='width:38%'></span></span>
+  <span class='asg-label'>38%</span>
+</span></div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>자금 회전 한 줄</div>
+      <div class='es-value'>광통신 급락 + 전자장비·2차전지 이중 신규 부상 — 집중유입 환경에서 군집 전환 확인 후 보통 호흡 진입 가능.</div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>최우선 섹터</div>
+      <div class='es-value'>전자장비와기기 <span class='es-stage'>MLCC(적층세라믹콘덴서)</span></div>
+    </div>
+    <div class='es-item es-item-rule'>
+      <div class='es-key'>오늘의 해석 규칙</div>
+      <div class='es-value'>삼성전기 +13.44% 거래대금 34% 급증으로 MLCC·반도체기판 테마 연계 확산 확인. 구조 상단 돌파 + 에너지 상승 정렬.</div>
+    </div>
+    <div class='es-item'>
+      <div class='es-key'>유효 종료 조건</div>
+      <div class='es-value es-discard'>원달러 1,510원 재돌파 확인 시 — 모든 강세 신호 즉시 재검토, 외국인 보유 비율 높은 종목 진입 신호 폐기</div>
+    </div>
+    <div class='es-item es-item-why'>
+      <div class='es-key'>선정 이유</div>
+      <div class='es-value'>삼성전기 +13.44% 거래대금 34% 급증으로 MLCC·반도체기판 테마 연계 확산 확인. 구조 상단 돌파 + 에너지 상승 정렬.</div>
+    </div>
+    <div class='es-item es-item-warn'>
+      <div class='es-key'>오늘의 경고</div>
+      <div class='es-value es-warn'>대한광통신 -15.76% 급락이 광통신 군집 전체 이탈로 확산될 경우 시장 전체 자금 환경 악화 가능성. KOSPI RSI 88.52 극단 과매수로 단기 조정 위험. US_10Y 4.48% 절대 기준 안착 실패 시 risk_level 유지.</div>
+    </div>
+  </div>
+</section>
+
+<div class='cascade-conflict-banner'>
+  <span class='cascade-conflict-icon'>⚡</span>
+  <div>
+    <strong>상위 분석과 신호 충돌 감지</strong>
+    <p>MACRO 리포트는 원화자산 불리 판단이나, 본 분석에서 전자장비·2차전지 군집은 집중유입 환경에서 신규 자금 진입 확인. ETF 리포트는 에너지화학 한미 동조 강세를 가장 신뢰도 높은 신호로 제시하나, 본 분석에서 에너지화학 군집은 아직 전환 후보 단계로 거래대금 회복 확인 필요. 광통신·통신장비 급락은 상위 분석에서 예측하지 못한 신규 이탈 신호.</p>
+  </div>
+</div>
+<div class='self-review-box'>
+  <div class='self-review-head'>
+    <span class='self-review-icon'>🪞</span>
+    <span class='self-review-label'>어제 분석 자가 채점</span>
+    <span class='self-review-date'>2026.05.28</span>
+    <span class='self-review-hitrate'>적중률 5/8</span>
+  </div>
+  <p class='self-review-oneline'>D-1(20260528) 분석: IT서비스·밸류업·바이오 3중 신규 부상 판정. 오늘(20260529) 데이터로 검증 — IT서비스 모멘텀 약화(삼성에스디에스 -4.97%), 밸류업 혼재, 바이오 일부 지속. 광통신·통신장비 급락으로 어제 관망 판정 적중. 2차전지·전자장비 신규 부상은 어제 미예측.</p>
+  <div class='self-review-tags'>
+    <span class='sr-tag sr-tag-hit'>✓ 자동차부품(270)</span>
+    <span class='sr-tag sr-tag-hit'>✓ 복합기업(276)</span>
+    <span class='sr-tag sr-tag-hit'>✓ 생물공학(286)</span>
+    <span class='sr-tag sr-tag-hit'>✓ 비만치료제(540)</span>
+    <span class='sr-tag sr-tag-weak'>↓ IT서비스(267) — 삼성에스디에스 -4.97%, 거래대금 감소</span>
+    <span class='sr-tag sr-tag-weak'>↓ SI(17) — 거래대금 감소</span>
+    <span class='sr-tag sr-tag-weak'>↓ 광통신(586) — 대한광통신 -15.76% 급락</span>
+    <span class='sr-tag sr-tag-fail'>✗ IT서비스 군집 지속 강세 예측 — 오늘 거래대금 급감으로 빗나감</span>
+    <span class='sr-tag sr-tag-fail'>✗ 광통신 관망 판정은 적중이나 급락 폭 과소평가</span>
+  </div>
+  <p class='self-review-adjustment'><strong>오늘 분석 반영 · </strong>광통신·통신장비 군집 급락 반영하여 해당 군집 즉시 이탈 판정. 2차전지·전자장비 신규 부상 신호 상향 처리. SOX 선행 신호 과신 경향 지속 모니터링.</p>
+</div>
+
+<details class='report-tier tier-b'><summary><span class='tier-chev'>&#9658;</span> <b>1분 해석</b><span class='tier-dn'>&nbsp;시장 개요 &middot; 자금 환경 &middot; 자금 이동 흐름 (출발&#8594;통과&#8594;도착)</span></summary><div class='tier-body'>
+<div class='tier-3cards'>
+  <div class='tcard tcard-market'>
+    <div class='tcard-icon'>&#128202;</div>
+    <div class='tcard-label'>오늘 시장</div>
+    <div class='tcard-val'>에너지 <b>Neutral</b> &middot; 국면 <b>상승</b></div>
+    <div class='tcard-sub'>리스크온(미국) + 완화 분기점(한국) — 내부 섹터 가중 조정 전용</div>
+  </div>
+  <div class='tcard tcard-flow'>
+    <div class='tcard-icon'>&#128167;</div>
+    <div class='tcard-label'>자금 분포</div>
+    <div class='tcard-val'><b>집중유입</b> &middot; 활성 <b>38%</b></div>
+    <div class='tcard-sub'>집중유입 환경</div>
+  </div>
+  <div class='tcard tcard-sector'>
+    <div class='tcard-icon'>&#127919;</div>
+    <div class='tcard-label'>최우선</div>
+    <div class='tcard-val'><b>전자장비와기기</b></div>
+    <div class='tcard-sub'>MLCC(적층세라믹콘덴서)</div>
+  </div>
+</div>
+<div class='section'><div class='sec-title'>시장 개요</div>
+<div class='market-bar'>
+<div class='mcard'><div class='mcard-label'>시장 에너지</div><div class='mcard-val' style='color:var(--amber)'>Neutral</div></div>
+<div class='mcard'><div class='mcard-label'>국면</div><div class='mcard-val' style='color:#d29922'>상승</div></div>
+<div class='mcard'><div class='mcard-label'>최우선 섹터</div><div class='mcard-val' style='color:var(--gold)'>전자장비와기기</div></div>
+<div class='mcard'><div class='mcard-label'>최우선 테마</div><div class='mcard-val' style='color:var(--blue)'>MLCC(적층세라믹콘덴서)</div></div>
+<div class='mcard'><div class='mcard-label'>분석 확신도</div><div class='mcard-val' style='color:var(--amber)'>중간</div></div>
+</div>
+<div class='market-bar' style='margin-top:6px'>
+<div class='mcard'><div class='mcard-label'>코스피</div><div class='mcard-val' style='color:var(--red)'>8,228.70 (에너지 상단 돌파, RSI 88.52 극단 과매수)</div></div>
+<div class='mcard'><div class='mcard-label'>코스닥</div><div class='mcard-val' style='color:var(--red)'>전일 기준 확인 필요</div></div>
+<div class='mcard'><div class='mcard-label'>원달러</div><div class='mcard-val' style='color:var(--text)'>1495.61</div></div>
+<div class='mcard'><div class='mcard-label'>외국인</div><div class='mcard-val' style='color:var(--red)'>순매도 기조 지속 순매도</div></div>
+<div class='mcard'><div class='mcard-label'>VIX</div><div class='mcard-val' style='color:var(--green)'>15.74</div></div>
+<div class='mcard'><div class='mcard-label'>시장모드</div><div class='mcard-val' style='color:var(--amber)'>리스크온(미국) + 완화 분기점(한국) — 내부 섹터 가중 조정 전용</div></div>
+</div>
+<div class='key-risk' style='margin-top:4px'>🌐 미국 전일: SP500 7,563.63 신고가 / NASDAQ 26,917.471 / SOX 방향 확인 필요</div>
+<div class='key-risk'>📌 섹터 편향: 에너지화학 한미 동조 강세 가중 / 반도체·IT 과열 미해소 대기 / 통신장비·광통신 거래대금 급락 주의</div>
+<div style='margin-top:6px'>
+<div class='key-risk'>📋 US_10Y 4.48% — 절대 기준(4.5%) 아래 복귀 신호. 다음 거래일 안착 시 risk_level 하향 핵심 분기점</div>
+<div class='key-risk'>📋 USD_KRW 1,495.61원 — 1,500원 이하 복귀. 절대 기준 상회 지속이나 하락 흐름. RSI 79 과매수</div>
+<div class='key-risk'>📋 KOSPI 8,228.70 — 에너지 상단(8,207.21) 돌파. RSI 88.52 극단 과매수</div>
+<div class='key-risk'>📋 SP500·NASDAQ 신고가 경신 지속 — 금리 하락과 동반 강세</div>
+<div class='key-risk'>📋 에너지화학 ETF 한미 동조 강세 — 오늘 가장 신뢰도 높은 신호로 부상</div>
+</div>
+<div class='one-line'>광통신 급락 + 전자장비·2차전지 이중 신규 부상 — 집중유입 환경에서 군집 전환 확인 후 보통 호흡 진입 가능.</div>
+<div class='key-risk'>핵심 리스크: 대한광통신 -15.76% 급락이 광통신 군집 전체 이탈로 확산될 경우 시장 전체 자금 환경 악화 가능성. KOSPI RSI 88.52 극단 과매수로 단기 조정 위험. US_10Y 4.48% 절대 기준 안착 실패 시 risk_level 유지.</div>
+<div class='multi-layer-insight'>💡 다층 인사이트: 광통신·통신장비 군집이 급락하며 자금이 전자장비·MLCC 군집(삼성전기 중심)과 2차전지 군집(삼성SDI·LG에너지솔루션 중심)으로 동시 이동하는 이중 신규 부상 패턴 확인. 에너지화학 군집은 ETF 한미 동조 강세 신호와 원달러 1,495원 하락으로 다음 확산 후보로 부상.</div>
+</div>
+
+<div class='section section-water'>
+<div class='sec-title'>★ 시장 자금 환경 · Water Status (다층 해석의 기준)</div>
+
+<div class='water-main' style='border-color:var(--blue)'>
+  <div class='water-case-row'>
+    <div class='water-case-icon'>💧</div>
+    <div class='water-case-body'>
+      <div class='water-case-label'>오늘 자금 분포</div>
+      <div class='water-case-name' style='color:var(--blue)'>집중유입</div>
+      <div class='water-case-detail'>전체 거래대금이 평균 대비 28% 증가하는 가운데 전자장비·2차전지·복합기업·자동차부품 등 특정 군집에 자금이 집중. 군집 내 동반 확인 후 행동, 보통 호흡 매매. 원달러 1,495원 하락으로 압력 일부 완화 — 에너지화학 군집 전환 가능성 높아짐.</div>
+    </div>
+  </div>
+</div>
+<div class='market-bar' style='margin-top:8px'>
+<div class='mcard'><div class='mcard-label'>자금 총량</div><div class='mcard-val' style='color:var(--amber)'>1.28x</div></div>
+<div class='mcard'><div class='mcard-label'>총량 상태</div><div class='mcard-val' style='color:var(--green)'>증가</div></div>
+<div class='mcard'><div class='mcard-label'>상위5 집중</div><div class='mcard-val' style='color:var(--amber)'>43%</div></div>
+<div class='mcard'><div class='mcard-label'>분배 패턴</div><div class='mcard-val' style='color:var(--red)'>집중</div></div>
+<div class='mcard'><div class='mcard-label'>활성 섹터</div><div class='mcard-val' style='color:var(--amber)'>38%</div></div>
+</div>
+<div class='water-frame'>🔍 해석 프레임: 이후 모든 신호는 집중유입 컨텍스트로 해석. 원달러 1,495원 하락으로 외국인 매도 압력 일부 완화. 통신장비·광통신 거래대금 급락으로 해당 군집 신뢰도 격하 적용.</div>
+</div>
+
+<div class='section section-landscape'>
+<div class='sec-title'>★ 자금 이동 흐름 (출발 → 통과 → 도착)</div>
+<div class='rotation-speed'>🌊 회전 속도: <span class='speed-val' style='color:var(--red)'>빠름</span></div>
+<div class='landscape-flow'>
+<div class='landscape-box departing'><div class='landscape-label'>◀ 출발지</div><div class='landscape-items'><span class='landscape-item'>광통신·통신인프라 군집(대한광통신 -15.76% 급락, 거래대금 급감)</span><span class='landscape-item'>반도체·AI 인프라 군집(반도체 업종 거래대금 감소, 전자장비로 이동)</span></div></div>
+<div class='landscape-arrow'>→</div>
+<div class='landscape-box transit'><div class='landscape-label'>◆ 통과 중</div><div class='landscape-items'><span class='landscape-item'>자동차·모빌리티 군집(거래대금 유지)</span><span class='landscape-item'>바이오·제약 군집(거래대금 유지이나 가속 없음)</span></div></div>
+<div class='landscape-arrow'>→</div>
+<div class='landscape-box arriving'><div class='landscape-label'>▶ 도착 중</div><div class='landscape-items'><span class='landscape-item'>2차전지·에너지 군집(신규 부상)</span><span class='landscape-item'>반도체·AI 인프라 군집(전자장비·MLCC 중심 재편)</span></div></div>
+<div class='landscape-arrow'>→</div>
+<div class='landscape-box candidates'><div class='landscape-label'>★ 다음 후보</div><div class='landscape-items'><span class='landscape-item'>에너지화학 군집(ETF 한미 동조 강세 + 원달러 1,495원 하락 — 거래대금 회복 시)</span><span class='landscape-item'>반도체기판(608) — 전자장비 lag 추종 후보</span><span class='landscape-item'>자동차(273) — 자동차부품 lag 추종 후보</span><span class='landscape-item'>전력저장장치(329) — 2차전지 군집 확산 경로</span></div></div>
+</div>
+<div class='time-flow'>⏱ 시간 흐름: 어제: IT서비스·밸류업·바이오 신규 부상 → 오늘: 전자장비·2차전지 신규 부상 + 광통신·통신장비 급락 이탈 → 내일 후보: 에너지화학·반도체기판·자동차</div>
+<div class='flow-summary'>광통신·통신장비 군집 급락으로 자금 이탈 확인. 전자장비·MLCC 군집과 2차전지 군집이 새로운 선도 군집으로 동시 부상하는 이중 신규 부상 패턴.</div>
+</div>
+
+</div></details>
+<details class='report-tier tier-c'><summary><span class='tier-chev'>&#9658;</span> <b>상세 근거</b><span class='tier-dn'>&nbsp;자금 회전 지도 &middot; 군집 분석 &middot; 이상 흐름 알림 &middot; 선정 업종/테마 전체</span></summary><div class='tier-body'>
+<div class='section'><div class='sec-title'>자금 회전 지도</div>
+<div class='rotation-grid'>
+<div><div class='rot-group-title'>▲ 유입 초입</div><div class='rot-tags'>
+<span class='rot-item rot-in'>전자장비와기기(282)</span>
+<span class='rot-item rot-in'>전기제품(283)</span>
+<span class='rot-item rot-in'>자동차부품(270)</span>
+<span class='rot-item rot-in'>복합기업(276)</span>
+<span class='rot-item rot-in'>생물공학(286)</span>
+<span class='rot-item rot-in'>건강관리장비와용품(281)</span>
+<span class='rot-item rot-in'>화학(272)</span>
+<span class='rot-item rot-in'>비철금속(322)</span>
+<span class='rot-item rot-in'>철강(304)</span>
+<span class='rot-item rot-in'>자동차(273)</span>
+<span class='rot-item rot-in'>조선(291)</span>
+<span class='rot-item rot-in'>기계(299)</span>
+<span class='rot-item rot-in'>건설(279)</span>
+<span class='rot-item rot-in'>창업투자(277)</span>
+<span class='rot-item rot-in'>디스플레이장비및부품(269)</span>
+<span class='rot-item rot-in'>IT서비스(267)</span>
+<span class='rot-item rot-in'>소프트웨어(287)</span>
+<span class='rot-item rot-in'>핸드셋(292)</span>
+<span class='rot-item rot-in'>전기제품(283)</span>
+<span class='rot-item rot-in'>상업서비스(324)</span>
+<span class='rot-item rot-in'>건축자재(289)</span>
+<span class='rot-item rot-in'>증권(321)</span>
+<span class='rot-item rot-in'>손해보험(315)</span>
+<span class='rot-item rot-in'>생명보험(330)</span>
+<span class='rot-item rot-in'>무선통신서비스(333)</span>
+<span class='rot-item rot-in'>온디바이스AI(545)</span>
+<span class='rot-item rot-in'>CXL(547)</span>
+<span class='rot-item rot-in'>HBM(536)</span>
+<span class='rot-item rot-in'>반도체기판(608)</span>
+<span class='rot-item rot-in'>PCB(287)</span>
+<span class='rot-item rot-in'>전력설비(123)</span>
+<span class='rot-item rot-in'>원자력발전(205)</span>
+<span class='rot-item rot-in'>전선(178)</span>
+<span class='rot-item rot-in'>방위산업(144)</span>
+<span class='rot-item rot-in'>수소에너지(386)</span>
+<span class='rot-item rot-in'>밸류업24(567)</span>
+<span class='rot-item rot-in'>코리아밸류업(568)</span>
+<span class='rot-item rot-in'>철도(250)</span>
+<span class='rot-item rot-in'>태양광에너지(191)</span>
+<span class='rot-item rot-in'>유리기판(557)</span>
+<span class='rot-item rot-in'>스마트그리드(229)</span>
+<span class='rot-item rot-in'>반도체대표주(155)</span>
+<span class='rot-item rot-in'>MLCC(405)</span>
+<span class='rot-item rot-in'>전력저장장치(329)</span>
+<span class='rot-item rot-in'>양자암호(426)</span>
+<span class='rot-item rot-in'>지주사(111)</span>
+<span class='rot-item rot-in'>갤럭시부품주(393)</span>
+<span class='rot-item rot-in'>스마트팩토리(392)</span>
+<span class='rot-item rot-in'>항공기부품(379)</span>
+<span class='rot-item rot-in'>전기차충전(514)</span>
+<span class='rot-item rot-in'>반도체재료(14)</span>
+<span class='rot-item rot-in'>무선충전(321)</span>
+<span class='rot-item rot-in'>카메라모듈(41)</span>
+<span class='rot-item rot-in'>우주항공산업(200)</span>
+<span class='rot-item rot-in'>드론(349)</span>
+<span class='rot-item rot-in'>피지컬AI(587)</span>
+<span class='rot-item rot-in'>LED장비(269)</span>
+<span class='rot-item rot-in'>지능형로봇(99)</span>
+<span class='rot-item rot-in'>OLED(9)</span>
+<span class='rot-item rot-in'>2차전지전고체(472)</span>
+<span class='rot-item rot-in'>SI(17)</span>
+<span class='rot-item rot-in'>밸류업25(571)</span>
+<span class='rot-item rot-in'>의료기기(175)</span>
+<span class='rot-item rot-in'>폴더블폰(404)</span>
+<span class='rot-item rot-in'>풍력에너지(188)</span>
+<span class='rot-item rot-in'>냉각시스템(560)</span>
+<span class='rot-item rot-in'>스마트폰(279)</span>
+<span class='rot-item rot-in'>IT대표주(173)</span>
+<span class='rot-item rot-in'>플렉서블디스플레이(382)</span>
+<span class='rot-item rot-in'>핵융합에너지(187)</span>
+<span class='rot-item rot-in'>가상현실(352)</span>
+<span class='rot-item rot-in'>UAM(462)</span>
+<span class='rot-item rot-in'>마이크로LED(390)</span>
+<span class='rot-item rot-in'>전력반도체(533)</span>
+<span class='rot-item rot-in'>바이오시밀러(241)</span>
+<span class='rot-item rot-in'>LNG(381)</span>
+<span class='rot-item rot-in'>제약업체(172)</span>
+<span class='rot-item rot-in'>핀테크(342)</span>
+<span class='rot-item rot-in'>수자원(184)</span>
+<span class='rot-item rot-in'>삼성페이(348)</span>
+<span class='rot-item rot-in'>스마트카(332)</span>
+<span class='rot-item rot-in'>GTX(237)</span>
+<span class='rot-item rot-in'>원자력해체(401)</span>
+<span class='rot-item rot-in'>스페이스X(584)</span>
+<span class='rot-item rot-in'>블록체인(387)</span>
+<span class='rot-item rot-in'>제습기(328)</span>
+<span class='rot-item rot-in'>2차전지나트륨(579)</span>
+<span class='rot-item rot-in'>자동차대표주(159)</span>
+<span class='rot-item rot-in'>조선(30)</span>
+<span class='rot-item rot-in'>클라우드(276)</span>
+<span class='rot-item rot-in'>전후재건(517)</span>
+<span class='rot-item rot-in'>메타버스(480)</span>
+<span class='rot-item rot-in'>뉴로모픽(556)</span>
+<span class='rot-item rot-in'>건설대표주(154)</span>
+<span class='rot-item rot-in'>STO(531)</span>
+<span class='rot-item rot-in'>온실가스(152)</span>
+<span class='rot-item rot-in'>모바일콘텐츠(270)</span>
+<span class='rot-item rot-in'>스마트홈(104)</span>
+<span class='rot-item rot-in'>인터넷은행(343)</span>
+<span class='rot-item rot-in'>2차전지(64)</span>
+<span class='rot-item rot-in'>스테이블코인(582)</span>
+<span class='rot-item rot-in'>리비안(501)</span>
+<span class='rot-item rot-in'>2차전지소재(446)</span>
+<span class='rot-item rot-in'>폐배터리(500)</span>
+<span class='rot-item rot-in'>NFT(492)</span>
+<span class='rot-item rot-in'>리튬(523)</span>
+<span class='rot-item rot-in'>음성인식(302)</span>
+<span class='rot-item rot-in'>니켈(511)</span>
+<span class='rot-item rot-in'>고령화사회(311)</span>
+<span class='rot-item rot-in'>2차전지생산(449)</span>
+<span class='rot-item rot-in'>비만치료제(540)</span>
+<span class='rot-item rot-in'>코로나19(436)</span>
+<span class='rot-item rot-in'>치매(377)</span>
+<span class='rot-item rot-in'>화장품(110)</span>
+<span class='rot-item rot-in'>에너지장비및서비스(295)</span>
+</div></div>
+
+<div><div class='rot-group-title'>◆ 유입 중반</div><div class='rot-tags'>
+<span class='rot-item rot-mid'>반도체와반도체장비(278)</span>
+<span class='rot-item rot-mid'>통신장비(294)</span>
+<span class='rot-item rot-mid'>전기장비(306)</span>
+<span class='rot-item rot-mid'>우주항공과국방(284)</span>
+<span class='rot-item rot-mid'>IT서비스(267)</span>
+<span class='rot-item rot-mid'>해운사(323)</span>
+<span class='rot-item rot-mid'>항공사(305)</span>
+<span class='rot-item rot-mid'>디스플레이패널(327)</span>
+<span class='rot-item rot-mid'>게임엔터테인먼트(263)</span>
+<span class='rot-item rot-mid'>항공화물(326)</span>
+<span class='rot-item rot-mid'>식품(268)</span>
+<span class='rot-item rot-mid'>방송과엔터테인먼트(285)</span>
+<span class='rot-item rot-mid'>화장품(266)</span>
+<span class='rot-item rot-mid'>섬유의류(274)</span>
+<span class='rot-item rot-mid'>백화점과일반상점(264)</span>
+<span class='rot-item rot-mid'>은행(301)</span>
+<span class='rot-item rot-mid'>전기유틸리티(325)</span>
+<span class='rot-item rot-mid'>가정용기기(298)</span>
+</div></div>
+
+<div><div class='rot-group-title'>◇ 대기</div><div class='rot-tags'>
+<span class='rot-item rot-wait'>손해보험(315)</span>
+<span class='rot-item rot-wait'>생명보험(330)</span>
+<span class='rot-item rot-wait'>석유와가스(313)</span>
+<span class='rot-item rot-wait'>무선통신서비스(333)</span>
+<span class='rot-item rot-wait'>전기유틸리티(325)</span>
+</div></div>
+
+<div><div class='rot-group-title'>▼ 이탈</div><div class='rot-tags'>
+<span class='rot-item rot-out'>제약(261)</span>
+<span class='rot-item rot-out'>양방향미디어(300)</span>
+<span class='rot-item rot-out'>건강관리업체및서비스(316)</span>
+</div></div>
+
+</div></div>
+
+<div class='section'><div class='sec-title'>★ 자금 군집 분석</div>
+<div class='cluster-grid'>
+
+<div class='cluster-card' style='border-top-color:var(--green)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>반도체·AI 인프라 군집</div>
+    <span class='badge b-go'>확산</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge b-go'>강세</span>
+    <span class='cluster-cycle'>자금 단계: <strong>초기확산</strong></span>
+    <span class='cluster-corr'><abbr title='군집 내 종목 동조화 지수. 1에 가까울수록 함께 움직임'>내부 상관</abbr> 0.78</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>강도</span><span class='cstat-val'>4.80</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='시장 폭: 상승 종목 비율. 높을수록 시장 전반 강세'>시장 폭</abbr></span><span class='cstat-val'>62%</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='군집 거래대금/전체 거래대금. 자금 점유율'>시장 비중</abbr></span><span class='cstat-val'>35%</span></span>
+  </div>
+  <div class='cluster-members'>전자장비와기기(282) · MLCC(405) · 반도체기판(608) · PCB(287) · 온디바이스AI(545) · CXL(547) · HBM(536) · 반도체와반도체장비(278)</div>
+  <div class='cluster-rotation'>🔄 내부 회전: 반도체(유지) → 전자장비(가속) → MLCC(신규 부상) → 반도체기판(추종 예상)</div>
+  <div class='cluster-interp'>AI 인프라 자금이 반도체에서 전자장비·MLCC로 확산 중. 삼성전기 중심 군집 내 회전 패턴 강화.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>자금 가속도</span><span class='fa-badge badge-accel-up'>가속</span><p class='fa-signal'>삼성전기 +13.44%, LG이노텍 +8.62%, 삼화콘덴서 +24.07% 거래대금 급증으로 군집 자금 유입 가속 중. 반도체 업종은 거래대금 감소이나 전자장비·MLCC 확산 패턴 강화.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>압축 성격</span><span class='cp-badge badge-comp-none'>해당없음</span><p class='cp-signal'>가격 상승 추세 지속 중.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--gold)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>2차전지·에너지 군집</div>
+    <span class='badge b-strong'>선도</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge b-go'>강세</span>
+    <span class='cluster-cycle'>자금 단계: <strong>초입</strong></span>
+    <span class='cluster-corr'><abbr title='군집 내 종목 동조화 지수. 1에 가까울수록 함께 움직임'>내부 상관</abbr> 0.72</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>강도</span><span class='cstat-val'>3.60</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='시장 폭: 상승 종목 비율. 높을수록 시장 전반 강세'>시장 폭</abbr></span><span class='cstat-val'>62%</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='군집 거래대금/전체 거래대금. 자금 점유율'>시장 비중</abbr></span><span class='cstat-val'>12%</span></span>
+  </div>
+  <div class='cluster-members'>전기제품(283) · 2차전지생산(449) · 전력저장장치(329) · 전기차(227) · 2차전지(64) · 2차전지소재(446)</div>
+  <div class='cluster-rotation'>🔄 내부 회전: 2차전지생산(선행) → 전력저장장치(동조) → 2차전지소재(추종 예상)</div>
+  <div class='cluster-interp'>2차전지 군집 신규 자금 진입 시작. 삼성SDI·LG에너지솔루션 중심 거래대금 폭발 — 오늘 가장 주목할 신규 부상 군집.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>자금 가속도</span><span class='fa-badge badge-accel-up'>가속</span><p class='fa-signal'>삼성SDI +7.3%(거래량 98%), LG에너지솔루션 +15.25%(거래량 259%), 엘앤에프 +13.03%(거래량 310%) 거래대금 폭발로 군집 신규 자금 진입 확인. 오늘 새로운 선도 군집으로 부상.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>압축 성격</span><span class='cp-badge badge-comp-none'>해당없음</span><p class='cp-signal'>상승 추세 시작 단계.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--green)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>자동차·모빌리티 군집</div>
+    <span class='badge b-go'>확산</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge b-go'>강세</span>
+    <span class='cluster-cycle'>자금 단계: <strong>초기확산</strong></span>
+    <span class='cluster-corr'><abbr title='군집 내 종목 동조화 지수. 1에 가까울수록 함께 움직임'>내부 상관</abbr> 0.70</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>강도</span><span class='cstat-val'>3.20</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='시장 폭: 상승 종목 비율. 높을수록 시장 전반 강세'>시장 폭</abbr></span><span class='cstat-val'>60%</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='군집 거래대금/전체 거래대금. 자금 점유율'>시장 비중</abbr></span><span class='cstat-val'>10%</span></span>
+  </div>
+  <div class='cluster-members'>자동차부품(270) · 자동차부품테마(27) · 자동차(273) · 밸류업24(567) · 코리아밸류업(568) · 자동차대표주(159)</div>
+  <div class='cluster-rotation'>🔄 내부 회전: 자동차부품(유지) → 자동차(추종 예상)</div>
+  <div class='cluster-interp'>자동차·모빌리티 군집 자금 유입 유지. 밸류업 정책 기반 자금 지속.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>자금 가속도</span><span class='fa-badge badge-accel-flat'>유지</span><p class='fa-signal'>현대모비스 -0.29% 소폭 하락이나 삼성공조 +10.63%, 계양전기 +3.69% 거래대금 급증으로 군집 자금 유입 유지 중.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>압축 성격</span><span class='cp-badge badge-comp-none'>해당없음</span><p class='cp-signal'>상승 추세 유지 중.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--red)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>광통신·통신인프라 군집</div>
+    <span class='badge b-danger'>약세</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge b-danger'>약세</span>
+    <span class='cluster-cycle'>자금 단계: <strong>후반</strong></span>
+    <span class='cluster-corr'><abbr title='군집 내 종목 동조화 지수. 1에 가까울수록 함께 움직임'>내부 상관</abbr> 0.82</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>강도</span><span class='cstat-val'>1.20</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='시장 폭: 상승 종목 비율. 높을수록 시장 전반 강세'>시장 폭</abbr></span><span class='cstat-val'>25%</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='군집 거래대금/전체 거래대금. 자금 점유율'>시장 비중</abbr></span><span class='cstat-val'>8%</span></span>
+  </div>
+  <div class='cluster-members'>통신장비(294) · 광통신(586) · 통신장비테마(92) · 5G(373) · 양자암호(426)</div>
+  <div class='cluster-rotation'>🔄 내부 회전: 광통신(이탈) → 통신장비(동반 약세) → 양자암호(관찰)</div>
+  <div class='cluster-interp'>광통신·통신장비 군집 거래대금 급락으로 모멘텀 급격히 약화. 신규 진입 금지, 보유 종목 손절 검토.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>자금 가속도</span><span class='fa-badge badge-accel-down'>둔화</span><p class='fa-signal'>대한광통신 -15.76%(거래량 16%), 빛과전자 -12.09%(거래량 -34%), 쏠리드 -7.46%(거래량 -10%) 동반 급락으로 군집 자금 이탈 신호. 모멘텀 급격히 약화.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>압축 성격</span><span class='cp-badge badge-comp-dist'>분산 의심</span><p class='cp-signal'>거래대금 급감 + 가격 급락 — 고점 매물 출회 가능성.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--amber)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>에너지화학 군집</div>
+    <span class='badge b-early'>회전</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge b-mid'>혼재</span>
+    <span class='cluster-cycle'>자금 단계: <strong>초입</strong></span>
+    <span class='cluster-corr'><abbr title='군집 내 종목 동조화 지수. 1에 가까울수록 함께 움직임'>내부 상관</abbr> 0.62</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>강도</span><span class='cstat-val'>2.40</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='시장 폭: 상승 종목 비율. 높을수록 시장 전반 강세'>시장 폭</abbr></span><span class='cstat-val'>45%</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='군집 거래대금/전체 거래대금. 자금 점유율'>시장 비중</abbr></span><span class='cstat-val'>5%</span></span>
+  </div>
+  <div class='cluster-members'>에너지장비및서비스(295) · 화학(272) · 석유와가스(313) · 태양광에너지(191)</div>
+  <div class='cluster-rotation'>🔄 내부 회전: 에너지화학(전환 시작) → 태양광(추종 예상)</div>
+  <div class='cluster-interp'>ETF 한미 동조 강세 신호 + 원달러 1,495원 하락으로 에너지화학 군집 전환 가능성 높아짐. 거래대금 회복 확인 후 재검토.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>자금 가속도</span><span class='fa-badge badge-accel-turn'>전환후보</span><p class='fa-signal'>ETF 리포트 한미 동조 강세 신호 연계. 원달러 1,495원 하락으로 전환 가능성 높아짐. 한화솔루션 -3.9% 하락이나 거래대금 유지.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>압축 성격</span><span class='cp-badge badge-comp-real'>진짜 압축</span><p class='cp-signal'>에너지장비 업종 가격 횡보 + 거래대금 유지 패턴 — 방향성 임박 가능성.</p></div>
+</div>
+
+<div class='cluster-card' style='border-top-color:var(--gold)'>
+  <div class='cluster-hd'>
+    <div class='cluster-name'>바이오·제약 군집</div>
+    <span class='badge b-strong'>선도</span>
+  </div>
+  <div class='cluster-meta'>
+    <span class='badge b-go'>강세</span>
+    <span class='cluster-cycle'>자금 단계: <strong>초입</strong></span>
+    <span class='cluster-corr'><abbr title='군집 내 종목 동조화 지수. 1에 가까울수록 함께 움직임'>내부 상관</abbr> 0.65</span>
+  </div>
+  <div class='cluster-stats'>
+    <span class='cstat'><span class='cstat-label'>강도</span><span class='cstat-val'>2.60</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='시장 폭: 상승 종목 비율. 높을수록 시장 전반 강세'>시장 폭</abbr></span><span class='cstat-val'>55%</span></span>
+    <span class='cstat'><span class='cstat-label'><abbr title='군집 거래대금/전체 거래대금. 자금 점유율'>시장 비중</abbr></span><span class='cstat-val'>6%</span></span>
+  </div>
+  <div class='cluster-members'>생물공학(286) · 제약(261) · 건강관리장비와용품(281) · 비만치료제(540) · 코로나19(448)</div>
+  <div class='cluster-rotation'>🔄 내부 회전: 비만치료제(선행) → 생물공학(동조) → 제약(추종 예상)</div>
+  <div class='cluster-interp'>바이오·제약 군집 자금 유입 유지. 비만치료제 테마 중심 거래대금 유지 — 지속성 확인 필요.</div>
+  <div class='cluster-flow-accel'><span class='fa-label'>자금 가속도</span><span class='fa-badge badge-accel-flat'>유지</span><p class='fa-signal'>디앤디파마텍 +8.81%, 펩트론 +11.3%, 알테오젠 -4.4% 혼재. 군집 자금 유입 유지이나 가속 없음.</p></div>
+  <div class='cluster-compression'><span class='cp-label'>압축 성격</span><span class='cp-badge badge-comp-none'>해당없음</span><p class='cp-signal'>상승 추세 유지 중.</p></div>
+</div>
+</div></div>
+
+<div class='section'>
+<div class='sec-title'>★ 이상 흐름 알림 (3건 - 이상/새 신호 검증)</div>
+
+<div class='decoupling-card' style='border-left-color:var(--red)'>
+  <div class='dc-hd'>
+    <span class='dc-icon'>📉</span>
+    <span class='dc-type' style='color:var(--red)'>약세 디커플링 (선행 이탈)</span>
+    <span class='dc-sector'>광통신(586) / 통신장비(294)</span>
+    
+  </div>
+  <div class='dc-detail'>
+    <span class='dc-cluster'>속한 클러스터: <strong>광통신·통신인프라 군집</strong></span>
+    <span class='dc-change'>섹터: <strong>-15.76%(대한광통신), -12.09%(빛과전자), -7.46%(쏠리드)</strong></span>
+    <span class='dc-change-cluster'>클러스터 평균: <strong>-11.8%</strong></span>
+  </div>
+  <div class='dc-alert'>광통신·통신장비 군집 전체 급락 — 대한광통신 -15.76% 거래대금 급증(+16%) 속 급락은 고점 매물 출회 신호. 신규 진입 금지, 보유 종목 손절 검토.</div>
+</div>
+
+<div class='decoupling-card' style='border-left-color:var(--green)'>
+  <div class='dc-hd'>
+    <span class='dc-icon'>📈</span>
+    <span class='dc-type' style='color:var(--green)'>강세 디커플링 (새 자금 진입)</span>
+    <span class='dc-sector'>전기제품(283) / 2차전지생산(449)</span>
+    <span class='dc-verify'>⚠ 검증 필요</span>
+  </div>
+  <div class='dc-detail'>
+    <span class='dc-cluster'>속한 클러스터: <strong>2차전지·에너지 군집</strong></span>
+    <span class='dc-change'>섹터: <strong>+7.3%(삼성SDI), +15.25%(LG에너지솔루션), +13.03%(엘앤에프)</strong></span>
+    <span class='dc-change-cluster'>클러스터 평균: <strong>+2.8%</strong></span>
+  </div>
+  <div class='dc-alert'>시장 대비 2차전지 군집 독자 강세 — 삼성SDI·LG에너지솔루션 거래대금 폭발. 신규 자금 진입 신호. 검증 필요.</div>
+</div>
+
+<div class='decoupling-card' style='border-left-color:var(--green)'>
+  <div class='dc-hd'>
+    <span class='dc-icon'>📈</span>
+    <span class='dc-type' style='color:var(--green)'>강세 디커플링 (새 자금 진입)</span>
+    <span class='dc-sector'>전자장비와기기(282) / MLCC(405)</span>
+    
+  </div>
+  <div class='dc-detail'>
+    <span class='dc-cluster'>속한 클러스터: <strong>반도체·AI 인프라 군집</strong></span>
+    <span class='dc-change'>섹터: <strong>+13.44%(삼성전기), +24.07%(삼화콘덴서), +29.96%(코칩)</strong></span>
+    <span class='dc-change-cluster'>클러스터 평균: <strong>+5.2%</strong></span>
+  </div>
+  <div class='dc-alert'>삼성전기 강세가 MLCC 테마로 즉시 확산 — 삼화콘덴서·코칩 거래대금 폭발. 실질 자금 진입 확인.</div>
+</div>
+</div>
+
+<div class='grid2'>
+<div class='section'><div class='sec-title'>Selected 업종</div>
+<table class='tbl'><thead><tr><th>업종</th><th>싸이클</th><th>flow_accel</th><th>열기</th><th>액션</th></tr></thead><tbody>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/industry/2?no=282' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--amber)' title='네이버 업종'>전자장비와기기</a> <span class='decoupling-mark' title='bullish_decoupling — 시장 대비 독자 강세 지속'>⚠</span></td><td><span class='badge b-early'>초기확산</span></td><td style='color:var(--green)'>5.12</td><td style='color:var(--amber)'>주의</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 반도체·AI 인프라 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 삼성전기 +13.44%(거래량 34%), LG이노텍 +8.62%(거래량 -11%), 나노팀 +16.64%(거래량 119%) 동반 강세. 원달러 1,495원 하락으로 외국인 매도 압력 일부 완화. 구조 상단 돌파 + 에너지 상승. 단 20일 수익률 150% 과열 구간 — 분할 진입 권고.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/industry/2?no=283' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--amber)' title='네이버 업종'>전기제품</a> <span class='decoupling-mark' title='bullish_decoupling — 2차전지 군집 신규 부상'>⚠</span></td><td><span class='badge b-early'>초입</span></td><td style='color:var(--muted)'>3.68</td><td style='color:var(--green)'>정상</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 2차전지·에너지 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 삼성SDI +7.3%(거래량 98%), LG에너지솔루션 +15.25%(거래량 259%), 엘앤에프 +13.03%(거래량 310%) 동반 강세. 주간 초입 사이클 + 구조 지지 + 에너지 상승. 2차전지 군집 신규 자금 진입 신호.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/industry/2?no=270' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--amber)' title='네이버 업종'>자동차부품</a></td><td><span class='badge b-early'>초기확산</span></td><td style='color:var(--muted)'>3.52</td><td style='color:var(--green)'>정상</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 자동차·모빌리티 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 현대모비스 -0.29%(거래량 11%), 삼성공조 +10.63%(거래량 924%), 계양전기 +3.69%(거래량 634%) 동반 강세. 구조 지지 + 에너지 상승. 밸류업 테마 연계 자금 유입 지속.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/industry/2?no=276' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--amber)' title='네이버 업종'>복합기업</a></td><td><span class='badge b-early'>초기확산</span></td><td style='color:var(--muted)'>3.38</td><td style='color:var(--green)'>정상</td><td><span class='badge b-watch'>대기</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 지주사·복합기업 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + SK스퀘어 -3.06%(거래량 -31%), SK네트웍스 +5.27%(거래량 -22%), 두산 -3.21%(거래량 12%) 혼재. 구조 지지 + 에너지 상승이나 거래대금 감소로 모멘텀 약화. 거래대금 회복 확인 후 진입.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/industry/2?no=295' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--amber)' title='네이버 업종'>에너지장비및서비스</a></td><td><span class='badge b-early'>초입</span></td><td style='color:var(--muted)'>2.68</td><td style='color:var(--green)'>정상</td><td><span class='badge b-watch'>대기</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 에너지화학 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + ETF 리포트 에너지화학 한미 동조 강세 신호 연계. 한화솔루션 -3.9%, HD현대에너지솔루션 -4.37% 하락이나 거래대금 유지. 원달러 1,495원 하락으로 전환 가능성 높아짐. 에너지 상승 전환 확인 후 진입.</td></tr>
+</tbody></table>
+<div style='margin-top:8px'>
+<div style='font-size:8px;color:#888;letter-spacing:.1em;margin-bottom:4px'>주목 종목 (업종)</div>
+<table class='tbl'><thead><tr><th>코드</th><th>종목명</th><th>52주위치</th><th>회전율%</th><th>외국인%</th></tr></thead><tbody>
+<tr><td>009150</td><td><a href='https://stock.naver.com/domestic/stock/009150/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성전기</a></td><td style='color:var(--red)'>고점권</td><td>3.14</td><td>38.0</td></tr>
+<tr><td>011070</td><td><a href='https://stock.naver.com/domestic/stock/011070/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>LG이노텍</a></td><td style='color:var(--red)'>고점권</td><td>3.66</td><td>25.5</td></tr>
+<tr><td>417010</td><td><a href='https://stock.naver.com/domestic/stock/417010/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>나노팀</a></td><td style='color:var(--red)'>고점권</td><td>9.76</td><td>0.2</td></tr>
+<tr><td>006400</td><td><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성SDI</a></td><td style='color:var(--red)'>고점권</td><td>1.95</td><td>26.2</td></tr>
+<tr><td>373220</td><td><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>LG에너지솔루션</a></td><td style='color:inherit'>중간권</td><td>0.70</td><td>5.2</td></tr>
+<tr><td>066970</td><td><a href='https://stock.naver.com/domestic/stock/066970/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>엘앤에프</a></td><td style='color:var(--red)'>고점권</td><td>4.99</td><td>19.5</td></tr>
+<tr><td>012330</td><td><a href='https://stock.naver.com/domestic/stock/012330/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>현대모비스</a></td><td style='color:var(--red)'>고점권</td><td>1.85</td><td>39.1</td></tr>
+<tr><td>006660</td><td><a href='https://stock.naver.com/domestic/stock/006660/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성공조</a></td><td style='color:var(--red)'>고점권</td><td>18.69</td><td>2.1</td></tr>
+<tr><td>012200</td><td><a href='https://stock.naver.com/domestic/stock/012200/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>계양전기</a></td><td style='color:inherit'>중간권</td><td>35.02</td><td>1.9</td></tr>
+<tr><td>001740</td><td><a href='https://stock.naver.com/domestic/stock/001740/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>SK네트웍스</a></td><td style='color:var(--red)'>고점권</td><td>28.05</td><td>14.4</td></tr>
+<tr><td>000150</td><td><a href='https://stock.naver.com/domestic/stock/000150/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>두산</a></td><td style='color:var(--red)'>고점권</td><td>0.64</td><td>19.1</td></tr>
+<tr><td>010060</td><td><a href='https://stock.naver.com/domestic/stock/010060/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>OCI홀딩스</a></td><td style='color:var(--red)'>고점권</td><td>2.18</td><td>18.3</td></tr>
+<tr><td>009830</td><td><a href='https://stock.naver.com/domestic/stock/009830/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>한화솔루션</a></td><td style='color:inherit'>중간권</td><td>1.05</td><td>15.8</td></tr>
+<tr><td>322000</td><td><a href='https://stock.naver.com/domestic/stock/322000/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>HD현대에너지솔루션</a></td><td style='color:var(--red)'>중간권</td><td>2.36</td><td>7.0</td></tr>
+<tr><td>112610</td><td><a href='https://stock.naver.com/domestic/stock/112610/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>씨에스윈드</a></td><td style='color:var(--green)'>저점권</td><td>1.49</td><td>18.9</td></tr>
+</tbody></table></div></div>
+<div class='section'><div class='sec-title'>Selected 테마</div>
+<table class='tbl'><thead><tr><th>테마</th><th>싸이클</th><th>flow_accel</th><th>열기</th><th>액션</th></tr></thead><tbody>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/theme/3?no=405' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--gold)' title='네이버 테마'>MLCC(적층세라믹콘덴서)</a> <span class='decoupling-mark' title='bullish_decoupling — 삼성전기 강세 연계 독자 부상'>⚠</span></td><td><span class='badge b-early'>초입</span></td><td style='color:var(--green)'>4.48</td><td style='color:var(--amber)'>주의</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 반도체·AI 인프라 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 삼화콘덴서 +24.07%(거래량 82%), 코칩 +29.96%(거래량 12%), 한켐 +5.77%(거래량 214%) 동반 강세. 삼성전기 +13.44% 연계 수혜. 구조 지지 + 에너지 상승. 주간 초입 사이클 진입.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/theme/3?no=449' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--gold)' title='네이버 테마'>2차전지(생산)</a></td><td><span class='badge b-early'>초입</span></td><td style='color:var(--muted)'>3.88</td><td style='color:var(--green)'>정상</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 2차전지·에너지 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 삼성SDI +7.3%(거래량 98%), LG에너지솔루션 +15.25%(거래량 259%) 동반 강세. 주간 초입 사이클 + 구조 지지 + 에너지 상승. 2차전지 군집 신규 자금 진입 신호.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/theme/3?no=329' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--gold)' title='네이버 테마'>전력저장장치(ESS)</a></td><td><span class='badge b-early'>초입</span></td><td style='color:var(--muted)'>3.52</td><td style='color:var(--green)'>정상</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 2차전지·에너지 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 삼성SDI·LG에너지솔루션·서진시스템·효성중공업 동반 강세. 2차전지 군집 확산 수혜 구조. 구조 지지 + 에너지 상승.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/theme/3?no=540' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--gold)' title='네이버 테마'>비만치료제</a></td><td><span class='badge b-early'>초입</span></td><td style='color:var(--muted)'>3.08</td><td style='color:var(--green)'>정상</td><td><span class='badge b-watch'>대기</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 바이오·제약 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 디앤디파마텍 +8.81%(거래량 67%), 펩트론 +11.3%(거래량 3%), 올릭스 +1.64%(거래량 -46%) 혼재. 주간 초입 사이클 + 구조 지지 + 에너지 상승. 거래대금 지속성 확인 후 진입.</td></tr>
+<tr><td><a href='https://stock.naver.com/market/stock/kr/theme/3?no=27' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--gold)' title='네이버 테마'>자동차부품</a></td><td><span class='badge b-early'>초기확산</span></td><td style='color:var(--muted)'>3.38</td><td style='color:var(--green)'>정상</td><td><span class='badge b-go'>행동가능</span> <span class='action-conf' title='보통 호흡'>★★</span><div class='cluster-tag'>🔗 자동차·모빌리티 군집</div></td></tr>
+<tr class='action-comment-row'><td colspan='5' class='action-comment'>💬 집중유입 컨텍스트 + 현대모비스 -0.29%(거래량 11%), 삼성공조 +10.63%(거래량 924%), 계양전기 +3.69%(거래량 634%) 동반 강세. 밸류업 테마 연계 자금 유입 지속. 구조 지지 + 에너지 상승.</td></tr>
+</tbody></table>
+<div style='margin-top:8px'>
+<div style='font-size:8px;color:#888;letter-spacing:.1em;margin-bottom:4px'>주목 종목</div>
+<table class='tbl'><thead><tr><th>코드</th><th>종목명</th><th>52주위치</th><th>회전율%</th><th>외국인%</th></tr></thead><tbody>
+<tr><td>001820</td><td><a href='https://stock.naver.com/domestic/stock/001820/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼화콘덴서</a></td><td style='color:var(--red)'>고점권</td><td>49.36</td><td>5.8</td></tr>
+<tr><td>126730</td><td><a href='https://stock.naver.com/domestic/stock/126730/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>코칩</a></td><td style='color:var(--red)'>고점권</td><td>45.87</td><td>1.7</td></tr>
+<tr><td>457370</td><td><a href='https://stock.naver.com/domestic/stock/457370/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>한켐</a></td><td style='color:inherit'>중간권</td><td>11.21</td><td>2.9</td></tr>
+<tr><td>006400</td><td><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성SDI</a></td><td style='color:var(--red)'>고점권</td><td>1.95</td><td>26.2</td></tr>
+<tr><td>373220</td><td><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>LG에너지솔루션</a></td><td style='color:inherit'>중간권</td><td>0.70</td><td>5.2</td></tr>
+<tr><td>096770</td><td><a href='https://stock.naver.com/domestic/stock/096770/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>SK이노베이션</a></td><td style='color:inherit'>중간권</td><td>0.35</td><td>14.5</td></tr>
+<tr><td>006400</td><td><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성SDI</a></td><td style='color:var(--red)'>고점권</td><td>1.95</td><td>26.2</td></tr>
+<tr><td>373220</td><td><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>LG에너지솔루션</a></td><td style='color:inherit'>중간권</td><td>0.70</td><td>5.2</td></tr>
+<tr><td>178320</td><td><a href='https://stock.naver.com/domestic/stock/178320/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>서진시스템</a></td><td style='color:var(--red)'>고점권</td><td>4.61</td><td>14.2</td></tr>
+<tr><td>347850</td><td><a href='https://stock.naver.com/domestic/stock/347850/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>디앤디파마텍</a></td><td style='color:var(--green)'>저점권</td><td>13.47</td><td>7.6</td></tr>
+<tr><td>087010</td><td><a href='https://stock.naver.com/domestic/stock/087010/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>펩트론</a></td><td style='color:var(--red)'>고점권</td><td>1.47</td><td>7.1</td></tr>
+<tr><td>226950</td><td><a href='https://stock.naver.com/domestic/stock/226950/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>올릭스</a></td><td style='color:var(--red)'>고점권</td><td>1.71</td><td>10.6</td></tr>
+<tr><td>012330</td><td><a href='https://stock.naver.com/domestic/stock/012330/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>현대모비스</a></td><td style='color:var(--red)'>고점권</td><td>1.85</td><td>39.1</td></tr>
+<tr><td>006660</td><td><a href='https://stock.naver.com/domestic/stock/006660/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성공조</a></td><td style='color:var(--red)'>고점권</td><td>18.69</td><td>2.1</td></tr>
+<tr><td>012200</td><td><a href='https://stock.naver.com/domestic/stock/012200/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>계양전기</a></td><td style='color:inherit'>중간권</td><td>35.02</td><td>1.9</td></tr>
+</tbody></table></div></div>
+</div>
+
+<div class='section'><div class='sec-title'>Cross Flow Network</div>
+<div class='cross-row'>
+
+<div class='cross-card' style='border-color:var(--gold)'>
+  <div class='cross-card-hd'>
+    <span style='color:var(--gold);font-size:10px'>전자장비와기기 ↔ MLCC(적층세라믹콘덴서)</span>
+    <span class='badge b-early'>최강</span>
+  </div>
+  <div style='display:flex;gap:10px;align-items:baseline'>
+    <span style='font-size:18px;font-weight:700;color:var(--gold)'>22.80</span>
+    <span style='font-size:10px;color:var(--muted)'>업종 선도 → 테마 확산 중</span>
+  </div>
+  <div class='cross-lag'>⏱ 동조 (상관 0.82)</div>
+  <div style='font-size:9px;color:var(--muted);margin-top:3px'>Next: 반도체기판(608)</div>
+</div>
+
+<div class='cross-card' style='border-color:var(--gold)'>
+  <div class='cross-card-hd'>
+    <span style='color:var(--gold);font-size:10px'>전기제품 ↔ 2차전지(생산)</span>
+    <span class='badge b-early'>최강</span>
+  </div>
+  <div style='display:flex;gap:10px;align-items:baseline'>
+    <span style='font-size:18px;font-weight:700;color:var(--gold)'>16.20</span>
+    <span style='font-size:10px;color:var(--muted)'>동시 유입 균형</span>
+  </div>
+  <div class='cross-lag'>⏱ 동조 (상관 0.78)</div>
+  <div style='font-size:9px;color:var(--muted);margin-top:3px'>Next: 전력저장장치(329)</div>
+</div>
+
+<div class='cross-card' style='border-color:var(--dim)'>
+  <div class='cross-card-hd'>
+    <span style='color:var(--dim);font-size:10px'>자동차부품 ↔ 자동차부품(27)</span>
+    <span class='badge b-go'>확산</span>
+  </div>
+  <div style='display:flex;gap:10px;align-items:baseline'>
+    <span style='font-size:18px;font-weight:700;color:var(--amber)'>11.40</span>
+    <span style='font-size:10px;color:var(--muted)'>동시 유입 균형</span>
+  </div>
+  <div class='cross-lag'>⏱ 동조 (상관 0.74)</div>
+  <div style='font-size:9px;color:var(--muted);margin-top:3px'>Next: 자동차(273)</div>
+</div>
+</div>
+<div class='flow-summary'>오늘 자금은 광통신·통신장비 군집에서 이탈하여 전자장비·MLCC 군집(삼성전기·삼화콘덴서)과 2차전지 군집(삼성SDI·LG에너지솔루션)으로 동시 유입되는 이중 신규 부상 패턴. 에너지화학 군집은 원달러 1,495원 하락으로 전환 후보로 부상.</div>
+</div>
+
+<div class='section'><div class='sec-title'>★ 선행-후행 체인 · Leading-Lagging Chains (시간 흐름)</div>
+
+<div class='leading-chain'>
+  <div class='chain-hd'>
+    <span class='badge b-go'>강함</span>
+    <span class='chain-label'>체인 시각화</span>
+  </div>
+  <div class='chain-flow'><span class='chain-node chain-start'>전자장비와기기(업종)</span><span class='chain-arrow'>→ <strong>0일</strong> →</span><span class='chain-node'>MLCC(테마)</span><span class='chain-arrow'>→ <strong>1일</strong> →</span><span class='chain-node'>반도체기판(테마)</span></div>
+  <div class='chain-interp'>삼성전기 강세가 MLCC 테마로 즉시 확산하고, 1일 시차로 반도체기판 테마 확산 예상</div>
+</div>
+
+<div class='leading-chain'>
+  <div class='chain-hd'>
+    <span class='badge b-go'>강함</span>
+    <span class='chain-label'>체인 시각화</span>
+  </div>
+  <div class='chain-flow'><span class='chain-node chain-start'>2차전지생산(테마)</span><span class='chain-arrow'>→ <strong>0일</strong> →</span><span class='chain-node'>전기제품(업종)</span><span class='chain-arrow'>→ <strong>1일</strong> →</span><span class='chain-node'>전력저장장치(테마)</span></div>
+  <div class='chain-interp'>삼성SDI·LG에너지솔루션 동조 강세 후 1일 시차로 전력저장장치 테마 확산 예상</div>
+</div>
+
+<div class='leading-chain'>
+  <div class='chain-hd'>
+    <span class='badge b-mid'>보통</span>
+    <span class='chain-label'>체인 시각화</span>
+  </div>
+  <div class='chain-flow'><span class='chain-node chain-start'>자동차부품(업종)</span><span class='chain-arrow'>→ <strong>0일</strong> →</span><span class='chain-node'>밸류업24(테마)</span><span class='chain-arrow'>→ <strong>1일</strong> →</span><span class='chain-node'>자동차(업종)</span></div>
+  <div class='chain-interp'>현대모비스 중심 자동차부품 강세가 자동차 업종 전반으로 확산 가능</div>
+</div>
+</div>
+
+<div class='section'><div class='sec-title'>교집합 종목 (5)</div>
+<div class='stock-grid'>
+
+<div class='scard' onclick="atman.selectItem('삼성전기','009150')" style='cursor:pointer'>
+  <div class='scard-code'>009150</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/009150/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성전기</a></div>
+  <div class='scard-src'>전자장비와기기(282) · MLCC(405), 반도체기판(608), PCB(287), 갤럭시부품주(393), 카메라모듈(41), 온디바이스AI(545), 아이폰(388), 자율주행차(362), 5G(373)</div>
+</div>
+
+<div class='scard' onclick="atman.selectItem('삼성SDI','006400')" style='cursor:pointer'>
+  <div class='scard-code'>006400</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/006400/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼성SDI</a></div>
+  <div class='scard-src'>전기제품(283) · 2차전지생산(449), 전력저장장치(329), 전기차(227), 2차전지전고체(472), 아이폰(388), IT대표주(173), 스마트폰(279), 리비안(501)</div>
+</div>
+
+<div class='scard' onclick="atman.selectItem('LG에너지솔루션','373220')" style='cursor:pointer'>
+  <div class='scard-code'>373220</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/373220/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>LG에너지솔루션</a></div>
+  <div class='scard-src'>전기제품(283) · 2차전지생산(449), 전력저장장치(329), 전기차(227), 니켈(511), 스페이스X(584), 2차전지(64)</div>
+</div>
+
+<div class='scard' onclick="atman.selectItem('현대모비스','012330')" style='cursor:pointer'>
+  <div class='scard-code'>012330</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/012330/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>현대모비스</a></div>
+  <div class='scard-src'>자동차부품(270) · 자동차부품(27), 밸류업24(567), 코리아밸류업(568), 자동차대표주(159), 자율주행차(362), 스마트카(332), 수소에너지(386), 전기차(227), 피지컬AI(587)</div>
+</div>
+
+<div class='scard' onclick="atman.selectItem('삼화콘덴서','001820')" style='cursor:pointer'>
+  <div class='scard-code'>001820</div>
+  <div class='scard-name'><a href='https://stock.naver.com/domestic/stock/001820/price' target='_blank' style='color:inherit;text-decoration:none;border-bottom:1px dashed var(--blue)' title='네이버 주식'>삼화콘덴서</a></div>
+  <div class='scard-src'>전기제품(283) · MLCC(405), 스마트그리드(229), 핵융합에너지(187), 2차전지(64)</div>
+</div>
+</div></div>
+
+</div></details>
+<div class='section section-freshness'>
+  <div class='sec-title'>분석 유효 범위</div>
+  <div class='sec-subtitle'>적용 기간 · 활용 방법 · 유효 종료 조건</div>
+  <div class='freshness-box'>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>📅</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>적용 기간 · 1거래일 기준</div>
+        <p class='freshness-text'>오늘 장중까지 가장 신선. 장 마감 후 신선도 절반. 다음 거래일 장 시작 시 집중유입 판정 재확인 필요. 광통신 급락 원인 추가 확인 필요.</p>
+        <p class='freshness-text-soft'>water_status(집중유입 판정)는 당일 유효. 전자장비·2차전지 군집 action 신호는 당일 유효(지연 진입 시 cycle 격하). 에너지화학 전환 후보는 2일 유효. rotation_landscape 큰 그림은 3일 유효.</p>
+      </div>
+    </div>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>🍽</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>활용 방법</div>
+        <p class='freshness-text'>오늘 장중 전자장비(삼성전기·LG이노텍) 거래대금 지속성 확인 후 진입 검토. 2차전지(삼성SDI·LG에너지솔루션) 거래대금 지속성 확인. 에너지화학(한화솔루션·HD현대에너지솔루션)은 내일 모니터링용. 광통신(대한광통신)은 즉시 이탈 판정.</p>
+        <div class='freshness-chips'>
+          <span class='freshness-chip'>US_10Y 4.48% 절대 기준 안착 여부 실시간 확인</span>
+          <span class='freshness-chip'>원달러 1,495원 재돌파 여부</span>
+          <span class='freshness-chip'>삼성전기·삼성SDI 오전 거래대금 지속성 확인</span>
+          <span class='freshness-chip'>대한광통신 추가 하락 여부</span>
+        </div>
+        <p class='freshness-precaution'><strong>주의 · </strong>광통신·통신장비 군집 신규 진입 금지. 2차전지 군집 급등 종목 분할 진입 권장. 외국인 보유 비율 30% 이상 종목 환율 압력 감안 신중 접근. KOSPI RSI 88.52 극단 과매수 — 추격 매수 위험.</p>
+      </div>
+    </div>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>🚮</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>유효 종료 조건 · 다음 상황 시 본 리포트 무효화</div>
+        <ul class='freshness-discard'>
+          <li>원달러 1,510원 재돌파 확인 시 — 모든 강세 신호 즉시 재검토, 외국인 보유 비율 높은 종목 진입 신호 폐기</li>
+          <li>매크로 환경 강도 EXTREME 상향 시 — 본 자금흐름 분석 전면 보류</li>
+          <li>장 시작 시 KOSPI 갭하락 -2% 이상 시 — 모든 진입 신호 폐기</li>
+          <li>전자장비 섹터 오전 거래대금이 본 분석 기준 50% 이하로 급감 시 — 신규 부상 가설 폐기</li>
+          <li>2차전지 군집 오전 거래대금 급감 시 — 신규 자금 진입 가설 폐기</li>
+          <li>대한광통신 추가 -10% 이상 하락 시 — 광통신 군집 전체 이탈 가속, 시장 전체 자금 환경 재검토</li>
+          <li>오늘 cycle이 '후반'인 섹터는 내일 자동 격하 — 신규 진입 금지</li>
+        </ul>
+      </div>
+    </div>
+    <div class='freshness-row'>
+      <span class='freshness-icon'>⚖️</span>
+      <div class='freshness-content'>
+        <div class='freshness-label'>다차원 유효 종료 조건</div>
+        <p class='multi-discard-down'>⬇ 신뢰도 하향: 4축(자금가속·섹터비율·이상흐름·매크로) 중 2개 이상 동시 훼손 시 자금 회전 가설 신뢰도 하향.</p>
+        <p class='multi-discard-del'>✕ 분석 폐기: 4축 중 3개 이상 동시 발생 시 섹터 회전 가설 폐기.</p>
+        <p class='multi-discard-rec'>↑ 복원 조건: 전자장비·2차전지 군집 자금 가속 재확인 + 활성 섹터 비율 회복 시 복원 검토.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class='footer'>
+  <div style='color:var(--amber);margin-bottom:3px'>⚠ 내부 참고용 — 투자 결과에 대한 책임은 투자자 본인에게 있습니다.</div>
+  <div>© ATMAN INVESTMENT. All rights reserved. 본 자료는 무단 복제·배포·재가공을 금합니다.</div>
+</div>
+</div></body></html>
