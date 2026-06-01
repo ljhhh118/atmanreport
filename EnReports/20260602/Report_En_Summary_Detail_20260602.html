@@ -1,0 +1,1488 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN Daily Detail — 2026.06.02</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #FBF8F2;
+    --surface: #FFFFFF;
+    --surface-soft: #F4F0E6;
+    --text: #14181F;
+    --text-secondary: #4A5057;
+    --text-muted: #8B8E94;
+    --text-soft: #6B7077;
+    --border: #E8E3D5;
+    --border-strong: #C8C2B5;
+    --rule: #D9D3C4;
+    --rule-soft: #EAE5D7;
+    --accent-strong: #4A6741;
+    --accent-strong-soft: #EEF1E8;
+    --accent-flow: #B8893A;
+    --accent-flow-soft: #F6EFE0;
+    --accent-caution: #8B2C2C;
+    --accent-caution-soft: #F4E8E5;
+    --shadow: 0 1px 2px rgba(20, 24, 31, 0.04);
+    --risk-extreme: #5B0F0F;
+  }
+ 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss03", "ss04";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+ 
+  body {
+    padding: 28px 24px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+ 
+  /* AI banner (top) */
+  .ai-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-soft);
+    letter-spacing: 0.01em;
+    padding: 12px 0 14px;
+    margin-bottom: 32px;
+    text-align: center;
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+ 
+  /* Disclaimer (bottom) */
+  .disclaimer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    margin-top: 40px;
+  }
+ 
+  .disclaimer-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+ 
+  .disclaimer-text {
+    font-size: 11.5px;
+    color: var(--text-soft);
+    line-height: 1.75;
+    letter-spacing: -0.005em;
+  }
+ 
+  .disclaimer-text p {
+    margin-bottom: 10px;
+  }
+ 
+  .disclaimer-text p:last-child {
+    margin-bottom: 0;
+  }
+ 
+  /* ─── Header ─── */
+  .header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s ease-out;
+  }
+ 
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+ 
+  .eyebrow-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accent-caution);
+    border-radius: 50%;
+  }
+ 
+  .eyebrow-tag {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-soft);
+    padding: 3px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+  }
+ 
+  .date {
+    font-size: 13px;
+    color: var(--text-soft);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+ 
+  .headline {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.32;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+ 
+  /* ─── Three Views ─── */
+  .four-views {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 44px;
+    animation: fadeUp 0.6s ease-out 0.1s both;
+  }
+ 
+  .view-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+ 
+  .view-label-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+ 
+  .view-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+ 
+  .view-sublabel {
+    font-size: 11px;
+    color: var(--text-soft);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+  }
+ 
+  .view-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* ─── One Line ─── */
+  .one-line {
+    border-left: 2px solid var(--accent-caution);
+    padding: 8px 0 8px 24px;
+    margin: 0 0 80px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.6s ease-out 0.2s both;
+  }
+ 
+  /* ─── Section ─── */
+  .section {
+    margin-bottom: 80px;
+    animation: fadeUp 0.7s ease-out both;
+  }
+  .section:nth-of-type(1) { animation-delay: 0.3s; }
+  .section:nth-of-type(2) { animation-delay: 0.4s; }
+  .section:nth-of-type(3) { animation-delay: 0.5s; }
+ 
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 32px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+ 
+  .section-number {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    font-feature-settings: "tnum";
+  }
+ 
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.025em;
+  }
+ 
+  .section-subtitle {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-soft);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* ─── Essence Section ─── */
+  .essence-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.035em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+ 
+  .essence-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent-caution);
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--accent-caution-soft);
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+ 
+  .essence-description {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.8;
+    letter-spacing: -0.015em;
+    margin-bottom: 40px;
+  }
+ 
+  .divergence-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    padding: 24px 28px;
+    border-radius: 4px;
+  }
+ 
+  .divergence-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+ 
+  .divergence-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* ─── Flow Section ─── */
+  .flow-block {
+    margin-bottom: 36px;
+  }
+ 
+  .flow-block-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-flow);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+ 
+  .flow-block-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule-soft);
+  }
+ 
+  .flow-block-text {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+    letter-spacing: -0.015em;
+  }
+ 
+  /* destinations */
+  .destinations-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-flow);
+    text-transform: uppercase;
+    margin: 44px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+ 
+  .destination {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+  }
+ 
+  .destination:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+ 
+  .destination-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+ 
+  .destination-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-flow);
+    font-feature-settings: "tnum";
+    padding-top: 2px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .destination-title-wrap {
+    flex: 1;
+  }
+ 
+  .destination-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+ 
+  .destination-stage {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent-flow);
+    text-transform: uppercase;
+    padding: 3px 9px;
+    background: var(--accent-flow-soft);
+    border-radius: 2px;
+  }
+ 
+  .destination-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    margin-bottom: 10px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule-soft);
+  }
+ 
+  .destination-row:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+ 
+  .destination-row-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+ 
+  .destination-row-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* market break conditions */
+  .breaks-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 44px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+ 
+  .breaks-list {
+    list-style: none;
+    padding: 0;
+  }
+ 
+  .breaks-list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+ 
+  .breaks-list li:last-child {
+    border-bottom: none;
+  }
+ 
+  .breaks-list .marker {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-feature-settings: "tnum";
+    padding-top: 2px;
+  }
+ 
+  /* ─── Caution Section ─── */
+  .caution-zone {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-caution);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+  }
+ 
+  .caution-zone:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+ 
+  .caution-zone-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+ 
+  .caution-zone-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-caution);
+    font-feature-settings: "tnum";
+    padding-top: 3px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .caution-zone-title {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+  }
+ 
+  .caution-zone-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    padding-left: 28px;
+  }
+ 
+  /* ─── Footer ─── */
+  .footer {
+    margin-top: 32px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    animation: fadeUp 0.6s ease-out 0.7s both;
+  }
+ 
+  .footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+ 
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--text);
+    transition: gap 0.2s ease;
+  }
+ 
+  .footer-link.back:hover { gap: 14px; }
+  .footer-link.back .arrow { order: -1; transform: rotate(180deg); }
+ 
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+ 
+  .footer-meta-row {
+    display: flex;
+    gap: 14px;
+  }
+ 
+  .footer-meta-key {
+    color: var(--text-muted);
+    font-weight: 600;
+    min-width: 70px;
+  }
+ 
+  .footer-meta-value {
+    color: var(--text-soft);
+  }
+ 
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+ 
+  /* ─── MACRO Banner ─── */
+  .macro-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--accent-strong);
+  }
+  .risk-medium  .macro-banner { border-left-color: var(--accent-flow);    }
+  .risk-high    .macro-banner { border-left-color: var(--accent-caution); }
+  .risk-extreme .macro-banner { border-left-color: var(--risk-extreme);   }
+
+  .macro-banner-head {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .macro-banner-level {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    padding: 3px 9px; border-radius: 3px;
+    background: var(--accent-strong-soft); color: var(--accent-strong);
+  }
+  .risk-medium  .macro-banner-level { background: var(--accent-flow-soft);    color: var(--accent-flow);     }
+  .risk-high    .macro-banner-level { background: var(--accent-caution-soft); color: var(--accent-caution);  }
+  .risk-extreme .macro-banner-level { background: var(--accent-caution);      color: #FFF;                   }
+
+  .macro-banner-label {
+    font-size: 14px; font-weight: 600; color: var(--text-secondary);
+  }
+  .macro-banner-count {
+    margin-left: auto; font-size: 11px; color: var(--text-muted);
+  }
+  .macro-banner-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 8px 0;
+  }
+  .macro-chip {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 9px; border-radius: 12px;
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+  .macro-banner-interp {
+    font-size: 12.5px; color: var(--text-secondary);
+    line-height: 1.7; margin-top: 8px;
+    padding-top: 8px; border-top: 1px solid var(--rule-soft);
+    font-style: italic;
+  }
+
+  .inflation-banner {
+    background: var(--accent-caution-soft);
+    border-left: 3px solid var(--accent-caution);
+    padding: 12px 16px; margin-bottom: 16px;
+    font-size: 12.5px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 10px;
+    border-radius: 3px;
+  }
+  .inflation-icon { color: var(--accent-caution); font-size: 16px; }
+
+  .caution-source {
+    margin-left: auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 2px 8px; border-radius: 2px;
+    background: var(--surface-soft); color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── guide box (collapsible) ─── */
+  .guide-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0;
+    margin: 0 auto 16px; max-width: 880px;
+    font-size: 13px;
+  }
+  .guide-summary {
+    cursor: pointer; list-style: none;
+    padding: 12px 18px;
+    display: flex; gap: 10px; align-items: center;
+    font-weight: 500; color: var(--text-secondary);
+    user-select: none;
+  }
+  .guide-summary::-webkit-details-marker { display: none; }
+  .guide-summary::after {
+    content: '▼'; margin-left: auto;
+    font-size: 9px; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .guide-box[open] .guide-summary::after { transform: rotate(180deg); }
+  .guide-box[open] .guide-summary {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+  .guide-icon { font-size: 15px; line-height: 1; }
+  .guide-content { padding: 16px 22px 20px; }
+  .guide-section { margin-bottom: 16px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .guide-section p { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0; }
+  .guide-section ol { font-size: 13.5px; color: var(--text); line-height: 1.7; margin: 0; padding-left: 20px; }
+  .guide-section ol li { margin-bottom: 4px; }
+  .term-list { margin: 0; font-size: 13px; line-height: 1.65; }
+  .term-list dt {
+    font-weight: 600; color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .term-list dt:first-child { margin-top: 0; }
+  .term-list dd { color: var(--text-secondary); margin: 2px 0 0 12px; }
+
+  /* ─── Executive Summary (always expanded) ─── */
+  .executive-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-strong);
+    border-radius: 4px; padding: 22px 26px;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .es-header {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft);
+  }
+  .es-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--accent-strong); text-transform: uppercase;
+  }
+  .es-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .es-grid {
+    display: grid; gap: 12px;
+  }
+  .es-item {
+    display: grid; grid-template-columns: 120px 1fr; gap: 14px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+  .es-key {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .es-value {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .es-env {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .es-env-label { font-weight: 600; }
+  .es-env-count {
+    font-size: 11.5px; color: var(--text-muted);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .es-tag {
+    display: inline-block; font-size: 10.5px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--accent-flow-soft); color: var(--accent-flow);
+    margin-right: 6px;
+    letter-spacing: 0.05em;
+  }
+  .es-stage {
+    display: inline-block; font-size: 10.5px;
+    padding: 1px 7px; border-radius: 9px;
+    background: var(--surface-soft); color: var(--text-secondary);
+    margin-left: 4px;
+  }
+  .es-discard {
+    color: var(--accent-caution);
+    font-size: 13.5px;
+  }
+
+  /* risk_level traffic-light SVG */
+  .risk-light { vertical-align: middle; flex-shrink: 0; }
+
+  /* ─── flow_stage dots ─── */
+  .flow-dots {
+    display: inline-flex; gap: 1px; align-items: center;
+    font-size: 12px; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--surface-soft);
+  }
+  .flow-dots-label {
+    margin-left: 6px; letter-spacing: 0;
+    font-size: 11px; color: var(--text-secondary); font-weight: 500;
+  }
+  .flow-dots.stage-early   { color: #22c55e; }
+  .flow-dots.stage-spread  { color: #3b82f6; }
+  .flow-dots.stage-late    { color: #f97316; }
+  .flow-dots.stage-danger  { color: #dc2626; }
+  .flow-dots.stage-unknown { color: var(--text-muted); }
+
+  /* ─── [v0.4LC] Cascade Conflict Banner ─── */
+  .cascade-conflict-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #FFF4E6; border: 1px solid #F5C896;
+    border-left: 3px solid #C8741C;
+    border-radius: 4px; padding: 14px 16px;
+    margin: 0 auto 18px; max-width: 880px;
+    font-size: 13px; color: #6B3F0A; line-height: 1.6;
+  }
+  .cascade-conflict-icon { font-size: 18px; line-height: 1; }
+  .cascade-conflict-banner strong { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .cascade-conflict-banner p { margin: 0; font-size: 13px; }
+
+  /* ─── [v0.4LC] Self Review ─── */
+  .self-review-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px; padding: 16px 20px; margin: 0 auto 24px;
+    max-width: 880px;
+  }
+  .self-review-first { border-left-color: var(--text-muted); }
+  .self-review-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .self-review-icon { font-size: 16px; line-height: 1; }
+  .self-review-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .self-review-date {
+    font-size: 11px; color: var(--text-soft);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .self-review-hitrate {
+    font-size: 11px; font-weight: 600; color: var(--accent-strong);
+    background: var(--accent-strong-soft);
+    padding: 2px 8px; border-radius: 10px; margin-left: auto;
+  }
+  .self-review-oneline {
+    font-size: 14px; color: var(--text); line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .self-review-text {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+    margin: 0;
+  }
+  .self-review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .sr-tag {
+    font-size: 11.5px; padding: 3px 9px;
+    border-radius: 10px; line-height: 1.4;
+  }
+  .sr-tag-hit { background: var(--accent-strong-soft); color: var(--accent-strong); }
+  .sr-tag-weak { background: var(--accent-flow-soft); color: var(--accent-flow); }
+  .sr-tag-fail { background: var(--accent-caution-soft); color: var(--accent-caution); }
+  .self-review-adjustment {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;
+    padding: 8px 12px; background: var(--surface-soft);
+    border-radius: 4px; margin: 4px 0 0;
+  }
+  .self-review-adjustment strong { color: var(--text); font-weight: 600; }
+
+  /* ─── [v0.4LC] Report Freshness ─── */
+  .section-freshness { background: transparent; }
+  .freshness-box {
+    background: var(--surface-soft); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px;
+  }
+  .freshness-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .freshness-row:first-child { padding-top: 0; }
+  .freshness-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .freshness-icon { font-size: 18px; line-height: 1.5; flex-shrink: 0; }
+  .freshness-content { flex: 1; min-width: 0; }
+  .freshness-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .freshness-text { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0 0 4px; }
+  .freshness-text-soft { font-size: 12.5px; color: var(--text-soft); line-height: 1.6; margin: 0; }
+  .freshness-precaution {
+    font-size: 12.5px; color: var(--accent-caution); line-height: 1.6;
+    margin: 8px 0 0;
+  }
+  .freshness-precaution strong { color: var(--accent-caution); font-weight: 600; }
+  .freshness-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px;
+  }
+  .freshness-chip {
+    font-size: 11.5px; color: var(--text-secondary);
+    background: var(--surface); padding: 3px 9px;
+    border-radius: 10px; border: 1px solid var(--rule);
+  }
+  .freshness-discard {
+    margin: 4px 0 0; padding-left: 18px;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+  }
+  .freshness-discard li { margin-bottom: 4px; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 560px) {
+    body { padding: 36px 20px 60px; }
+    .headline { font-size: 24px; }
+    .view-row { grid-template-columns: 1fr; gap: 6px; }
+    .view-label-wrap { flex-direction: row; gap: 10px; align-items: baseline; }
+    .view-label { font-size: 10px; }
+    .view-sublabel { font-size: 11px; }
+    .one-line { font-size: 16px; padding-left: 18px; margin-bottom: 60px; }
+    .section { margin-bottom: 60px; }
+    .section-header { flex-wrap: wrap; gap: 8px; }
+    .section-subtitle { margin-left: 0; width: 100%; }
+    .section-title { font-size: 19px; }
+    .essence-name { font-size: 22px; }
+    .essence-description { font-size: 15px; }
+    .destination, .caution-zone { padding: 18px 20px; }
+    .destination-row { grid-template-columns: 1fr; gap: 4px; }
+    .caution-zone-text { padding-left: 0; margin-top: 4px; }
+  }
+
+/* ── v0.5 extra styles ── */
+.rpt-banner{background:#fff;border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;line-height:1.55;margin:0}
+.report-tier{border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border,#e0e4eb)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.headline-sub{font-size:15px;line-height:1.6;margin:8px 0 0;max-width:680px;opacity:.8}
+.es-item-action .es-key{color:#1d4ed8;font-weight:700;text-transform:none;font-size:11px;letter-spacing:.02em}
+.es-item-action .es-value{border-left:3px solid #1d4ed8;padding-left:10px;font-weight:600;line-height:1.6}
+.es-item-signal .es-key{color:#6b7280;font-weight:700;text-transform:none;font-size:10px;font-style:italic}
+.es-item-signal .es-value{font-size:13px;font-style:italic}
+dt small{display:block;color:#9ca3af;font-size:9.5px;margin-top:2px}
+.focus-section{background:var(--surface,#fff);border:1px solid var(--border,#e0e4eb);border-radius:10px;padding:18px 20px;margin:16px 0}
+.focus-header{margin-bottom:14px}
+.focus-title{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.focus-note{display:block;font-size:12px;opacity:.7;margin-top:4px}
+.focus-clusters{font-size:12px;margin:0 0 10px;opacity:.8}
+.focus-card{border:1px solid var(--border,#e0e4eb);border-radius:8px;padding:14px 16px;margin-bottom:10px;background:var(--surface-soft,#fafbfd)}
+.focus-card:last-of-type{margin-bottom:0}
+.focus-card-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.focus-name{font-size:14px;font-weight:700}
+.focus-code{font-size:11px;opacity:.6}
+.focus-group{font-size:11px;color:#1d4ed8;background:#eff6ff;padding:2px 8px;border-radius:8px}
+.focus-badge{font-size:10px;font-weight:700;color:#16a34a;background:#f0fdf4;padding:2px 8px;border-radius:8px;border:1px solid #bbf7d0}
+.focus-desc{font-size:13px;line-height:1.7;margin-bottom:8px}
+.focus-state{font-size:12px;opacity:.7;line-height:1.6;margin-bottom:6px;font-style:italic}
+.focus-ref{font-size:11px;opacity:.5}
+.focus-empty{font-size:13px;opacity:.6;padding:8px 0}
+
+
+/* ── SUMMARY v2 extra styles ── */
+.essence-para{margin-bottom:14px;line-height:1.75}
+.essence-para-label{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;color:#6b7280;text-transform:uppercase;margin-bottom:4px}
+.dest-priority{font-size:10px;font-weight:700;color:#1d4ed8;background:#eff6ff;padding:2px 8px;border-radius:8px;margin-right:6px}
+.scorecard-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
+.scorecard-table th{background:#f3f4f6;padding:6px 10px;text-align:left;font-weight:700;color:#374151}
+.scorecard-table td{padding:6px 10px;border-top:1px solid #e5e7eb}
+.sc-hit{color:#16a34a;font-weight:600}
+.sc-partial{color:#b4790f;font-weight:600}
+.sc-miss{color:#dc2626;font-weight:600}
+
+</style>
+</head>
+<body class="risk-high">
+ 
+  <div class="ai-banner">
+    🤖 AI-generated analysis &nbsp;·&nbsp; for reference only
+  </div>
+
+
+
+  <div class="cascade-conflict-banner">
+    <span class="cascade-conflict-icon">⚡</span>
+    <div>
+      <strong>Signal conflict among upstream analyses detected</strong>
+      <p>The sector layer identifies a regime shift from concentrated consolidation to concentrated inflow (case_4 → case_2) with broad AI infrastructure re-acceleration as the primary signal, while the ETF layer notes that the modest SOX +1.06% overnight and USD/KRW re-acceleration to 1,512.91 have triggered a one-notch downgrade of global-linkage signal confidence — both readings are simultaneously valid because the AI infrastructure re-acceleration is driven primarily by Korea-domestic catalysts (Samsung Electronics&#39; own structural demand, LS Electric&#39;s power infrastructure re-entry, LG CNS&#39;s domestic AI/cloud policy momentum) that are amplifying the modest global signal. This analysis resolves the conflict by treating the sector layer&#39;s case_2 regime shift as the primary observation area for today&#39;s session, while maintaining the ETF layer&#39;s one-notch confidence downgrade as the reason why intraday sustainability confirmation is required before assigning higher confidence — the absence of a strong global co-movement signal means the re-acceleration is more dependent on Korea-domestic catalysts sustaining than a globally-supported cluster breakout would be.</p>
+    </div>
+  </div>
+
+  <div class="macro-banner">
+    <div class="macro-banner-head">
+      <span class="macro-banner-level">HIGH</span>
+      <span class="macro-banner-label">Stressed</span>
+      <span class="macro-banner-count">Macro warnings 3/11</span>
+    </div>
+    <div class="macro-banner-chips"><span class="macro-chip">USD/KRW</span><span class="macro-chip">U.S. Treasuries</span></div>
+    <p class="macro-banner-interp">Rate-driven FX stress remains the dominant configuration: USD/KRW has re-accelerated to 1,513.97, bouncing back above the upper structural band on the rolling basis after briefly easing to 1,495 — the FX easing was not confirmed and Korea-specific outflow pressure has re-intensified, partially decoupled from the dollar index (DXY stable near 99.19 while USD/KRW re-accelerates). U.S. 10-year yield at 4.45% on the daily basis for a third consecutive session below the 4.5% absolute threshold, but the rolling structural condition remains active (rolling close 4.481 above the upper structural band 4.64) — the decelerating moving-average acceleration is a tentative structural easing signal, not yet confirmed. KOSPI has surged to a new series high of 8,476 in extreme overbought territory (RSI 91.46, stochastic 99.81), running at its most extreme divergence from the macro stress environment in the series. Oil correction deepening with firmly negative moving-average acceleration — Stage 1 inactive. Credit spreads near oversold at 2.74% — no credit stress. The two conditions for a regime downgrade remain unmet: U.S. 10-year yield sustaining below 4.5% with rolling structural condition easing, and USD/KRW stabilizing below 1,490.</p>
+  </div>
+
+  <header class="header">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>ATMAN SUMMARY · Today's Market Map</span>
+      <span class="eyebrow-tag">Detailed Analysis</span>
+    </div>
+    <div class="date">June 2, 2026 (Tue)</div>
+    <h1 class="headline">A Stressed macro backdrop, a regime shift to concentrated inflow, and a broad AI infrastructure re-acceleration</h1>
+  <p class="headline-sub">Samsung Electronics and LS Electric are today&#39;s primary catalysts, Robotics breaks out as a fresh Korea-domestic structural signal, and the KOSPI at 8,476 in extreme overbought territory is the most fragile element at its most extreme level in the series.</p>
+  </header>
+
+<div class="rpt-banner">
+<div class="rpt-bn-row rpt-bn-concl"><span class="rpt-bn-tag">Today's Conclusion</span><p>The Stressed macro regime (HIGH) persists with USD/KRW re-accelerating to 1,513.97 and U.S. 10-year yield structurally elevated on the rolling basis, while the domestic capital environment has shifted decisively from concentrated consolidation to concentrated inflow — the AI infrastructure cluster (Semiconductors, Electrical Equipment, IT Services) is re-accelerating broadly with Samsung Electronics and LS Electric as today&#39;s primary catalysts, and a fresh Robotics breakout has emerged as an independent Korea-domestic structural catalyst, all within a KOSPI that has surged to a new series high of 8,476 at historically extreme overbought levels.</p></div>
+<div class="rpt-bn-row rpt-bn-act"><span class="rpt-bn-tag">How to Prioritize</span><p>With the sector-stock layer not operating today, the primary interpretive focus is on whether the AI infrastructure cluster&#39;s broad re-acceleration sustains intraday traded-value — specifically whether Samsung Electronics and LS Electric hold their morning gains through the session, which determines whether the regime shift from concentrated consolidation to concentrated inflow is genuine; the Robotics breakout and NAVER surge are secondary confirmation signals, and all require intraday flow confirmation before assigning higher confidence given the Stressed macro regime and the KOSPI&#39;s historically extreme overbought state.</p></div>
+<div class="rpt-bn-row rpt-bn-cond"><span class="rpt-bn-tag">Today's Key Condition</span><p>Whether LS Electric sustains intraday traded-value above its morning average — this single signal is the cleanest confirmation of whether the Electrical Equipment re-acceleration represents a genuine resolution of the prior sell-pressure correction phase or a one-day bounce; if it holds alongside Samsung Electronics, the regime shift to concentrated inflow is confirmed and Interactive Media (NAVER) and Wireless Telecom (SKTelecom) become the next observation areas; if it fades, the concentrated-consolidation environment reasserts.</p></div>
+</div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- guide box (first-time readers — collapsed by default) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <details class="guide-box">
+    <summary class="guide-summary">
+      <span class="guide-icon">📖</span>
+      <span>New to this report? (expand to read)</span>
+    </summary>
+    <div class="guide-content">
+      <div class="guide-section">
+        <h4>What this report does</h4>
+        <p>It integrates four views — MACRO (macro environment), ETF (global capital), SECTOR (Korean industries/themes), and Sector Stock (stocks within capital clusters) — to surface the essence of today's market in one view.</p>
+      </div>
+      <div class="guide-section">
+        <h4>Common terms</h4>
+        <dl class="term-list">
+          <dt>Macro environment strength</dt><dd>Classifies the market environment into 4 levels: NORMAL / MEDIUM / HIGH / EXTREME.<small>internal: risk_level</small></dd>
+          <dt>Cross-analysis level</dt><dd>How strongly the four views — Macro / ETF / Sector / Sector Stock — point in the same direction.<small>internal: convergence_level</small></dd>
+          <dt>Essence of today's market</dt><dd>The core structure of today's market that only emerges when the four reports are read together.<small>internal: essence</small></dd>
+          <dt>Capital rotation stage</dt><dd>Which stage current capital inflow is in: early inflow → spreading → late → chase risk.<small>internal: flow_stage</small></dd>
+          <dt>Signal-scarce state</dt><dd>Shown when there aren't enough signals worth pointing to today.<small>internal: silence_clause</small></dd>
+        </dl>
+      </div>
+      <div class="guide-section">
+        <h4>How to read it</h4>
+        <ol>
+          <li>Start with the executive summary box at the top</li>
+          <li>Check the macro-environment traffic light for market pressure</li>
+          <li>Expand only the detailed sections you care about</li>
+          <li>Check the validity section at the bottom for the report's applicable period / discard conditions</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- Executive Summary (always expanded) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="executive-summary">
+    <div class="es-header">
+      
+      <h2 class="es-title">Executive Summary</h2>
+    </div>
+    <div class="es-grid">
+      <div class="es-item">
+        <div class="es-key">Macro environment</div>
+        <div class="es-value es-env">
+          <svg class="risk-light" width="72" height="20" viewBox="0 0 72 20" xmlns="http://www.w3.org/2000/svg" aria-label="risk level HIGH">
+  <circle cx="10" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="28" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="46" cy="10" r="7" fill="#f97316" />
+  <circle cx="64" cy="10" r="7" fill="#e5e7eb" />
+</svg>
+          <span class="es-env-label">HIGH · Stressed</span>
+          <span class="es-env-count">Warnings 3/11</span>
+        </div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Today's essence</div>
+        <div class="es-value"><span class="es-tag">partial</span> Regime shift to concentrated inflow — AI infrastructure broad re-acceleration and fresh Robotics breakout, within a Stressed macro backdrop and historically extreme KOSPI overbought state</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Capital flow</div>
+        <div class="es-value">→ Interactive · Pharmaceuticals <span class="es-stage">early inflow</span></div>
+      </div>
+      <div class="es-item es-item-action">
+        <div class="es-key">How to Prioritize</div>
+        <div class="es-value">With the sector-stock layer not operating today, the primary interpretive focus is on whether the AI infrastructure cluster&#39;s broad re-acceleration sustains intraday traded-value — specifically whether Samsung Electronics and LS Electric hold their morning gains through the session, which determines whether the regime shift from concentrated consolidation to concentrated inflow is genuine; the Robotics breakout and NAVER surge are secondary confirmation signals, and all require intraday flow confirmation before assigning higher confidence given the Stressed macro regime and the KOSPI&#39;s historically extreme overbought state.</div>
+      </div>
+      <div class="es-item es-item-signal">
+        <div class="es-key">Signal reading</div>
+        <div class="es-value">In a Stressed macro regime (HIGH) with a case_2 concentrated-inflow environment, a modest SOX +1.06% overnight, and a broad AI infrastructure re-acceleration led by Samsung Electronics and LS Electric, the primary interpretive weight today is on whether the regime shift from concentrated consolidation to concentrated inflow is genuine — the single most important confirmation is intraday traded-value sustainability in Samsung Electronics and LS Electric; without that confirmation, the five-session event-driven reversal pattern remains the dominant frame and all signals should be treated as one-notch lower than their face value. The USD/KRW re-acceleration to 1,513.97 is the dominant near-term macro signal and applies a structural one-notch downgrade to all global-linkage signals.</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Invalidation condition</div>
+        <div class="es-value es-discard">KOSPI gap-down of -2% or more intraday — macro re-coupling risk overrides all cluster rotation signals</div>
+      </div>
+    </div>
+  </section>
+
+    <div class="self-review-box">
+      <div class="self-review-head">
+        <span class="self-review-icon">🪞</span>
+        <span class="self-review-label">Self-scoring of yesterday's market synthesis</span>
+        <span class="self-review-date">2026.05.30</span>
+        <span class="self-review-hitrate">Hit rate 5/7</span>
+      </div>
+      <p class="self-review-oneline">Yesterday&#39;s core structural calls were correct — the LG Electronics consumer electronics breakout sustainability warning was validated (LGELECTRONICS +29.86% continuing today, confirming structural rather than event-driven nature), the IT Services two-session extension was correctly upgraded (LG CNS +26.27%, Samsung SDS +21.07% extending for a third session), the battery and ESS event-driven reversal was confirmed (SamwhaCapacitor -23.54%, Samsung SDI -5.23% today), and the flat SOX overnight caution was correctly applied. The primary miss is that the Robotics breakout (ROBOTIS, Doosan Robotics) was not anticipated — this is the fifth consecutive session where a Korea-domestic structural catalyst has emerged as the primary inflow destination without being named in the prior session&#39;s next_observation_areas. The regime shift from case_4 to case_2 was also not anticipated — yesterday&#39;s analysis treated the environment as concentrated consolidation, but today&#39;s Samsung Electronics surge and broad AI infrastructure re-acceleration have shifted the capital environment to concentrated inflow.</p>
+      <div class="self-review-tags">
+        <span class="sr-tag sr-tag-hit">✓ Macro Stressed regime (HIGH) held — USD/KRW re-accelerated to 1,513.97 confirming FX easing not established; U.S. 10-year rolling structural condition still active</span>
+        <span class="sr-tag sr-tag-hit">✓ LG Electronics consumer electronics structural continuation confirmed — LGELECTRONICS +29.86% today; reclassified from event-driven to structural breakout over the two-day flow</span>
+        <span class="sr-tag sr-tag-hit">✓ IT Services three-session extension confirmed — LG CNS +26.27%, Samsung SDS +21.07% extending; Korea-domestic AI and cloud policy catalyst showing multi-session duration</span>
+        <span class="sr-tag sr-tag-hit">✓ Battery and ESS sustained consolidation confirmed — SamwhaCapacitor -23.54%, Samsung SDI -5.23%, L&amp;F -7.9% today; event-driven reversal fully played out</span>
+        <span class="sr-tag sr-tag-hit">✓ Communications Equipment sell-pressure correction deepening — TAIHAN -9.25%, LIGHTRON -14.94% today; consistent with prior sessions</span>
+        <span class="sr-tag sr-tag-hit">✓ Defense cluster moderating further — HANWHA AEROSPACE -2.98%, LIG Defense -3.12% today</span>
+        <span class="sr-tag sr-tag-hit">✓ Battery, healthcare, bio ETF-level structural breakdown continued</span>
+        <span class="sr-tag sr-tag-hit">✓ KOSPI extreme overbought divergence from macro stress — intensified further to new series high of 8,476</span>
+        <span class="sr-tag sr-tag-weak">↓ Air Purifiers and Smart Home as next observation areas — not showing inflow signals today; the LG Electronics product chain rotation did not extend to Air Purifiers and Smart Home as anticipated; instead the capital environment shifted to a broader AI infrastructure re-acceleration</span>
+        <span class="sr-tag sr-tag-fail">✗ Robotics breakout not anticipated — ROBOTIS +23.66% (+247.9% volume) and Doosan Robotics +29.95% (+173.3% volume) were not in yesterday&#39;s next_observation_areas; the Korea-domestic physical AI and humanoid robots structural catalyst was a blind spot for the fifth consecutive session</span>
+        <span class="sr-tag sr-tag-fail">✗ Regime shift from case_4 to case_2 not anticipated — yesterday&#39;s analysis treated the environment as concentrated consolidation; today&#39;s Samsung Electronics surge and broad AI infrastructure re-acceleration have shifted the capital environment to concentrated inflow; the transition was faster than anticipated</span>
+      </div>
+      <p class="self-review-adjustment"><strong>Applied to today's analysis · </strong>The Korea-domestic blind spot pattern has now appeared on five consecutive sessions (IT Services not anticipated on 20260527, healthcare not anticipated on 20260528, battery and ESS not anticipated on 20260529, LG Electronics not anticipated on 20260530, Robotics not anticipated on 20260602). This is a confirmed systematic pattern that has persisted despite four prior adjustments. Today&#39;s analysis explicitly names the Robotics cluster as a fresh breakout and adds Interactive Media (NAVER), Wireless Telecom (SKTelecom), Pharmaceuticals (HanmiPharm), and Chemicals (SKC) as the next observation areas following the Korea-domestic rotation chains. The regime shift from case_4 to case_2 has been explicitly named and the capital environment has been upgraded accordingly. Future analyses must treat Korea-domestic structural demand catalysts as equal-weight signal sources to global co-movement chains — the five-session pattern confirms the prior adjustments have been insufficient. The next_observation_areas must include at least one Korea-domestic structural catalyst candidate that is not derived from the global co-movement chain.</p>
+    </div>
+ 
+  <section class="four-views">
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">Macro</span>
+        <span class="view-sublabel">Macro environment</span>
+      </div>
+      <div class="view-text">Rate pressure (U.S. 10-year at 4.45% — third consecutive daily close below 4.5%, a developing but unconfirmed easing signal; rolling structural condition still active) and won weakness (USD/KRW re-accelerating to 1,513.97 after briefly easing to 1,495 — FX easing not confirmed; Korea-specific outflow pressure re-intensified, partially decoupled from the dollar index) remain structurally embedded in a Stressed regime — KOSPI at 8,476 with RSI above 91 and stochastic above 99 is at its most extreme overbought reading in the series, running at its maximum divergence from the macro stress environment; the two conditions for a regime downgrade are not yet both met.</div>
+    </div>
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">ETF</span>
+        <span class="view-sublabel">KR/US key pairs</span>
+      </div>
+      <div class="view-text">Korea–U.S. coupling remains structurally intact for the AI and semiconductor cluster, but the modest SOX +1.06% overnight delivers significantly weaker directional energy than the prior +5.53% surge — the USD/KRW re-acceleration to 1,512.91 triggers a one-notch downgrade of global-linkage signal confidence; K-Robot Active remains the cleanest setup in the growth cluster with normal RSI readings; the KOSPI/KOSDAQ divergence (+3.68% vs -2.30%) for the fifth consecutive session is now a structural feature of the current regime confirming Korea-specific large-cap rotation as the persistent driver; battery, healthcare, and bio remain in structural breakdown at the ETF level.</div>
+    </div>
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">Sector</span>
+        <span class="view-sublabel">Korean industries/themes</span>
+      </div>
+      <div class="view-text">Capital has shifted from concentrated consolidation to concentrated inflow — AI infrastructure cluster re-accelerating broadly with Samsung Electronics +10.09% as the primary catalyst and LS Electric +10.56% (+44.8% volume) as the freshest re-entry signal in Electrical Equipment; IT Services extending (LG CNS +26.27%, Samsung SDS +21.07%); Robotics fresh breakout (ROBOTIS +23.66%, Doosan Robotics +29.95%) as independent Korea-domestic structural catalyst; NAVER +16.03% Interactive Media surge; Communications Equipment correction deepening (TAIHAN -9.25%, LIGHTRON -14.94%); battery/ESS sustained consolidation (SamwhaCapacitor -23.54%); defense cluster moderating further.</div>
+    </div>
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">Sector Stock</span>
+        <span class="view-sublabel">Stocks within capital clusters</span>
+      </div>
+      <div class="view-text">Sector-stock layer not operating today — no stock-level measurement available; cluster-level flow monitoring (AI infrastructure re-acceleration sustainability, Robotics breakout verification, IT Services overheating risk, Communications Equipment and battery/ESS continued correction) is the appropriate focus.</div>
+    </div>
+  </section>
+ 
+  <blockquote class="one-line">
+    The market has shifted from concentrated consolidation to concentrated inflow under a Stressed macro backdrop — the AI infrastructure cluster is re-accelerating broadly with Samsung Electronics and LS Electric as the primary catalysts, Robotics has broken out as a fresh Korea-domestic structural signal, and intraday traded-value sustainability in these names is the only reliable filter for determining whether today&#39;s regime shift is genuine or another session in the five-session event-driven rotation pattern.
+  </blockquote>
+ 
+  
+ 
+  <!-- ═══════════════════════════════════════════════ -->
+    <details class="report-tier tier-b">
+  <summary><span class="tier-chev">&#9658;</span> <b>1-Minute Read</b><span class="tier-dn">&nbsp;Market essence &middot; capital-flow outlook &middot; today's observation focus</span></summary>
+  <div class="tier-body">
+<!-- 01. Market essence -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Market Essence</h2>
+      <span class="section-subtitle">where the four views meet</span>
+    </div>
+ 
+    <span class="essence-meta">CONVERGENCE — partial</span>
+    <h3 class="essence-name" >Regime shift to concentrated inflow — AI infrastructure broad re-acceleration and fresh Robotics breakout, within a Stressed macro backdrop and historically extreme KOSPI overbought state</h3>
+
+
+    <p class="essence-description" >
+      The market has executed a meaningful structural shift today: the concentrated-consolidation environment that characterized the prior three sessions has transitioned to concentrated inflow, driven by a broad re-acceleration across the AI infrastructure cluster. Samsung Electronics surging +10.09% is the primary catalyst — globally supported by SOX +1.06% overnight — while LS Electric&#39;s +10.56% surge on strong volume represents the freshest re-entry signal, a potential resolution of the prior sell-pressure correction phase in Electrical Equipment. IT Services extends its multi-day breakout (LG CNS +26.27%, Samsung SDS +21.07%), and a fresh Robotics breakout (ROBOTIS +23.66%, Doosan Robotics +29.95%) has emerged as an independent Korea-domestic structural catalyst. The KOSPI/KOSDAQ divergence (+3.68% vs -2.30%) has now appeared for five consecutive sessions and is no longer a one-off event — it is a structural feature of the current regime, confirming that Korea-specific large-cap domestic rotation is the persistent driver rather than global co-movement.
+
+The structural shift from yesterday is significant on two dimensions. First, the regime change from case_4 to case_2 is the most important development — capital is no longer holding in consolidation but actively expanding into the AI infrastructure cluster, with the breadth of today&#39;s move (Semiconductors, Electrical Equipment, IT Services, and Electronic Products all advancing simultaneously) suggesting genuine cluster-level inflow rather than isolated stock events. Second, the Robotics breakout is the fifth consecutive session where a Korea-domestic structural catalyst has emerged as a leading signal without being anticipated in the prior session&#39;s next_observation_areas — the systematic blind spot pattern identified across the self_review chain has not yet been resolved despite four prior adjustments. The NAVER surge (+16.03%, +91.5% volume) partially confirms yesterday&#39;s deferred classification, suggesting the Interactive Media cluster is beginning to receive genuine capital.
+
+The caution that persists is compounding and multi-dimensional. The Stressed macro regime (HIGH) remains unchanged — USD/KRW re-accelerating to 1,513.97 after briefly easing to 1,495 confirms the FX axis has not established a sustained easing, and the partial decoupling of USD/KRW from the dollar index suggests Korea-specific outflow pressure is amplifying the FX stress beyond what the global dollar move alone would explain. KOSPI at 8,476 with RSI above 91 and stochastic above 99 is at its most extreme overbought reading in the series — the divergence from the macro stress environment has reached its maximum fragility point, and the longer it persists, the sharper the potential re-coupling correction becomes. The SOX +1.06% overnight is a modest signal, significantly weaker than the prior +5.53% surge, which limits the durability of the semiconductor-led re-acceleration and requires intraday confirmation before treating the case_2 regime shift as fully established.
+    </p>
+
+
+    <div class="divergence-block" >
+      <div class="divergence-label">Nature of the divergence</div>
+      <p class="divergence-text" >
+        The partial divergence today arises from a structural split between the ETF layer and the sector layer on the question of directional confidence. The ETF layer confirms the global co-movement structure is intact for the AI and semiconductor cluster, but the modest SOX +1.06% overnight and the USD/KRW re-acceleration to 1,512.91 have triggered a one-notch downgrade of global-linkage signal confidence — the coupling map is valid in structure but directional transmission is impaired. The sector layer shows a broad re-acceleration across the AI infrastructure cluster that is stronger than the modest global signal alone would support, suggesting Korea-domestic factors (Samsung Electronics&#39; own structural demand, LS Electric&#39;s power infrastructure re-entry, LG CNS&#39;s AI/cloud policy momentum) are amplifying the global signal. The Robotics breakout is entirely absent from the ETF layer&#39;s global co-movement map — it is a Korea-domestic structural catalyst operating independently, consistent with the five-session pattern of Korea-domestic catalysts emerging as leading signals. The macro layer&#39;s USD/KRW re-acceleration is the most important divergence signal: it creates an asymmetric environment where the rate axis is easing on the daily basis while the FX axis re-intensifies, meaning the macro environment is not uniformly deteriorating but is also not uniformly easing.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- 02. Capital flow -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header" >
+      <span class="section-number" > 02 </span>
+      <h2 class="section-title">Capital Flow</h2>
+      <span class="section-subtitle">capital-flow outlook</span>
+    </div>
+ 
+    <div class="flow-block" >
+      <div class="flow-block-label" >
+        <svg width = "16" height = "16" viewBox = "0 0 16 16" fill = "none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4 L4 12"/>
+          <path d="M7 4 L4 4 L4 7"/>
+        </svg>
+        <span>Where capital came from</span>
+        <span class="flow-block-label-line" ></span>
+      </div>
+      <p class="flow-block-text" >
+        Capital in the AI infrastructure cluster today originates from two parallel sources. The global source is the U.S. semiconductor and AI demand cycle transmitted through the SOX +1.06% overnight move — structurally intact but modest in directional energy, providing a supportive backdrop rather than a surge catalyst. The Korea-domestic source is the structural demand for AI infrastructure (Samsung Electronics&#39; AI chip and HBM demand cycle, LS Electric&#39;s power infrastructure for AI data centers, LG CNS&#39;s domestic AI and cloud policy momentum) — these are independent of the global co-movement chain and have been the dominant capital driver across the five-session pattern. The Robotics breakout originates from a Korea-domestic physical AI and humanoid robots structural catalyst, entirely independent of global co-movement.
+      </p>
+    </div>
+
+
+    <div class="flow-block" >
+      <div class="flow-block-label" >
+        <svg width = "16" height = "16" viewBox = "0 0 16 16" fill = "none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="8" r="2.5"/>
+          <circle cx="8" cy="8" r="6" opacity="0.5"/>
+        </svg>
+        <span>Where capital is now</span>
+        <span class="flow-block-label-line" ></span>
+      </div>
+      <p class="flow-block-text" >
+        Capital is currently concentrated in the AI infrastructure cluster with broad participation across sub-sectors. Samsung Electronics and SK Hynix are absorbing fresh inflow in Semiconductors. LS Electric is absorbing a fresh re-entry of capital in Electrical Equipment after a three-session correction phase. LG CNS and Samsung SDS are extending their multi-day inflow in IT Services. ROBOTIS and Doosan Robotics are absorbing fresh event-driven inflow in the Robotics sub-cluster. NAVER is absorbing early inflow in Interactive Media. The Communications Equipment sub-sector (TAIHAN, LIGHTRON, ICTK) is in active sell-pressure correction — capital that entered early in these names is rotating out. The battery and ESS cluster is in sustained consolidation with SamwhaCapacitor -23.54% confirming the event-driven reversal has fully played out. The defense cluster is losing momentum further.
+      </p>
+    </div>
+
+
+    <h4 class="destinations-title">Areas where capital may arrive next</h4>
+ 
+    <article class="destination">
+      <div class="destination-header">
+        <span class="destination-number">01</span>
+        <div class="destination-title-wrap">
+          <div class="destination-title">Interactive Media and Wireless Telecom — the next inflow candidates following the NAVER and SKTelecom surges</div>
+          <span class="flow-dots stage-early" title="early inflow">●○○○ <span class="flow-dots-label">early inflow</span></span>
+        </div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Flow basis</div>
+        <div class="destination-row-text">NAVER +16.03% (+91.5% volume) and SKTelecom +11.53% (+85% volume) are surging simultaneously today on Korea-domestic AI and digital infrastructure catalysts. The sector cross-flow analysis identifies Interactive Media as the next inflow candidate following the IT Services extension — the same Korea-domestic AI and cloud policy momentum that drove LG CNS and Samsung SDS is structurally connected to NAVER as the downstream application layer. SKTelecom&#39;s surge is consistent with the AI infrastructure cluster&#39;s expansion into telecom infrastructure. The NAVER deferred classification from yesterday has been partially triggered today (Kakao +1.79% showing secondary co-movement). If Kakao shows a volume surge co-moving with NAVER tomorrow, the Interactive Media cluster signal is confirmed.</div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Break condition</div>
+        <div class="destination-row-text">If NAVER intraday traded-value fades below 50% of the morning average today, the Interactive Media inflow hypothesis breaks. Also breaks if SKTelecom&#39;s surge is confirmed as an isolated event without co-movement from LG Uplus or KT. The Korea-domestic AI and digital infrastructure catalyst must sustain — if LG CNS and Samsung SDS reverse their morning gains intraday, the upstream IT Services catalyst has stalled and the Interactive Media next-step hypothesis breaks.</div>
+      </div>
+    </article>
+    <article class="destination">
+      <div class="destination-header">
+        <span class="destination-number">02</span>
+        <div class="destination-title-wrap">
+          <div class="destination-title">Pharmaceuticals and Chemicals — fresh breakout candidates on Korea-domestic structural catalysts</div>
+          <span class="flow-dots stage-early" title="early inflow">●○○○ <span class="flow-dots-label">early inflow</span></span>
+        </div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Flow basis</div>
+        <div class="destination-row-text">HanmiPharm +9.78% (+387.5% volume) and SKC +12.35% (+433.7% volume) are showing fresh breakout signals today with exceptional volume acceleration. These are Korea-domestic structural catalysts — HanmiPharm on pharmaceutical pipeline momentum and SKC on specialty chemicals demand — independent of the global co-movement chain. The sector analysis identifies both as next_candidates in the rotation landscape. The pattern of Korea-domestic structural catalysts emerging simultaneously with the AI infrastructure re-acceleration is consistent with the five-session pattern of broad Korea-domestic capital rotation.</div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Break condition</div>
+        <div class="destination-row-text">If HanmiPharm and SKC intraday traded-value fades below 50% of the morning average today, the event-driven catalyst has not sustained and the Pharmaceuticals and Chemicals next-step hypothesis breaks. Also breaks if the broader KOSDAQ continues to decline sharply, confirming that the fresh breakouts are isolated large-cap events rather than sector-level capital rotation.</div>
+      </div>
+    </article>
+    <article class="destination">
+      <div class="destination-header">
+        <span class="destination-number">03</span>
+        <div class="destination-title-wrap">
+          <div class="destination-title">Robotics cluster spread — Rainbow Robotics and Healthcare Equipment as the next expansion candidates following the ROBOTIS and Doosan Robotics breakout</div>
+          <span class="flow-dots stage-spread" title="spreading">●●○○ <span class="flow-dots-label">spreading</span></span>
+        </div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Flow basis</div>
+        <div class="destination-row-text">ROBOTIS and Doosan Robotics have broken out simultaneously today with exceptional volume acceleration — the sector analysis identifies this as a fresh Korea-domestic physical AI and humanoid robots structural catalyst. Rainbow Robotics (+12.39%, +169.1% volume) is already showing secondary co-movement. ANGEL ROBOTICS (+22.01%, +825% volume) in Healthcare Equipment is showing robotics cross-membership. If the Robotics breakout sustains intraday, the next expansion candidates are Rainbow Robotics (secondary co-mover already active) and the broader robotics-adjacent Healthcare Equipment names. The K-Robot Active ETF (BOTZ.O pair) is the cleanest setup in the growth cluster per the ETF layer, providing structural global support for the robotics theme.</div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Break condition</div>
+        <div class="destination-row-text">If ROBOTIS and Doosan Robotics intraday traded-value fades below 50% of the morning average today, the event-driven nature is confirmed and the Robotics cluster spread hypothesis breaks. Also breaks if Rainbow Robotics volume fades without co-movement — the cluster spread requires at least two names sustaining simultaneously.</div>
+      </div>
+    </article>
+
+
+    <h4 class="breaks-title">Break points where the overall market flow could snap</h4>
+    <ol class="breaks-list" >
+            <li>
+        <span class="marker">A</span>
+        <span>USD/KRW closing above 1,520 or re-testing the upper directional-energy band near 1,525 — structural FX acceleration would increase foreign selling pressure on all Korean assets, invalidating the concentrated-inflow assumption and triggering a full discard of the AI infrastructure inflow hypothesis</span>
+      </li>
+      <li>
+        <span class="marker">B</span>
+        <span>Foreign net selling turning persistently negative at -500B KRW or more intraday — directly contradicts the capital-inflow hypothesis for the AI infrastructure cluster and the Korea-domestic breakout candidates</span>
+      </li>
+      <li>
+        <span class="marker">C</span>
+        <span>KOSPI single-session decline exceeding 2% — signals macro re-coupling and overrides all cluster rotation signals; the most fragile element at its most extreme level</span>
+      </li>
+      <li>
+        <span class="marker">D</span>
+        <span>U.S. 10-year yield re-breaking above 4.5% on the daily basis — re-confirms the Stressed regime at full force and increases the probability of KOSPI correction from extreme overbought levels</span>
+      </li>
+      <li>
+        <span class="marker">E</span>
+        <span>Samsung Electronics and LS Electric combined intraday traded-value falling below 30% of morning average — signals the concentrated-inflow hypothesis has not been confirmed and the case_4 consolidation environment reasserts</span>
+      </li>
+    </ol>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+    </div></details><!--tier-b end-->
+
+  <details class="report-tier tier-c" >
+  <summary ><span class="tier-chev" > &#9658;</span> <b>Detailed Basis</b><span class="tier-dn">&nbsp;Areas to watch &middot; four-view summary</span></summary>
+  <div class="tier-body" >
+<!-- 03. Areas to watch -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Areas to Watch</h2>
+      <span class="section-subtitle">handle with care</span>
+    </div>
+ 
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">01</span>
+        <h3 class="caution-zone-title">KOSPI extreme overbought at macro-stress divergence — at its most extreme level in the series</h3>
+        <span class="caution-source">MACRO</span>
+      </div>
+      <p class="caution-zone-text">KOSPI at 8,476 with RSI above 91 and stochastic above 99, trading above the upper directional-energy band at a new series high, continues to run at its most extreme divergence from the macro stress environment in the series. The index has surged approximately +12.8% in five sessions. The longer and more extreme this divergence persists, the sharper the potential re-coupling correction becomes if a catalyst triggers alignment with the macro environment. The KOSPI/KOSDAQ divergence (+3.68% vs -2.30%) for the fifth consecutive session confirms that the apparent KOSPI strength is concentrated in a narrow set of large-cap domestic themes — if those themes reverse, the index-level strength would not be supported by broad market participation.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">02</span>
+        <h3 class="caution-zone-title">USD/KRW re-accelerating to 1,513.97 — FX easing not confirmed; Korea-specific outflow pressure re-intensified</h3>
+        <span class="caution-source">MACRO</span>
+      </div>
+      <p class="caution-zone-text">USD/KRW has bounced from 1,495 back to 1,513.97, now above the upper structural band on the rolling basis with moving-average acceleration re-accelerating to 0.116. The partial decoupling from the dollar index (DXY stable near 99.19) suggests Korea-specific outflow pressure is amplifying the FX stress beyond what the global dollar move alone would explain. A re-test of the upper directional-energy band near 1,525 or a break above 1,520 would signal the FX stress is re-intensifying toward its recent peak and would invalidate the domestic inflow assumption. The two conditions for a regime downgrade — U.S. 10-year yield sustaining below 4.5% with rolling structural condition easing, and USD/KRW stabilizing below 1,490 — are not yet both met.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">03</span>
+        <h3 class="caution-zone-title">IT Services cluster — three-day surge exceeding 65% raises overheating risk</h3>
+        <span class="caution-source">SECTOR</span>
+      </div>
+      <p class="caution-zone-text">LG CNS and Samsung SDS have surged more than 65% over three consecutive sessions. While the Korea-domestic AI and cloud policy catalyst has shown multi-session duration (the longest of any Korea-domestic catalyst in the five-session pattern), the cumulative price appreciation at these levels compresses the risk-reward structure for new exposure. Samsung SDS volume is declining from peak levels (-26% volume today), which is a caution signal within an otherwise extending cluster. The case_2 environment and Stressed macro regime each apply a one-notch confidence reduction. Intraday sustainability confirmation is required before treating the extension as a structural sector signal.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">04</span>
+        <h3 class="caution-zone-title">Robotics breakout — event-driven sustainability unconfirmed</h3>
+        <span class="caution-source">SECTOR</span>
+      </div>
+      <p class="caution-zone-text">ROBOTIS +23.66% (+247.9% volume) and Doosan Robotics +29.95% (+173.3% volume) carry exceptional volume spikes consistent with both genuine structural inflow and one-day event-driven moves. The sector analysis flags one-off flow consistency — the cluster spread requires at least two names sustaining simultaneously through the session. The five-session pattern of Korea-domestic catalysts confirming their event-driven nature by giving back gains the following session is the strongest available evidence for the sustainability risk. Assigning higher confidence to the Robotics cluster requires intraday traded-value confirmation.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">05</span>
+        <h3 class="caution-zone-title">Communications Equipment — sell-pressure correction deepening</h3>
+        <span class="caution-source">SECTOR</span>
+      </div>
+      <p class="caution-zone-text">TAIHAN -9.25%, LIGHTRON -14.94%, ICTK -9.51% today confirm the sell-pressure correction in Communications Equipment is deepening after multi-week surges. Capital that entered early in these names is rotating out. The correction is not spreading to the AI infrastructure cluster&#39;s core (Semiconductors, Electrical Equipment) today, but the depth of the correction in the leading-edge names is notable. Do not engage with Communications Equipment names without fresh intraday confirmation of a reversal.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">06</span>
+        <h3 class="caution-zone-title">Battery and ESS cluster — sustained consolidation confirmed; SamwhaCapacitor -23.54%</h3>
+        <span class="caution-source">SECTOR</span>
+      </div>
+      <p class="caution-zone-text">SamwhaCapacitor -23.54% today is the sharpest single-name decline in the sector, confirming that the event-driven reversal of the prior battery and ESS surge has fully played out. Samsung SDI -5.23%, L&amp;F -7.9%, ECOPRO BM -4.61% are all declining. The cluster is in sustained consolidation and is not actionable. Do not re-engage without fresh intraday confirmation of a structural reversal.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">07</span>
+        <h3 class="caution-zone-title">SOX +1.06% overnight — modest signal; significantly weaker than prior +5.53%</h3>
+        <span class="caution-source">ETF</span>
+      </div>
+      <p class="caution-zone-text">The SOX +1.06% overnight is a modest positive signal that provides directional support for the semiconductor cluster but does not deliver the surge-level energy that characterized the prior peak session. The directional confidence for the AI infrastructure cluster&#39;s global co-movement component is lower than the peak session. All AI infrastructure signals require intraday SMH stabilization confirmation before assigning higher confidence — without it, the re-acceleration is primarily a Korea-domestic catalyst rather than a globally-supported rotation.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">08</span>
+        <h3 class="caution-zone-title">Battery, healthcare, and bio ETF-level structural breakdown — unchanged</h3>
+        <span class="caution-source">ETF</span>
+      </div>
+      <p class="caution-zone-text">KODEX Secondary Battery, KODEX Healthcare, and KODEX Bio remain in lower structural breakdown territory at the ETF level with no U.S.-side confirmation. The battery and ESS individual stock consolidation today is consistent with the ETF-level structural picture. These sectors remain structurally weak at the ETF level and are not actionable.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">09</span>
+        <h3 class="caution-zone-title">Defense cluster — momentum loss deepening; Construction &amp; Engineering correcting</h3>
+        <span class="caution-source">ETF</span>
+      </div>
+      <p class="caution-zone-text">HANWHA AEROSPACE -2.98%, LIG Defense -3.12%, DaewooE&amp;C -7.44%, HyundaiE&amp;C -5.51% today confirm the defense and reconstruction cluster is losing momentum further. The ETF layer notes K-Defense in pullback phase with falling directional energy. The defense cluster is transitioning to further weakness and carries the lowest confidence among the named clusters today.</p>
+    </article>
+ 
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+    </div></details><!-- tier-c end -->
+
+<!-- 04. Analysis validity -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section section-freshness">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Analysis Validity</h2>
+      <span class="section-subtitle">Applies for &middot; How to use &middot; Invalidation conditions</span>
+    </div>
+ 
+    <div class="freshness-box">
+      <div class="freshness-row">
+        <span class="freshness-icon">📅</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Applies for · 1 trading days</div>
+          <p class="freshness-text">Most valid during today&#39;s Korean session (20260602). Validity declines after the close. On the next trading day it is treated as yesterday&#39;s integration and the AI infrastructure re-acceleration hypothesis (Semiconductors → Electrical Equipment → IT Services → Interactive Media/Wireless Telecom) and the Robotics breakout hypothesis should be re-verified against fresh sector flow data.</p>
+          <p class="freshness-text-soft">essence_description is valid 1–2 trading days — the regime shift observation and macro stress configuration are unlikely to shift within one session. next_observation_areas (Interactive Media, Wireless Telecom, Pharmaceuticals, Chemicals, Robotics spread) are same-day to next-day valid — if these names surge today, the observation window closes. The AI infrastructure cluster re-acceleration observation is valid 2–3 trading days. market_break_conditions are valid 2–3 trading days given the current macro momentum. The USD/KRW re-acceleration to 1,513.97 makes the macro assessment particularly time-sensitive — any FX move changes the regime direction.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🍽</span>
+        <div class="freshness-content">
+          <div class="freshness-label">How to use</div>
+          <p class="freshness-text">Use the headline and one_line to orient the session. The primary intraday filter is LS Electric traded-value sustainability — this single signal determines whether the Electrical Equipment re-acceleration is genuine and whether the case_2 regime shift is confirmed. The secondary filter is Samsung Electronics traded-value sustainability — if it holds, the AI infrastructure broad re-acceleration is confirmed. Use next_observation_areas (Interactive Media, Wireless Telecom, Pharmaceuticals, Chemicals, Robotics spread) as the first filter for tomorrow&#39;s sector-level monitoring.</p>
+          <div class="freshness-chips">
+            <span class="freshness-chip">Intraday traded-value flow of Semiconductors and Electrical Equipment sectors — the primary confirmation signals for the case_2 regime shift hypothesis</span>
+            <span class="freshness-chip">Whether Samsung Electronics and LS Electric sustain their morning gains through the session — the leading indicators for AI infrastructure re-acceleration sustainability</span>
+            <span class="freshness-chip">Foreign net-buying direction in the first 30 minutes — critical for validating the domestic inflow assumption under USD/KRW pressure</span>
+            <span class="freshness-chip">SMH intraday direction — if SMH moves meaningfully upward, the AI infrastructure cluster&#39;s re-acceleration gains global co-movement support; if it falls, the Korea-domestic catalyst interpretation is confirmed</span>
+            <span class="freshness-chip">USD/KRW intraday direction — if it moves above 1,515, downgrade all cluster signals one additional notch and consider triggering the discard condition for global-linkage signals</span>
+            <span class="freshness-chip">U.S. 10-year yield direction — whether it sustains below or re-breaks above 4.5% is the single most important macro signal for regime direction</span>
+            <span class="freshness-chip">ROBOTIS and Doosan Robotics intraday volume — if it fades, the Robotics breakout is event-driven and the cluster spread hypothesis breaks</span>
+          </div>
+          <p class="freshness-precaution"><strong>Caution · </strong>The five-session event-driven reversal pattern is the strongest available evidence for the sustainability risk of today&#39;s Robotics breakout and the IT Services extension. Do not expand the cluster observation list beyond the AI infrastructure cluster and Robotics without fresh intraday evidence. If KOSPI gaps down more than 2% intraday, discard the case_2 regime shift hypothesis and re-read the macro environment as the primary signal. The modest SOX +1.06% overnight means all AI infrastructure signals are more dependent on Korea-domestic catalysts today — apply the same event-driven sustainability discipline to all names.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🚮</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Invalidation conditions · this report is voided in the following situations</div>
+          <ul class="freshness-discard">
+            <li>KOSPI gap-down of -2% or more intraday — macro re-coupling risk overrides all cluster rotation signals</li>
+            <li>USD/KRW breaks above 1,520 intraday — structural FX acceleration invalidates the domestic inflow assumption</li>
+            <li>Samsung Electronics morning traded value falls below 50% of the opening basis — the AI infrastructure re-acceleration hypothesis breaks</li>
+            <li>LS Electric intraday volume fades below 50% of today&#39;s basis — the Electrical Equipment re-acceleration hypothesis breaks; correction likely to resume</li>
+            <li>Foreign net selling reaches -500B KRW or more intraday — capital-flow assumption invalidated</li>
+            <li>U.S. 10-year yield re-breaks above 4.5% on the daily basis — re-confirms the Stressed regime at full force and increases KOSPI re-coupling risk</li>
+            <li>VIX spikes above 20 intraday — coupling reliability for the AI and semiconductor ETF pairs collapses, removing any residual global co-movement support</li>
+            <li>ROBOTIS and Doosan Robotics both decline more than 5% intraday — the Robotics breakout hypothesis is invalidating and the event-driven nature is confirmed</li>
+            <li>Samsung Electronics and LS Electric both decline more than 3% intraday — the case_2 regime shift hypothesis is invalidating and the concentrated-consolidation environment reasserts</li>
+          </ul>
+        </div>
+      </div>
+    <div class="freshness-row"><span class="freshness-icon">⚖️</span><div class="freshness-content"><div class="freshness-label">Multi-dimensional invalidation conditions</div>
+<p class="multi-discard-down">⬇ Confidence downgrade: If 2 or more of the following axes are simultaneously impaired: (1) macro axis — U.S. 10-year re-breaks above 4.5% or USD/KRW breaks above 1,515; (2) flow axis — Samsung Electronics and LS Electric combined traded value falls below 50% of morning average; (3) capital axis — foreign net selling exceeds -300B KRW intraday; (4) index axis — KOSPI declines more than 1.5% intraday — downgrade all cluster signals one additional notch and treat next_observation_areas as monitoring only.</p>
+<p class="multi-discard-del">✕ Analysis discard: If 3 or more of the above axes are simultaneously impaired — discard this integration immediately. Specifically: macro axis + flow axis + index axis occurring together (e.g., U.S. 10-year above 4.5% + Samsung Electronics and LS Electric traded-value collapse + KOSPI down 2%+) constitutes a full discard condition.</p>
+<p class="multi-discard-rec">↑ Restoration condition: Impaired axes fall to 1 or fewer + Samsung Electronics and LS Electric traded-value recovers above morning average + KOSPI stabilizes above 8,200 → review whether the case_2 regime shift hypothesis can be partially restored.</p>
+    </div></div>
+    </div>
+ 
+  </section>
+ 
+  <!-- ─── Footer ─── -->
+  <footer class="footer">
+    <div class="footer-meta">
+      <div class="footer-meta-row">
+        <span class="footer-meta-key">Integrated views</span>
+        <span class="footer-meta-value">MACRO · ETF · SECTOR · Sector Stock</span>
+      </div>
+      <div class="footer-meta-row">
+        <span class="footer-meta-key">System</span>
+        <span class="footer-meta-value">ATMAN Flow Intelligence · MARKET_SUMMARY MARKET_SUMMARY_EN_v1.0</span>
+      </div>
+    </div>
+  </footer>
+ 
+  <div class="disclaimer">
+    <div class="disclaimer-title">Investment Disclaimer</div>
+    <div class="disclaimer-text">
+      <p>This report is market-analysis material auto-generated by ATMAN Flow Intelligence; it is not investment advice or a solicitation to trade.</p>
+      <p>The analysis is an integrated meta-analysis of four views (MACRO · ETF · SECTOR · Sector Stock) observing the essence of the market; it is not a buy/sell recommendation.</p>
+      <p>The report's wording constitutes observation and scenario material; it does not guarantee outcomes.</p>
+      <p>Investment decisions and any resulting profit or loss are solely the investor's responsibility, and actual markets may differ due to factors such as market volatility, data errors, and the gap between the analysis time and the actual market time .</p>
+      <p>ATMAN INVESTMENT bears no legal or financial responsibility for any investment outcome based on this report.</p>
+    </div>
+  </div>
+ 
+</body>
+</html>

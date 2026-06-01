@@ -1,0 +1,1350 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN MACRO Detail — 2026.06.02</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+
+/* ── MacroFlowEnRenderer v1.1 added styles ── */
+.rpt-banner{background:#fff;border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:var(--text);line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+.report-tier{border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:var(--text);user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border,#e0e4eb)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.headline-sub{font-size:15px;color:var(--text-secondary);line-height:1.6;margin:8px 0 0;max-width:680px}
+.es-item-rule .es-key{color:#1d4ed8;font-weight:700;text-transform:none;font-size:11px;letter-spacing:.02em}
+.es-item-rule .es-value{border-left:3px solid #1d4ed8;padding-left:10px;color:#1e3a8a;font-weight:600;line-height:1.6}
+.es-item-risk .es-key{color:#dc2626;font-weight:700;text-transform:none;font-size:11px}
+.es-item-risk .es-value{color:#b91c1c;font-weight:600}
+.es-discard br{display:block;margin-top:3px}
+dt small{display:block;color:#9ca3af;font-size:9.5px;margin-top:2px}
+
+  :root {
+    --bg: #FBF8F2;
+    --surface: #FFFFFF;
+    --surface-soft: #F4F0E6;
+    --text: #14181F;
+    --text-secondary: #4A5057;
+    --text-muted: #8B8E94;
+    --text-soft: #6B7077;
+    --border: #E8E3D5;
+    --border-strong: #C8C2B5;
+    --rule: #D9D3C4;
+    --rule-soft: #EAE5D7;
+    --accent-strong: #4A6741;
+    --accent-strong-soft: #EEF1E8;
+    --accent-flow: #B8893A;
+    --accent-flow-soft: #F6EFE0;
+    --accent-caution: #8B2C2C;
+    --accent-caution-soft: #F4E8E5;
+    --accent-extreme: #5B0F0F;
+    --shadow: 0 1px 2px rgba(20, 24, 31, 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss03", "ss04";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+
+  body {
+    padding: 28px 24px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .ai-banner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; font-size: 11px; color: var(--text-soft);
+    letter-spacing: 0.01em; padding: 12px 0 14px;
+    margin-bottom: 28px; text-align: center; font-weight: 500;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .inflation-banner {
+    background: var(--accent-caution-soft);
+    border-left: 3px solid var(--accent-caution);
+    padding: 14px 18px; margin-bottom: 24px;
+    font-size: 13px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .inflation-icon { color: var(--accent-caution); font-size: 18px; }
+
+  .header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 32px; margin-bottom: 36px;
+  }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .eyebrow-dot { width: 4px; height: 4px; background: var(--accent-caution); border-radius: 50%; }
+  .eyebrow-tag {
+    margin-left: auto; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--text-soft);
+    padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: 2px;
+  }
+
+  .date { font-size: 13px; color: var(--text-soft); font-weight: 500; margin-bottom: 12px; }
+
+  .regime-row {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .regime-level {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .risk-normal .regime-level   { background: var(--accent-strong-soft);  color: var(--accent-strong);   }
+  .risk-medium .regime-level   { background: var(--accent-flow-soft);    color: var(--accent-flow);     }
+  .risk-high .regime-level     { background: var(--accent-caution-soft); color: var(--accent-caution);  }
+  .risk-extreme .regime-level  { background: var(--accent-caution); color: #FFF; }
+
+  .regime-warning-count { font-size: 12px; color: var(--text-muted); }
+  .regime-natural-label {
+    font-size: 16px; font-weight: 600; color: var(--text-secondary);
+  }
+
+  .headline {
+    font-size: 28px; font-weight: 700; line-height: 1.32;
+    color: var(--text); letter-spacing: -0.03em;
+  }
+
+  .essence-one-line {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-left: 3px solid var(--accent-strong);
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+    font-style: italic;
+  }
+  .risk-medium  .essence-one-line { border-left-color: var(--accent-flow);    }
+  .risk-high    .essence-one-line { border-left-color: var(--accent-caution); }
+  .risk-extreme .essence-one-line { border-left-color: var(--accent-extreme); }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .section-number {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .section-subtitle {
+    margin-left: auto; font-size: 12px; color: var(--text-soft);
+  }
+
+  /* ─── Risk Chips ─── */
+  .risk-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .risk-chip {
+    font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 16px;
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+
+  /* ─── Stage Flow ─── */
+  .stage-flow {
+    display: flex; align-items: center; gap: 6px;
+    margin: 20px 0 24px; flex-wrap: wrap;
+  }
+  .stage {
+    flex: 1 1 0; min-width: 120px;
+    padding: 12px 10px; text-align: center;
+    background: var(--surface-soft); border-radius: 4px;
+    opacity: 0.5; border: 1px solid var(--border);
+  }
+  .stage.on {
+    opacity: 1; background: var(--accent-caution-soft);
+    border-color: var(--accent-caution);
+  }
+  .stage-number {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); margin-bottom: 4px;
+  }
+  .stage.on .stage-number { color: var(--accent-caution); }
+  .stage-name { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+  .stage-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); margin: 6px auto 0;
+  }
+  .stage.on .stage-dot { background: var(--accent-caution); }
+  .stage-arrow {
+    color: var(--text-muted); font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .stage-label {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .stage-propagation, .stage-watch {
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .stage-propagation .key, .stage-watch .key, .caution-zone-signal .key {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    text-transform: uppercase; margin-right: 4px;
+  }
+  .stage-meaning {
+    font-size: 14px; color: var(--text-secondary);
+    margin-top: 12px; line-height: 1.7;
+  }
+  .stage-watch {
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+
+  /* ─── Macro Positions Grid ─── */
+  .positions-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .macro-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 16px 18px;
+  }
+  .macro-card.warn { border-color: var(--accent-caution); border-width: 1px; }
+  .macro-card.triple {
+    border-color: var(--accent-caution);
+    background: var(--accent-caution-soft);
+  }
+  .macro-card-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 8px;
+  }
+  .macro-name { font-size: 14px; font-weight: 700; }
+  .macro-category {
+    font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .macro-flag {
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--surface-soft); color: var(--text-muted);
+  }
+  .macro-card.warn .macro-flag {
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+  .macro-card.triple .macro-flag {
+    background: var(--accent-caution); color: #FFF;
+  }
+  .macro-value {
+    font-size: 18px; font-weight: 700;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .macro-reasons {
+    list-style: none; margin: 0 0 10px 0; padding: 0;
+    font-size: 12px; color: var(--accent-caution);
+  }
+  .macro-reasons li::before { content: "• "; }
+  .macro-position {
+    font-size: 12px; color: var(--text-secondary);
+    line-height: 1.6; margin-bottom: 8px;
+  }
+  .macro-natural {
+    font-size: 12px; color: var(--text-soft);
+    font-style: italic; padding-top: 8px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  /* ─── Correlation ─── */
+  .corr-relation {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-bottom: 12px;
+  }
+  .corr-relation-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 12px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .corr-pair { font-size: 14px; font-weight: 700; }
+  .corr-flow {
+    font-size: 12px; font-weight: 600;
+    color: var(--accent-flow);
+    padding: 3px 10px; border-radius: 10px;
+    background: var(--accent-flow-soft);
+  }
+  .corr-evidence {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 8px;
+  }
+  .corr-meaning {
+    font-size: 13px; color: var(--text);
+    font-weight: 500; line-height: 1.6;
+  }
+  .corr-decoupling, .corr-regime {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+  .corr-decoupling-label, .corr-regime-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .corr-decoupling ul { list-style: none; padding: 0; }
+  .corr-decoupling li {
+    font-size: 13px; color: var(--text-secondary);
+    padding: 4px 0;
+  }
+  .corr-decoupling li::before { content: "— "; color: var(--text-muted); }
+  .corr-regime p {
+    font-size: 14px; color: var(--text);
+    font-weight: 500; line-height: 1.7;
+  }
+
+  /* ─── Priority List ─── */
+  .priority-list {
+    margin: 16px 0 0; padding-left: 22px;
+  }
+  .priority-list li {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; padding: 4px 0;
+  }
+
+  /* ─── Caution Zones ─── */
+  .caution-zone {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-caution);
+    border-radius: 4px; padding: 20px 24px; margin-bottom: 12px;
+  }
+  .caution-zone-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+  }
+  .caution-zone-number {
+    font-size: 11px; font-weight: 700;
+    color: var(--accent-caution); letter-spacing: 0.1em;
+  }
+  .caution-zone-title { font-size: 16px; font-weight: 700; }
+  .caution-zone-text {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 10px;
+  }
+  .caution-zone-signal {
+    font-size: 12px; color: var(--text-soft);
+    padding: 10px 12px; background: var(--surface-soft);
+    border-radius: 3px;
+  }
+
+  /* ─── Guidance ─── */
+  .guidance-essence {
+    font-size: 16px; color: var(--text);
+    font-style: italic; padding: 14px 18px;
+    border-left: 3px solid var(--accent-strong);
+    background: var(--surface-soft); margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  .guidance-tiers {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .guidance-tier {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 16px;
+  }
+  .guidance-label {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 8px; text-transform: uppercase;
+  }
+  .guidance-tier p {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px; margin-top: 40px;
+  }
+  .footer-meta-row {
+    display: flex; gap: 14px; padding: 4px 0;
+    font-size: 11.5px; color: var(--text-soft);
+  }
+  .footer-meta-key {
+    min-width: 80px; font-weight: 600;
+    color: var(--text-muted); letter-spacing: 0.05em;
+  }
+
+  /* ─── Disclaimer ─── */
+  .disclaimer {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 22px 26px; margin-top: 24px;
+  }
+  .disclaimer-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .disclaimer-text {
+    font-size: 11.5px; color: var(--text-soft);
+    line-height: 1.75;
+  }
+  .disclaimer-text p { margin-bottom: 8px; }
+  .disclaimer-text p:last-child { margin-bottom: 0; }
+
+  /* ─── Cascade Conflict Banner ─── */
+  .cascade-conflict-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #FFF4E6; border: 1px solid #F5C896;
+    border-left: 3px solid #C8741C;
+    border-radius: 4px; padding: 14px 16px;
+    margin: 0 auto 18px; max-width: 880px;
+    font-size: 13px; color: #6B3F0A; line-height: 1.6;
+  }
+  .cascade-conflict-icon { font-size: 18px; line-height: 1; }
+  .cascade-conflict-banner strong { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .cascade-conflict-banner p { margin: 0; font-size: 13px; }
+
+  /* ─── Self Review ─── */
+  .self-review-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px; padding: 16px 20px; margin: 0 auto 24px;
+    max-width: 880px;
+  }
+  .self-review-first { border-left-color: var(--text-muted); }
+  .self-review-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .self-review-icon { font-size: 16px; line-height: 1; }
+  .self-review-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .self-review-date {
+    font-size: 11px; color: var(--text-soft);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .self-review-hitrate {
+    font-size: 11px; font-weight: 600; color: var(--accent-strong);
+    background: var(--accent-strong-soft);
+    padding: 2px 8px; border-radius: 10px; margin-left: auto;
+  }
+  .self-review-oneline {
+    font-size: 14px; color: var(--text); line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .self-review-text {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+    margin: 0;
+  }
+  .self-review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .sr-tag {
+    font-size: 11.5px; padding: 3px 9px;
+    border-radius: 10px; line-height: 1.4;
+  }
+  .sr-tag-hit { background: var(--accent-strong-soft); color: var(--accent-strong); }
+  .sr-tag-weak { background: var(--accent-flow-soft); color: var(--accent-flow); }
+  .sr-tag-fail { background: var(--accent-caution-soft); color: var(--accent-caution); }
+  .self-review-adjustment {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;
+    padding: 8px 12px; background: var(--surface-soft);
+    border-radius: 4px; margin: 4px 0 0;
+  }
+  .self-review-adjustment strong { color: var(--text); font-weight: 600; }
+
+  /* ─── Report Freshness ─── */
+  .freshness-box {
+    background: var(--surface-soft); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-top: 8px;
+  }
+  .freshness-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .freshness-row:first-child { padding-top: 0; }
+  .freshness-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .freshness-icon {
+    font-size: 18px; line-height: 1.5; flex-shrink: 0;
+  }
+  .freshness-content { flex: 1; min-width: 0; }
+  .freshness-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .freshness-text {
+    font-size: 13.5px; color: var(--text); line-height: 1.65;
+    margin: 0 0 4px;
+  }
+  .freshness-text-soft {
+    font-size: 12.5px; color: var(--text-soft); line-height: 1.6;
+    margin: 0;
+  }
+  .freshness-precaution {
+    font-size: 12.5px; color: var(--accent-caution); line-height: 1.6;
+    margin: 8px 0 0;
+  }
+  .freshness-precaution strong { color: var(--accent-caution); font-weight: 600; }
+  .freshness-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px;
+  }
+  .freshness-chip {
+    font-size: 11.5px; color: var(--text-secondary);
+    background: var(--surface); padding: 3px 9px;
+    border-radius: 10px; border: 1px solid var(--rule);
+  }
+  .freshness-discard {
+    margin: 4px 0 0; padding-left: 18px;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+  }
+  .freshness-discard li { margin-bottom: 4px; }
+
+  /* ─── [new] guide box (collapsible) ─── */
+  .guide-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0;
+    margin: 0 auto 16px; max-width: 880px;
+    font-size: 13px;
+  }
+  .guide-summary {
+    cursor: pointer; list-style: none;
+    padding: 12px 18px;
+    display: flex; gap: 10px; align-items: center;
+    font-weight: 500; color: var(--text-secondary);
+    user-select: none;
+  }
+  .guide-summary::-webkit-details-marker { display: none; }
+  .guide-summary::after {
+    content: '▼'; margin-left: auto;
+    font-size: 9px; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .guide-box[open] .guide-summary::after { transform: rotate(180deg); }
+  .guide-box[open] .guide-summary {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+  .guide-icon { font-size: 15px; line-height: 1; }
+  .guide-content { padding: 16px 22px 20px; }
+  .guide-section { margin-bottom: 16px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .guide-section p { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0; }
+  .guide-section ol { font-size: 13.5px; color: var(--text); line-height: 1.7; margin: 0; padding-left: 20px; }
+  .guide-section ol li { margin-bottom: 4px; }
+  .term-list { margin: 0; font-size: 13px; line-height: 1.65; }
+  .term-list dt {
+    font-weight: 600; color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .term-list dt:first-child { margin-top: 0; }
+  .term-list dd { color: var(--text-secondary); margin: 2px 0 0 12px; }
+
+  /* ─── [new] Executive Summary ─── */
+  .executive-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-strong, #0d3572);
+    border-radius: 4px; padding: 22px 26px;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .es-header {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft, #e5e7eb);
+  }
+  .es-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--accent-strong, #0d3572); text-transform: uppercase;
+  }
+  .es-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .es-grid {
+    display: grid; gap: 12px;
+  }
+  .es-item {
+    display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+  .es-key {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .es-value {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .es-env {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .es-env-label { font-weight: 600; }
+  .es-env-count {
+    font-size: 11.5px; color: var(--text-muted);
+    padding-left: 8px; border-left: 1px solid var(--rule, #e5e7eb);
+  }
+  .es-discard {
+    color: var(--accent-caution, #bf360c);
+    font-size: 13.5px;
+  }
+  .risk-light { vertical-align: middle; flex-shrink: 0; }
+
+  /* ─── [new] 11-indicator macro heatmap grid ─── */
+  .macro-heatmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    max-width: 480px;
+  }
+  .heatmap-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 4px; border-radius: 4px;
+    font-size: 11px; line-height: 1.3;
+    min-height: 44px;
+    border: 1px solid transparent;
+  }
+  .heatmap-cell-normal {
+    background: #ecfdf5; color: #047857;
+    border-color: #a7f3d0;
+  }
+  .heatmap-cell-warn {
+    background: #fff7ed; color: #c2410c;
+    border-color: #fdba74;
+  }
+  .heatmap-cell-triple {
+    background: #fef2f2; color: #b91c1c;
+    border-color: #fca5a5;
+    font-weight: 600;
+  }
+  .heatmap-cell-name {
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .heatmap-cell-sym {
+    font-size: 11px; letter-spacing: -0.5px;
+  }
+
+  /* ─── [new] Stage 1->4 progress gauge ─── */
+  .stage-gauge {
+    display: flex; align-items: stretch;
+    gap: 4px; flex-wrap: wrap;
+  }
+  .stage-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 10px; border-radius: 4px;
+    background: var(--surface-soft, #f9fafb);
+    border: 1px solid var(--rule, #e5e7eb);
+    color: var(--text-muted);
+    min-width: 64px;
+  }
+  .stage-cell-active {
+    background: #eff6ff; color: #1e40af;
+    border-color: #93c5fd;
+    font-weight: 600;
+  }
+  .stage-num { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+  .stage-label { font-size: 11px; margin-top: 2px; }
+  .stage-arrow {
+    display: flex; align-items: center; padding: 0 2px;
+    color: var(--text-muted); font-size: 14px;
+  }
+  .stage-arrow-active { color: #3b82f6; font-weight: 600; }
+  .stage-propagation-note {
+    margin-top: 6px;
+    font-size: 11.5px; color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .headline { font-size: 22px; }
+    .stage { min-width: 90px; flex: 1 1 calc(50% - 8px); padding: 10px 6px; }
+    .stage-name { font-size: 11px; }
+    .stage-arrow { display: none; }
+    .positions-grid { grid-template-columns: 1fr; }
+    .guidance-tiers { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="risk-high">
+
+  <div class="ai-banner">
+    🤖 AI-generated analysis &nbsp;·&nbsp; for reference only
+  </div>
+
+
+
+
+
+  <header class="header">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>ATMAN MACRO · Market Environment</span>
+      <span class="eyebrow-tag">Detailed Analysis</span>
+    </div>
+    <div class="date">6월 2, 2026 (Tue)</div>
+
+    <div class="regime-row">
+      <span class="regime-level">HIGH</span>
+      <span class="regime-natural-label">Stressed</span>
+      <span class="regime-warning-count">Warning 3/11</span>
+    </div>
+
+    <h1 class="headline">Rate pressure (U.S. 10-year yield at 4.45% on the latest available daily bar, below the 4.5% absolute threshold but still above the upper structural band on the rolling basis) and persistent won weakness (USD/KRW at 1,513.97 on the latest daily bar, above the 1,450 absolute threshold and structurally elevated) remain the dominant stress axes; oil has continued its correction and no longer contributes a warning, KOSPI has surged to a new high of 8,476 in extreme overbought territory, and credit spreads remain historically tight</h1>
+  <p class="headline-sub">a Stressed regime concentrated at the rates and FX layers with equity markets running on independent momentum at historically extreme levels.</p>
+  </header>
+
+<div class="rpt-banner">
+<div class="rpt-bn-row rpt-bn-concl"><span class="rpt-bn-tag">Today's Conclusion</span><p>A HIGH macro regime persists for the 20260601 session, with the U.S. 10-year yield remaining structurally elevated on the rolling basis and USD/KRW bouncing back above 1,506 as the two active stress axes — KOSPI has surged to a new high of 8,476 in extreme overbought territory, oil continues its correction, and credit spreads remain historically tight.</p></div>
+<div class="rpt-bn-row rpt-bn-act"><span class="rpt-bn-tag">Today's Action</span><p>Lower-tier signals should be interpreted with confidence reduced one notch — strength signals in Korean-asset and rate-sensitive names require a more selective reading, while the continued absence of credit, volatility, and oil stress means the macro environment has not deteriorated further.</p></div>
+<div class="rpt-bn-row rpt-bn-cond"><span class="rpt-bn-tag">Today's Key Condition</span><p>Top priority: whether USD/KRW stabilizes below 1,507 or re-tests the upper structural band near 1,511, and whether the U.S. 10-year yield (US_10Y) sustains its rolling structural easing — these two axes determine whether the Stressed regime eases toward Elevated or re-intensifies.</p></div>
+</div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- guide box (first-time readers — collapsed by default) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <details class="guide-box">
+    <summary class="guide-summary">
+      <span class="guide-icon">📖</span>
+      <span>New to this report? (expand to read)</span>
+    </summary>
+    <div class="guide-content">
+      <div class="guide-section">
+        <h4>What this report does</h4>
+        <p>It integrates the transmission flow and pressure of 11 core/important macro indicators (oil/gold/dollar/rates/VIX/FX, etc.) to gauge the strength of today's market environment. The macro environment is the context that adjusts the *interpretation weighting* of the ETF/SECTOR/HOT ITEM analyses.</p>
+      </div>
+      <div class="guide-section">
+        <h4>Common terms</h4>
+        <dl class="term-list">
+          <dt>Macro environment strength</dt><dd>Classifies the market environment into 4 levels: NORMAL / MEDIUM / HIGH / EXTREME.<small>internal name: risk_level</small></dd>
+          <dt>Number of warning indicators</dt><dd>The number of indicators (out of 11) that exceeded the warning threshold.<small>internal name: warning_count</small></dd>
+          <dt>Plain-language environment label</dt><dd>A plain-language label for the environment: Calm / Elevated / Stressed / Severe Stress.<small>internal name: natural_label</small></dd>
+          <dt>Stage 1-4 transmission flow</dt><dd>The transition stages of macro pressure, moving Oil & Geopolitics → Rates & U.S. Market → Dollar & FX → Korea Market & Credit.</dd>
+          <dt>Today's Dominant Risk</dt><dd>Today's most prominent risk factors.<small>internal name: dominant_risk</small></dd>
+          <dt>Summary-report priority</dt><dd>The items the SUMMARY report should address first today.<small>internal name: summary_priority</small></dd>
+        </dl>
+      </div>
+      <div class="guide-section">
+        <h4>How to read it</h4>
+        <ol>
+          <li>Start with the executive summary box at the top</li>
+          <li>Check the market-pressure level via the macro-environment traffic light</li>
+          <li>See which areas are in warning on the 11-indicator heatmap</li>
+          <li>Gauge how far the transmission flow has traveled via the Stage gauge</li>
+          <li>Check the validity period / invalidation conditions in the validity section at the bottom</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- Executive Summary (always expanded) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="executive-summary">
+    <div class="es-header">
+      
+      <h2 class="es-title">Executive Summary</h2>
+    </div>
+    <div class="es-grid">
+      <div class="es-item">
+        <div class="es-key">Macro Environment</div>
+        <div class="es-value es-env">
+          <svg class="risk-light" width="72" height="20" viewBox="0 0 72 20" xmlns="http://www.w3.org/2000/svg" aria-label="risk level HIGH">
+  <circle cx="10" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="28" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="46" cy="10" r="7" fill="#f97316" />
+  <circle cx="64" cy="10" r="7" fill="#e5e7eb" />
+</svg>
+          <span class="es-env-label">HIGH · Stressed</span>
+          <span class="es-env-count">Warning 3/11</span>
+        </div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Today's Essence</div>
+        <div class="es-value">Rate pressure (U.S. 10-year yield at 4.45% on the latest available daily bar, below the 4.5% absolute threshold but still above the upper structural band on the rolling basis) and persistent won weakness (USD/KRW at 1,513.97 on the latest daily bar, above the 1,450 absolute threshold and structurally elevated) remain the dominant stress axes; oil has continued its correction and no longer contributes a warning, KOSPI has surged to a new high of 8,476 in extreme overbought territory, and credit spreads remain historically tight — a Stressed regime concentrated at the rates and FX layers with equity markets running on independent momentum at historically extreme levels.</div>
+      </div>
+      <div class="es-item es-item-rule">
+        <div class="es-key">Today's Interpretation Rule</div>
+        <div class="es-value">In a Stressed regime with active rate and FX pressure but resilient equity markets, treat momentum-driven signals in Korean equities with caution — the macro environment does not support aggressive new exposure. Signals in rate-sensitive sectors (growth, technology, real estate) should be downgraded by one notch. The USD/KRW bounce from 1,495 back to 1,513.97 is a key signal that the FX easing was not confirmed — do not pre-emptively upgrade confidence based on the prior session&#39;s brief easing.</div>
+      </div>
+      <div class="es-item es-item-risk">
+        <div class="es-key">Today's Dominant Risk</div>
+        <div class="es-value">USD/KRW · U.S. Treasury yields is today&#39;s core pressure.</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">11 Macro Indicators</div>
+        <div class="es-value"><div class="macro-heatmap">
+  <div class="heatmap-cell heatmap-cell-normal" title="WTI Calm">
+    <span class="heatmap-cell-name">WTI</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="VIX Calm">
+    <span class="heatmap-cell-name">VIX</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-warn" title="USD_KRW Warning">
+    <span class="heatmap-cell-name">USD_KRW</span>
+    <span class="heatmap-cell-sym">⚠</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-warn" title="US_10Y Warning">
+    <span class="heatmap-cell-name">US_10Y</span>
+    <span class="heatmap-cell-sym">⚠</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="KOSPI Calm">
+    <span class="heatmap-cell-name">KOSPI</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="BRENT Calm">
+    <span class="heatmap-cell-name">BRENT</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="SP500 Calm">
+    <span class="heatmap-cell-name">SP500</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="NASDAQ Calm">
+    <span class="heatmap-cell-name">NASDAQ</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="GOLD Calm">
+    <span class="heatmap-cell-name">GOLD</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="DXY Calm">
+    <span class="heatmap-cell-name">DXY</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="HY_OAS Calm">
+    <span class="heatmap-cell-name">HY_OAS</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+</div>
+</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Transmission Progress</div>
+        <div class="es-value"><div class="stage-gauge">
+  <div class="stage-cell">
+    <span class="stage-num">Stage 1</span>
+    <span class="stage-label">Oil & Geopolitics</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell stage-cell-active">
+    <span class="stage-num">Stage 2</span>
+    <span class="stage-label">Rates & U.S. Market</span>
+  </div>
+  <span class="stage-arrow stage-arrow-active">→</span>
+  <div class="stage-cell stage-cell-active">
+    <span class="stage-num">Stage 3</span>
+    <span class="stage-label">Dollar & FX</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell">
+    <span class="stage-num">Stage 4</span>
+    <span class="stage-label">Korea Market & Credit</span>
+  </div>
+</div>
+<div class="stage-propagation-note">Transition type: mixed</div>
+</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Invalidation Conditions</div>
+        <div class="es-value es-discard">If one or more of the conditions below occurs, this macro judgment is re-evaluated.<br>① Intraday macro event: emergency Federal Reserve communication, geopolitical shock, or major economic data surprise (CPI, NFP, PCE) that materially changes the rate or FX outlook<br>② VIX rising 30% or more from the current level of 16.05 (i.e., VIX above approximately 20.9) — would signal a sudden shift to a fear-driven regime<br>③ USD/KRW moving more than 2% beyond the current level (above approximately 1,544 or below approximately 1,484) — would signal a structural break in the FX regime<br>④ U.S. 10-year yield moving more than 0.3 percentage points from the current level (above 4.75% or below 4.15%) — would signal a significant shift in the rate environment</div>
+      </div>
+    </div>
+  </section>
+
+    <div class="self-review-box">
+      <div class="self-review-head">
+        <span class="self-review-icon">🪞</span>
+        <span class="self-review-label">Self-scoring of yesterday's analysis</span>
+        <span class="self-review-date">2026.05.29</span>
+        <span class="self-review-hitrate">Hit rate 5/5</span>
+      </div>
+      <p class="self-review-oneline">The prior HIGH-regime call is confirmed — rate and FX pressure axes maintained, KOSPI extreme overbought divergence correctly flagged and has intensified further to a new series high. The USD/KRW bounce from 1,495 back to 1,513.97 confirms the prior session&#39;s caution about the FX easing not being confirmed was correct.</p>
+      <div class="self-review-tags">
+        <span class="sr-tag sr-tag-hit">✓ US_10Y warning maintained on the rolling structural basis — yield at 4.45% daily (third consecutive session below 4.5%), rolling structural condition still met</span>
+        <span class="sr-tag sr-tag-hit">✓ USD/KRW warning maintained — bounced back to 1,513.97 after briefly easing to 1,495, now above the upper structural band on the rolling basis</span>
+        <span class="sr-tag sr-tag-hit">✓ KOSPI extreme overbought divergence from macro stress — intensified further to a new series high of 8,476</span>
+        <span class="sr-tag sr-tag-hit">✓ Gold declining despite macro stress — confirmed, now stabilizing near the lower structural band in deeply oversold territory with continued anomalous volume</span>
+        <span class="sr-tag sr-tag-hit">✓ Credit spreads tight and near oversold — confirmed</span>
+      </div>
+      <p class="self-review-adjustment"><strong>Applied to today's analysis · </strong>Maintained usd_krw and treasury as the two active dominant_risk axes. Noted the USD/KRW re-acceleration above the upper structural band as the dominant near-term signal. Carefully distinguished between the daily absolute condition (not met for US_10Y) and the rolling structural condition (still met). Applied the lens review finding that USD/KRW is partially decoupling from DXY, suggesting Korea-specific outflow pressure.</p>
+    </div>
+
+  <!-- 01. Dominant Risk -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Today's Dominant Risk</h2>
+      <span class="section-subtitle">Today's core risks</span>
+    </div>
+    <div class="risk-chips">
+      <span class="risk-chip">USD/KRW</span>
+      <span class="risk-chip">U.S. Treasury yields</span>
+    </div>
+  </section>
+
+  <details class="report-tier tier-b">
+  <summary><span class="tier-chev">&#9658;</span> <b>1-Minute Read</b><span class="tier-dn">&nbsp;Dominant risk &middot; transmission flow &middot; correlation flow &middot; SUMMARY priority</span></summary>
+  <div class="tier-body">
+  <!-- 02. Transmission Flow -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Transmission Flow</h2>
+      <span class="section-subtitle">Stage 1 → 2 → 3 → 4</span>
+    </div>
+    <div class="stage-flow">
+      <div class="stage">
+        <div class="stage-number">Stage 1</div>
+        <div class="stage-name">Geopolitics &amp; Oil</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage on">
+        <div class="stage-number">Stage 2</div>
+        <div class="stage-name">U.S. Market &amp; Rates &amp; Safe Havens</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage on">
+        <div class="stage-number">Stage 3</div>
+        <div class="stage-name">Dollar &amp; FX</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage">
+        <div class="stage-number">Stage 4</div>
+        <div class="stage-name">Korea Market &amp; Credit</div>
+        <div class="stage-dot"></div>
+      </div>
+    </div>
+    <div class="stage-label">Stage [2,3] partially activated, not sequential</div>
+    <div class="stage-propagation"><span class="key">Propagation form</span> · Scattered activation (not a sequential flow)</div>
+    <p class="stage-meaning">The macro transmission chain remains active at the rates and FX layers but has not propagated to the Korean equity or credit layers. The oil correction has deepened with negative moving-average acceleration. The most significant development is the USD/KRW bounce from 1,495 back to 1,513.97 — the FX easing observed in the prior session has reversed, re-intensifying the FX stress axis. The current stress is a rates-driven FX pressure regime, with Korean equities and U.S. equities running independently of the macro headwinds at historically extreme overbought levels. The USD/KRW re-acceleration above the upper structural band is the key signal that the FX easing was not confirmed.</p>
+    <div class="stage-watch">
+      <span class="key">Next checkpoint</span>
+      <span>Watch whether USD/KRW stabilizes below 1,507 or re-tests the upper directional-energy band near 1,525 — the bounce from 1,495 back to 1,513.97 is the most important near-term development. Watch whether the U.S. 10-year yield rolling moving-average acceleration continues to decelerate toward zero or reverses upward. The KOSPI surge to 8,476 with RSI above 91 should be monitored — a sustained decline below 8,000 would be an early warning of re-coupling. Watch whether HY_OAS begins to widen above 3.0%.</span>
+    </div>
+  </section>
+
+  <!-- 03. 11 Macro Positions -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 03 </span>
+      <h2 class="section-title"> Macro Positions </h2>
+      <span class="section-subtitle"> 11 core / important</span>
+    </div>
+    <div class="positions-grid">
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">WTI</h4>
+            <span class="macro-category">crude oil</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">92.54</div>
+        <p class="macro-position">Close at 92.54 has continued its decline from the recent high of 108.66 (20260518) and is now well below the upper structural band (104.35), below the mid structural band (100.65), and approaching the lower structural band (96.94). The directional-energy midline sits at 101.85. RSI at 37.17 is neutral-to-soft. Moving-average acceleration at -0.310 is negative and accelerating downward. Stochastic at 55.64 is neutral.</p>
+        <p class="macro-natural">Oil has continued its correction from the recent peak, with moving-average acceleration now firmly negative and the close approaching the lower structural band. The correction is deepening and the oil stress axis remains inactive. The negative and accelerating moving-average acceleration suggests the corrective phase may be transitioning toward a more sustained downtrend.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">VIX</h4>
+            <span class="macro-category">volatility</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">16.05</div>
+        <p class="macro-position">Close at 16.05 is below the upper directional-energy band (20.09) and below the directional-energy midline (17.80). The upper structural band is at 17.83, mid at 17.29, lower at 16.75 — close is below the lower structural band. RSI at 23.35 is approaching oversold territory. Moving-average acceleration at -0.531 is negative and deeply accelerating downward. Stochastic at 52.50 is neutral. VIX has continued to decline and is now below the lower structural band.</p>
+        <p class="macro-natural">Volatility has declined further and is now below the lower structural band with RSI approaching oversold territory, confirming a deeply entrenched low-volatility regime. The market is not pricing in fear. The accelerating negative moving-average acceleration suggests the low-volatility regime is becoming more entrenched. A mean-reversion spike could be sharp if macro stress escalates, but no warning condition is triggered.</p>
+      </article>
+      <article class="macro-card warn">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">USD/KRW</h4>
+            <span class="macro-category">foreign exchange</span>
+          </div>
+          <span class="macro-flag">Warning</span>
+        </div>
+        <div class="macro-value">1513.97</div>
+        <ul class="macro-reasons">
+          <li>Close at 1,513.97 (20260601, latest daily bar — note the daily series contains two entries for 20260601; the second entry at 1,513.97 is used as the latest close) exceeds the 1,450 absolute threshold — absolute warning condition met.</li>
+          <li>On the rolling basis, the close has been persistently above the mid structural band (1,487.60 on 20260601) and above or near the upper structural band (1,511.11 on 20260601) for more than three consecutive bars — structural warning condition met.</li>
+          <li>Five-day change: from 1,495.29 (20260529) to 1,513.97 (20260601) is approximately +1.3%, below the +2% change threshold — change condition not met.</li>
+        </ul>
+        <p class="macro-position">Close at 1,513.97 is above the 1,450 absolute threshold. The upper structural band on the rolling basis is approximately 1,511.11, mid at 1,487.60, lower at 1,464.10. Close is above the upper structural band on the rolling basis. The upper directional-energy band is at 1,524.81. RSI at 81.06 is in overbought territory. Moving-average acceleration at 0.116 is positive and has re-accelerated from the prior session&#39;s 0.102. Stochastic at 98.05 is at an extreme overbought reading. USD/KRW has bounced back above the upper structural band after briefly easing toward 1,495.</p>
+        <p class="macro-natural">Won weakness has re-intensified, with USD/KRW bouncing back above the upper structural band on the rolling basis and re-accelerating in moving-average acceleration. The absolute threshold breach at 1,450 has been sustained for weeks. The bounce from 1,495 back to 1,513.97 confirms the FX easing observed in the prior session was not sustained. Foreign-capital outflow pressure on Korean assets remains structurally elevated and has re-intensified.</p>
+      </article>
+      <article class="macro-card warn">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">US_10Y</h4>
+            <span class="macro-category">U.S. Treasury yield</span>
+          </div>
+          <span class="macro-flag">Warning</span>
+        </div>
+        <div class="macro-value">4.45</div>
+        <ul class="macro-reasons">
+          <li>Close at 4.45% on the latest available daily bar (20260529) is below the 4.5% absolute threshold — absolute condition not met on the daily basis.</li>
+          <li>On the rolling basis, the rolling close on 20260529 is 4.481, which remains above the upper structural band (4.64 on the rolling series for 20260529) — structural warning condition met on the rolling basis. The rolling series shows the yield has been above the upper structural band for multiple consecutive bars, confirming the structural warning remains active.</li>
+          <li>Five-day absolute change: from 4.56% (20260522) to 4.45% (20260529, latest available daily) is -0.11 percentage points, below the +0.3 percentage point change threshold — change condition not met. Note: the latest available daily bar is 20260529 (4.45%); no 20260601 data is present in the US_10Y daily series, so the 20260529 close is used as the current value.</li>
+        </ul>
+        <p class="macro-position">Close at 4.45% (20260529, latest available daily bar) is below the 4.5% absolute threshold. On the rolling basis, the rolling close on 20260529 is 4.481, which is above the upper structural band (4.64 on the rolling series — note the rolling upper structural band on 20260529 is 4.64, mid at 4.46, lower at 4.28). The upper directional-energy band is at 4.72, mid at 4.56, lower at 4.37. RSI at 76.39 is in overbought territory. Moving-average acceleration at 0.230 is positive but continuing to decelerate from the recent peak of 0.383. Stochastic at 91.74 is at an elevated overbought reading. The yield has continued to pull back from its recent peak of 4.67% (20260519).</p>
+        <p class="macro-natural">U.S. 10-year yields have held at 4.45% on the daily basis for a second consecutive session, sustaining below the 4.5% absolute threshold. The rolling structural condition remains active, but the decelerating moving-average acceleration (0.230 vs. 0.383 at peak) is a tentative sign of structural easing beginning. The warning is maintained on the structural (rolling) basis. A sustained daily close below 4.5% accompanied by a reversal in the rolling structural condition would be the first confirmed easing signal.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">KOSPI</h4>
+            <span class="macro-category">Korean equity index</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">8476.15</div>
+        <p class="macro-position">Close at 8,476.15 (20260529) has surged to a new high, well above the upper structural band (7,784.74 on the rolling basis), mid structural band (7,765.10), and lower structural band (7,745.47). The upper directional-energy band is at 8,399.12. RSI at 91.46 is deeply overbought. Moving-average acceleration at 1.129 is strongly positive and has increased from the prior session. Stochastic at 99.81 is at an extreme overbought reading. KOSPI has broken above the upper directional-energy band on the rolling basis, reaching a new series high.</p>
+        <p class="macro-natural">KOSPI has surged to a new high of 8,476 with RSI at 91.46 and stochastic at 99.81 — historically extreme overbought readings. The index is now trading above the upper directional-energy band on the rolling basis. The divergence from the macro stress environment (elevated rates, persistent won weakness) has reached its most extreme level in the series. The risk of a sharp correction if a macro catalyst triggers re-coupling has intensified further. No warning condition is triggered, but the configuration is at its most fragile point.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">BRENT</h4>
+            <span class="macro-category">Brent crude oil</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">95.37</div>
+        <p class="macro-position">Close at 95.37 has continued its decline from the recent high of 112.10 (20260518) and is now well below the upper structural band (108.30), below the mid structural band (105.69), and approaching the lower structural band (103.08). RSI at 37.10 is neutral-to-soft. Moving-average acceleration at -0.426 is negative and accelerating downward. Stochastic at 66.29 is neutral. The structural warning condition has been fully cleared.</p>
+        <p class="macro-natural">Brent crude has continued its reversal from the recent peak, mirroring WTI. The structural warning has cleared. The negative and accelerating moving-average acceleration confirms the corrective phase is deepening. The close is approaching the lower structural band, suggesting the correction may be nearing a potential support zone. The oil stress axis remains inactive.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">SP500</h4>
+            <span class="macro-category">U.S. equity index</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">7599.96</div>
+        <p class="macro-position">Close at 7,599.96 is above the upper structural band (7,454.79), mid structural band (7,317.89), and lower structural band (7,180.99). The upper directional-energy band is at 7,594.30. RSI at 90.73 is deeply overbought. Moving-average acceleration at 0.258 is positive. Stochastic at 99.79 is elevated. S&amp;P 500 has continued its uptrend and is now trading above the upper directional-energy band on the rolling basis.</p>
+        <p class="macro-natural">U.S. equities remain resilient and in a deeply overbought state, with the index now trading above the upper directional-energy band. No warning condition is triggered, but the extreme overbought readings suggest limited near-term upside without a consolidation. The continued advance despite elevated rates is a notable divergence.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">NASDAQ</h4>
+            <span class="macro-category">U.S. technology index</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">27086.809</div>
+        <p class="macro-position">Close at 27,086.809 is above the upper structural band (26,434.14), mid structural band (25,634.29), and lower structural band (24,834.44). The upper directional-energy band is at 27,035.64. RSI at 89.93 is deeply overbought. Moving-average acceleration at 0.398 is positive. Stochastic at 99.58 is elevated. NASDAQ has broken above the upper directional-energy band on the rolling basis, continuing its strong uptrend.</p>
+        <p class="macro-natural">NASDAQ remains in a strong uptrend with deeply overbought momentum, now trading above the upper directional-energy band. Despite elevated U.S. 10-year yields, NASDAQ has continued to advance — a notable divergence from the rate-pressure narrative. No warning condition is triggered, but the combination of elevated yields and extreme overbought equity readings warrants caution for rate-sensitive growth positions.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">GOLD</h4>
+            <span class="macro-category">gold (safe haven)</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">4512.8</div>
+        <p class="macro-position">Close at 4,512.8 is below the upper structural band (4,698.19), mid structural band (4,574.75), and lower structural band (4,451.30). The upper directional-energy band is at 4,798.24. RSI at 19.75 is in deeply oversold territory. Moving-average acceleration at -0.199 is negative. Stochastic at 18.30 is in oversold territory. Gold has stabilized near the lower structural band after its recent decline, with continued anomalous volume.</p>
+        <p class="macro-natural">Gold remains in deeply oversold territory with RSI at 19.75 and stochastic at 18.30, but the close has stabilized near the lower structural band. No safe-haven warning is triggered. The absence of gold strength despite macro stress continues to confirm this is a rate-normalization regime rather than a crisis regime. The continued anomalous volume pattern warrants monitoring for follow-through. The stabilization near the lower structural band may indicate a potential technical support zone.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">DXY</h4>
+            <span class="macro-category">U.S. dollar index</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">99.19</div>
+        <p class="macro-position">Close at 99.19 is below the upper structural band (99.88), near the mid structural band (99.07), and above the lower structural band (98.27). The upper directional-energy band is at 99.72. RSI at 68.41 is neutral-to-elevated. Moving-average acceleration at 0.033 is modestly positive but continuing to decelerate. Stochastic at 93.66 is at an elevated overbought reading. DXY has been gradually strengthening but remains below the upper structural band.</p>
+        <p class="macro-natural">The dollar index is in a gradual uptrend but has not triggered a warning condition. The elevated stochastic alongside a neutral-to-elevated RSI suggests the dollar&#39;s near-term upside may be limited. The dollar&#39;s strength continues to contribute to won weakness (USD/KRW above 1,510) even without a formal DXY warning. The decelerating moving-average acceleration is a tentative sign of momentum slowing.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">HY_OAS</h4>
+            <span class="macro-category">high-yield credit spread</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">2.74</div>
+        <p class="macro-position">Close at 2.74% (20260531) is near the lower structural band (2.70% on the rolling basis — the rolling series shows lower structural band at 2.70 on 20260531), below the mid structural band (2.74%), and below the upper structural band (2.80%). The upper directional-energy band is at 2.89%. RSI at 20.69 is in deeply oversold territory. Moving-average acceleration at -0.193 is negative. Stochastic at 34.98 is neutral-to-soft. Credit spreads remain historically tight and have stabilized near recent lows.</p>
+        <p class="macro-natural">High-yield credit spreads are at historically tight levels and remain near their lows, showing no sign of stress. The RSI at 20.69 is deeply oversold, suggesting spreads may be near a floor. The absence of credit stress despite elevated rates remains a key divergence — credit markets are not confirming the rate-pressure narrative. If spreads begin to widen above 3.0%, it would represent a significant escalation of macro risk and could trigger Stage 4 activation.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 04. Correlation Flow -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 04 </span>
+      <h2 class="section-title"> Correlation Flow </h2>
+      <span class="section-subtitle"> Relationships among macro indicators</span>
+    </div>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">US_10Y ↔ USD/KRW</span>
+        <span class="corr-flow">diverging at the margin — rates easing on the daily basis while FX re-intensifies</span>
+      </div>
+      <p class="corr-evidence">U.S. 10-year yield has continued to pull back to 4.45% on the daily basis (below the 4.5% threshold), while USD/KRW has bounced back from 1,495 to 1,513.97 — the two axes are now moving in opposite directions at the margin. The rolling structural condition remains active for both.</p>
+      <p class="corr-meaning">The rates-FX transmission channel is showing an unusual divergence: the rate axis is easing on the daily basis while the FX axis has re-intensified. This creates an asymmetric signal environment — the rate easing is not yet confirmed by the rolling structural condition, and the FX re-acceleration suggests the won weakness is driven by factors beyond just U.S. rate pressure. The USD/KRW bounce is the dominant signal for the current session.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">KOSPI ↔ US_10Y</span>
+        <span class="corr-flow">unusual co-movement at its most extreme — KOSPI surging to new highs while rates remain structurally elevated</span>
+      </div>
+      <p class="corr-evidence">KOSPI has surged from approximately 7,516 (20260518) to 8,476 (20260529), a gain of approximately +12.8%, while U.S. 10-year yields have remained structurally elevated above the upper structural band on the rolling basis. The decoupling has reached its most extreme level in the series.</p>
+      <p class="corr-meaning">KOSPI continues to decouple from the rate-pressure narrative at its most extreme level. The longer and more extreme this divergence persists, the more fragile the configuration becomes. A catalyst that re-couples Korean equities to the macro environment could produce a sharp and rapid correction from current historically extreme overbought levels.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">WTI ↔ BRENT</span>
+        <span class="corr-flow">strong co-movement (normal — both continuing correction with negative moving-average acceleration)</span>
+      </div>
+      <p class="corr-evidence">WTI fell from 96.6 (20260522) to 92.54 (20260601), and BRENT fell from 103.54 (20260522) to 95.37 (20260601). Both continue to decline in near-perfect synchrony, with moving-average acceleration firmly negative for both (-0.310 for WTI, -0.426 for BRENT).</p>
+      <p class="corr-meaning">The oil complex continues to move in lockstep. The synchronized and deepening decline with firmly negative moving-average acceleration suggests the correction may be transitioning to a more sustained downtrend. The oil stress axis remains inactive and the inflationary pressure component of macro stress continues to ease.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">USD/KRW ↔ DXY</span>
+        <span class="corr-flow">co-movement partially decoupling — USD/KRW re-accelerating while DXY remains stable</span>
+      </div>
+      <p class="corr-evidence">USD/KRW has bounced from 1,495 back to 1,513.97 with moving-average acceleration re-accelerating to 0.116, while DXY has remained stable near 99.19 with decelerating moving-average acceleration (0.033). The normal strong co-movement between the two is showing a divergence.</p>
+      <p class="corr-meaning">The won weakness is re-intensifying beyond what the dollar index alone would suggest, indicating Korea-specific capital outflow pressure or domestic factors are amplifying the FX stress. This is a notable signal — the USD/KRW stress is not purely a dollar-strength story at this point.</p>
+    </article>
+    <div class="corr-decoupling">
+      <div class="corr-decoupling-label">Decoupling signal</div>
+      <ul>
+        <li>KOSPI decoupling from U.S. rate pressure — Korean equities surging to 8,476 while rates remain structurally elevated on the rolling basis</li>
+        <li>GOLD decoupling from FX stress — gold in deeply oversold territory despite USD/KRW above 1,510</li>
+        <li>USD/KRW re-accelerating while DXY remains stable — won weakness exceeding dollar-index strength</li>
+      </ul>
+    </div>
+    <div class="corr-regime">
+      <div class="corr-regime-label">Essence of the environment</div>
+      <p>The current macro regime is characterized by rate-driven FX stress (U.S. 10-year yield structurally elevated on the rolling basis and USD/KRW re-accelerating above 1,510) with a notable absence of fear (VIX declining toward oversold, gold deeply oversold, credit spreads tight and near oversold). Equity markets continue to run independently of the macro headwinds at historically extreme overbought levels. The oil correction has deepened. The key development is the USD/KRW bounce from 1,495 back to 1,513.97 — the FX easing was not confirmed and the stress axis has re-intensified. The won weakness is now partially decoupled from the dollar index, suggesting Korea-specific outflow pressure.</p>
+    </div>
+  </section>
+
+  <!-- 05. SUMMARY Priority -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 05 </span>
+      <h2 class="section-title"> What SUMMARY should address first</h2>
+      <span class="section-subtitle"> Summary-report priority</span>
+    </div>
+    <ol class="priority-list">
+      <li>USD/KRW bouncing back to 1,513.97 after briefly easing to 1,495 — the FX easing was not confirmed; the absolute threshold breach at 1,450 and structural elevation remain active; the close is now above the upper structural band on the rolling basis; the re-acceleration in moving-average acceleration (0.116) confirms the FX stress axis has re-intensified</li>
+      <li>US_10Y daily close at 4.45% — third consecutive session below the 4.5% absolute threshold; the rolling structural condition remains active (rolling close 4.481 above the upper structural band 4.64); the decelerating moving-average acceleration (0.230 vs. 0.383 at peak) is a tentative structural easing signal but not yet confirmed</li>
+      <li>KOSPI surging to a new series high of 8,476 — RSI at 91.46, stochastic at 99.81, above the upper directional-energy band; the most fragile element of the current configuration at its most extreme level; new entries at current levels carry the highest reversal risk in the series</li>
+      <li>Oil (WTI/BRENT) correction deepening with firmly negative moving-average acceleration — WTI at 92.54 approaching the lower structural band; Stage 1 remains inactive; the correction may be transitioning to a more sustained downtrend</li>
+      <li>Gold stabilizing near the lower structural band in deeply oversold territory (RSI 19.75, stochastic 18.30) with continued anomalous volume — monitor whether this is a technical support zone or a continuation of the downtrend; credit spreads near oversold at 2.74% — no credit stress</li>
+    </ol>
+  </section>
+  </div></details><!--tier-b end-->
+
+  <details class="report-tier tier-c">
+  <summary><span class="tier-chev"> &#9658;</span> <b>Detailed Basis</b><span class="tier-dn">&nbsp;Full macro positions &middot; cautious zones &middot; trader guide</span></summary>
+  <div class="tier-body">
+  <!-- 06. Cautious Zones -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 06 </span>
+      <h2 class="section-title"> Cautious Zones </h2>
+      <span class="section-subtitle"> Areas to treat with care</span>
+    </div>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">01</span>
+        <h3 class="caution-zone-title">USD/KRW re-testing the upper directional-energy band near 1,525 or breaking above 1,520</h3>
+      </div>
+      <p class="caution-zone-text">USD/KRW has bounced from 1,495 back to 1,513.97, now above the upper structural band on the rolling basis. A re-test of the upper directional-energy band near 1,525 or a break above 1,520 would signal the FX stress is re-intensifying toward its recent peak. The partial decoupling from DXY suggests Korea-specific outflow pressure may be amplifying the move.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · USD/KRW daily close above 1,520
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">02</span>
+        <h3 class="caution-zone-title">US_10Y re-breaking above 4.5% after three consecutive daily closes below this level</h3>
+      </div>
+      <p class="caution-zone-text">Three consecutive daily closes below 4.5% represent the most sustained easing signal in the recent series. A re-break above 4.5% would confirm the pullback was temporary and re-intensify the Stressed regime. The rolling structural condition remains active, making the signal particularly sensitive.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · US_10Y daily close above 4.5%
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">03</span>
+        <h3 class="caution-zone-title">KOSPI extreme overbought correction risk — above 8,476</h3>
+      </div>
+      <p class="caution-zone-text">KOSPI RSI above 91 and stochastic above 99 with the index above the upper directional-energy band at a new series high — a correction from these levels could be sharp if a macro catalyst triggers re-coupling. The index has surged +12.8% in five sessions. A daily close below 8,000 would be an early warning.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · KOSPI daily close below 8,000 or a single-day decline exceeding 2%
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">04</span>
+        <h3 class="caution-zone-title">HY_OAS beginning to widen above 3.0%</h3>
+      </div>
+      <p class="caution-zone-text">Credit spreads have been remarkably stable and are currently near oversold levels. A move above 3.0% would signal that credit markets are beginning to price in the rate-stress environment, which would represent a significant escalation and could trigger Stage 4 activation.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · HY_OAS daily close above 3.0%
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">05</span>
+        <h3 class="caution-zone-title">Gold oversold stabilization with anomalous volume — potential safe-haven re-activation</h3>
+      </div>
+      <p class="caution-zone-text">Gold RSI at 19.75 and stochastic at 18.30 are deeply oversold, and the close has stabilized near the lower structural band. The continued anomalous volume pattern warrants monitoring. If the stabilization accelerates into a bounce accompanied by a VIX spike, it could signal a shift from rate-normalization to crisis-regime dynamics.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · Gold daily close rising more than 3% from current levels alongside VIX rising above 20
+      </div>
+    </article>
+  </section>
+
+  <!-- 07. Trader Guide -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 07 </span>
+      <h2 class="section-title"> Trader Guide </h2>
+      <span class="section-subtitle"> Guidance by level </span>
+    </div>
+    <blockquote class="guidance-essence">Today is a Stressed macro regime. Rate pressure and won weakness are structurally embedded — and the FX axis has re-intensified with USD/KRW bouncing back to 1,513.97 — while equity markets are running on independent momentum at historically extreme overbought levels. The macro environment must be checked before drilling into individual names.</blockquote>
+    <div class="guidance-tiers">
+      <div class="guidance-tier">
+        <span class="guidance-label">Beginner</span>
+        <p>Prioritize observation over new exposure. The macro environment is stressed even though equity indices look strong. Review risk levels on existing holdings, particularly in rate-sensitive sectors and won-denominated assets. The KOSPI above 8,476 is not a signal to chase.</p>
+      </div>
+      <div class="guidance-tier">
+        <span class="guidance-label">Intermediate</span>
+        <p>Consider maintaining reduced exposure relative to normal conditions in rate-sensitive and won-denominated assets. Focus only on the strongest confirmed clusters with clear fundamental support. Avoid chasing KOSPI at extreme overbought levels above 8,476 without a clear re-entry signal after a consolidation. Monitor USD/KRW closely — the bounce from 1,495 back to 1,513.97 is a key signal that the FX easing was not confirmed.</p>
+      </div>
+      <div class="guidance-tier">
+        <span class="guidance-label">Advanced</span>
+        <p>The FX axis has re-intensified with USD/KRW bouncing back above the upper structural band while the rate axis continues to ease on the daily basis — this creates an asymmetric signal environment. The USD/KRW re-acceleration above 1,510 with partial decoupling from DXY suggests Korea-specific outflow pressure. Volatility-sensitive strategies may be considered given the low VIX environment, but position sizing should account for the risk of sudden re-coupling from KOSPI&#39;s historically extreme overbought state. Monitor HY_OAS and USD/KRW as the leading indicators of regime change. The gold oversold stabilization with anomalous volume warrants monitoring for a potential safe-haven re-activation signal.</p>
+      </div>
+    </div>
+  </section>
+
+  </div></details><!--tier-c end-->
+
+  <!-- 08. Analysis Validity -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 08 </span>
+      <h2 class="section-title"> Analysis Validity</h2>
+      <span class="section-subtitle"> Applies for · How to use · Invalidation conditions</span>
+    </div>
+    <div class="freshness-box">
+      <div class="freshness-row">
+        <span class="freshness-icon">📅</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Applies for · 2 trading days</div>
+          <p class="freshness-text">This analysis is most valid until the next trading session opens (20260602). It expires immediately on a macro event such as a Federal Reserve communication, a significant economic data release (PCE, NFP, CPI), or a geopolitical shock. Validity drops sharply after 2 trading days given the current elevated FX volatility and the USD/KRW re-acceleration. The USD/KRW bounce from 1,495 back to 1,513.97 makes this analysis particularly sensitive to any FX move in either direction.</p>
+          <p class="freshness-text-soft">The USD/KRW re-acceleration signal is valid for approximately 1 trading day — the bounce from 1,495 to 1,513.97 is a key development that must be monitored for follow-through. The US_10Y developing easing signal is valid for approximately 1-2 trading days — the third consecutive daily close below 4.5% is meaningful but the rolling structural condition remains active. The KOSPI extreme overbought signal is valid for 1 trading day — the index is at historically extreme levels and the reversal risk is elevated. The oil correction signal with negative moving-average acceleration is valid for approximately 2-3 trading days. The VIX and HY_OAS benign signals are valid for 1-2 trading days. The gold oversold stabilization with anomalous volume is valid for 1 trading day pending confirmation.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🍽</span>
+        <div class="freshness-content">
+          <div class="freshness-label">How to use</div>
+          <p class="freshness-text">Pre-open macro-environment check for the 20260602 session. Use to adjust the interpretation weight of lower-tier ETF, sector, and individual stock signals — particularly for rate-sensitive and won-denominated assets. Pay special attention to the USD/KRW opening level and early FX flow given the bounce from 1,495 back to 1,513.97.</p>
+          <div class="freshness-chips">
+            <span class="freshness-chip">overnight U.S. market result and any Federal Reserve communications</span>
+            <span class="freshness-chip">USD/KRW opening level and early FX flow — particularly whether it holds above or falls below 1,507</span>
+            <span class="freshness-chip">U.S. 10-year yield direction in overnight trading — whether it sustains below 4.5% for a fourth consecutive session</span>
+            <span class="freshness-chip">KOSPI opening gap and early volume pattern given the extreme overbought state above 8,476</span>
+            <span class="freshness-chip">gold follow-through given the oversold stabilization and continued anomalous volume</span>
+          </div>
+          <p class="freshness-precaution"><strong>Caution · </strong>The confidence modifier is -1 (Stressed regime). Interpret lower-tier signals cautiously, particularly for Korean-asset and rate-sensitive positions. If dominant_risk changes (e.g., HY_OAS begins to widen or VIX spikes), partially discard this analysis and re-evaluate. The anomalous gold volume pattern should be monitored for follow-through. The USD/KRW re-acceleration above 1,510 is the dominant near-term signal — do not pre-emptively upgrade confidence based on the prior session&#39;s brief FX easing.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🚮</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Invalidation conditions · this report is voided in the following situations</div>
+          <ul class="freshness-discard">
+            <li>Intraday macro event: emergency Federal Reserve communication, geopolitical shock, or major economic data surprise (CPI, NFP, PCE) that materially changes the rate or FX outlook</li>
+            <li>VIX rising 30% or more from the current level of 16.05 (i.e., VIX above approximately 20.9) — would signal a sudden shift to a fear-driven regime</li>
+            <li>USD/KRW moving more than 2% beyond the current level (above approximately 1,544 or below approximately 1,484) — would signal a structural break in the FX regime</li>
+            <li>U.S. 10-year yield moving more than 0.3 percentage points from the current level (above 4.75% or below 4.15%) — would signal a significant shift in the rate environment</li>
+            <li>The recovery conditions stated above are met (U.S. 10-year yield sustaining below 4.5% for three or more sessions with rolling structural condition easing AND USD/KRW below 1,490 simultaneously) — would lower risk_level to MEDIUM and partially invalidate the current Stressed regime assessment</li>
+          </ul>
+        </div>
+      </div>
+    <div class="freshness-row"><span class="freshness-icon">⚖️</span><div class="freshness-content"><div class="freshness-label">Multi-dimensional invalidation conditions</div>
+<p class="multi-discard-down">⬇ Confidence downgrade: If 2 or more of the following axes are simultaneously impaired: (1) U.S. 10-year yield re-breaks above 4.5% and sustains (rates axis); (2) USD/KRW breaks above 1,525 and sustains (FX axis); (3) VIX spikes above 20 or rises more than 20% intraday (fear axis); (4) KOSPI declines more than 2% in a single session or foreign net selling exceeds 500 billion KRW (flow axis) — downgrade all lower-report signals one additional notch.</p>
+<p class="multi-discard-del">✕ Analysis discard: If 3 or more of the above axes occur simultaneously — discard this macro judgment immediately and treat the macro environment as EXTREME until a fresh analysis is produced. Example: U.S. 10-year yield above 4.67% + USD/KRW above 1,525 + VIX above 22 together would constitute a discard condition.</p>
+<p class="multi-discard-rec">↑ Restoration condition: If the number of impaired axes falls to 1 or fewer — review whether confidence can be partially restored. Specifically, if U.S. 10-year yield sustains below 4.5% for three or more consecutive sessions with the rolling moving-average acceleration turning negative, AND USD/KRW stabilizes below 1,490, the risk_level may be lowered to MEDIUM.</p>
+    </div></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-meta-row">
+      <span class="footer-meta-key"> Analysis scope </span>
+      <span> 11 macro indicators · 4 transmission stages · correlation flow</span>
+    </div>
+    <div class="footer-meta-row">
+      <span class="footer-meta-key"> System </span>
+      <span> ATMAN Flow Intelligence · MACRO_FLOW_EN_D MACRO_FLOW_EN_D_v1.0</span>
+    </div>
+  </footer>
+
+  <div class="disclaimer">
+    <div class="disclaimer-title"> Investment Disclaimer </div>
+    <div class="disclaimer-text">
+      <p> This report is macro-environment observation material auto-generated by ATMAN Flow Intelligence; it is not investment advice or a solicitation to trade.</p>
+      <p>The analysis observes the transmission flow and risk pressure of the macro environment (11 core/important indicators); it is not a buy/sell recommendation.</p>
+      <p>The report's wording constitutes observation and scenario material; it does not guarantee outcomes.</p>
+      <p>Investment decisions and any resulting profit or loss are solely the investor's responsibility, and actual markets may differ due to factors such as market volatility, data errors, and the gap between the analysis time and the actual market time.</p>
+      <p>ATMAN INVESTMENT bears no legal or financial responsibility for any investment outcome based on this report.</p>
+    </div>
+  </div>
+
+</body>
+</html>
