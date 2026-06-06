@@ -1,0 +1,1467 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN Daily Detail — 2026.06.06</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #FBF8F2;
+    --surface: #FFFFFF;
+    --surface-soft: #F4F0E6;
+    --text: #14181F;
+    --text-secondary: #4A5057;
+    --text-muted: #8B8E94;
+    --text-soft: #6B7077;
+    --border: #E8E3D5;
+    --border-strong: #C8C2B5;
+    --rule: #D9D3C4;
+    --rule-soft: #EAE5D7;
+    --accent-strong: #4A6741;
+    --accent-strong-soft: #EEF1E8;
+    --accent-flow: #B8893A;
+    --accent-flow-soft: #F6EFE0;
+    --accent-caution: #8B2C2C;
+    --accent-caution-soft: #F4E8E5;
+    --shadow: 0 1px 2px rgba(20, 24, 31, 0.04);
+    --risk-extreme: #5B0F0F;
+  }
+ 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss03", "ss04";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+ 
+  body {
+    padding: 28px 24px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+ 
+  /* AI banner (top) */
+  .ai-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-soft);
+    letter-spacing: 0.01em;
+    padding: 12px 0 14px;
+    margin-bottom: 32px;
+    text-align: center;
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+ 
+  /* Disclaimer (bottom) */
+  .disclaimer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    margin-top: 40px;
+  }
+ 
+  .disclaimer-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+ 
+  .disclaimer-text {
+    font-size: 11.5px;
+    color: var(--text-soft);
+    line-height: 1.75;
+    letter-spacing: -0.005em;
+  }
+ 
+  .disclaimer-text p {
+    margin-bottom: 10px;
+  }
+ 
+  .disclaimer-text p:last-child {
+    margin-bottom: 0;
+  }
+ 
+  /* ─── Header ─── */
+  .header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s ease-out;
+  }
+ 
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+ 
+  .eyebrow-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accent-caution);
+    border-radius: 50%;
+  }
+ 
+  .eyebrow-tag {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-soft);
+    padding: 3px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+  }
+ 
+  .date {
+    font-size: 13px;
+    color: var(--text-soft);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+ 
+  .headline {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.32;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+ 
+  /* ─── Three Views ─── */
+  .four-views {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 44px;
+    animation: fadeUp 0.6s ease-out 0.1s both;
+  }
+ 
+  .view-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+ 
+  .view-label-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+ 
+  .view-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+ 
+  .view-sublabel {
+    font-size: 11px;
+    color: var(--text-soft);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+  }
+ 
+  .view-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* ─── One Line ─── */
+  .one-line {
+    border-left: 2px solid var(--accent-caution);
+    padding: 8px 0 8px 24px;
+    margin: 0 0 80px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.6s ease-out 0.2s both;
+  }
+ 
+  /* ─── Section ─── */
+  .section {
+    margin-bottom: 80px;
+    animation: fadeUp 0.7s ease-out both;
+  }
+  .section:nth-of-type(1) { animation-delay: 0.3s; }
+  .section:nth-of-type(2) { animation-delay: 0.4s; }
+  .section:nth-of-type(3) { animation-delay: 0.5s; }
+ 
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 32px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+ 
+  .section-number {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    font-feature-settings: "tnum";
+  }
+ 
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.025em;
+  }
+ 
+  .section-subtitle {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-soft);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* ─── Essence Section ─── */
+  .essence-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.035em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+ 
+  .essence-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent-caution);
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--accent-caution-soft);
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+ 
+  .essence-description {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.8;
+    letter-spacing: -0.015em;
+    margin-bottom: 40px;
+  }
+ 
+  .divergence-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    padding: 24px 28px;
+    border-radius: 4px;
+  }
+ 
+  .divergence-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+ 
+  .divergence-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* ─── Flow Section ─── */
+  .flow-block {
+    margin-bottom: 36px;
+  }
+ 
+  .flow-block-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-flow);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+ 
+  .flow-block-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule-soft);
+  }
+ 
+  .flow-block-text {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+    letter-spacing: -0.015em;
+  }
+ 
+  /* destinations */
+  .destinations-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-flow);
+    text-transform: uppercase;
+    margin: 44px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+ 
+  .destination {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+  }
+ 
+  .destination:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+ 
+  .destination-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+ 
+  .destination-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-flow);
+    font-feature-settings: "tnum";
+    padding-top: 2px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .destination-title-wrap {
+    flex: 1;
+  }
+ 
+  .destination-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+ 
+  .destination-stage {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent-flow);
+    text-transform: uppercase;
+    padding: 3px 9px;
+    background: var(--accent-flow-soft);
+    border-radius: 2px;
+  }
+ 
+  .destination-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    margin-bottom: 10px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule-soft);
+  }
+ 
+  .destination-row:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+ 
+  .destination-row-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+ 
+  .destination-row-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+ 
+  /* market break conditions */
+  .breaks-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 44px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+ 
+  .breaks-list {
+    list-style: none;
+    padding: 0;
+  }
+ 
+  .breaks-list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+ 
+  .breaks-list li:last-child {
+    border-bottom: none;
+  }
+ 
+  .breaks-list .marker {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-feature-settings: "tnum";
+    padding-top: 2px;
+  }
+ 
+  /* ─── Caution Section ─── */
+  .caution-zone {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-caution);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+  }
+ 
+  .caution-zone:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+ 
+  .caution-zone-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+ 
+  .caution-zone-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-caution);
+    font-feature-settings: "tnum";
+    padding-top: 3px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .caution-zone-title {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+  }
+ 
+  .caution-zone-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    padding-left: 28px;
+  }
+ 
+  /* ─── Footer ─── */
+  .footer {
+    margin-top: 32px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    animation: fadeUp 0.6s ease-out 0.7s both;
+  }
+ 
+  .footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+ 
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--text);
+    transition: gap 0.2s ease;
+  }
+ 
+  .footer-link.back:hover { gap: 14px; }
+  .footer-link.back .arrow { order: -1; transform: rotate(180deg); }
+ 
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+ 
+  .footer-meta-row {
+    display: flex;
+    gap: 14px;
+  }
+ 
+  .footer-meta-key {
+    color: var(--text-muted);
+    font-weight: 600;
+    min-width: 70px;
+  }
+ 
+  .footer-meta-value {
+    color: var(--text-soft);
+  }
+ 
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+ 
+  /* ─── MACRO Banner ─── */
+  .macro-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--accent-strong);
+  }
+  .risk-medium  .macro-banner { border-left-color: var(--accent-flow);    }
+  .risk-high    .macro-banner { border-left-color: var(--accent-caution); }
+  .risk-extreme .macro-banner { border-left-color: var(--risk-extreme);   }
+
+  .macro-banner-head {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .macro-banner-level {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    padding: 3px 9px; border-radius: 3px;
+    background: var(--accent-strong-soft); color: var(--accent-strong);
+  }
+  .risk-medium  .macro-banner-level { background: var(--accent-flow-soft);    color: var(--accent-flow);     }
+  .risk-high    .macro-banner-level { background: var(--accent-caution-soft); color: var(--accent-caution);  }
+  .risk-extreme .macro-banner-level { background: var(--accent-caution);      color: #FFF;                   }
+
+  .macro-banner-label {
+    font-size: 14px; font-weight: 600; color: var(--text-secondary);
+  }
+  .macro-banner-count {
+    margin-left: auto; font-size: 11px; color: var(--text-muted);
+  }
+  .macro-banner-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 8px 0;
+  }
+  .macro-chip {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 9px; border-radius: 12px;
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+  .macro-banner-interp {
+    font-size: 12.5px; color: var(--text-secondary);
+    line-height: 1.7; margin-top: 8px;
+    padding-top: 8px; border-top: 1px solid var(--rule-soft);
+    font-style: italic;
+  }
+
+  .inflation-banner {
+    background: var(--accent-caution-soft);
+    border-left: 3px solid var(--accent-caution);
+    padding: 12px 16px; margin-bottom: 16px;
+    font-size: 12.5px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 10px;
+    border-radius: 3px;
+  }
+  .inflation-icon { color: var(--accent-caution); font-size: 16px; }
+
+  .caution-source {
+    margin-left: auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 2px 8px; border-radius: 2px;
+    background: var(--surface-soft); color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── guide box (collapsible) ─── */
+  .guide-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0;
+    margin: 0 auto 16px; max-width: 880px;
+    font-size: 13px;
+  }
+  .guide-summary {
+    cursor: pointer; list-style: none;
+    padding: 12px 18px;
+    display: flex; gap: 10px; align-items: center;
+    font-weight: 500; color: var(--text-secondary);
+    user-select: none;
+  }
+  .guide-summary::-webkit-details-marker { display: none; }
+  .guide-summary::after {
+    content: '▼'; margin-left: auto;
+    font-size: 9px; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .guide-box[open] .guide-summary::after { transform: rotate(180deg); }
+  .guide-box[open] .guide-summary {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+  .guide-icon { font-size: 15px; line-height: 1; }
+  .guide-content { padding: 16px 22px 20px; }
+  .guide-section { margin-bottom: 16px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .guide-section p { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0; }
+  .guide-section ol { font-size: 13.5px; color: var(--text); line-height: 1.7; margin: 0; padding-left: 20px; }
+  .guide-section ol li { margin-bottom: 4px; }
+  .term-list { margin: 0; font-size: 13px; line-height: 1.65; }
+  .term-list dt {
+    font-weight: 600; color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .term-list dt:first-child { margin-top: 0; }
+  .term-list dd { color: var(--text-secondary); margin: 2px 0 0 12px; }
+
+  /* ─── Executive Summary (always expanded) ─── */
+  .executive-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-strong);
+    border-radius: 4px; padding: 22px 26px;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .es-header {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft);
+  }
+  .es-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--accent-strong); text-transform: uppercase;
+  }
+  .es-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .es-grid {
+    display: grid; gap: 12px;
+  }
+  .es-item {
+    display: grid; grid-template-columns: 120px 1fr; gap: 14px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+  .es-key {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .es-value {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .es-env {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .es-env-label { font-weight: 600; }
+  .es-env-count {
+    font-size: 11.5px; color: var(--text-muted);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .es-tag {
+    display: inline-block; font-size: 10.5px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--accent-flow-soft); color: var(--accent-flow);
+    margin-right: 6px;
+    letter-spacing: 0.05em;
+  }
+  .es-stage {
+    display: inline-block; font-size: 10.5px;
+    padding: 1px 7px; border-radius: 9px;
+    background: var(--surface-soft); color: var(--text-secondary);
+    margin-left: 4px;
+  }
+  .es-discard {
+    color: var(--accent-caution);
+    font-size: 13.5px;
+  }
+
+  /* risk_level traffic-light SVG */
+  .risk-light { vertical-align: middle; flex-shrink: 0; }
+
+  /* ─── flow_stage dots ─── */
+  .flow-dots {
+    display: inline-flex; gap: 1px; align-items: center;
+    font-size: 12px; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--surface-soft);
+  }
+  .flow-dots-label {
+    margin-left: 6px; letter-spacing: 0;
+    font-size: 11px; color: var(--text-secondary); font-weight: 500;
+  }
+  .flow-dots.stage-early   { color: #22c55e; }
+  .flow-dots.stage-spread  { color: #3b82f6; }
+  .flow-dots.stage-late    { color: #f97316; }
+  .flow-dots.stage-danger  { color: #dc2626; }
+  .flow-dots.stage-unknown { color: var(--text-muted); }
+
+  /* ─── [v0.4LC] Cascade Conflict Banner ─── */
+  .cascade-conflict-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #FFF4E6; border: 1px solid #F5C896;
+    border-left: 3px solid #C8741C;
+    border-radius: 4px; padding: 14px 16px;
+    margin: 0 auto 18px; max-width: 880px;
+    font-size: 13px; color: #6B3F0A; line-height: 1.6;
+  }
+  .cascade-conflict-icon { font-size: 18px; line-height: 1; }
+  .cascade-conflict-banner strong { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .cascade-conflict-banner p { margin: 0; font-size: 13px; }
+
+  /* ─── [v0.4LC] Self Review ─── */
+  .self-review-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px; padding: 16px 20px; margin: 0 auto 24px;
+    max-width: 880px;
+  }
+  .self-review-first { border-left-color: var(--text-muted); }
+  .self-review-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .self-review-icon { font-size: 16px; line-height: 1; }
+  .self-review-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .self-review-date {
+    font-size: 11px; color: var(--text-soft);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .self-review-hitrate {
+    font-size: 11px; font-weight: 600; color: var(--accent-strong);
+    background: var(--accent-strong-soft);
+    padding: 2px 8px; border-radius: 10px; margin-left: auto;
+  }
+  .self-review-oneline {
+    font-size: 14px; color: var(--text); line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .self-review-text {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+    margin: 0;
+  }
+  .self-review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .sr-tag {
+    font-size: 11.5px; padding: 3px 9px;
+    border-radius: 10px; line-height: 1.4;
+  }
+  .sr-tag-hit { background: var(--accent-strong-soft); color: var(--accent-strong); }
+  .sr-tag-weak { background: var(--accent-flow-soft); color: var(--accent-flow); }
+  .sr-tag-fail { background: var(--accent-caution-soft); color: var(--accent-caution); }
+  .self-review-adjustment {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;
+    padding: 8px 12px; background: var(--surface-soft);
+    border-radius: 4px; margin: 4px 0 0;
+  }
+  .self-review-adjustment strong { color: var(--text); font-weight: 600; }
+
+  /* ─── [v0.4LC] Report Freshness ─── */
+  .section-freshness { background: transparent; }
+  .freshness-box {
+    background: var(--surface-soft); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px;
+  }
+  .freshness-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .freshness-row:first-child { padding-top: 0; }
+  .freshness-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .freshness-icon { font-size: 18px; line-height: 1.5; flex-shrink: 0; }
+  .freshness-content { flex: 1; min-width: 0; }
+  .freshness-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .freshness-text { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0 0 4px; }
+  .freshness-text-soft { font-size: 12.5px; color: var(--text-soft); line-height: 1.6; margin: 0; }
+  .freshness-precaution {
+    font-size: 12.5px; color: var(--accent-caution); line-height: 1.6;
+    margin: 8px 0 0;
+  }
+  .freshness-precaution strong { color: var(--accent-caution); font-weight: 600; }
+  .freshness-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px;
+  }
+  .freshness-chip {
+    font-size: 11.5px; color: var(--text-secondary);
+    background: var(--surface); padding: 3px 9px;
+    border-radius: 10px; border: 1px solid var(--rule);
+  }
+  .freshness-discard {
+    margin: 4px 0 0; padding-left: 18px;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+  }
+  .freshness-discard li { margin-bottom: 4px; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 560px) {
+    body { padding: 36px 20px 60px; }
+    .headline { font-size: 24px; }
+    .view-row { grid-template-columns: 1fr; gap: 6px; }
+    .view-label-wrap { flex-direction: row; gap: 10px; align-items: baseline; }
+    .view-label { font-size: 10px; }
+    .view-sublabel { font-size: 11px; }
+    .one-line { font-size: 16px; padding-left: 18px; margin-bottom: 60px; }
+    .section { margin-bottom: 60px; }
+    .section-header { flex-wrap: wrap; gap: 8px; }
+    .section-subtitle { margin-left: 0; width: 100%; }
+    .section-title { font-size: 19px; }
+    .essence-name { font-size: 22px; }
+    .essence-description { font-size: 15px; }
+    .destination, .caution-zone { padding: 18px 20px; }
+    .destination-row { grid-template-columns: 1fr; gap: 4px; }
+    .caution-zone-text { padding-left: 0; margin-top: 4px; }
+    .es-item { grid-template-columns: 1fr; gap: 3px; }
+    .es-item > *:first-child { font-weight: 600; }
+  }
+  @media (max-width: 420px) {
+    body { padding: 20px 11px 44px; }
+    .headline { font-size: 20px; }
+    .one-line { font-size: 15px; padding-left: 12px; margin-bottom: 40px; }
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 17px; }
+    .essence-name { font-size: 19px; }
+    .essence-description { font-size: 14px; }
+    .destination, .caution-zone { padding: 14px 14px; }
+    .breaks-list li { grid-template-columns: 22px 1fr; gap: 10px; }
+  }
+
+/* ── v0.5 extra styles ── */
+.rpt-banner{background:#fff;border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;line-height:1.55;margin:0}
+.report-tier{border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border,#e0e4eb)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.headline-sub{font-size:15px;line-height:1.6;margin:8px 0 0;max-width:680px;opacity:.8}
+.es-item-action .es-key{color:#1d4ed8;font-weight:700;text-transform:none;font-size:11px;letter-spacing:.02em}
+.es-item-action .es-value{border-left:3px solid #1d4ed8;padding-left:10px;font-weight:600;line-height:1.6}
+.es-item-signal .es-key{color:#6b7280;font-weight:700;text-transform:none;font-size:10px;font-style:italic}
+.es-item-signal .es-value{font-size:13px;font-style:italic}
+dt small{display:block;color:#9ca3af;font-size:9.5px;margin-top:2px}
+.focus-section{background:var(--surface,#fff);border:1px solid var(--border,#e0e4eb);border-radius:10px;padding:18px 20px;margin:16px 0}
+.focus-header{margin-bottom:14px}
+.focus-title{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.focus-note{display:block;font-size:12px;opacity:.7;margin-top:4px}
+.focus-clusters{font-size:12px;margin:0 0 10px;opacity:.8}
+.focus-card{border:1px solid var(--border,#e0e4eb);border-radius:8px;padding:14px 16px;margin-bottom:10px;background:var(--surface-soft,#fafbfd)}
+.focus-card:last-of-type{margin-bottom:0}
+.focus-card-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.focus-name{font-size:14px;font-weight:700}
+.focus-code{font-size:11px;opacity:.6}
+.focus-group{font-size:11px;color:#1d4ed8;background:#eff6ff;padding:2px 8px;border-radius:8px}
+.focus-badge{font-size:10px;font-weight:700;color:#16a34a;background:#f0fdf4;padding:2px 8px;border-radius:8px;border:1px solid #bbf7d0}
+.focus-desc{font-size:13px;line-height:1.7;margin-bottom:8px}
+.focus-state{font-size:12px;opacity:.7;line-height:1.6;margin-bottom:6px;font-style:italic}
+.focus-ref{font-size:11px;opacity:.5}
+.focus-empty{font-size:13px;opacity:.6;padding:8px 0}
+
+
+/* ── SUMMARY v2 extra styles ── */
+.essence-para{margin-bottom:14px;line-height:1.75}
+.essence-para-label{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;color:#6b7280;text-transform:uppercase;margin-bottom:4px}
+.dest-priority{font-size:10px;font-weight:700;color:#1d4ed8;background:#eff6ff;padding:2px 8px;border-radius:8px;margin-right:6px}
+.scorecard-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
+.scorecard-table th{background:#f3f4f6;padding:6px 10px;text-align:left;font-weight:700;color:#374151}
+.scorecard-table td{padding:6px 10px;border-top:1px solid #e5e7eb}
+.sc-hit{color:#16a34a;font-weight:600}
+.sc-partial{color:#b4790f;font-weight:600}
+.sc-miss{color:#dc2626;font-weight:600}
+
+</style>
+</head>
+<body class="risk-high">
+ 
+  <div class="ai-banner">
+    🤖 AI-generated analysis &nbsp;·&nbsp; for reference only
+  </div>
+
+
+
+
+
+  <div class="macro-banner">
+    <div class="macro-banner-head">
+      <span class="macro-banner-level">HIGH</span>
+      <span class="macro-banner-label">Stressed</span>
+      <span class="macro-banner-count">Macro warnings 3/11</span>
+    </div>
+    <div class="macro-banner-chips"><span class="macro-chip">Bitcoin</span><span class="macro-chip">Volatility</span><span class="macro-chip">Dollar</span></div>
+    <p class="macro-banner-interp">The macro environment has shifted from Elevated to Stressed with the BTC-equity decoupling breaking down on 20260605 — VIX spiked +32% to 21.51 (structural and change conditions both met), NASDAQ declined -4.18% (structural and change conditions both met), and Bitcoin&#39;s five-session decline from the 20260527 close has reached approximately -18.9%, within 1.1 percentage points of the acute -20% shock threshold. The dollar index has broken above 100 for the first time in the observed window. Credit spreads remain at historically tight levels on the latest available data (20260604) but the response is pending FRED data resumption — if HY_OAS widens significantly, the regime may shift toward EXTREME.</p>
+  </div>
+
+  <header class="header">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>ATMAN SUMMARY · Today's Market Map</span>
+      <span class="eyebrow-tag">Detailed Analysis</span>
+    </div>
+    <div class="date">June 6, 2026 (Sat)</div>
+    <h1 class="headline">A Stressed macro regime has transmitted directly into the sector capital structure</h1>
+  <p class="headline-sub">the BTC-equity decoupling has broken down, the AI infrastructure cluster has collapsed from primary capital destination to broad outflow in a single session, and capital is concentrating into a narrow defensive shelter of insurance, consumer staples, and healthcare under a case_6 extreme concentration protocol that suspends all actionable signals.</p>
+  </header>
+
+<div class="rpt-banner">
+<div class="rpt-bn-row rpt-bn-concl"><span class="rpt-bn-tag">Today's Conclusion</span><p>A Stressed macro regime — VIX spiked +32%, NASDAQ declined -4.18%, S&amp;P 500 declined -2.64%, and Bitcoin&#39;s five-session decline has reached approximately -18.9% approaching the acute -20% threshold — has triggered a broad-based capital withdrawal from all growth, AI infrastructure, materials, and financial sectors, with capital concentrating into a narrow defensive cluster of insurance, consumer staples, and healthcare under an extreme-concentration (case_6) capital environment.</p></div>
+<div class="rpt-bn-row rpt-bn-act"><span class="rpt-bn-tag">How to Prioritize</span><p>Before assigning higher confidence to any defensive cluster signal, confirm whether the insurance and consumer staples inflows are sustaining into a second session or represent a single-day flight-to-safety that reverses on stabilization — the healthcare cluster&#39;s two-session continuity from yesterday provides the most durable structural basis among the three defensive destinations, and all three warrant structured observation rather than active engagement under the current case_6 protocol.</p></div>
+<div class="rpt-bn-row rpt-bn-cond"><span class="rpt-bn-tag">Today's Key Condition</span><p>Whether VIX retreats below 18 and NVDA and MRVL show positive price action with above-average traded value for two consecutive sessions is the single most important condition to confirm — those two signals together would indicate that the macro shock is a one-session capitulation rather than the beginning of a sustained outflow regime, and would be the prerequisite for any re-engagement with growth sectors.</p></div>
+</div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- guide box (first-time readers — collapsed by default) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <details class="guide-box">
+    <summary class="guide-summary">
+      <span class="guide-icon">📖</span>
+      <span>New to this report? (expand to read)</span>
+    </summary>
+    <div class="guide-content">
+      <div class="guide-section">
+        <h4>What this report does</h4>
+        <p>It integrates three views — MACRO (macro environment), SECTOR (U.S. industries), and Sector Stock (stocks within capital clusters) — to surface the essence of today's market in one view.</p>
+      </div>
+      <div class="guide-section">
+        <h4>Common terms</h4>
+        <dl class="term-list">
+          <dt>Macro environment strength</dt><dd>Classifies the market environment into 4 levels: NORMAL / MEDIUM / HIGH / EXTREME.<small>internal: risk_level</small></dd>
+          <dt>Cross-analysis level</dt><dd>How strongly the three views — Macro / Sector / Sector Stock — point in the same direction.<small>internal: convergence_level</small></dd>
+          <dt>Essence of today's market</dt><dd>The core structure of today's market that only emerges when the four reports are read together.<small>internal: essence</small></dd>
+          <dt>Capital rotation stage</dt><dd>Which stage current capital inflow is in: early inflow → spreading → late → chase risk.<small>internal: flow_stage</small></dd>
+          <dt>Signal-scarce state</dt><dd>Shown when there aren't enough signals worth pointing to today.<small>internal: silence_clause</small></dd>
+        </dl>
+      </div>
+      <div class="guide-section">
+        <h4>How to read it</h4>
+        <ol>
+          <li>Start with the executive summary box at the top</li>
+          <li>Check the macro-environment traffic light for market pressure</li>
+          <li>Expand only the detailed sections you care about</li>
+          <li>Check the validity section at the bottom for the report's applicable period / discard conditions</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- Executive Summary (always expanded) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="executive-summary">
+    <div class="es-header">
+      
+      <h2 class="es-title">Executive Summary</h2>
+    </div>
+    <div class="es-grid">
+      <div class="es-item">
+        <div class="es-key">Macro environment</div>
+        <div class="es-value es-env">
+          <svg class="risk-light" width="72" height="20" viewBox="0 0 72 20" xmlns="http://www.w3.org/2000/svg" aria-label="risk level HIGH">
+  <circle cx="10" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="28" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="46" cy="10" r="7" fill="#f97316" />
+  <circle cx="64" cy="10" r="7" fill="#e5e7eb" />
+</svg>
+          <span class="es-env-label">HIGH · Stressed</span>
+          <span class="es-env-count">Warnings 3/11</span>
+        </div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Today's essence</div>
+        <div class="es-value"><span class="es-tag">converged</span> Macro shock transmission confirmed — broad capital withdrawal into a narrow defensive shelter</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Capital flow</div>
+        <div class="es-value">→ Healthcare · Insurance <span class="es-stage">early inflow</span></div>
+      </div>
+      <div class="es-item es-item-action">
+        <div class="es-key">How to Prioritize</div>
+        <div class="es-value">Before assigning higher confidence to any defensive cluster signal, confirm whether the insurance and consumer staples inflows are sustaining into a second session or represent a single-day flight-to-safety that reverses on stabilization — the healthcare cluster&#39;s two-session continuity from yesterday provides the most durable structural basis among the three defensive destinations, and all three warrant structured observation rather than active engagement under the current case_6 protocol.</div>
+      </div>
+      <div class="es-item es-item-signal">
+        <div class="es-key">Signal reading</div>
+        <div class="es-value">All sector signals carry one notch of reduced confidence and one-step-down action treatment given the Stressed macro regime — early inflow signals in the defensive cluster should be treated as observation areas rather than actionable areas; the case_6 extreme concentration protocol independently suspends all actionable signals; the macro environment is the dominant frame today and lower-tier signals are subordinate to it.</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Invalidation condition</div>
+        <div class="es-value es-discard">Bitcoin five-session decline breaching -20% from the 20260527 close of 74,344 (approximately 59,475) — immediately intensifies the macro warning; discard the current rotation confidence level</div>
+      </div>
+    </div>
+  </section>
+
+    <div class="self-review-box">
+      <div class="self-review-head">
+        <span class="self-review-icon">🪞</span>
+        <span class="self-review-label">Self-scoring of yesterday's market synthesis</span>
+        <span class="self-review-date">2026.06.05</span>
+        <span class="self-review-hitrate">Hit rate 3/6</span>
+      </div>
+      <p class="self-review-oneline">The healthcare cluster as the cleanest signal call was correct (managed care and pharmaceuticals sustained for a second session); the AI infrastructure internal conflict signal verification condition was correctly identified as the key condition; the materials cluster breakdown call was correct; the financial services recovery deferred classification was correct in hindsight; the macro regime shift from Elevated to Stressed was anticipated as a caution zone but the speed of the transition (single session) was faster than the prior analysis implied.</p>
+      <div class="self-review-tags">
+        <span class="sr-tag sr-tag-hit">✓ Healthcare cluster (managed care and pharmaceuticals) as the cleanest defensive signal — confirmed for a second consecutive session</span>
+        <span class="sr-tag sr-tag-hit">✓ AI infrastructure internal conflict signals (MU, AVGO, CIEN) as the key verification condition — resolved as confirmed propagation to NVDA and MRVL</span>
+        <span class="sr-tag sr-tag-hit">✓ Materials cluster breakdown — confirmed and extended (FCX -9.07%, AA -7.86%)</span>
+        <span class="sr-tag sr-tag-hit">✓ Elevated macro regime with Bitcoin approaching the acute threshold — regime has now shifted to Stressed as anticipated</span>
+        <span class="sr-tag sr-tag-weak">↓ Financial services recovery (GS, C, MS) — yesterday&#39;s early recovery has reversed sharply; the deferred classification was correct but the reversal was faster than anticipated</span>
+        <span class="sr-tag sr-tag-fail">✗ Biotechnology and medical research as priority-2 next observation area — INSM -10.20%, TEM -11.16%, ABVX -3.24%; the healthcare cluster expansion to biotechnology did not materialize in the risk-off environment</span>
+        <span class="sr-tag sr-tag-fail">✗ Financial services recovery cluster (diversified investment services as next expansion candidate) — the recovery reversed entirely; the priority-3 next observation area did not materialize</span>
+        <span class="sr-tag sr-tag-fail">✗ Semiconductor equipment and testing as priority-1 next observation area — the AI infrastructure cluster collapsed rather than expanding to semiconductor equipment</span>
+      </div>
+      <p class="self-review-adjustment"><strong>Applied to today's analysis · </strong>All three next observation areas from yesterday missed in the risk-off event — the lesson is that in a Stressed macro regime with case_6 activation, lag-chain extension calls within growth clusters are not valid; the only valid next observation areas are within the defensive cluster. Applied the macro regime shift speed lesson from the sector self-review: when upstream macro flags VIX approaching structural thresholds and Bitcoin approaching the acute threshold simultaneously, pre-emptively treat all growth-cluster next observation areas as observation-only rather than actionable. Elevated healthcare cluster to priority-1 next observation area based on two-session continuity.</p>
+    </div>
+ 
+  <section class="four-views">
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">Macro</span>
+        <span class="view-sublabel">Macro environment</span>
+      </div>
+      <div class="view-text">HIGH risk (Stressed) — three active warnings: VIX +32% spike to 21.51 (structural and change conditions met), NASDAQ -4.18% (structural and change conditions met), Bitcoin five-session decline approximately -18.9% approaching the acute -20% threshold (structural condition met, six-plus consecutive bars below lower structural band); DXY daily close 100.07 borderline; yield curve and US 10-year borderline; credit spreads stale pending FRED resumption; one notch of reduced confidence and one-step-down action modifier apply to all lower-tier signals.</div>
+    </div>
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">Sector</span>
+        <span class="view-sublabel">U.S. industries</span>
+      </div>
+      <div class="view-text">Case_6 extreme concentration — broad-based capital withdrawal from all growth, AI infrastructure, materials, energy, and financial sectors; defensive insurance cluster (property and casualty, multiline, life and health, reinsurance) and consumer staples cluster (personal care, household products, tobacco, beverages, food) are the only capital destinations; healthcare cluster (managed care, pharmaceuticals) sustaining from yesterday; active sector ratio collapsed to approximately 12%; all actionable signals suspended per case_6 protocol.</div>
+    </div>
+    <div class="view-row">
+      <div class="view-label-wrap">
+        <span class="view-label">Sector Stock</span>
+        <span class="view-sublabel">Stocks within capital clusters</span>
+      </div>
+      <div class="view-text"></div>
+    </div>
+  </section>
+ 
+  <blockquote class="one-line">
+    The macro shock has transmitted fully into the sector structure — AI infrastructure has collapsed from leading to broad outflow, a narrow defensive cluster of insurance, consumer staples, and healthcare is the only capital destination, and the net capital flow is withdrawal rather than rotation; case_6 extreme concentration protocol is active and all actionable signals are suspended pending VIX stabilization and AI infrastructure cluster confirmation.
+  </blockquote>
+ 
+  
+ 
+  <!-- ═══════════════════════════════════════════════ -->
+    <details class="report-tier tier-b">
+  <summary><span class="tier-chev">&#9658;</span> <b>1-Minute Read</b><span class="tier-dn">&nbsp;Market essence &middot; capital-flow outlook &middot; today's observation focus</span></summary>
+  <div class="tier-body">
+<!-- 01. Market essence -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Market Essence</h2>
+      <span class="section-subtitle">where the four views meet</span>
+    </div>
+ 
+    <span class="essence-meta">CONVERGENCE — converged</span>
+    <h3 class="essence-name" >Macro shock transmission confirmed — broad capital withdrawal into a narrow defensive shelter</h3>
+
+
+    <p class="essence-description" >
+      MACRO and SECTOR are fully aligned today in a way that was not true for the prior two sessions: the Stressed macro regime (VIX spike, NASDAQ breakdown, Bitcoin approaching the acute threshold) has transmitted directly into the sector capital structure, collapsing the AI infrastructure cluster from yesterday&#39;s primary capital destination to broad simultaneous outflow, and concentrating the remaining inflows into a narrow defensive cluster of insurance, consumer staples, and healthcare. The part visible only when MACRO and SECTOR are read together is the asymmetry of the transmission: the outflow from AI infrastructure (approximately 32% combined value share) is far larger in absolute terms than the inflow into the defensive cluster (approximately 12% combined value share), meaning this is net capital withdrawal from the market, not a rotation. The market is not moving capital from one growth destination to another — it is reducing equity exposure overall.
+
+What changed relative to the prior two sessions is decisive and structural. The BTC-equity decoupling that persisted for approximately ten days has broken down in a single session. Yesterday&#39;s pending signals — whether MU and AVGO declines would propagate to NVDA and MRVL, and whether CIEN&#39;s decline would spread to LITE and CSCO — have resolved as confirmed propagation: NVDA declined -6.20%, MRVL declined -16.74%, LITE declined -8.62%, CSCO declined -6.43%. The AI infrastructure cluster has transitioned from leading with internal conflict signals to broad simultaneous outflow in one session. Simultaneously, the financial services recovery that appeared to be forming yesterday (GS +4.96%, C +4.02%, MS +3.87%) has reversed sharply (GS -4.94%, C -1.98%, MS -2.90%), confirming that yesterday&#39;s single-session recovery was a technical bounce rather than a sustained rotation. The only structural continuity from yesterday is the healthcare cluster — managed care and pharmaceuticals have now sustained positive price action for two consecutive sessions, providing the most durable signal in the current environment.
+
+Caution remains warranted on two structural grounds that are more acute today than yesterday. First, the macro environment is Stressed with Bitcoin within 1.1 percentage points of the acute -20% shock threshold — a breach would intensify the warning and increase the probability of further propagation to credit, which remains unconfirmed on the latest available data (20260604); if HY_OAS widens significantly when FRED data resumes, the regime may shift toward EXTREME and confidence in all signals would be reduced by a further notch. Second, the case_6 extreme concentration protocol is active — the defensive cluster inflows are genuine but small in absolute terms relative to the outflows, and the protocol suspends all actionable signals; the defensive clusters are observation areas, not engagement areas, until the macro environment stabilizes.
+    </p>
+
+
+    <div class="divergence-block" >
+      <div class="divergence-label">Nature of the divergence</div>
+      <p class="divergence-text" >
+        
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- 02. Capital flow -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header" >
+      <span class="section-number" > 02 </span>
+      <h2 class="section-title">Capital Flow</h2>
+      <span class="section-subtitle">capital-flow outlook</span>
+    </div>
+ 
+    <div class="flow-block" >
+      <div class="flow-block-label" >
+        <svg width = "16" height = "16" viewBox = "0 0 16 16" fill = "none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4 L4 12"/>
+          <path d="M7 4 L4 4 L4 7"/>
+        </svg>
+        <span>Where capital came from</span>
+        <span class="flow-block-label-line" ></span>
+      </div>
+      <p class="flow-block-text" >
+        Capital has departed the AI infrastructure cluster (semiconductors, communications and networking, electronic equipment, heavy electrical equipment — combined value share approximately 32%), materials and energy (specialty metals, gold, uranium, oil — approximately 12% value share), financial services (investment banking, banks, consumer lending — yesterday&#39;s single-session recovery fully reversed), and growth and discretionary sectors (software, online services, fintech, apparel, autos). The AI infrastructure cluster was the primary capital destination as recently as yesterday — its transition to primary capital source in a single session is the defining capital-flow event of the current regime.
+      </p>
+    </div>
+
+
+    <div class="flow-block" >
+      <div class="flow-block-label" >
+        <svg width = "16" height = "16" viewBox = "0 0 16 16" fill = "none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="8" r="2.5"/>
+          <circle cx="8" cy="8" r="6" opacity="0.5"/>
+        </svg>
+        <span>Where capital is now</span>
+        <span class="flow-block-label-line" ></span>
+      </div>
+      <p class="flow-block-text" >
+        Capital is currently concentrated in a narrow defensive cluster: the insurance cluster (property and casualty, multiline, life and health, reinsurance — combined value share approximately 4%) is the primary destination, the consumer staples cluster (personal care, household products, tobacco, beverages, food — approximately 8% value share) is the secondary destination, and the healthcare cluster (managed care, pharmaceuticals — approximately 6% value share) is the tertiary destination sustaining from yesterday. The total defensive inflow destination represents approximately 18% of market capital value share, against outflows from sectors representing approximately 56% of market capital value share — confirming net capital withdrawal rather than rotation.
+      </p>
+    </div>
+
+
+    <h4 class="destinations-title">Areas where capital may arrive next</h4>
+ 
+    <article class="destination">
+      <div class="destination-header">
+        <span class="destination-number">01</span>
+        <div class="destination-title-wrap">
+          <div class="destination-title">Healthcare cluster — managed care and pharmaceuticals sustaining, with advanced medical equipment as the adjacent next candidate if the cluster expands</div>
+          <span class="flow-dots stage-early" title="early inflow">●○○○ <span class="flow-dots-label">early inflow</span></span>
+        </div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Flow basis</div>
+        <div class="destination-row-text">The healthcare cluster is the only capital destination with two consecutive sessions of confirmed positive price action (managed care and pharmaceuticals both positive on 20260605 and 20260606). The two-session continuity distinguishes it from the insurance and consumer staples clusters, which are confirmed on a single session only. If the macro shock persists for a second session, the healthcare cluster&#39;s structural durability makes it the highest-priority observation area within the defensive cluster. Advanced medical equipment is the adjacent next candidate within the healthcare code-prefix group, but it is currently in outflow — it would only become relevant if managed care and pharmaceuticals sustain inflow for a third consecutive session.</div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Break condition</div>
+        <div class="destination-row-text">If managed care and pharmaceuticals fail to sustain positive price action in the next session (value ratios falling below 1.0), the two-session continuity thesis breaks and the healthcare cluster reverts to a single-session signal. Also breaks if VIX retreats sharply below 18 and the macro environment stabilizes — in that scenario, capital would likely rotate back toward growth sectors rather than continuing to accumulate in defensive healthcare.</div>
+      </div>
+    </article>
+    <article class="destination">
+      <div class="destination-header">
+        <span class="destination-number">02</span>
+        <div class="destination-title-wrap">
+          <div class="destination-title">Insurance cluster — property and casualty and multiline insurance co-moving, with life and health insurance as the adjacent next candidate</div>
+          <span class="flow-dots stage-early" title="early inflow">●○○○ <span class="flow-dots-label">early inflow</span></span>
+        </div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Flow basis</div>
+        <div class="destination-row-text">The insurance cluster is the primary defensive destination today with the highest breadth (1.0 across all major names) and the lowest heat scores (15–18) of any inflow sector. The cross-flow correlation between property and casualty and multiline insurance is 0.88 — the highest in today&#39;s session. Life and health insurance is the adjacent next candidate within the 5530 code-prefix group and is already confirmed in early-stage inflow. The path logic is the flight-to-safety driver: in a sustained Stressed macro regime, insurance names benefit from both defensive capital allocation and the potential for higher investment income from elevated rates.</div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Break condition</div>
+        <div class="destination-row-text">If VIX retreats below 18 and the S&amp;P 500 recovers above its lower structural band on the rolling series, the flight-to-safety driver weakens and insurance inflows are likely to reverse. Also breaks if the macro environment shifts toward EXTREME — in that scenario, even defensive sectors may face selling pressure as investors reduce overall equity exposure.</div>
+      </div>
+    </article>
+    <article class="destination">
+      <div class="destination-header">
+        <span class="destination-number">03</span>
+        <div class="destination-title-wrap">
+          <div class="destination-title">Ground freight and logistics — showing resilience in today&#39;s broad decline as a potential defensive infrastructure observation area</div>
+          <span class="flow-dots stage-early" title="early inflow">●○○○ <span class="flow-dots-label">early inflow</span></span>
+        </div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Flow basis</div>
+        <div class="destination-row-text">Ground freight and logistics (UNP +3.19%, CSX +1.64%, FDXF +6.42%) is showing positive price action in a session where virtually all non-defensive sectors are declining. The path logic is the defensive infrastructure driver: freight and logistics names benefit from stable demand regardless of the economic cycle and are less sensitive to the growth-stock and AI infrastructure themes that are driving today&#39;s outflows. This is a pending signal requiring verification — it is not yet confirmed as a genuine defensive rotation.</div>
+      </div>
+      <div class="destination-row">
+        <div class="destination-row-label">Break condition</div>
+        <div class="destination-row-text">If UNP and CSX fail to maintain positive price action for two consecutive sessions, the signal is a temporary anomaly rather than a genuine defensive rotation. Also breaks if FDXF&#39;s +6.42% move is confirmed as a single-name catalyst event rather than a cluster-level signal.</div>
+      </div>
+    </article>
+
+
+    <h4 class="breaks-title">Break points where the overall market flow could snap</h4>
+    <ol class="breaks-list" >
+            <li>
+        <span class="marker">A</span>
+        <span>Bitcoin five-session decline breaching -20% from the 20260527 close of 74,344 (approximately 59,475) — would intensify the macro warning and increase the probability of further propagation to credit; if accompanied by HY_OAS widening, the regime would shift toward EXTREME</span>
+      </li>
+      <li>
+        <span class="marker">B</span>
+        <span>VIX daily close at or above 25 — absolute threshold breach; would intensify the volatility warning and likely trigger further equity selling</span>
+      </li>
+      <li>
+        <span class="marker">C</span>
+        <span>HY_OAS widening significantly when FRED data resumes — if credit spreads widen above the upper structural band or by +1.0 percentage point or more from 2.74, the regime shifts toward EXTREME and all defensive cluster signals lose their relative-strength basis</span>
+      </li>
+      <li>
+        <span class="marker">D</span>
+        <span>S&amp;P 500 declining -2% or more in a second consecutive session — would confirm that today is not a one-session capitulation but the beginning of a sustained outflow regime</span>
+      </li>
+      <li>
+        <span class="marker">E</span>
+        <span>DXY rolling structural condition confirmed (five consecutive bars above the upper structural band of approximately 99.82) — would add a dollar warning and intensify pressure on commodities and international names</span>
+      </li>
+    </ol>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+    </div></details><!--tier-b end-->
+
+  <details class="report-tier tier-c" >
+  <summary ><span class="tier-chev" > &#9658;</span> <b>Detailed Basis</b><span class="tier-dn">&nbsp;Areas to watch &middot; four-view summary</span></summary>
+  <div class="tier-body" >
+<!-- 03. Areas to watch -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Areas to Watch</h2>
+      <span class="section-subtitle">handle with care</span>
+    </div>
+ 
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">01</span>
+        <h3 class="caution-zone-title">Bitcoin within 1.1 percentage points of the acute five-session shock threshold</h3>
+        <span class="caution-source">MACRO</span>
+      </div>
+      <p class="caution-zone-text">Bitcoin&#39;s five-session decline from the 20260527 close of 74,344 to the 20260606 close of 60,264 is approximately -18.9% — within 1.1 percentage points of the acute -20% threshold of approximately 59,475. The rolling close has been below the lower structural band for six or more consecutive bars. A breach of the acute threshold would intensify the macro warning and increase the probability of further propagation to credit markets. Given that the BTC-equity decoupling has already broken down (equities declined sharply on 20260605), a further BTC decline would remove the last argument that the equity response was a one-session event.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">02</span>
+        <h3 class="caution-zone-title">Credit spread response pending — HY_OAS stale by one business day</h3>
+        <span class="caution-source">MACRO</span>
+      </div>
+      <p class="caution-zone-text">High-yield credit spreads remain at historically tight levels on the latest available FRED data (20260604 close 2.74%), but the 20260605 and 20260606 readings are not yet available. Given the VIX spike and equity breakdown on 20260605, credit spreads are likely to have widened. If HY_OAS widens above the upper structural band (approximately 2.81%) or by +1.0 percentage point or more from 2.74%, a credit warning would be added and the regime may shift toward EXTREME. The credit response is the single most important pending data point for regime classification.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">03</span>
+        <h3 class="caution-zone-title">AI infrastructure cluster — do not engage until stabilization is confirmed over multiple sessions</h3>
+        <span class="caution-source">SECTOR</span>
+      </div>
+      <p class="caution-zone-text">The AI infrastructure cluster (semiconductors, communications and networking, electronic equipment, heavy electrical equipment) has transitioned from yesterday&#39;s primary capital destination to broad simultaneous outflow in a single session. NVDA declined -6.20%, MRVL declined -16.74%, LITE declined -8.62%, CSCO declined -6.43%, AAOI declined -12.76%, BE declined -9.53%. The cluster&#39;s combined value share is approximately 32% of total market capital — the outflow is large in absolute terms. The cluster is not suitable for new exposure until NVDA and MRVL show positive price action with above-average traded value for two consecutive sessions and VIX retreats below 18.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">04</span>
+        <h3 class="caution-zone-title">Case_6 extreme concentration protocol — all actionable signals suspended</h3>
+        <span class="caution-source">Integrated</span>
+      </div>
+      <p class="caution-zone-text">The capital environment has shifted to case_6 (extreme concentration) with the active sector ratio collapsed to approximately 12% and total capital volume elevated by panic-driven selling. In a case_6 environment, the concentration pattern reflects panic-driven outflow from growth and AI infrastructure into a narrow defensive cluster. The defensive cluster inflows are genuine but small in absolute terms — insurance approximately 4% value share, consumer staples approximately 8%, healthcare approximately 6% — relative to the outflows from sectors representing approximately 56% of market capital value share. This is net capital withdrawal, not rotation. No new exposure is appropriate.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">05</span>
+        <h3 class="caution-zone-title">VIX approaching the absolute threshold of 25</h3>
+        <span class="caution-source">MACRO</span>
+      </div>
+      <p class="caution-zone-text">VIX closed at 21.51 on 20260605 — the structural and change conditions are both met. A further rise toward 25 would meet the absolute condition and intensify the warning. The absolute threshold of 25 is approximately 16% above the current close. The VIX spike from 15.40 to 21.51 in a single session represents a regime shift from suppressed to elevated volatility — the transition from elevated to acute volatility (above 25) would signal that the current risk-off move is not a one-session event.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">06</span>
+        <h3 class="caution-zone-title">Dollar index borderline — daily close above 100 for the first time in the observed window</h3>
+        <span class="caution-source">MACRO</span>
+      </div>
+      <p class="caution-zone-text">The DXY daily close of 100.07 on 20260605 is the first close above 100 in the observed window and above the rolling upper structural band of approximately 99.82. The rolling structural condition (five consecutive bars above the upper structural band) is not yet confirmed, and the five-session and twenty-session change conditions are not met. However, the dollar&#39;s break above 100 is consistent with a broad risk-off flight to the dollar and is suppressing gold prices. If the rolling structural condition is confirmed, a DXY warning would be added, potentially shifting the regime toward EXTREME.</p>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">07</span>
+        <h3 class="caution-zone-title">Defensive cluster inflows are shelters, not growth destinations — do not extrapolate</h3>
+        <span class="caution-source">Integrated</span>
+      </div>
+      <p class="caution-zone-text">The insurance, consumer staples, and healthcare clusters are receiving genuine capital inflows in today&#39;s risk-off environment, but their combined value share (approximately 18%) is far smaller than the outflows from growth and AI infrastructure sectors (approximately 56% value share). The defensive inflows represent capital seeking shelter, not capital rotating into a new growth theme. If the macro environment stabilizes and VIX retreats, these defensive inflows are likely to reverse as capital rotates back toward growth sectors. Treating the defensive cluster as a sustained rotation destination rather than a temporary shelter would be a structural misread.</p>
+    </article>
+ 
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+    </div></details><!-- tier-c end -->
+
+<!-- 04. Analysis validity -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section section-freshness">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Analysis Validity</h2>
+      <span class="section-subtitle">Applies for &middot; How to use &middot; Invalidation conditions</span>
+    </div>
+ 
+    <div class="freshness-box">
+      <div class="freshness-row">
+        <span class="freshness-icon">📅</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Applies for · 1 trading days</div>
+          <p class="freshness-text">Most valid during the 20260606 U.S. session pre-open and intraday. Validity declines sharply after the close given the rapidly evolving Stressed regime. On the next trading day it is treated as yesterday&#39;s integration. The case_6 protocol and defensive cluster inflow signals may persist for two to three sessions if the macro shock continues, but the specific next observation areas require daily re-assessment.</p>
+          <p class="freshness-text-soft">essence_description is valid one to two trading days if the Stressed regime persists. next_observation_areas (healthcare, insurance, ground freight) are valid one to two trading days given the defensive cluster&#39;s structural basis. market_break_conditions are valid one to two trading days given the rapidly evolving regime. The AI infrastructure outflow classification is valid until NVDA and MRVL show two consecutive sessions of positive price action with above-average volume.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🍽</span>
+        <div class="freshness-content">
+          <div class="freshness-label">How to use</div>
+          <p class="freshness-text">Pre-open macro-environment check for the 20260606 U.S. session. Use to confirm that a confidence reduction and one-step-down action treatment apply to all sector and stock signals. The defensive cluster (insurance, consumer staples, healthcare) is the only observation priority — monitor for whether inflows sustain into a second session. The AI infrastructure cluster is not suitable for new exposure.</p>
+          <div class="freshness-chips">
+            <span class="freshness-chip">VIX intraday level relative to 18 (recovery threshold) and 25 (absolute warning threshold)</span>
+            <span class="freshness-chip">Bitcoin intraday price relative to 59,475 (acute -20% threshold from the 20260527 close of 74,344)</span>
+            <span class="freshness-chip">NVDA and MRVL intraday price action and traded volume — key stabilization indicators for AI infrastructure cluster</span>
+            <span class="freshness-chip">HY_OAS credit spread data when FRED resumes — the single most important pending data point for regime classification</span>
+            <span class="freshness-chip">DXY intraday level relative to 100 and the rolling upper structural band of approximately 99.82</span>
+            <span class="freshness-chip">US 10-year yield intraday level relative to 4.5% when FRED data resumes</span>
+            <span class="freshness-chip">Managed healthcare and pharmaceuticals intraday flow — confirm whether two-session continuity extends to a third session</span>
+            <span class="freshness-chip">Insurance cluster intraday flow — confirm whether single-session inflow is sustaining</span>
+          </div>
+          <p class="freshness-precaution"><strong>Caution · </strong>SUMMARY is integrated meta-analysis — confirm specific stock-level signals in the STOCK report when operating. The case_6 extreme concentration protocol is active and all actionable signals are suspended. If Bitcoin breaches the -20% threshold, VIX approaches 25, or HY_OAS widens significantly, immediately treat the regime as EXTREME and reduce confidence in all lower-tier signals by two notches.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🚮</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Invalidation conditions · this report is voided in the following situations</div>
+          <ul class="freshness-discard">
+            <li>Bitcoin five-session decline breaching -20% from the 20260527 close of 74,344 (approximately 59,475) — immediately intensifies the macro warning; discard the current rotation confidence level</li>
+            <li>VIX daily close at or above 25 — absolute threshold breach; discard all growth-sector signals and treat the regime as EXTREME</li>
+            <li>HY_OAS widening +1.0 percentage point or more from 2.74% (above approximately 3.74%) when FRED data resumes — credit stress signal confirming broad risk-off propagation; discard the capital-flow assumption</li>
+            <li>S&amp;P 500 declining -2% or more in a second consecutive session — confirms sustained outflow regime rather than one-session capitulation; discard the defensive cluster inflow thesis</li>
+            <li>DXY rolling structural condition confirmed (five consecutive bars above the upper structural band of approximately 99.82) — dollar warning added; partially discard this integration</li>
+            <li>Any intraday macro event (emergency FOMC remarks, major geopolitical shock, large economic data surprise such as CPI or NFP significantly outside consensus) — requires immediate refresh</li>
+          </ul>
+        </div>
+      </div>
+    <div class="freshness-row"><span class="freshness-icon">⚖️</span><div class="freshness-content"><div class="freshness-label">Multi-dimensional invalidation conditions</div>
+<p class="multi-discard-down">⬇ Confidence downgrade: If two or more of the following four axes are impaired simultaneously: (1) macro axis — Bitcoin five-session decline breaches -20% (approximately 59,475) or VIX daily close rises above 25 or US 10-year yield re-breaks 4.5% or yield curve daily close falls below 0.40; (2) flow axis — defensive cluster value ratios fall below 1.0 across all three clusters simultaneously, or NVDA and MRVL fail to stabilize after two sessions; (3) capital axis — HY_OAS widens above the upper structural band (approximately 2.81%) or by +1.0 percentage point or more from 2.74% when FRED data resumes; (4) index axis — S&amp;P 500 declines -2% or more in a second consecutive session or NASDAQ declines -3% or more — downgrade all defensive cluster signals one additional notch and treat the regime as approaching EXTREME.</p>
+<p class="multi-discard-del">✕ Analysis discard: If three or more of the above four axes are impaired simultaneously — discard this SUMMARY immediately and treat the regime as EXTREME; all sector and stock signals should be suspended entirely.</p>
+<p class="multi-discard-rec">↑ Restoration condition: VIX reverts below 18 and sustains for two or more sessions, S&amp;P 500 and NASDAQ recover above their lower structural bands on the rolling series, Bitcoin stabilizes above the -20% threshold, and HY_OAS remains below the upper structural band when FRED data resumes — review restoration of the MEDIUM regime call and re-assess the defensive cluster signals.</p>
+    </div></div>
+    </div>
+ 
+  </section>
+ 
+  <!-- ─── Footer ─── -->
+  <footer class="footer">
+    <div class="footer-meta">
+      <div class="footer-meta-row">
+        <span class="footer-meta-key">Integrated views</span>
+        <span class="footer-meta-value">MACRO · SECTOR · Sector Stock</span>
+      </div>
+      <div class="footer-meta-row">
+        <span class="footer-meta-key">System</span>
+        <span class="footer-meta-value">ATMAN Flow Intelligence · MARKET_SUMMARY_US_EN_v1.0</span>
+      </div>
+    </div>
+  </footer>
+ 
+  <div class="disclaimer">
+    <div class="disclaimer-title">Investment Disclaimer</div>
+    <div class="disclaimer-text">
+      <p>This report is market-analysis material auto-generated by ATMAN Flow Intelligence; it is not investment advice or a solicitation to trade.</p>
+      <p>The analysis is an integrated meta-analysis of three views (MACRO · SECTOR · Sector Stock) observing the essence of the market; it is not a buy/sell recommendation.</p>
+      <p>The report's wording constitutes observation and scenario material; it does not guarantee outcomes.</p>
+      <p>Investment decisions and any resulting profit or loss are solely the investor's responsibility, and actual markets may differ due to factors such as market volatility, data errors, and the gap between the analysis time and the actual market time .</p>
+      <p>ATMAN INVESTMENT bears no legal or financial responsibility for any investment outcome based on this report.</p>
+    </div>
+  </div>
+ 
+</body>
+</html>
