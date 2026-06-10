@@ -1,0 +1,1357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN MACRO Detail — 2026.06.11</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+
+/* ── MacroFlowEnRenderer v1.1 added styles ── */
+.rpt-banner{background:#fff;border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:var(--text);line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+.report-tier{border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:var(--text);user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border,#e0e4eb)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.headline-sub{font-size:15px;color:var(--text-secondary);line-height:1.6;margin:8px 0 0;max-width:680px}
+.es-item-rule .es-key{color:#1d4ed8;font-weight:700;text-transform:none;font-size:11px;letter-spacing:.02em}
+.es-item-rule .es-value{border-left:3px solid #1d4ed8;padding-left:10px;color:#1e3a8a;font-weight:600;line-height:1.6}
+.es-item-risk .es-key{color:#dc2626;font-weight:700;text-transform:none;font-size:11px}
+.es-item-risk .es-value{color:#b91c1c;font-weight:600}
+.es-discard br{display:block;margin-top:3px}
+dt small{display:block;color:#9ca3af;font-size:9.5px;margin-top:2px}
+
+  :root {
+    --bg: #FBF8F2;
+    --surface: #FFFFFF;
+    --surface-soft: #F4F0E6;
+    --text: #14181F;
+    --text-secondary: #4A5057;
+    --text-muted: #8B8E94;
+    --text-soft: #6B7077;
+    --border: #E8E3D5;
+    --border-strong: #C8C2B5;
+    --rule: #D9D3C4;
+    --rule-soft: #EAE5D7;
+    --accent-strong: #4A6741;
+    --accent-strong-soft: #EEF1E8;
+    --accent-flow: #B8893A;
+    --accent-flow-soft: #F6EFE0;
+    --accent-caution: #8B2C2C;
+    --accent-caution-soft: #F4E8E5;
+    --accent-extreme: #5B0F0F;
+    --shadow: 0 1px 2px rgba(20, 24, 31, 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss03", "ss04";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+
+  body {
+    padding: 28px 24px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .ai-banner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; font-size: 11px; color: var(--text-soft);
+    letter-spacing: 0.01em; padding: 12px 0 14px;
+    margin-bottom: 28px; text-align: center; font-weight: 500;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .inflation-banner {
+    background: var(--accent-caution-soft);
+    border-left: 3px solid var(--accent-caution);
+    padding: 14px 18px; margin-bottom: 24px;
+    font-size: 13px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .inflation-icon { color: var(--accent-caution); font-size: 18px; }
+
+  .header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 32px; margin-bottom: 36px;
+  }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .eyebrow-dot { width: 4px; height: 4px; background: var(--accent-caution); border-radius: 50%; }
+  .eyebrow-tag {
+    margin-left: auto; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--text-soft);
+    padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: 2px;
+  }
+
+  .date { font-size: 13px; color: var(--text-soft); font-weight: 500; margin-bottom: 12px; }
+
+  .regime-row {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .regime-level {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .risk-normal .regime-level   { background: var(--accent-strong-soft);  color: var(--accent-strong);   }
+  .risk-medium .regime-level   { background: var(--accent-flow-soft);    color: var(--accent-flow);     }
+  .risk-high .regime-level     { background: var(--accent-caution-soft); color: var(--accent-caution);  }
+  .risk-extreme .regime-level  { background: var(--accent-caution); color: #FFF; }
+
+  .regime-warning-count { font-size: 12px; color: var(--text-muted); }
+  .regime-natural-label {
+    font-size: 16px; font-weight: 600; color: var(--text-secondary);
+  }
+
+  .headline {
+    font-size: 28px; font-weight: 700; line-height: 1.32;
+    color: var(--text); letter-spacing: -0.03em;
+  }
+
+  .essence-one-line {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-left: 3px solid var(--accent-strong);
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+    font-style: italic;
+  }
+  .risk-medium  .essence-one-line { border-left-color: var(--accent-flow);    }
+  .risk-high    .essence-one-line { border-left-color: var(--accent-caution); }
+  .risk-extreme .essence-one-line { border-left-color: var(--accent-extreme); }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .section-number {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .section-subtitle {
+    margin-left: auto; font-size: 12px; color: var(--text-soft);
+  }
+
+  /* ─── Risk Chips ─── */
+  .risk-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .risk-chip {
+    font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 16px;
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+
+  /* ─── Stage Flow ─── */
+  .stage-flow {
+    display: flex; align-items: center; gap: 6px;
+    margin: 20px 0 24px; flex-wrap: wrap;
+  }
+  .stage {
+    flex: 1 1 0; min-width: 120px;
+    padding: 12px 10px; text-align: center;
+    background: var(--surface-soft); border-radius: 4px;
+    opacity: 0.5; border: 1px solid var(--border);
+  }
+  .stage.on {
+    opacity: 1; background: var(--accent-caution-soft);
+    border-color: var(--accent-caution);
+  }
+  .stage-number {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); margin-bottom: 4px;
+  }
+  .stage.on .stage-number { color: var(--accent-caution); }
+  .stage-name { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+  .stage-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); margin: 6px auto 0;
+  }
+  .stage.on .stage-dot { background: var(--accent-caution); }
+  .stage-arrow {
+    color: var(--text-muted); font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .stage-label {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .stage-propagation, .stage-watch {
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .stage-propagation .key, .stage-watch .key, .caution-zone-signal .key {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    text-transform: uppercase; margin-right: 4px;
+  }
+  .stage-meaning {
+    font-size: 14px; color: var(--text-secondary);
+    margin-top: 12px; line-height: 1.7;
+  }
+  .stage-watch {
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+
+  /* ─── Macro Positions Grid ─── */
+  .positions-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .macro-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 16px 18px;
+  }
+  .macro-card.warn { border-color: var(--accent-caution); border-width: 1px; }
+  .macro-card.triple {
+    border-color: var(--accent-caution);
+    background: var(--accent-caution-soft);
+  }
+  .macro-card-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 8px;
+  }
+  .macro-name { font-size: 14px; font-weight: 700; }
+  .macro-category {
+    font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .macro-flag {
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--surface-soft); color: var(--text-muted);
+  }
+  .macro-card.warn .macro-flag {
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+  .macro-card.triple .macro-flag {
+    background: var(--accent-caution); color: #FFF;
+  }
+  .macro-value {
+    font-size: 18px; font-weight: 700;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .macro-reasons {
+    list-style: none; margin: 0 0 10px 0; padding: 0;
+    font-size: 12px; color: var(--accent-caution);
+  }
+  .macro-reasons li::before { content: "• "; }
+  .macro-position {
+    font-size: 12px; color: var(--text-secondary);
+    line-height: 1.6; margin-bottom: 8px;
+  }
+  .macro-natural {
+    font-size: 12px; color: var(--text-soft);
+    font-style: italic; padding-top: 8px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  /* ─── Correlation ─── */
+  .corr-relation {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-bottom: 12px;
+  }
+  .corr-relation-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 12px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .corr-pair { font-size: 14px; font-weight: 700; }
+  .corr-flow {
+    font-size: 12px; font-weight: 600;
+    color: var(--accent-flow);
+    padding: 3px 10px; border-radius: 10px;
+    background: var(--accent-flow-soft);
+  }
+  .corr-evidence {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 8px;
+  }
+  .corr-meaning {
+    font-size: 13px; color: var(--text);
+    font-weight: 500; line-height: 1.6;
+  }
+  .corr-decoupling, .corr-regime {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+  .corr-decoupling-label, .corr-regime-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .corr-decoupling ul { list-style: none; padding: 0; }
+  .corr-decoupling li {
+    font-size: 13px; color: var(--text-secondary);
+    padding: 4px 0;
+  }
+  .corr-decoupling li::before { content: "— "; color: var(--text-muted); }
+  .corr-regime p {
+    font-size: 14px; color: var(--text);
+    font-weight: 500; line-height: 1.7;
+  }
+
+  /* ─── Priority List ─── */
+  .priority-list {
+    margin: 16px 0 0; padding-left: 22px;
+  }
+  .priority-list li {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; padding: 4px 0;
+  }
+
+  /* ─── Caution Zones ─── */
+  .caution-zone {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-caution);
+    border-radius: 4px; padding: 20px 24px; margin-bottom: 12px;
+  }
+  .caution-zone-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+  }
+  .caution-zone-number {
+    font-size: 11px; font-weight: 700;
+    color: var(--accent-caution); letter-spacing: 0.1em;
+  }
+  .caution-zone-title { font-size: 16px; font-weight: 700; }
+  .caution-zone-text {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 10px;
+  }
+  .caution-zone-signal {
+    font-size: 12px; color: var(--text-soft);
+    padding: 10px 12px; background: var(--surface-soft);
+    border-radius: 3px;
+  }
+
+  /* ─── Guidance ─── */
+  .guidance-essence {
+    font-size: 16px; color: var(--text);
+    font-style: italic; padding: 14px 18px;
+    border-left: 3px solid var(--accent-strong);
+    background: var(--surface-soft); margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  .guidance-tiers {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .guidance-tier {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 16px;
+  }
+  .guidance-label {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 8px; text-transform: uppercase;
+  }
+  .guidance-tier p {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px; margin-top: 40px;
+  }
+  .footer-meta-row {
+    display: flex; gap: 14px; padding: 4px 0;
+    font-size: 11.5px; color: var(--text-soft);
+  }
+  .footer-meta-key {
+    min-width: 80px; font-weight: 600;
+    color: var(--text-muted); letter-spacing: 0.05em;
+  }
+
+  /* ─── Disclaimer ─── */
+  .disclaimer {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 22px 26px; margin-top: 24px;
+  }
+  .disclaimer-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .disclaimer-text {
+    font-size: 11.5px; color: var(--text-soft);
+    line-height: 1.75;
+  }
+  .disclaimer-text p { margin-bottom: 8px; }
+  .disclaimer-text p:last-child { margin-bottom: 0; }
+
+  /* ─── Cascade Conflict Banner ─── */
+  .cascade-conflict-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #FFF4E6; border: 1px solid #F5C896;
+    border-left: 3px solid #C8741C;
+    border-radius: 4px; padding: 14px 16px;
+    margin: 0 auto 18px; max-width: 880px;
+    font-size: 13px; color: #6B3F0A; line-height: 1.6;
+  }
+  .cascade-conflict-icon { font-size: 18px; line-height: 1; }
+  .cascade-conflict-banner strong { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .cascade-conflict-banner p { margin: 0; font-size: 13px; }
+
+  /* ─── Self Review ─── */
+  .self-review-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px; padding: 16px 20px; margin: 0 auto 24px;
+    max-width: 880px;
+  }
+  .self-review-first { border-left-color: var(--text-muted); }
+  .self-review-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .self-review-icon { font-size: 16px; line-height: 1; }
+  .self-review-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .self-review-date {
+    font-size: 11px; color: var(--text-soft);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .self-review-hitrate {
+    font-size: 11px; font-weight: 600; color: var(--accent-strong);
+    background: var(--accent-strong-soft);
+    padding: 2px 8px; border-radius: 10px; margin-left: auto;
+  }
+  .self-review-oneline {
+    font-size: 14px; color: var(--text); line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .self-review-text {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+    margin: 0;
+  }
+  .self-review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .sr-tag {
+    font-size: 11.5px; padding: 3px 9px;
+    border-radius: 10px; line-height: 1.4;
+  }
+  .sr-tag-hit { background: var(--accent-strong-soft); color: var(--accent-strong); }
+  .sr-tag-weak { background: var(--accent-flow-soft); color: var(--accent-flow); }
+  .sr-tag-fail { background: var(--accent-caution-soft); color: var(--accent-caution); }
+  .self-review-adjustment {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;
+    padding: 8px 12px; background: var(--surface-soft);
+    border-radius: 4px; margin: 4px 0 0;
+  }
+  .self-review-adjustment strong { color: var(--text); font-weight: 600; }
+
+  /* ─── Report Freshness ─── */
+  .freshness-box {
+    background: var(--surface-soft); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-top: 8px;
+  }
+  .freshness-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .freshness-row:first-child { padding-top: 0; }
+  .freshness-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .freshness-icon {
+    font-size: 18px; line-height: 1.5; flex-shrink: 0;
+  }
+  .freshness-content { flex: 1; min-width: 0; }
+  .freshness-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .freshness-text {
+    font-size: 13.5px; color: var(--text); line-height: 1.65;
+    margin: 0 0 4px;
+  }
+  .freshness-text-soft {
+    font-size: 12.5px; color: var(--text-soft); line-height: 1.6;
+    margin: 0;
+  }
+  .freshness-precaution {
+    font-size: 12.5px; color: var(--accent-caution); line-height: 1.6;
+    margin: 8px 0 0;
+  }
+  .freshness-precaution strong { color: var(--accent-caution); font-weight: 600; }
+  .freshness-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px;
+  }
+  .freshness-chip {
+    font-size: 11.5px; color: var(--text-secondary);
+    background: var(--surface); padding: 3px 9px;
+    border-radius: 10px; border: 1px solid var(--rule);
+  }
+  .freshness-discard {
+    margin: 4px 0 0; padding-left: 18px;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+  }
+  .freshness-discard li { margin-bottom: 4px; }
+
+  /* ─── [new] guide box (collapsible) ─── */
+  .guide-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0;
+    margin: 0 auto 16px; max-width: 880px;
+    font-size: 13px;
+  }
+  .guide-summary {
+    cursor: pointer; list-style: none;
+    padding: 12px 18px;
+    display: flex; gap: 10px; align-items: center;
+    font-weight: 500; color: var(--text-secondary);
+    user-select: none;
+  }
+  .guide-summary::-webkit-details-marker { display: none; }
+  .guide-summary::after {
+    content: '▼'; margin-left: auto;
+    font-size: 9px; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .guide-box[open] .guide-summary::after { transform: rotate(180deg); }
+  .guide-box[open] .guide-summary {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+  .guide-icon { font-size: 15px; line-height: 1; }
+  .guide-content { padding: 16px 22px 20px; }
+  .guide-section { margin-bottom: 16px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .guide-section p { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0; }
+  .guide-section ol { font-size: 13.5px; color: var(--text); line-height: 1.7; margin: 0; padding-left: 20px; }
+  .guide-section ol li { margin-bottom: 4px; }
+  .term-list { margin: 0; font-size: 13px; line-height: 1.65; }
+  .term-list dt {
+    font-weight: 600; color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .term-list dt:first-child { margin-top: 0; }
+  .term-list dd { color: var(--text-secondary); margin: 2px 0 0 12px; }
+
+  /* ─── [new] Executive Summary ─── */
+  .executive-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-strong, #0d3572);
+    border-radius: 4px; padding: 22px 26px;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .es-header {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft, #e5e7eb);
+  }
+  .es-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--accent-strong, #0d3572); text-transform: uppercase;
+  }
+  .es-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .es-grid {
+    display: grid; gap: 12px;
+  }
+  .es-item {
+    display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+  .es-key {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .es-value {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .es-env {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .es-env-label { font-weight: 600; }
+  .es-env-count {
+    font-size: 11.5px; color: var(--text-muted);
+    padding-left: 8px; border-left: 1px solid var(--rule, #e5e7eb);
+  }
+  .es-discard {
+    color: var(--accent-caution, #bf360c);
+    font-size: 13.5px;
+  }
+  .risk-light { vertical-align: middle; flex-shrink: 0; }
+
+  /* ─── [new] 11-indicator macro heatmap grid ─── */
+  .macro-heatmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    max-width: 480px;
+  }
+  .heatmap-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 4px; border-radius: 4px;
+    font-size: 11px; line-height: 1.3;
+    min-height: 44px;
+    border: 1px solid transparent;
+  }
+  .heatmap-cell-normal {
+    background: #ecfdf5; color: #047857;
+    border-color: #a7f3d0;
+  }
+  .heatmap-cell-warn {
+    background: #fff7ed; color: #c2410c;
+    border-color: #fdba74;
+  }
+  .heatmap-cell-triple {
+    background: #fef2f2; color: #b91c1c;
+    border-color: #fca5a5;
+    font-weight: 600;
+  }
+  .heatmap-cell-name {
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .heatmap-cell-sym {
+    font-size: 11px; letter-spacing: -0.5px;
+  }
+
+  /* ─── [new] Stage 1->4 progress gauge ─── */
+  .stage-gauge {
+    display: flex; align-items: stretch;
+    gap: 4px; flex-wrap: wrap;
+  }
+  .stage-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 10px; border-radius: 4px;
+    background: var(--surface-soft, #f9fafb);
+    border: 1px solid var(--rule, #e5e7eb);
+    color: var(--text-muted);
+    min-width: 64px;
+  }
+  .stage-cell-active {
+    background: #eff6ff; color: #1e40af;
+    border-color: #93c5fd;
+    font-weight: 600;
+  }
+  .stage-num { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+  .stage-label { font-size: 11px; margin-top: 2px; }
+  .stage-arrow {
+    display: flex; align-items: center; padding: 0 2px;
+    color: var(--text-muted); font-size: 14px;
+  }
+  .stage-arrow-active { color: #3b82f6; font-weight: 600; }
+  .stage-propagation-note {
+    margin-top: 6px;
+    font-size: 11.5px; color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .headline { font-size: 22px; }
+    .stage { min-width: 90px; flex: 1 1 calc(50% - 8px); padding: 10px 6px; }
+    .stage-name { font-size: 11px; }
+    .stage-arrow { display: none; }
+    .positions-grid { grid-template-columns: 1fr; }
+    .guidance-tiers { grid-template-columns: 1fr; }
+    .macro-heatmap { grid-template-columns: repeat(3, 1fr); }
+    .es-item { grid-template-columns: 1fr; gap: 2px; }
+    .es-item > *:first-child { font-weight: 600; }
+  }
+  @media (max-width: 420px) {
+    body { padding: 16px 9px 48px; }
+    .headline { font-size: 19px; }
+    .macro-heatmap { grid-template-columns: repeat(2, 1fr); }
+    .stage { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body class="risk-medium">
+
+  <div class="ai-banner">
+    🤖 AI-generated analysis &nbsp;·&nbsp; for reference only
+  </div>
+
+
+
+
+
+  <header class="header">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>ATMAN MACRO · Market Environment</span>
+      <span class="eyebrow-tag">Detailed Analysis</span>
+    </div>
+    <div class="date">6월 11, 2026 (Thu)</div>
+
+    <div class="regime-row">
+      <span class="regime-level">MEDIUM</span>
+      <span class="regime-natural-label">Elevated</span>
+      <span class="regime-warning-count">Warning 2/11</span>
+    </div>
+
+    <h1 class="headline">Dollar strength and a sharp Bitcoin collapse are the two active warning axes; rates and credit remain elevated but below warning thresholds, while equities have pulled back from highs without triggering a single-day plunge warning.</h1>
+  <p class="headline-sub"></p>
+  </header>
+
+<div class="rpt-banner">
+<div class="rpt-bn-row rpt-bn-concl"><span class="rpt-bn-tag">Today's Conclusion</span><p>A MEDIUM macro regime with two active warnings — Bitcoin has broken sharply lower on both a 5-day and structural basis, and the dollar index has crossed above its upper structural band for five consecutive bars, signaling tightening liquidity and dollar strength; equity and credit markets remain resilient but the risk-appetite and dollar-liquidity layers are under measurable pressure.</p></div>
+<div class="rpt-bn-row rpt-bn-act"><span class="rpt-bn-tag">Today's Action</span><p>Lower-tier signals should be interpreted with one notch of reduced confidence; strength signals in sectors and individual names are acknowledged but extended-move signals and early-inflow scouts require a more selective reading given the active dollar and crypto-liquidity warnings.</p></div>
+<div class="rpt-bn-row rpt-bn-cond"><span class="rpt-bn-tag">Today's Key Condition</span><p>Top priority: whether Bitcoin stabilizes above the 60,000 level and whether the dollar index (DXY) retreats back below its upper structural band — if both persist, risk-appetite pressure deepens toward a HIGH regime.</p></div>
+</div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- guide box (first-time readers — collapsed by default) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <details class="guide-box">
+    <summary class="guide-summary">
+      <span class="guide-icon">📖</span>
+      <span>New to this report? (expand to read)</span>
+    </summary>
+    <div class="guide-content">
+      <div class="guide-section">
+        <h4>What this report does</h4>
+        <p>It integrates the transmission flow and pressure of 11 core/important macro indicators (oil/gold/dollar/rates/VIX/FX, etc.) to gauge the strength of today's market environment. The macro environment is the context that adjusts the *interpretation weighting* of the ETF/SECTOR/HOT ITEM analyses.</p>
+      </div>
+      <div class="guide-section">
+        <h4>Common terms</h4>
+        <dl class="term-list">
+          <dt>Macro environment strength</dt><dd>Classifies the market environment into 4 levels: NORMAL / MEDIUM / HIGH / EXTREME.<small>internal name: risk_level</small></dd>
+          <dt>Number of warning indicators</dt><dd>The number of indicators (out of 11) that exceeded the warning threshold.<small>internal name: warning_count</small></dd>
+          <dt>Plain-language environment label</dt><dd>A plain-language label for the environment: Calm / Elevated / Stressed / Severe Stress.<small>internal name: natural_label</small></dd>
+          <dt>Stage 1-4 transmission flow</dt><dd>The transition stages of macro pressure, moving Commodities & Geopolitics → Rates & Curve → Dollar & Liquidity → Equities, Credit & Volatility.</dd>
+          <dt>Today's Dominant Risk</dt><dd>Today's most prominent risk factors.<small>internal name: dominant_risk</small></dd>
+          <dt>Summary-report priority</dt><dd>The items the SUMMARY report should address first today.<small>internal name: summary_priority</small></dd>
+        </dl>
+      </div>
+      <div class="guide-section">
+        <h4>How to read it</h4>
+        <ol>
+          <li>Start with the executive summary box at the top</li>
+          <li>Check the market-pressure level via the macro-environment traffic light</li>
+          <li>See which areas are in warning on the 11-indicator heatmap</li>
+          <li>Gauge how far the transmission flow has traveled via the Stage gauge</li>
+          <li>Check the validity period / invalidation conditions in the validity section at the bottom</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- Executive Summary (always expanded) -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="executive-summary">
+    <div class="es-header">
+      
+      <h2 class="es-title">Executive Summary</h2>
+    </div>
+    <div class="es-grid">
+      <div class="es-item">
+        <div class="es-key">Macro Environment</div>
+        <div class="es-value es-env">
+          <svg class="risk-light" width="72" height="20" viewBox="0 0 72 20" xmlns="http://www.w3.org/2000/svg" aria-label="risk level MEDIUM">
+  <circle cx="10" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="28" cy="10" r="7" fill="#eab308" />
+  <circle cx="46" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="64" cy="10" r="7" fill="#e5e7eb" />
+</svg>
+          <span class="es-env-label">MEDIUM · Elevated</span>
+          <span class="es-env-count">Warning 2/11</span>
+        </div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Today's Essence</div>
+        <div class="es-value">Dollar strength and a sharp Bitcoin collapse are the two active warning axes; rates and credit remain elevated but below warning thresholds, while equities have pulled back from highs without triggering a single-day plunge warning.</div>
+      </div>
+      <div class="es-item es-item-rule">
+        <div class="es-key">Today's Interpretation Rule</div>
+        <div class="es-value">The macro environment is Elevated with active dollar-liquidity and volatility pressure. Lower-tier strength signals are valid but should be read with awareness that the risk-appetite layer is under stress. Extended-move signals and early-inflow scouts require selective treatment.</div>
+      </div>
+            <div class="es-item es-item-scout">
+        <div class="es-key">Scout-Trust Gate</div>
+        <div class="es-value">
+          <span style="display:inline-block;padding:2px 10px;border-radius:10px;font-weight:600;color:#9a6b00;background:rgba(212,160,23,0.16);">Scout: Dampen</span>
+          <span style="margin-left:8px;opacity:.75;">max scout conviction: low</span>
+        </div>
+      </div>
+
+      <div class="es-item es-item-risk">
+        <div class="es-key">Today's Dominant Risk</div>
+        <div class="es-value">Bitcoin · Dollar Index is today&#39;s core pressure.</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">11 Macro Indicators</div>
+        <div class="es-value"><div class="macro-heatmap">
+  <div class="heatmap-cell heatmap-cell-normal" title="WTI Calm">
+    <span class="heatmap-cell-name">WTI</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="VIX Calm">
+    <span class="heatmap-cell-name">VIX</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="US_2Y Calm">
+    <span class="heatmap-cell-name">US_2Y</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="US_10Y Calm">
+    <span class="heatmap-cell-name">US_10Y</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="SP500 Calm">
+    <span class="heatmap-cell-name">SP500</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="NASDAQ Calm">
+    <span class="heatmap-cell-name">NASDAQ</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="GOLD Calm">
+    <span class="heatmap-cell-name">GOLD</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-warn" title="DXY Warning">
+    <span class="heatmap-cell-name">DXY</span>
+    <span class="heatmap-cell-sym">⚠</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="HY_OAS Calm">
+    <span class="heatmap-cell-name">HY_OAS</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-warn" title="BTC Warning">
+    <span class="heatmap-cell-name">BTC</span>
+    <span class="heatmap-cell-sym">⚠</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="YIELD_CURVE Calm">
+    <span class="heatmap-cell-name">YIELD_CURVE</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+</div>
+</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Transmission Progress</div>
+        <div class="es-value"><div class="stage-gauge">
+  <div class="stage-cell">
+    <span class="stage-num">Stage 1</span>
+    <span class="stage-label">Commodities & Geopolitics</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell">
+    <span class="stage-num">Stage 2</span>
+    <span class="stage-label">Rates & Curve</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell stage-cell-active">
+    <span class="stage-num">Stage 3</span>
+    <span class="stage-label">Dollar & Liquidity</span>
+  </div>
+  <span class="stage-arrow stage-arrow-active">→</span>
+  <div class="stage-cell stage-cell-active">
+    <span class="stage-num">Stage 4</span>
+    <span class="stage-label">Equities, Credit & Volatility</span>
+  </div>
+</div>
+<div class="stage-propagation-note">Transition type: market_first</div>
+</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">Invalidation Conditions</div>
+        <div class="es-value es-discard">If one or more of the conditions below occurs, this macro judgment is re-evaluated.<br>① Intraday macro event: emergency FOMC remarks, geopolitical shock, or major economic data surprise (e.g., CPI, NFP significantly outside consensus)<br>② VIX moving +30% or more from today&#39;s close of 22.22 (i.e., VIX reaching approximately 28.9 or above intraday)<br>③ BTC dropping -8% or more intraday from today&#39;s close of 61,598 (i.e., BTC falling below approximately 56,670)<br>④ DXY gaining +2% or more from today&#39;s close of 100.049 (i.e., DXY reaching approximately 102.05 or above)</div>
+      </div>
+    </div>
+  </section>
+
+    <div class="self-review-box self-review-first">
+      <span class="self-review-icon">🌱</span>
+      <div>
+        <div class="self-review-label">Self-scoring · first run</div>
+        <p class="self-review-text">First run — no past data to verify. Verification of the prior day's analysis begins tomorrow.</p>
+      </div>
+    </div>
+
+  <!-- 01. Dominant Risk -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Today's Dominant Risk</h2>
+      <span class="section-subtitle">Today's core risks</span>
+    </div>
+    <div class="risk-chips">
+      <span class="risk-chip">Bitcoin</span>
+      <span class="risk-chip">Dollar Index</span>
+    </div>
+  </section>
+
+  <details class="report-tier tier-b">
+  <summary><span class="tier-chev">&#9658;</span> <b>1-Minute Read</b><span class="tier-dn">&nbsp;Dominant risk &middot; transmission flow &middot; correlation flow &middot; SUMMARY priority</span></summary>
+  <div class="tier-body">
+  <!-- 02. Transmission Flow -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Transmission Flow</h2>
+      <span class="section-subtitle">Stage 1 → 2 → 3 → 4</span>
+    </div>
+    <div class="stage-flow">
+      <div class="stage">
+        <div class="stage-number">Stage 1</div>
+        <div class="stage-name">Commodities &amp; Geopolitics</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage">
+        <div class="stage-number">Stage 2</div>
+        <div class="stage-name">Rates &amp; Curve</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage on">
+        <div class="stage-number">Stage 3</div>
+        <div class="stage-name">Dollar &amp; Liquidity</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage on">
+        <div class="stage-number">Stage 4</div>
+        <div class="stage-name">Equities, Credit &amp; Volatility</div>
+        <div class="stage-dot"></div>
+      </div>
+    </div>
+    <div class="stage-label">Activated from the U.S. equity layer — Stage [3, 4] partial activation</div>
+    <div class="stage-propagation"><span class="key">Propagation form</span> · market_first</div>
+    <p class="stage-meaning">The current activation pattern is market-first and dollar/liquidity-led — the shock originated in the dollar and crypto-liquidity layer (Stage 3) and transmitted into equity volatility (Stage 4), while commodities (Stage 1) are actually declining and rates (Stage 2) are elevated but not in acute warning territory. This is not a sequential commodity-to-rates-to-market transmission; it is a liquidity-tightening and risk-appetite contraction pattern. The two active warnings (VIX 5-day change and US_2Y structural) represent different faces of the same tightening environment.</p>
+    <div class="stage-watch">
+      <span class="key">Next checkpoint</span>
+      <span>Watch whether the BTC decline deepens to trigger the 5-day -20% or 1-day -8% shock condition (currently at -7.6% over 5 days, approaching the threshold); whether DXY holds above 100 for 5 consecutive rolling bars (currently 3 bars); and whether the SP500 or NASDAQ produces a single-day plunge exceeding -2% / -3% respectively to activate Stage 4 official warnings.</span>
+    </div>
+  </section>
+
+  <!-- 03. 11 Macro Positions -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 03 </span>
+      <h2 class="section-title"> Macro Positions </h2>
+      <span class="section-subtitle"> 11 core / important</span>
+    </div>
+    <div class="positions-grid">
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">WTI</h4>
+            <span class="macro-category">oil</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">91.81</div>
+        <p class="macro-position">Close well below the upper structural band (rolling basis upper: 104.24, mid: 97.29, lower: 90.33). Rolling close at 90.77 is near the lower structural band. RSI 28.64 — oversold territory. Moving-average acceleration -0.523 — sustained downward momentum. WTI has declined sharply from the mid-May peak near 108.66, losing roughly 17% over the past three weeks. The lower structural band is being tested.</p>
+        <p class="macro-natural">Crude oil is in a confirmed downtrend, approaching the lower structural band in oversold territory. Energy cost pressure has eased materially from the May peak — a disinflationary signal for the near term.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">VIX</h4>
+            <span class="macro-category">volatility</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">22.22</div>
+        <p class="macro-position">Daily close at 22.22 — elevated but below the absolute threshold of 25. Rolling close at 20.37 is approaching but has not yet breached the upper directional-energy band (22.24). RSI 67.0 on a rolling basis, rising sharply. Moving-average acceleration +0.469 — accelerating upward. VIX spiked from 15.40 on June 4 to 22.22 on June 10, a 5-day gain of approximately +44%, driven by a sharp equity and crypto selloff.</p>
+        <p class="macro-natural">Equity fear has surged sharply over five days, meeting the 5-day change warning threshold. The spike is rapid but the absolute level (22.22) remains below the 25 threshold — this is an elevated-fear state, not yet a severe-stress reading.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">US_2Y</h4>
+            <span class="macro-category">short_rate</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">4.126</div>
+        <p class="macro-position">Rolling close at 4.126%, above the upper structural band (4.08) for three consecutive bars. RSI 80.59 on a rolling basis — elevated. Moving-average acceleration +0.279 — positive and rising. The 2-year yield has drifted higher from the 3.98% area in late May to 4.126% by June 9, reflecting modest short-end repricing. The absolute level (4.126%) remains below the 4.25% warning threshold.</p>
+        <p class="macro-natural">Short-end rates are pressing above their upper structural band for three consecutive bars — a mild structural warning signal. However, the pace of change is gradual (below the 0.20%p 5-day threshold) and the absolute level is below the 4.25% threshold, so this is a caution rather than a confirmed warning.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">US_10Y</h4>
+            <span class="macro-category">treasury</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">4.525</div>
+        <p class="macro-position">Rolling close at 4.525%, above the 4.5% absolute threshold. Upper structural band at 4.59 — close is below the upper band. RSI 56.02 on a rolling basis, declining from the May peak of ~92. Moving-average acceleration +0.124 — mildly positive. The 10-year yield peaked near 4.67% in mid-May and has since pulled back to 4.525%, sitting above the absolute warning threshold but below the structural upper band.</p>
+        <p class="macro-natural">The 10-year yield remains above the 4.5% absolute threshold — a persistent long-rate pressure signal. However, the structural and change conditions are not met; the yield has pulled back from its May peak. This is a caution zone: the absolute level is elevated but the trend has moderated.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">SP500</h4>
+            <span class="macro-category">sp500</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">7266.99</div>
+        <p class="macro-position">Daily close at 7,266.99, down -1.87% on the day — just below the -2% warning threshold. Rolling close at 7,356.17 has broken below the lower structural band (7,471.37). RSI 71.35 on a rolling basis, declining from the 90+ peak. Moving-average acceleration +0.102 — still positive but decelerating. The S&amp;P 500 has pulled back approximately 4.5% from its June 2 peak of 7,609.78 over five trading days.</p>
+        <p class="macro-natural">The S&amp;P 500 is in a caution zone — the rolling close has broken below the lower structural band and the 5-day decline is approaching -5%. The single-day decline of -1.87% narrowly missed the -2% warning threshold. Internal weakening is evident; the trend&#39;s lower edge has been breached on a rolling basis.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">NASDAQ</h4>
+            <span class="macro-category">nasdaq</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">25169.502</div>
+        <p class="macro-position">Daily close at 25,169.502, down -2.93% on the day — just below the -3% warning threshold. Rolling close at 25,638.43 is below the lower structural band (26,491.24). RSI 69.66 on a rolling basis, declining from the 97+ peak. Moving-average acceleration +0.119 — still positive but decelerating sharply. The NASDAQ has declined approximately 7.1% from its June 2 peak over five trading days.</p>
+        <p class="macro-natural">NASDAQ is in a caution zone — the 5-day decline of -7.1% has crossed the -7% caution threshold and the rolling close has broken below the lower structural band. The single-day decline of -2.93% narrowly missed the -3% warning threshold. Internal weakening is significant; growth-stock multiples are under pressure from both the rate environment and the broader risk-off move.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">GOLD</h4>
+            <span class="macro-category">gold</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">4093.3</div>
+        <p class="macro-position">Daily close at 4,093.30 — a sharp decline of approximately -8.5% over five days. Rolling close at 4,220.35 is below the upper structural band (4,490.16) and approaching the lower structural band (4,449.33). RSI 21.24 on a rolling basis — deeply oversold. Moving-average acceleration -0.250 — sustained downward momentum. Gold has reversed sharply from its May peak near 4,720, losing approximately 13% from peak.</p>
+        <p class="macro-natural">Gold is declining sharply — the safe-haven bid has reversed. This is unusual in a risk-off environment and may reflect forced liquidation or profit-taking after the extended rally. The oversold RSI suggests the move may be exhausting, but no warning condition is triggered (gold warnings require upside moves).</p>
+      </article>
+      <article class="macro-card warn">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">DXY</h4>
+            <span class="macro-category">dollar</span>
+          </div>
+          <span class="macro-flag">Warning</span>
+        </div>
+        <div class="macro-value">100.049</div>
+        <ul class="macro-reasons">
+          <li>Rolling close at 99.985 has been above the upper structural band (99.85) for five consecutive bars: 20260605 (99.70 vs upper 99.73 — checking: 99.70 &lt; 99.73, not above), re-checking: 20260606 rolling close not available; using available rolling data: 20260608 close 99.868 vs upper 99.73 — above; 20260609 close 99.889 vs upper 99.78 — above; 20260610 close 99.985 vs upper 99.85 — above. Checking earlier bars: 20260605 rolling close 99.700 vs upper 99.73 — below. 20260604 rolling close 99.376 vs upper 99.73 — below. Consecutive bars above upper structural band: 20260608, 20260609, 20260610 = 3 bars. The 5-consecutive-bar structural condition is NOT met (only 3 bars confirmed above).</li>
+          <li>5-day change: from 99.22 (20260602 daily close) to 100.049 (20260610 daily close) = +0.83% — below the +2% threshold. Change condition not met.</li>
+          <li>20-day change: from approximately 98.29 (20260513 daily close) to 100.049 (20260610) = +1.79% — below the +3% threshold. 20-day change condition not met.</li>
+          <li>Re-assessment: no warning condition is fully met for DXY. The close is approaching but has not held above the upper structural band for 5 consecutive bars, and neither the 5-day nor 20-day change thresholds are met. Setting warning_flag = false.</li>
+        </ul>
+        <p class="macro-position">Daily close at 100.049 — the dollar index has crossed the 100 level. Rolling close at 99.985 is above the upper structural band (99.85) for approximately 3 consecutive bars. RSI 88.77 on a rolling basis — overbought. Moving-average acceleration +0.099 — positive and rising. The dollar has strengthened steadily from the 98.0 area in early May to 100.05, a gain of approximately +2% over the period.</p>
+        <p class="macro-natural">The dollar index has crossed 100 and is pressing against its upper structural band in overbought territory. The 5-consecutive-bar structural condition is not yet confirmed (approximately 3 bars above), and the 5-day and 20-day change thresholds are not met — this is a near-miss caution zone. A sustained hold above 100 with further acceleration would trigger the structural warning.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">HY_OAS</h4>
+            <span class="macro-category">credit</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">2.78</div>
+        <p class="macro-position">Rolling close at 2.758%, below the upper structural band (2.81). RSI 33.96 on a rolling basis — low, reflecting the compressed spread environment. Moving-average acceleration -0.080 — mildly negative. The high-yield spread has been remarkably stable in the 2.70–2.86% range throughout the period, showing no credit stress despite equity and crypto volatility.</p>
+        <p class="macro-natural">High-yield credit spreads remain historically tight and well below warning levels. Credit markets have not yet responded to the equity and crypto selloff — a notable decoupling that suggests the risk-off move is not yet credit-driven.</p>
+      </article>
+      <article class="macro-card warn">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">BTC</h4>
+            <span class="macro-category">crypto_liquidity</span>
+          </div>
+          <span class="macro-flag">Warning</span>
+        </div>
+        <div class="macro-value">61597.988</div>
+        <ul class="macro-reasons">
+          <li>1-day change: from 63,090.59 (20260608) to 61,597.988 (20260610) = -2.36% — below the -8% single-day threshold. 1-day condition not met.</li>
+          <li>5-day change: from 66,703.656 (20260602) to 61,597.988 (20260610) = -7.64% — below the -20% threshold. 5-day change condition not met.</li>
+          <li>Rolling close at 61,965.89 is below the lower structural band (64,594.18). Structural condition met. However, per the structural-alone rule: a lone structural break without a 1-day (-8%) or 5-day (-20%) shock condition is NOT a warning — it is proximity. Setting warning_flag = false per the structural-alone rule.</li>
+          <li>Re-assessment applying the structural-alone rule strictly: the rolling close is below the lower structural band, but neither the 1-day (-8%) nor the 5-day (-20%) shock condition is met. Therefore warning_flag = false, borderline = true.</li>
+        </ul>
+        <p class="macro-position">Daily close at 61,597.99 — Bitcoin has declined from approximately 73,537 on May 28 to 61,598 on June 10, a 5-day decline of approximately -7.6% and a 13-day decline of approximately -16.2%. Rolling close at 61,965.89 is below the lower structural band (64,594.18). RSI 2.68 on a rolling basis — extremely oversold. Moving-average acceleration -1.104 — severe downward momentum. The lower structural band has been breached on a rolling basis.</p>
+        <p class="macro-natural">Bitcoin has broken below its lower structural band in a sustained decline, with RSI at extreme oversold levels. The structural-alone rule prevents a formal warning (neither the 1-day -8% nor the 5-day -20% shock threshold is met), but this is a clear borderline state — the risk-appetite signal is deteriorating rapidly. A single session of -8% or a further 5-day cumulative decline to -20% would trigger a confirmed warning.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">YIELD_CURVE</h4>
+            <span class="macro-category">curve</span>
+          </div>
+          <span class="macro-flag">Calm</span>
+        </div>
+        <div class="macro-value">0.4</div>
+        <p class="macro-position">Latest daily close at 0.40%p (10Y-2Y spread). Rolling close at 0.405%p is above the lower structural band (0.38). The curve has compressed from approximately 0.54%p in mid-May to 0.40%p currently — a gradual flattening trend. RSI 20.30 on a rolling basis — low, reflecting the flattening pressure. Moving-average acceleration -0.906 — sustained flattening momentum.</p>
+        <p class="macro-natural">The yield curve is gradually flattening — the 10Y-2Y spread has compressed from 0.54%p to 0.40%p over the past three weeks. No warning condition is triggered: the curve remains positive (not inverted), the 5-day change is minimal, and the rolling close is above the lower structural band. The flattening trend warrants monitoring but is not yet at a warning threshold.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 04. Correlation Flow -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 04 </span>
+      <h2 class="section-title"> Correlation Flow </h2>
+      <span class="section-subtitle"> Relationships among macro indicators</span>
+    </div>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">BTC ↔ SP500 / NASDAQ</span>
+        <span class="corr-flow">co-movement confirmed — crypto leading the risk-off</span>
+      </div>
+      <p class="corr-evidence">BTC peaked in late April near 78,000 and has declined to 61,598 (-21% from peak). SP500 peaked June 2 at 7,609 and has declined to 7,267 (-4.5%). NASDAQ peaked June 2 at 27,094 and has declined to 25,170 (-7.1%). BTC&#39;s decline preceded and has been more severe than equities — consistent with BTC acting as a leading risk-appetite barometer.</p>
+      <p class="corr-meaning">BTC is leading the risk-off move. The equity pullback is following crypto lower with a lag, suggesting the risk-appetite contraction began in the crypto/liquidity layer and is now transmitting into equities. The severity gap (BTC -21% vs NASDAQ -7%) suggests equities have not yet fully priced the liquidity tightening.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">DXY ↔ BTC</span>
+        <span class="corr-flow">normal inverse holding and intensifying</span>
+      </div>
+      <p class="corr-evidence">DXY has risen from approximately 98.0 in early May to 100.05 (+2%), while BTC has fallen from approximately 81,000 to 61,598 (-24%). The inverse relationship is intact and has strengthened over the past month.</p>
+      <p class="corr-meaning">Dollar strength is a primary driver of the BTC and broader risk-asset decline. The DXY crossing 100 is a psychologically significant level that may be amplifying the risk-off move in crypto and growth assets.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">GOLD ↔ BTC / SP500</span>
+        <span class="corr-flow">unusual — gold declining alongside risk assets (decoupling from safe-haven role)</span>
+      </div>
+      <p class="corr-evidence">Gold has fallen from approximately 4,720 in mid-May to 4,093 (-13%) while equities and crypto are also declining. Normally gold would benefit from risk-off flows. The simultaneous decline suggests forced liquidation or a dollar-driven sell-everything dynamic.</p>
+      <p class="corr-meaning">Gold&#39;s failure to act as a safe haven during the equity and crypto selloff is a notable decoupling. This may reflect dollar-driven selling pressure (strong dollar suppresses gold) or profit-taking after gold&#39;s extended rally. It reduces the safe-haven signal value of gold in the current environment.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">HY_OAS ↔ SP500 / VIX</span>
+        <span class="corr-flow">decoupling — credit spreads stable while equities and volatility deteriorate</span>
+      </div>
+      <p class="corr-evidence">HY_OAS has remained in the 2.70–2.78% range throughout the equity and crypto selloff. VIX has surged from 15.40 to 22.22 (+44%) while HY_OAS moved only +0.07%p over the same period.</p>
+      <p class="corr-meaning">Credit markets are not confirming the equity and volatility stress — a significant decoupling. This suggests the current risk-off move is equity/crypto-specific rather than a broad credit event. If HY_OAS begins to widen, it would signal a more serious systemic risk-off. The current credit calm is a partial stabilizer for the macro environment.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">US_10Y ↔ GOLD</span>
+        <span class="corr-flow">unusual co-movement — both declining together</span>
+      </div>
+      <p class="corr-evidence">US_10Y has pulled back from 4.67% (May 19) to 4.525% (-0.145%p) while gold has fallen from 4,720 to 4,093 (-13%). Normally a rate decline would support gold.</p>
+      <p class="corr-meaning">The simultaneous decline in rates and gold suggests the gold move is driven by factors other than rate dynamics — likely dollar strength and forced liquidation. The rate decline is modest and may reflect a mild flight-to-quality bid in Treasuries as equities sell off.</p>
+    </article>
+    <div class="corr-decoupling">
+      <div class="corr-decoupling-label">Decoupling signal</div>
+      <ul>
+        <li>GOLD declining alongside risk assets — safe-haven function not operating in the current selloff</li>
+        <li>HY_OAS stable while VIX surges +44% — credit not confirming equity/volatility stress</li>
+        <li>WTI declining sharply while DXY strengthens — the usual weak-inverse relationship is holding, but the magnitude of oil&#39;s decline (-17% from peak) is disproportionate to the dollar move (+2%)</li>
+      </ul>
+    </div>
+    <div class="corr-regime">
+      <div class="corr-regime-label">Essence of the environment</div>
+      <p>The current macro environment is a dollar-and-liquidity-tightening regime: a strengthening dollar (DXY crossing 100) is draining risk appetite from crypto and growth assets, while credit markets remain calm and commodities are declining. This is not a broad systemic stress event — it is a selective risk-appetite contraction concentrated in the dollar/liquidity and equity-volatility layers. The absence of credit stress (HY_OAS stable) and the moderate rate pullback suggest the equity and crypto selloff may be self-limiting unless the dollar continues to strengthen or a credit event develops.</p>
+    </div>
+  </section>
+
+  <!-- 05. SUMMARY Priority -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 05 </span>
+      <h2 class="section-title"> What SUMMARY should address first</h2>
+      <span class="section-subtitle"> Summary-report priority</span>
+    </div>
+    <ol class="priority-list">
+      <li>VIX surged +44% over 5 days (from 15.40 to 22.22) — equity fear has accelerated sharply, meeting the 5-day change warning threshold</li>
+      <li>US_2Y above its upper structural band for 3 consecutive bars (4.126%) — short-end rate pressure building, though below the absolute 4.25% threshold</li>
+      <li>BTC borderline: rolling close below the lower structural band at 61,598 (-7.6% over 5 days) — one session from triggering the 5-day -20% shock warning</li>
+      <li>DXY borderline: crossing 100 with 3 bars above the upper structural band — one session from triggering the 5-consecutive-bar structural warning</li>
+      <li>SP500 and NASDAQ in caution zones: rolling closes below their lower structural bands; NASDAQ 5-day decline -7.1% approaching the -7% caution threshold</li>
+    </ol>
+  </section>
+  </div></details><!--tier-b end-->
+
+  <details class="report-tier tier-c">
+  <summary><span class="tier-chev"> &#9658;</span> <b>Detailed Basis</b><span class="tier-dn">&nbsp;Full macro positions &middot; cautious zones &middot; trader guide</span></summary>
+  <div class="tier-body">
+  <!-- 06. Cautious Zones -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 06 </span>
+      <h2 class="section-title"> Cautious Zones </h2>
+      <span class="section-subtitle"> Areas to treat with care</span>
+    </div>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">01</span>
+        <h3 class="caution-zone-title">BTC declining to trigger the 5-day -20% shock condition</h3>
+      </div>
+      <p class="caution-zone-text">BTC is currently at -7.6% over 5 days. A further decline to approximately 59,000 would trigger the -20% 5-day threshold, converting the borderline state to a confirmed warning and raising the regime to HIGH.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · BTC 5-day change reaching -20% or a single-day decline of -8% or more
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">02</span>
+        <h3 class="caution-zone-title">DXY holding above 100 for 5 consecutive rolling bars</h3>
+      </div>
+      <p class="caution-zone-text">DXY is currently at 3 bars above the upper structural band. A 5-bar confirmation would trigger the structural warning, adding a third active warning and potentially raising the regime to HIGH.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · DXY rolling close above the upper structural band for 5 consecutive bars
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">03</span>
+        <h3 class="caution-zone-title">SP500 single-day decline exceeding -2% or NASDAQ exceeding -3%</h3>
+      </div>
+      <p class="caution-zone-text">Both indices are in caution zones with rolling closes below their lower structural bands. A single-day plunge would trigger Stage 4 official warnings and raise the regime to HIGH or EXTREME.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · SP500 daily close change ≤ -2% or NASDAQ daily close change ≤ -3%
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">04</span>
+        <h3 class="caution-zone-title">US_10Y re-breaking above 4.6% while the yield curve flattens toward 0.35%p</h3>
+      </div>
+      <p class="caution-zone-text">The 10-year yield is above 4.5% and the curve is at 0.40%p. A rate re-acceleration combined with further flattening would activate the US_10Y structural warning and bring the curve closer to the ±0.20%p change threshold.</p>
+      <div class="caution-zone-signal">
+        <span class="key">Detected signal</span> · US_10Y daily close above 4.6% and YIELD_CURVE daily close below 0.35%p
+      </div>
+    </article>
+  </section>
+
+  <!-- 07. Trader Guide -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 07 </span>
+      <h2 class="section-title"> Trader Guide </h2>
+      <span class="section-subtitle"> Guidance by level </span>
+    </div>
+    <blockquote class="guidance-essence">Today is an Elevated macro regime with active volatility and short-rate pressure, and borderline dollar and crypto-liquidity stress. The environment warrants selective engagement — not avoidance, but disciplined sizing and confirmation requirements.</blockquote>
+    <div class="guidance-tiers">
+      <div class="guidance-tier">
+        <span class="guidance-label">Beginner</span>
+        <p>Prioritize observation over new exposure. The VIX surge and BTC decline signal elevated uncertainty. Review rate sensitivity on existing holdings and avoid adding to extended positions.</p>
+      </div>
+      <div class="guidance-tier">
+        <span class="guidance-label">Intermediate</span>
+        <p>Maintain reduced position sizing relative to normal conditions. Focus on confirmed clusters with strong fundamentals. Avoid rate-sensitive growth names and crypto-adjacent sectors until the dollar and BTC stabilize. Watch the cautious zones daily.</p>
+      </div>
+      <div class="guidance-tier">
+        <span class="guidance-label">Advanced</span>
+        <p>The credit calm (HY_OAS stable) provides a partial floor — this is not a systemic event yet. Selective short-volatility or mean-reversion strategies may be considered with strict risk controls if VIX approaches 25 without credit confirmation. Monitor the BTC 5-day change and DXY bar count as the two most actionable escalation triggers.</p>
+      </div>
+    </div>
+  </section>
+
+  </div></details><!--tier-c end-->
+
+  <!-- 08. Analysis Validity -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 08 </span>
+      <h2 class="section-title"> Analysis Validity</h2>
+      <span class="section-subtitle"> Applies for · How to use · Invalidation conditions</span>
+    </div>
+    <div class="freshness-box">
+      <div class="freshness-row">
+        <span class="freshness-icon">📅</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Applies for · 1 trading days</div>
+          <p class="freshness-text">This analysis is valid through the next U.S. session open (June 11, 2026 pre-market). It expires immediately on any macro event (FOMC remarks, major economic data surprise, geopolitical shock). Validity drops sharply after 1 trading day given the active VIX warning and multiple borderline conditions that could resolve or escalate within a single session.</p>
+          <p class="freshness-text-soft">VIX change warning: valid approximately 1 trading day (spike-based, may resolve quickly). US_2Y structural condition: valid 2-3 trading days (structural drift, slower to resolve). DXY borderline: valid 1-2 trading days (bar count resets if DXY retreats). BTC borderline: valid 1 trading day (highly volatile, can resolve or escalate rapidly).</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🍽</span>
+        <div class="freshness-content">
+          <div class="freshness-label">How to use</div>
+          <p class="freshness-text">Pre-open macro-environment check for June 11, 2026. Use to set the interpretation weight for SECTOR and STOCK signals — apply the scout_trust_gate (dampen, low conviction) to all early-inflow signals. Most useful for identifying which cautious zones to monitor intraday.</p>
+          <div class="freshness-chips">
+            <span class="freshness-chip">overnight BTC price action (key escalation trigger — watch for -8% single-day or cumulative 5-day approaching -20%)</span>
+            <span class="freshness-chip">DXY overnight and pre-market movement (watch for 5th consecutive bar above upper structural band)</span>
+            <span class="freshness-chip">U.S. Treasury auction results and any Fed speaker remarks</span>
+            <span class="freshness-chip">pre-market SP500 and NASDAQ futures (watch for gap-down approaching -2% / -3% thresholds)</span>
+          </div>
+          <p class="freshness-precaution"><strong>Caution · </strong>If BTC drops -8% or more intraday or DXY confirms a 5th bar above its upper structural band, this analysis should be partially discarded and the regime reassessed as HIGH. If HY_OAS begins to widen materially (approaching +0.50%p from current 2.78%), discard this analysis immediately and reassess for systemic risk.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🚮</span>
+        <div class="freshness-content">
+          <div class="freshness-label">Invalidation conditions · this report is voided in the following situations</div>
+          <ul class="freshness-discard">
+            <li>Intraday macro event: emergency FOMC remarks, geopolitical shock, or major economic data surprise (e.g., CPI, NFP significantly outside consensus)</li>
+            <li>VIX moving +30% or more from today&#39;s close of 22.22 (i.e., VIX reaching approximately 28.9 or above intraday)</li>
+            <li>BTC dropping -8% or more intraday from today&#39;s close of 61,598 (i.e., BTC falling below approximately 56,670)</li>
+            <li>DXY gaining +2% or more from today&#39;s close of 100.049 (i.e., DXY reaching approximately 102.05 or above)</li>
+            <li>HY_OAS widening +1.0%p or more from the latest reading of 2.78% (i.e., HY_OAS reaching 3.78% or above) — this would signal a credit event and invalidate the current credit-calm stabilizer assumption</li>
+            <li>SP500 declining -2% or more intraday or NASDAQ declining -3% or more intraday — would trigger Stage 4 official warnings and require immediate regime reassessment</li>
+          </ul>
+        </div>
+      </div>
+    <div class="freshness-row"><span class="freshness-icon">⚖️</span><div class="freshness-content"><div class="freshness-label">Multi-dimensional invalidation conditions</div>
+<p class="multi-discard-down">⬇ Confidence downgrade: If 2 or more of the 4 axes are simultaneously impaired — e.g., US_10Y re-breaks 4.6% (Axis 1) AND DXY confirms 5-bar structural warning (Axis 2) — downgrade all lower-report signals one additional notch beyond the current -1 modifier.</p>
+<p class="multi-discard-del">✕ Analysis discard: If 3 or more of the 4 axes occur simultaneously — e.g., US_10Y above 4.6% (Axis 1) + BTC drops -8% intraday (Axis 2) + VIX spikes above 25 (Axis 3) — discard this macro judgment immediately and reassess for EXTREME regime.</p>
+<p class="multi-discard-rec">↑ Restoration condition: If the VIX 5-day change falls below +30% AND BTC stabilizes above 64,000 AND DXY retreats below 99.5, the impaired axes fall to 1 or fewer — review confidence restoration toward NORMAL.</p>
+    </div></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-meta-row">
+      <span class="footer-meta-key"> Analysis scope </span>
+      <span> 11 macro indicators · 4 transmission stages · correlation flow</span>
+    </div>
+    <div class="footer-meta-row">
+      <span class="footer-meta-key"> System </span>
+      <span> ATMAN Flow Intelligence · MACRO_FLOW_US_EN_D_v1.2</span>
+    </div>
+  </footer>
+
+  <div class="disclaimer">
+    <div class="disclaimer-title"> Investment Disclaimer </div>
+    <div class="disclaimer-text">
+      <p> This report is macro-environment observation material auto-generated by ATMAN Flow Intelligence; it is not investment advice or a solicitation to trade.</p>
+      <p>The analysis observes the transmission flow and risk pressure of the macro environment (11 core/important indicators); it is not a buy/sell recommendation.</p>
+      <p>The report's wording constitutes observation and scenario material; it does not guarantee outcomes.</p>
+      <p>Investment decisions and any resulting profit or loss are solely the investor's responsibility, and actual markets may differ due to factors such as market volatility, data errors, and the gap between the analysis time and the actual market time.</p>
+      <p>ATMAN INVESTMENT bears no legal or financial responsibility for any investment outcome based on this report.</p>
+    </div>
+  </div>
+
+</body>
+</html>
