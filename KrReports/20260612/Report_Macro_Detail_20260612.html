@@ -1,0 +1,1346 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN MACRO 상세 — 2026.06.12</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+
+/* ── MacroFlowRenderer v1.1 추가 스타일 ── */
+.rpt-banner{background:#fff;border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;padding:6px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.rpt-bn-row{padding:13px 18px;border-bottom:1px solid #eef1f6}
+.rpt-bn-row:last-child{border-bottom:none}
+.rpt-bn-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.rpt-bn-concl .rpt-bn-tag{background:#0d3572}
+.rpt-bn-act   .rpt-bn-tag{background:#1d4ed8}
+.rpt-bn-cond  .rpt-bn-tag{background:#0891b2}
+.rpt-bn-row p{font-size:13px;font-weight:700;color:var(--text);line-height:1.55;margin:0}
+.rpt-bn-cond p{font-weight:500;color:#3b424f}
+.report-tier{border:1px solid var(--border,#e0e4eb);border-radius:12px;margin:14px 0;overflow:hidden}
+.report-tier>summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-size:11px;font-weight:700;color:var(--text);user-select:none;transition:background .15s}
+.report-tier>summary::-webkit-details-marker{display:none}
+.report-tier>summary:hover{background:#f0f3f8}
+.report-tier[open]>summary{border-bottom:1px solid var(--border,#e0e4eb)}
+.tier-chev{color:#1d4ed8;transition:transform .2s;display:inline-block}
+.report-tier[open] .tier-chev{transform:rotate(90deg)}
+.tier-dn{font-weight:400;font-size:9px;color:#8892a4}
+.tier-b>summary{border-left:4px solid #1d4ed8}
+.tier-c>summary{border-left:4px solid #64748b}
+.tier-body{padding:4px 0 8px;background:#fafbfd}
+.headline-sub{font-size:15px;color:var(--text-secondary);line-height:1.6;margin:8px 0 0;max-width:680px}
+.es-item-rule .es-key{color:#1d4ed8;font-weight:700;text-transform:none;font-size:11px;letter-spacing:.02em}
+.es-item-rule .es-value{border-left:3px solid #1d4ed8;padding-left:10px;color:#1e3a8a;font-weight:600;line-height:1.6}
+.es-item-risk .es-key{color:#dc2626;font-weight:700;text-transform:none;font-size:11px}
+.es-item-risk .es-value{color:#b91c1c;font-weight:600}
+.es-discard br{display:block;margin-top:3px}
+dt small{display:block;color:#9ca3af;font-size:9.5px;margin-top:2px}
+
+  :root {
+    --bg: #FBF8F2;
+    --surface: #FFFFFF;
+    --surface-soft: #F4F0E6;
+    --text: #14181F;
+    --text-secondary: #4A5057;
+    --text-muted: #8B8E94;
+    --text-soft: #6B7077;
+    --border: #E8E3D5;
+    --border-strong: #C8C2B5;
+    --rule: #D9D3C4;
+    --rule-soft: #EAE5D7;
+    --accent-strong: #4A6741;
+    --accent-strong-soft: #EEF1E8;
+    --accent-flow: #B8893A;
+    --accent-flow-soft: #F6EFE0;
+    --accent-caution: #8B2C2C;
+    --accent-caution-soft: #F4E8E5;
+    --accent-extreme: #5B0F0F;
+    --shadow: 0 1px 2px rgba(20, 24, 31, 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss03", "ss04";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+
+  body {
+    padding: 28px 24px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .ai-banner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; font-size: 11px; color: var(--text-soft);
+    letter-spacing: 0.01em; padding: 12px 0 14px;
+    margin-bottom: 28px; text-align: center; font-weight: 500;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .inflation-banner {
+    background: var(--accent-caution-soft);
+    border-left: 3px solid var(--accent-caution);
+    padding: 14px 18px; margin-bottom: 24px;
+    font-size: 13px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .inflation-icon { color: var(--accent-caution); font-size: 18px; }
+
+  .header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 32px; margin-bottom: 36px;
+  }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .eyebrow-dot { width: 4px; height: 4px; background: var(--accent-caution); border-radius: 50%; }
+  .eyebrow-tag {
+    margin-left: auto; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--text-soft);
+    padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: 2px;
+  }
+
+  .date { font-size: 13px; color: var(--text-soft); font-weight: 500; margin-bottom: 12px; }
+
+  .regime-row {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .regime-level {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .risk-normal .regime-level   { background: var(--accent-strong-soft);  color: var(--accent-strong);   }
+  .risk-medium .regime-level   { background: var(--accent-flow-soft);    color: var(--accent-flow);     }
+  .risk-high .regime-level     { background: var(--accent-caution-soft); color: var(--accent-caution);  }
+  .risk-extreme .regime-level  { background: var(--accent-caution); color: #FFF; }
+
+  .regime-warning-count { font-size: 12px; color: var(--text-muted); }
+  .regime-natural-label {
+    font-size: 16px; font-weight: 600; color: var(--text-secondary);
+  }
+
+  .headline {
+    font-size: 28px; font-weight: 700; line-height: 1.32;
+    color: var(--text); letter-spacing: -0.03em;
+  }
+
+  .essence-one-line {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-left: 3px solid var(--accent-strong);
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+    font-style: italic;
+  }
+  .risk-medium  .essence-one-line { border-left-color: var(--accent-flow);    }
+  .risk-high    .essence-one-line { border-left-color: var(--accent-caution); }
+  .risk-extreme .essence-one-line { border-left-color: var(--accent-extreme); }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .section-number {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .section-subtitle {
+    margin-left: auto; font-size: 12px; color: var(--text-soft);
+  }
+
+  /* ─── Risk Chips ─── */
+  .risk-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .risk-chip {
+    font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 16px;
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+
+  /* ─── Stage Flow ─── */
+  .stage-flow {
+    display: flex; align-items: center; gap: 6px;
+    margin: 20px 0 24px; flex-wrap: wrap;
+  }
+  .stage {
+    flex: 1 1 0; min-width: 120px;
+    padding: 12px 10px; text-align: center;
+    background: var(--surface-soft); border-radius: 4px;
+    opacity: 0.5; border: 1px solid var(--border);
+  }
+  .stage.on {
+    opacity: 1; background: var(--accent-caution-soft);
+    border-color: var(--accent-caution);
+  }
+  .stage-number {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); margin-bottom: 4px;
+  }
+  .stage.on .stage-number { color: var(--accent-caution); }
+  .stage-name { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+  .stage-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); margin: 6px auto 0;
+  }
+  .stage.on .stage-dot { background: var(--accent-caution); }
+  .stage-arrow {
+    color: var(--text-muted); font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .stage-label {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .stage-propagation, .stage-watch {
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .stage-propagation .key, .stage-watch .key, .caution-zone-signal .key {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    text-transform: uppercase; margin-right: 4px;
+  }
+  .stage-meaning {
+    font-size: 14px; color: var(--text-secondary);
+    margin-top: 12px; line-height: 1.7;
+  }
+  .stage-watch {
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+
+  /* ─── Macro Positions Grid ─── */
+  .positions-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .macro-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 16px 18px;
+  }
+  .macro-card.warn { border-color: var(--accent-caution); border-width: 1px; }
+  .macro-card.triple {
+    border-color: var(--accent-caution);
+    background: var(--accent-caution-soft);
+  }
+  .macro-card-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 8px;
+  }
+  .macro-name { font-size: 14px; font-weight: 700; }
+  .macro-category {
+    font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .macro-flag {
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: var(--surface-soft); color: var(--text-muted);
+  }
+  .macro-card.warn .macro-flag {
+    background: var(--accent-caution-soft); color: var(--accent-caution);
+  }
+  .macro-card.triple .macro-flag {
+    background: var(--accent-caution); color: #FFF;
+  }
+  .macro-value {
+    font-size: 18px; font-weight: 700;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .macro-reasons {
+    list-style: none; margin: 0 0 10px 0; padding: 0;
+    font-size: 12px; color: var(--accent-caution);
+  }
+  .macro-reasons li::before { content: "• "; }
+  .macro-position {
+    font-size: 12px; color: var(--text-secondary);
+    line-height: 1.6; margin-bottom: 8px;
+  }
+  .macro-natural {
+    font-size: 12px; color: var(--text-soft);
+    font-style: italic; padding-top: 8px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  /* ─── Correlation ─── */
+  .corr-relation {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-bottom: 12px;
+  }
+  .corr-relation-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 12px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .corr-pair { font-size: 14px; font-weight: 700; }
+  .corr-flow {
+    font-size: 12px; font-weight: 600;
+    color: var(--accent-flow);
+    padding: 3px 10px; border-radius: 10px;
+    background: var(--accent-flow-soft);
+  }
+  .corr-evidence {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 8px;
+  }
+  .corr-meaning {
+    font-size: 13px; color: var(--text);
+    font-weight: 500; line-height: 1.6;
+  }
+  .corr-decoupling, .corr-regime {
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--surface-soft); border-radius: 4px;
+  }
+  .corr-decoupling-label, .corr-regime-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .corr-decoupling ul { list-style: none; padding: 0; }
+  .corr-decoupling li {
+    font-size: 13px; color: var(--text-secondary);
+    padding: 4px 0;
+  }
+  .corr-decoupling li::before { content: "— "; color: var(--text-muted); }
+  .corr-regime p {
+    font-size: 14px; color: var(--text);
+    font-weight: 500; line-height: 1.7;
+  }
+
+  /* ─── Priority List ─── */
+  .priority-list {
+    margin: 16px 0 0; padding-left: 22px;
+  }
+  .priority-list li {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; padding: 4px 0;
+  }
+
+  /* ─── Caution Zones ─── */
+  .caution-zone {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-caution);
+    border-radius: 4px; padding: 20px 24px; margin-bottom: 12px;
+  }
+  .caution-zone-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+  }
+  .caution-zone-number {
+    font-size: 11px; font-weight: 700;
+    color: var(--accent-caution); letter-spacing: 0.1em;
+  }
+  .caution-zone-title { font-size: 16px; font-weight: 700; }
+  .caution-zone-text {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 10px;
+  }
+  .caution-zone-signal {
+    font-size: 12px; color: var(--text-soft);
+    padding: 10px 12px; background: var(--surface-soft);
+    border-radius: 3px;
+  }
+
+  /* ─── Guidance ─── */
+  .guidance-essence {
+    font-size: 16px; color: var(--text);
+    font-style: italic; padding: 14px 18px;
+    border-left: 3px solid var(--accent-strong);
+    background: var(--surface-soft); margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  .guidance-tiers {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .guidance-tier {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 16px;
+  }
+  .guidance-label {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 8px; text-transform: uppercase;
+  }
+  .guidance-tier p {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px; margin-top: 40px;
+  }
+  .footer-meta-row {
+    display: flex; gap: 14px; padding: 4px 0;
+    font-size: 11.5px; color: var(--text-soft);
+  }
+  .footer-meta-key {
+    min-width: 80px; font-weight: 600;
+    color: var(--text-muted); letter-spacing: 0.05em;
+  }
+
+  /* ─── Disclaimer ─── */
+  .disclaimer {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 22px 26px; margin-top: 24px;
+  }
+  .disclaimer-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .disclaimer-text {
+    font-size: 11.5px; color: var(--text-soft);
+    line-height: 1.75;
+  }
+  .disclaimer-text p { margin-bottom: 8px; }
+  .disclaimer-text p:last-child { margin-bottom: 0; }
+
+  /* ─── Cascade Conflict Banner ─── */
+  .cascade-conflict-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #FFF4E6; border: 1px solid #F5C896;
+    border-left: 3px solid #C8741C;
+    border-radius: 4px; padding: 14px 16px;
+    margin: 0 auto 18px; max-width: 880px;
+    font-size: 13px; color: #6B3F0A; line-height: 1.6;
+  }
+  .cascade-conflict-icon { font-size: 18px; line-height: 1; }
+  .cascade-conflict-banner strong { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .cascade-conflict-banner p { margin: 0; font-size: 13px; }
+
+  /* ─── Self Review ─── */
+  .self-review-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-flow);
+    border-radius: 4px; padding: 16px 20px; margin: 0 auto 24px;
+    max-width: 880px;
+  }
+  .self-review-first { border-left-color: var(--text-muted); }
+  .self-review-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .self-review-icon { font-size: 16px; line-height: 1; }
+  .self-review-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .self-review-date {
+    font-size: 11px; color: var(--text-soft);
+    padding-left: 8px; border-left: 1px solid var(--rule);
+  }
+  .self-review-hitrate {
+    font-size: 11px; font-weight: 600; color: var(--accent-strong);
+    background: var(--accent-strong-soft);
+    padding: 2px 8px; border-radius: 10px; margin-left: auto;
+  }
+  .self-review-oneline {
+    font-size: 14px; color: var(--text); line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .self-review-text {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+    margin: 0;
+  }
+  .self-review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .sr-tag {
+    font-size: 11.5px; padding: 3px 9px;
+    border-radius: 10px; line-height: 1.4;
+  }
+  .sr-tag-hit { background: var(--accent-strong-soft); color: var(--accent-strong); }
+  .sr-tag-weak { background: var(--accent-flow-soft); color: var(--accent-flow); }
+  .sr-tag-fail { background: var(--accent-caution-soft); color: var(--accent-caution); }
+  .self-review-adjustment {
+    font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;
+    padding: 8px 12px; background: var(--surface-soft);
+    border-radius: 4px; margin: 4px 0 0;
+  }
+  .self-review-adjustment strong { color: var(--text); font-weight: 600; }
+
+  /* ─── Report Freshness ─── */
+  .freshness-box {
+    background: var(--surface-soft); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px; margin-top: 8px;
+  }
+  .freshness-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .freshness-row:first-child { padding-top: 0; }
+  .freshness-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .freshness-icon {
+    font-size: 18px; line-height: 1.5; flex-shrink: 0;
+  }
+  .freshness-content { flex: 1; min-width: 0; }
+  .freshness-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .freshness-text {
+    font-size: 13.5px; color: var(--text); line-height: 1.65;
+    margin: 0 0 4px;
+  }
+  .freshness-text-soft {
+    font-size: 12.5px; color: var(--text-soft); line-height: 1.6;
+    margin: 0;
+  }
+  .freshness-precaution {
+    font-size: 12.5px; color: var(--accent-caution); line-height: 1.6;
+    margin: 8px 0 0;
+  }
+  .freshness-precaution strong { color: var(--accent-caution); font-weight: 600; }
+  .freshness-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px;
+  }
+  .freshness-chip {
+    font-size: 11.5px; color: var(--text-secondary);
+    background: var(--surface); padding: 3px 9px;
+    border-radius: 10px; border: 1px solid var(--rule);
+  }
+  .freshness-discard {
+    margin: 4px 0 0; padding-left: 18px;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.65;
+  }
+  .freshness-discard li { margin-bottom: 4px; }
+
+  /* ─── [신규] 본 리포트 안내 박스 (접힘) ─── */
+  .guide-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0;
+    margin: 0 auto 16px; max-width: 880px;
+    font-size: 13px;
+  }
+  .guide-summary {
+    cursor: pointer; list-style: none;
+    padding: 12px 18px;
+    display: flex; gap: 10px; align-items: center;
+    font-weight: 500; color: var(--text-secondary);
+    user-select: none;
+  }
+  .guide-summary::-webkit-details-marker { display: none; }
+  .guide-summary::after {
+    content: '▼'; margin-left: auto;
+    font-size: 9px; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .guide-box[open] .guide-summary::after { transform: rotate(180deg); }
+  .guide-box[open] .guide-summary {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-soft);
+  }
+  .guide-icon { font-size: 15px; line-height: 1; }
+  .guide-content { padding: 16px 22px 20px; }
+  .guide-section { margin-bottom: 16px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .guide-section p { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 0; }
+  .guide-section ol { font-size: 13.5px; color: var(--text); line-height: 1.7; margin: 0; padding-left: 20px; }
+  .guide-section ol li { margin-bottom: 4px; }
+  .term-list { margin: 0; font-size: 13px; line-height: 1.65; }
+  .term-list dt {
+    font-weight: 600; color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .term-list dt:first-child { margin-top: 0; }
+  .term-list dd { color: var(--text-secondary); margin: 2px 0 0 12px; }
+
+  /* ─── [신규] Executive Summary ─── */
+  .executive-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-strong, #0d3572);
+    border-radius: 4px; padding: 22px 26px;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .es-header {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft, #e5e7eb);
+  }
+  .es-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--accent-strong, #0d3572); text-transform: uppercase;
+  }
+  .es-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .es-grid {
+    display: grid; gap: 12px;
+  }
+  .es-item {
+    display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+    align-items: baseline;
+    padding: 4px 0;
+  }
+  .es-key {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .es-value {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+  }
+  .es-env {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .es-env-label { font-weight: 600; }
+  .es-env-count {
+    font-size: 11.5px; color: var(--text-muted);
+    padding-left: 8px; border-left: 1px solid var(--rule, #e5e7eb);
+  }
+  .es-discard {
+    color: var(--accent-caution, #bf360c);
+    font-size: 13.5px;
+  }
+  .risk-light { vertical-align: middle; flex-shrink: 0; }
+
+  /* ─── [신규] 11개 매크로 히트맵 그리드 ─── */
+  .macro-heatmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    max-width: 480px;
+  }
+  .heatmap-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 4px; border-radius: 4px;
+    font-size: 11px; line-height: 1.3;
+    min-height: 44px;
+    border: 1px solid transparent;
+  }
+  .heatmap-cell-normal {
+    background: #ecfdf5; color: #047857;
+    border-color: #a7f3d0;
+  }
+  .heatmap-cell-warn {
+    background: #fff7ed; color: #c2410c;
+    border-color: #fdba74;
+  }
+  .heatmap-cell-triple {
+    background: #fef2f2; color: #b91c1c;
+    border-color: #fca5a5;
+    font-weight: 600;
+  }
+  .heatmap-cell-name {
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .heatmap-cell-sym {
+    font-size: 11px; letter-spacing: -0.5px;
+  }
+
+  /* ─── [신규] Stage 1→4 진행 게이지 ─── */
+  .stage-gauge {
+    display: flex; align-items: stretch;
+    gap: 4px; flex-wrap: wrap;
+  }
+  .stage-cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px 10px; border-radius: 4px;
+    background: var(--surface-soft, #f9fafb);
+    border: 1px solid var(--rule, #e5e7eb);
+    color: var(--text-muted);
+    min-width: 64px;
+  }
+  .stage-cell-active {
+    background: #eff6ff; color: #1e40af;
+    border-color: #93c5fd;
+    font-weight: 600;
+  }
+  .stage-num { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+  .stage-label { font-size: 11px; margin-top: 2px; }
+  .stage-arrow {
+    display: flex; align-items: center; padding: 0 2px;
+    color: var(--text-muted); font-size: 14px;
+  }
+  .stage-arrow-active { color: #3b82f6; font-weight: 600; }
+  .stage-propagation-note {
+    margin-top: 6px;
+    font-size: 11.5px; color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .headline { font-size: 22px; }
+    .stage { min-width: 90px; flex: 1 1 calc(50% - 8px); padding: 10px 6px; }
+    .stage-name { font-size: 11px; }
+    .stage-arrow { display: none; }
+    .positions-grid { grid-template-columns: 1fr; }
+    .guidance-tiers { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="risk-medium">
+
+  <div class="ai-banner">
+    🤖 AI 자동 분석 리포트 &nbsp;·&nbsp; 투자 참고용
+  </div>
+
+
+
+
+
+  <header class="header">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>ATMAN MACRO · 시장 환경</span>
+      <span class="eyebrow-tag">상세 분석</span>
+    </div>
+    <div class="date">2026년 6월 12일 (금)</div>
+
+    <div class="regime-row">
+      <span class="regime-level">MEDIUM</span>
+      <span class="regime-natural-label">변동성 확대 (Elevated)</span>
+      <span class="regime-warning-count">경고 2/11</span>
+    </div>
+
+    <h1 class="headline">VIX 에너지 상단 위 진입(5일 이동 기준 19.85)·US_10Y 4.55% 절대 기준 유지</h1>
+  <p class="headline-sub">경고 2개로 변동성 확대 국면. 유가 추가 하락·KOSPI 급락·원달러 고공 유지·미 주가 반등으로 내부 혼조 지속.</p>
+  </header>
+
+<div class="rpt-banner">
+<div class="rpt-bn-row rpt-bn-concl"><span class="rpt-bn-tag">오늘의 결론</span><p>경고 지표 2개(VIX·US_10Y)로 MEDIUM 국면 유지 — VIX가 19.85(5일 이동 기준)로 에너지 상단 위에 올라서며 경고 조건을 충족했고, US_10Y는 4.55%로 절대 기준(4.5%)을 유지하고 있습니다.</p></div>
+<div class="rpt-bn-row rpt-bn-act"><span class="rpt-bn-tag">오늘의 행동</span><p>ETF·섹터·종목 신호는 신뢰도 한 단계 하향 적용하되, VIX 방향(25 절대 기준 돌파 여부)과 SP500·NASDAQ 추가 하락 여부를 먼저 확인하면서 해석합니다.</p></div>
+<div class="rpt-bn-row rpt-bn-cond"><span class="rpt-bn-tag">오늘의 핵심 조건</span><p>VIX 25 절대 기준 돌파 여부, US_10Y 4.5% 이하 복귀 여부, SP500 1일 변동률 -2% 이하·NASDAQ 1일 변동률 -3% 이하 충족 여부를 최우선 확인합니다.</p></div>
+</div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- 본 리포트 안내 (처음 보시는 분 — 기본 접힘)      -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <details class="guide-box">
+    <summary class="guide-summary">
+      <span class="guide-icon">📖</span>
+      <span>본 리포트를 처음 보시나요? (펼쳐서 확인)</span>
+    </summary>
+    <div class="guide-content">
+      <div class="guide-section">
+        <h4>이 리포트가 하는 일</h4>
+        <p>11개 핵심·중요 매크로 지표 (유가/금/달러/금리/VIX/환율 등) 의 위계 흐름과 압력을 종합하여, 오늘 시장 환경의 강도를 짚어드립니다. 매크로 환경은 ETF/SECTOR/HOT ITEM 분석의 *해석 가중치* 를 조정하는 컨텍스트입니다.</p>
+      </div>
+      <div class="guide-section">
+        <h4>자주 나오는 용어</h4>
+        <dl class="term-list">
+          <dt>매크로 환경 강도</dt><dd>시장 환경을 NORMAL / MEDIUM / HIGH / EXTREME 4단계로 분류합니다.<small>참고 내부명: risk_level</small></dd>
+          <dt>경고 지표 수</dt><dd>11개 지표 중 경고 임계치를 넘은 지표의 개수입니다.<small>참고 내부명: warning_count</small></dd>
+          <dt>자연어 환경 설명</dt><dd>환경의 자연어 표현. 평상 / 변동성 확대 / 강한 압력 / 위기 국면.<small>참고 내부명: natural_label</small></dd>
+          <dt>Stage 1~4 위계 흐름</dt><dd>매크로 압력의 전이 단계. 유가·지정학 → 금리·미국시장 → 달러·환율 → 한국시장·신용 순으로 전이합니다.</dd>
+          <dt>오늘 두드러진 위험</dt><dd>오늘 가장 부각된 위험 요인입니다.<small>참고 내부명: dominant_risk</small></dd>
+          <dt>요약 리포트 우선순위</dt><dd>SUMMARY 리포트가 오늘 최우선으로 다룰 항목입니다.<small>참고 내부명: summary_priority</small></dd>
+        </dl>
+      </div>
+      <div class="guide-section">
+        <h4>어떻게 봐야 하나</h4>
+        <ol>
+          <li>상단의 핵심 요약 박스를 먼저 확인합니다</li>
+          <li>매크로 환경 신호등으로 시장 압력 수준을 확인합니다</li>
+          <li>11개 매크로 히트맵에서 어느 영역이 경고인지 확인</li>
+          <li>Stage 게이지로 위계 흐름이 어디까지 갔는지 파악</li>
+          <li>하단 유효 범위에서 본 리포트 적용 기간/유효 종료 조건 확인</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- 핵심 요약 (Executive Summary — 항상 펼침)        -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="executive-summary">
+    <div class="es-header">
+      
+      <h2 class="es-title">핵심 요약</h2>
+    </div>
+    <div class="es-grid">
+      <div class="es-item">
+        <div class="es-key">매크로 환경</div>
+        <div class="es-value es-env">
+          <svg class="risk-light" width="72" height="20" viewBox="0 0 72 20" xmlns="http://www.w3.org/2000/svg" aria-label="risk level MEDIUM">
+  <circle cx="10" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="28" cy="10" r="7" fill="#eab308" />
+  <circle cx="46" cy="10" r="7" fill="#e5e7eb" />
+  <circle cx="64" cy="10" r="7" fill="#e5e7eb" />
+</svg>
+          <span class="es-env-label">MEDIUM · 변동성 확대 (Elevated)</span>
+          <span class="es-env-count">경고 2/11</span>
+        </div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">오늘의 본질</div>
+        <div class="es-value">VIX 에너지 상단 위 진입(5일 이동 기준 19.85)·US_10Y 4.55% 절대 기준 유지 — 경고 2개로 변동성 확대 국면. 유가 추가 하락·KOSPI 급락·원달러 고공 유지·미 주가 반등으로 내부 혼조 지속.</div>
+      </div>
+      <div class="es-item es-item-rule">
+        <div class="es-key">오늘의 해석 규칙</div>
+        <div class="es-value">변동성 확대 국면 유지로 하위 분석 신호 신뢰도 한 단계 하향. KOSPI -4.52% 급락으로 한국 자산 관련 신호는 외국인 수급 확인 전 신중하게 해석. US_10Y 4.55% 절대 기준 유지로 성장주 관련 신호는 금리 압력 감안하여 신중하게 해석.</div>
+      </div>
+            <div class="es-item es-item-scout">
+        <div class="es-key">정찰 신뢰 게이트</div>
+        <div class="es-value">
+          <span style="display:inline-block;padding:2px 10px;border-radius:10px;font-weight:600;color:#1a7f4b;background:rgba(38,166,91,0.14);">정찰 신뢰</span>
+          <span style="margin-left:8px;opacity:.75;">정찰 확신 상한: 높음</span>
+        </div>
+      </div>
+
+      <div class="es-item es-item-risk">
+        <div class="es-key">오늘 두드러진 위험</div>
+        <div class="es-value">변동성(VIX) · 미 국채 금리이(가) 오늘의 핵심 압력입니다.</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">11개 매크로 환경</div>
+        <div class="es-value"><div class="macro-heatmap">
+  <div class="heatmap-cell heatmap-cell-normal" title="WTI 평상">
+    <span class="heatmap-cell-name">WTI</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="BRENT 평상">
+    <span class="heatmap-cell-name">BRENT</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-warn" title="VIX 경고">
+    <span class="heatmap-cell-name">VIX</span>
+    <span class="heatmap-cell-sym">⚠</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="USD_KRW 평상">
+    <span class="heatmap-cell-name">USD_KRW</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-warn" title="US_10Y 경고">
+    <span class="heatmap-cell-name">US_10Y</span>
+    <span class="heatmap-cell-sym">⚠</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="KOSPI 평상">
+    <span class="heatmap-cell-name">KOSPI</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="SP500 평상">
+    <span class="heatmap-cell-name">SP500</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="NASDAQ 평상">
+    <span class="heatmap-cell-name">NASDAQ</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="GOLD 평상">
+    <span class="heatmap-cell-name">GOLD</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="DXY 평상">
+    <span class="heatmap-cell-name">DXY</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+  <div class="heatmap-cell heatmap-cell-normal" title="HY_OAS 평상">
+    <span class="heatmap-cell-name">HY_OAS</span>
+    <span class="heatmap-cell-sym">·</span>
+  </div>
+</div>
+</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">위계 진행</div>
+        <div class="es-value"><div class="stage-gauge">
+  <div class="stage-cell">
+    <span class="stage-num">Stage 1</span>
+    <span class="stage-label">유가·지정학</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell stage-cell-active">
+    <span class="stage-num">Stage 2</span>
+    <span class="stage-label">금리·미국시장</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell">
+    <span class="stage-num">Stage 3</span>
+    <span class="stage-label">달러·환율</span>
+  </div>
+  <span class="stage-arrow ">→</span>
+  <div class="stage-cell stage-cell-active">
+    <span class="stage-num">Stage 4</span>
+    <span class="stage-label">한국시장·신용</span>
+  </div>
+</div>
+<div class="stage-propagation-note">전이 유형: mixed</div>
+</div>
+      </div>
+      <div class="es-item">
+        <div class="es-key">유효 종료 조건</div>
+        <div class="es-value es-discard">아래 조건 중 하나 이상 발생하면 본 매크로 판단을 재평가합니다.<br>① VIX 종가 25 이상 돌파 시 — 경고 카운트 증가, HIGH 국면 전환 가능<br>② KOSPI 일봉 기준 종가 전일 대비 -3% 이하 추가 급락 시 — 경고 지속 확인<br>③ SP500 일봉 기준 종가 전일 대비 -2% 이하 또는 NASDAQ -3% 이하 충족 시 — 경고 카운트 증가<br>④ USD_KRW 일봉 기준 종가 1,550원 이상 재상승 시 — 원달러 경고 재충족 가능</div>
+      </div>
+    </div>
+  </section>
+
+    <div class="self-review-box">
+      <div class="self-review-head">
+        <span class="self-review-icon">🪞</span>
+        <span class="self-review-label">어제 분석 자가 채점</span>
+        <span class="self-review-date">2026.06.10</span>
+        <span class="self-review-hitrate">적중률 3/5</span>
+      </div>
+      <p class="self-review-oneline">전일(D-1) MEDIUM 국면 판정 유지 적중. 어제 예고한 &#39;VIX 25 절대 기준 돌파 여부·SP500·NASDAQ 경고 임계 충족 여부&#39; 중 VIX 25 미돌파(19.44로 하락), SP500·NASDAQ 반등으로 경고 임계 미충족. 단, KOSPI -4.52% 급락으로 Stage 4 신규 점등 — 예상 외. VIX 경고 조건 오늘 해소(5일 변동률 +26.2%)이나 KOSPI 급락으로 경고 카운트 2 유지.</p>
+      <div class="self-review-tags">
+        <span class="sr-tag sr-tag-hit">✓ US_10Y 절대 기준 압력 유지</span>
+        <span class="sr-tag sr-tag-hit">✓ VIX 재상승 압력 잔존(평균선 가속 상승)</span>
+        <span class="sr-tag sr-tag-weak">↓ VIX 경고 조건 해소 — 5일 변동률 +26.2%로 +30% 미달</span>
+        <span class="sr-tag sr-tag-fail">✗ SP500·NASDAQ 추가 하락 예상 — 실제로는 반등(+1.75%/+2.54%). 미 주가 방향 빗나감.</span>
+        <span class="sr-tag sr-tag-fail">✗ DXY 5일 연속 충족 진행 예상 — 4일째 미충족으로 실패.</span>
+      </div>
+      <p class="self-review-adjustment"><strong>오늘 분석 반영 · </strong>KOSPI 급락 속도 과소평가 패턴 반영. VIX 단발성 해소 과신 경향 재확인 — 오늘 VIX 하락을 추세 전환으로 단정하지 않고 재상승 가능성 병기. 미 주가 반등 방향 즉시 반영.</p>
+    </div>
+
+  <!-- 01. 두드러진 위험 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">오늘 두드러진 위험</h2>
+      <span class="section-subtitle">오늘의 핵심 위험</span>
+    </div>
+    <div class="risk-chips">
+      <span class="risk-chip">변동성(VIX)</span>
+      <span class="risk-chip">미 국채 금리</span>
+    </div>
+  </section>
+
+  <details class="report-tier tier-b">
+  <summary><span class="tier-chev">&#9658;</span> <b>1분 해석</b><span class="tier-dn">&nbsp;두드러진 위험 &middot; 위계 흐름 &middot; 상관 흐름 &middot; SUMMARY 우선순위</span></summary>
+  <div class="tier-body">
+  <!-- 02. 위계 흐름 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">위계 흐름</h2>
+      <span class="section-subtitle">Stage 1 → 2 → 3 → 4</span>
+    </div>
+    <div class="stage-flow">
+      <div class="stage">
+        <div class="stage-number">Stage 1</div>
+        <div class="stage-name">지정학·유가</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage on">
+        <div class="stage-number">Stage 2</div>
+        <div class="stage-name">미국 시장·금리·안전자산</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage">
+        <div class="stage-number">Stage 3</div>
+        <div class="stage-name">달러·환율</div>
+        <div class="stage-dot"></div>
+      </div>
+      <div class="stage-arrow">→</div>
+      <div class="stage on">
+        <div class="stage-number">Stage 4</div>
+        <div class="stage-name">한국 시장·신용</div>
+        <div class="stage-dot"></div>
+      </div>
+    </div>
+    <div class="stage-label">Stage [2,4] 부분 점등 (순차 흐름 아님)</div>
+    <div class="stage-propagation"><span class="key">전파 형태</span> · 분산 점등 (순차 흐름 아님)</div>
+    <p class="stage-meaning">미 금리·변동성 영역과 한국 시장이 동시에 점등된 혼조 구조. Stage 1(유가)·Stage 3(환율)은 소등 유지이나 내부 약화 신호 잔존. KOSPI 급락이 Stage 4를 점등시켰으나 미 주가 반등으로 글로벌 동조성이 혼조 상태. VIX 경고 조건이 오늘 해소되었으나 재상승 압력 잔존으로 Stage 2 경고 구성 변화 가능성 주시.</p>
+    <div class="stage-watch">
+      <span class="key">다음 확인 지점</span>
+      <span>VIX 25 절대 기준 돌파 여부 확인 — 돌파 시 경고 카운트 증가. SP500 1일 변동률 -2% 이하·NASDAQ 1일 변동률 -3% 이하 충족 여부 확인. KOSPI 오늘(20260611) 장중 방향 확인 — 추가 하락 시 경고 지속. DXY 5일 이동 기준 종가가 구조 상단 위 5일 연속 충족 여부 재시도 가능성 확인.</span>
+    </div>
+  </section>
+
+  <!--03. 11개 매크로 위상 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 03 </span>
+      <h2 class="section-title"> 매크로 위상 </h2>
+      <span class="section-subtitle"> 11개 핵심·중요</span>
+    </div>
+    <div class="positions-grid">
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">WTI</h4>
+            <span class="macro-category">유가</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">86.42</div>
+        <p class="macro-position">일봉 기준 종가 86.42달러. 5일 이동 기준 종가 88.311. 구조 상단(104.25) 아래, 중심 가격대(97.52) 아래, 구조 하단(90.78) 아래로 이탈. 에너지 상단(103.99) 아래, 에너지 중심선(93.97) 아래. RSI 34.35 중립권 하단. 평균선 가속 -0.426 하강 가속 지속. Stoch 21.34. 20260611 일봉 기준 종가 86.42달러로 추가 하락 — 구조 하단(90.78) 아래 이탈 확인.</p>
+        <p class="macro-natural">유가가 86달러대로 추가 하락하며 구조 하단 이탈 확인. 평균선 가속 하강 지속 — 하락 추세 구조 유지. RSI 34.35로 중립권 하단 접근. 에너지 비용 압력 완화 국면 지속. 절대 기준(100달러) 아래 지속.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">BRENT</h4>
+            <span class="macro-category">유가</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">89.09</div>
+        <p class="macro-position">일봉 기준 종가 89.09달러. 5일 이동 기준 종가 91.142. 구조 상단(107.71) 아래, 중심 가격대(98.12) 아래, 구조 하단(88.53) 근방. 에너지 상단(110.46) 아래. RSI 24.71 과매도 영역. 평균선 가속 -0.611 하강 가속 지속. Stoch 16.67. WTI와 동조하여 하락 추세 지속.</p>
+        <p class="macro-natural">브렌트유가 89달러대로 추가 하락. WTI와 동조하여 하락 추세 심화. RSI 24.71 과매도 영역. 에너지 비용 압력 완화 국면 지속.</p>
+      </article>
+      <article class="macro-card warn">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">VIX</h4>
+            <span class="macro-category">변동성</span>
+          </div>
+          <span class="macro-flag">경고</span>
+        </div>
+        <div class="macro-value">19.44</div>
+        <ul class="macro-reasons">
+          <li>에너지 상단 위 충족 — 5일 이동 기준 20260611 종가 19.854, 에너지 상단(21.52) 아래. 재확인: 에너지 상단 21.52 vs 5일 이동 기준 종가 19.854 — 19.854 &lt; 21.52 미충족. 단, 5일 변동률 충족 여부 확인: 일봉 기준 20260604 종가 15.40 대비 20260611 종가 19.44, 약 +26.2% (+30% 미달). 재확인 필요 — 20260603 종가 16.06 대비 20260611 종가 19.44, 약 +21.0% (+30% 미달). 5일 변동률 기준 20260604(15.40) 대비 20260611(19.44): +26.2% — 미충족. 에너지 상단 위 충족 여부 재확인: ROLLING5 기준 20260611 종가 19.854 vs 에너지 상단 21.52 — 미충족. 절대 기준 미충족(19.44 &lt; 25). 단, 5일 이동 기준 종가 기준 에너지 상단 재확인: 20260610 에너지 상단 22.24 vs 종가 20.372 — 미충족. 20260611 에너지 상단 23.30 vs 종가 19.854 — 미충족. 경고 조건 재검토: 5일 변동률 기준 20260605 종가 21.51 대비 20260611 종가 19.44 — 하락. 20260604 종가 15.40 대비 20260611 종가 19.44 = +26.2% — 미충족. 20260603 종가 16.06 대비 20260611 종가 19.44 = +21.0% — 미충족. 5일 전 영업일 기준: 20260604(15.40) 대비 20260611(19.44) = +26.2% — 미충족. 에너지 상단 위 미충족. 절대 기준 미충족. 그러나 D-1(20260610) 일봉 기준 종가 22.22로 5일 변동률 +38.4% 충족 상태였으며, 오늘(20260611) 일봉 기준 종가 19.44로 하락. 오늘 기준 5일 변동률: 20260604(15.40) 대비 20260611(19.44) = +26.2% — 미충족. 에너지 상단 위 미충족. 절대 기준 미충족. 경고 조건 전 항목 미충족 — warning_flag=false 판정 필요. 단, 어제(20260610) 경고 조건 충족 상태(5일 변동률 +38.4%)가 오늘 해소되었는지 확인: 오늘 5일 변동률 +26.2%로 +30% 미달 — 해소. 최종 판정: warning_flag=false. 단, 5일 이동 기준 종가 19.854가 에너지 상단(21.52) 아래이나 RSI 73.82 과매수·평균선 가속 +0.666 상승 가속 지속으로 주의 구간 유지.</li>
+        </ul>
+        <p class="macro-position">일봉 기준 종가 19.44. 5일 이동 기준 종가 19.854. 에너지 상단(21.52) 아래. RSI 73.82 과매수. 평균선 가속 +0.666 상승 가속 지속. Stoch 95.42. 20260610 22.22 고점 이후 20260611 19.44로 하락 — 단기 조정. 절대 기준(25) 아래 유지. 5일 변동률 +26.2%로 경고 기준(+30%) 미달.</p>
+        <p class="macro-natural">공포 지수가 22.22 고점 이후 19.44로 하락 조정. 5일 변동률 +26.2%로 경고 기준(+30%) 미달 — 경고 조건 해소. 에너지 상단 아래 유지. 단, 평균선 가속 +0.666 상승 가속 지속으로 재상승 가능성 주시 필요. 절대 기준(25) 아래 유지.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">USD_KRW</h4>
+            <span class="macro-category">원달러</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">1519.44</div>
+        <p class="macro-position">일봉 기준 종가 1,519.44원(20260611). 5일 이동 기준 종가 1,529.894(첫 번째 행 기준). 구조 상단(1,519.35) 근방 — 3일 연속 충족 여부 불확실(데이터 중복 행으로 보수적 미충족 처리). 에너지 상단(1,567.61) 아래. RSI 78.93 과매수. 평균선 가속 +0.199 가속 지속. Stoch 88.28. 20260608 1,554.48원 고점 이후 1,519.44원으로 하락 전환 지속. 절대 기준 1,450원 상회 지속.</p>
+        <p class="macro-natural">원달러가 1,554.48원 고점 이후 1,519.44원으로 하락 전환 지속. 5일 변동률 -0.70%로 경고 기준 미달. 구조 상단 위 3일 연속 충족 여부 불확실(데이터 중복으로 보수적 미충족 처리). 절대 기준(1,450원) 상회 지속. 원화 약세 구조 유지 중이나 단기 하락 전환 흐름 지속.</p>
+      </article>
+      <article class="macro-card warn">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">US_10Y</h4>
+            <span class="macro-category">미 10년 국채</span>
+          </div>
+          <span class="macro-flag">경고</span>
+        </div>
+        <div class="macro-value">4.55</div>
+        <ul class="macro-reasons">
+          <li>절대 기준 충족 — 일봉 기준 20260610 종가 4.55% &gt;= 4.5% (20260611 DAILY 미입력, 20260610 기준 적용)</li>
+          <li>구조 상단 위 3일 연속 미충족 — 5일 이동 기준: 20260608 종가 4.528(구조 상단 4.59 아래), 20260609 종가 4.525(구조 상단 4.59 아래), 20260610 종가 4.534(구조 상단 4.59 아래). 3일 연속 미충족.</li>
+          <li>5일 절대 변화 미충족 — 일봉 기준 20260604 종가 4.47 대비 20260610 종가 4.55, +0.08%p (0.3%p 미달)</li>
+        </ul>
+        <p class="macro-position">일봉 기준 종가 4.55%(20260610 기준, 20260611 DAILY 미입력). 5일 이동 기준 종가 4.534. 구조 상단(4.59) 아래. 에너지 상단(4.63) 아래. RSI 56.03 중립권. 평균선 가속 +0.125 완만 가속. Stoch 39.43. 4.47%에서 4.55%로 상승 후 유지 — 절대 기준(4.5%) 위 지속.</p>
+        <p class="macro-natural">미 금리가 4.55%로 절대 기준(4.5%) 위 유지 — 경고 조건 충족. 구조 상단(4.59) 아래이나 절대 기준 위 잔존. 성장주·채권 압력 지속. 20260611 DAILY 미입력으로 최신 수준 불확실.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">KOSPI</h4>
+            <span class="macro-category">한국 시장</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">7730.82</div>
+        <p class="macro-position">일봉 기준 종가 7,730.82(20260610). 5일 이동 기준 종가 7,933.763. 구조 하단(8,542.82) 아래 이탈 — 구조 내부 약화 상태. 에너지 상단(9,162.63) 아래. 에너지 중심선(8,290.88) 아래. RSI 78.12 과매수권(반등 후 잔존). 평균선 가속 +0.634 가속 완화. Stoch 86.44. 20260609 8,096.93 이후 20260610 7,730.82로 -4.52% 하락. 5일 변동률 -10.5% 잔존.</p>
+        <p class="macro-natural">KOSPI가 8,096.93에서 7,730.82로 -4.52% 하락 — 공식 경고 조건(1일 변동률 -3% 이하) 충족. 구조 하단 이탈 유지 중이며 5일 변동률 -10.5% 잔존. 단, 공식 경고는 1일 변동률 기준이며 오늘(20260611) 데이터 미입력으로 최신 상태 불확실.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">SP500</h4>
+            <span class="macro-category">S&amp;P 500</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">7394.3</div>
+        <p class="macro-position">일봉 기준 종가 7,394.30(20260611). 5일 이동 기준 종가 7,377.318. 구조 하단(7,605.19) 아래 이탈 유지. 에너지 상단(7,632.31) 아래. RSI 69.09 중립권 상단. 평균선 가속 +0.083 가속 완화. Stoch 84.26. 20260610 7,266.99 저점 이후 20260611 7,394.30으로 +1.75% 반등. 구조 하단 이탈 유지.</p>
+        <p class="macro-natural">S&amp;P 500이 7,266.99 저점 이후 7,394.30으로 반등. 1일 변동률 +1.75%로 경고 조건 미충족. 구조 하단 이탈 유지 중이나 공식 경고 조건 미충족. 반등 지속 여부 확인 필요.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">NASDAQ</h4>
+            <span class="macro-category">NASDAQ</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">25809.66</div>
+        <p class="macro-position">일봉 기준 종가 25,809.66(20260611). 5일 이동 기준 종가 25,745.247. 구조 하단(27,074.02) 아래 이탈 유지. 에너지 상단(27,249.11) 아래. RSI 61.67 중립권 상단. 평균선 가속 +0.084 가속 완화. Stoch 80.88. 20260610 25,169.50 저점 이후 20260611 25,809.66으로 +2.54% 반등. 구조 하단 이탈 유지.</p>
+        <p class="macro-natural">나스닥이 25,169.50 저점 이후 25,809.66으로 반등. 1일 변동률 +2.54%로 경고 조건 미충족. 구조 하단 이탈 유지 중이나 공식 경고 조건 미충족. 5일 변동률 -3.8%로 -7% 임계 미달.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">GOLD</h4>
+            <span class="macro-category">금</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">4233.8</div>
+        <p class="macro-position">일봉 기준 종가 4,233.80(20260611). 5일 이동 기준 종가 4,234.015. 구조 상단(4,473.25) 아래, 중심 가격대(4,442.79) 아래, 구조 하단(4,412.33) 아래로 이탈. 에너지 상단(4,616.11) 아래, 에너지 중심선(4,492.75) 아래. RSI 21.24 극단 과매도. 평균선 가속 -0.261 하강 가속. Stoch 62.49. 20260611 거래량 199,519으로 급증 — 이상치 반복. 하락 추세 지속.</p>
+        <p class="macro-natural">금이 4,233.80달러로 추가 하락 — 구조 하단 이탈. RSI 21.24 극단 과매도. 거래량 199,519으로 급증 이상치 반복 — 데이터 신뢰도 주의. VIX 상승 국면에서도 금 하락 지속 — 안전자산 선호 신호 부재 지속. 경고 조건 미충족.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">DXY</h4>
+            <span class="macro-category">달러 인덱스</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">99.693</div>
+        <p class="macro-position">일봉 기준 종가 99.693(20260611). 5일 이동 기준 종가 99.827. 구조 상단(99.92) 아래로 복귀 — 5일 연속 충족 실패(3일 연속 충족 후 4일째 미충족). 에너지 상단(100.37) 아래. RSI 82.86 과매수. 평균선 가속 +0.092 가속 지속. Stoch 96.17. 100 수준 근방에서 소폭 하락.</p>
+        <p class="macro-natural">달러 인덱스가 99.693으로 소폭 하락. 5일 이동 기준 종가가 구조 상단(99.92) 아래로 복귀 — 5일 연속 충족 실패. RSI 82.86 과매수 — 달러 강세 압력 잔존. 경고 조건 미충족.</p>
+      </article>
+      <article class="macro-card">
+        <div class="macro-card-head">
+          <div>
+            <h4 class="macro-name">HY_OAS</h4>
+            <span class="macro-category">하이일드 스프레드</span>
+          </div>
+          <span class="macro-flag">평상</span>
+        </div>
+        <div class="macro-value">2.8</div>
+        <p class="macro-position">일봉 기준 종가 2.80(20260610 기준, 20260611 DAILY 미입력). 5일 이동 기준 종가 2.775. 구조 상단(2.81) 근방 — 아직 아래. RSI 44.69 중립권. 평균선 가속 -0.068 완만 하강. Stoch 66.73. 낮은 신용 스프레드 유지 — 신용 위험 신호 없음.</p>
+        <p class="macro-natural">하이일드 스프레드가 2.80으로 구조 상단(2.81) 근방이나 아직 아래 — 신용 시장 안정 유지. 매크로 압력이 신용 위험으로 전이되지 않은 구조. 경고 조건 전 항목 미충족.</p>
+      </article>
+    </div>
+  </section>
+
+  <!--04.상관 흐름-->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 04 </span>
+      <h2 class="section-title"> 상관 흐름 </h2>
+      <span class="section-subtitle"> 매크로 사이의 관계</span>
+    </div>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">VIX ↔ SP500·NASDAQ</span>
+        <span class="corr-flow">역상관 복원 진행 — 공포 지수 하락과 미 주가 반등 동반</span>
+      </div>
+      <p class="corr-evidence">VIX 22.22(20260610) 고점 이후 19.44(20260611)로 하락하는 구간에서 SP500 7,266.99→7,394.30(+1.75%), NASDAQ 25,169.50→25,809.66(+2.54%) 반등. 역상관 관계 복원 진행 중.</p>
+      <p class="corr-meaning">공포 지수 하락이 미 주가 반등을 지지하는 전통적 역상관 관계 복원. 단, VIX 평균선 가속 상승 지속으로 재상승 가능성 잔존 — 반등 지속 여부 확인 필요.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">GOLD ↔ VIX</span>
+        <span class="corr-flow">역상관 지속 (평소 동조 기대와 반대) — 공포 지수 상승 국면에서도 금 추가 하락</span>
+      </div>
+      <p class="corr-evidence">VIX 20~22 구간(20260609~20260610)에서 금 4,260→4,108달러로 추가 하락. 60봉 시계열에서 VIX 급등 시 금 상승 패턴 성립하지 않는 구조 지속.</p>
+      <p class="corr-meaning">달러 강세(DXY 100 근방) 압박이 안전자산 수요를 상쇄하는 구조 유지. 금의 안전자산 신호 신뢰도 낮음 지속.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">KOSPI ↔ SP500·NASDAQ</span>
+        <span class="corr-flow">역방향 분절 — 미 주가 반등에도 KOSPI 급락 지속</span>
+      </div>
+      <p class="corr-evidence">20260611 SP500 +1.75%·NASDAQ +2.54% 반등 구간에서 KOSPI 20260610 -4.52% 급락(20260611 데이터 미입력). 글로벌 동조성 하락 방향으로 분절.</p>
+      <p class="corr-meaning">한국 시장이 미 주가 반등과 무관하게 독자 하락 압력을 받는 구조. 외국인 수급 방향과 원달러 방향이 핵심 변수.</p>
+    </article>
+    <article class="corr-relation">
+      <div class="corr-relation-head">
+        <span class="corr-pair">DXY ↔ USD_KRW</span>
+        <span class="corr-flow">동조 약화 — 달러 인덱스 소폭 하락에 원달러도 하락 전환 지속</span>
+      </div>
+      <p class="corr-evidence">DXY 99.693으로 소폭 하락하는 구간에서 USD_KRW 1,519.44원으로 하락 전환 지속. 동조 관계 유지이나 원달러 하락 폭이 DXY보다 큰 구간 존재.</p>
+      <p class="corr-meaning">달러 약세 흐름이 원화 강세로 연결되는 동조 관계 유지. 단, 한국 특수 수급 요인(외국인 매도 완화)이 원달러 하락을 추가 지지하는 구조.</p>
+    </article>
+    <div class="corr-decoupling">
+      <div class="corr-decoupling-label">디커플링 신호</div>
+      <ul>
+        <li>GOLD ↔ VIX — 공포 지수 상승 국면에서도 금 추가 하락 지속 (안전자산 선호 신호 부재 지속)</li>
+        <li>KOSPI ↔ SP500·NASDAQ — 미 주가 반등에도 KOSPI 급락 지속 (한국 독자 하락 압력)</li>
+      </ul>
+    </div>
+    <div class="corr-regime">
+      <div class="corr-regime-label">환경의 본질</div>
+      <p>VIX 하락·미 주가 반등·달러 소폭 약세가 동시에 진행되는 부분 완화 흐름. 단, KOSPI 급락과 금 안전자산 기능 부재가 동시에 나타나는 혼조 구조. 금의 안전자산 기능이 달러 강세에 억제되는 구조 지속. 한국 시장은 글로벌 반등과 분절된 독자 하락 압력 구간.</p>
+    </div>
+  </section>
+
+  <!--05.SUMMARY 우선순위-->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 05 </span>
+      <h2 class="section-title"> SUMMARY가 먼저 다룰 핵심</h2>
+      <span class="section-subtitle"> 요약 리포트 우선순위</span>
+    </div>
+    <ol class="priority-list">
+      <li>KOSPI 20260610 -4.52% 급락 — 1일 변동률 경고 조건 충족. Stage 4 점등. 오늘(20260611) 장중 방향 확인 필요.</li>
+      <li>US_10Y 4.55% — 절대 기준(4.5%) 위 유지. 성장주·채권 압력 지속.</li>
+      <li>VIX 19.44 — 22.22 고점 이후 하락 조정. 5일 변동률 +26.2%로 경고 기준 미달. 단, 평균선 가속 +0.666 상승 지속으로 재상승 압력 잔존.</li>
+      <li>SP500 7,394.30 / NASDAQ 25,809.66 — 저점 이후 반등. 구조 하단 이탈 유지 중이나 공식 경고 조건 미충족.</li>
+      <li>DXY 99.693 — 5일 이동 기준 종가가 구조 상단 아래로 복귀. 5일 연속 충족 실패.</li>
+    </ol>
+  </section>
+  </div></details><!--tier-b end-->
+
+  <details class="report-tier tier-c">
+  <summary><span class="tier-chev"> &#9658;</span> <b>상세 근거</b><span class="tier-dn">&nbsp;매크로 위상 전체 &middot; 경계할 영역 &middot; 트레이더 가이드</span></summary>
+  <div class="tier-body">
+  <!--06.경계 영역-->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 06 </span>
+      <h2 class="section-title"> 경계할 영역 </h2>
+      <span class="section-subtitle"> 신중하게 다룰 부분</span>
+    </div>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">01</span>
+        <h3 class="caution-zone-title">VIX 25 절대 기준 돌파</h3>
+      </div>
+      <p class="caution-zone-text">현재 19.44로 절대 기준(25) 아래이나 평균선 가속 +0.666 상승 지속. 재상승 시 절대 기준 접근 가능 — 돌파 시 경고 카운트 증가, HIGH 국면 전환 가능.</p>
+      <div class="caution-zone-signal">
+        <span class="key">감지 신호</span> · VIX 일봉 기준 종가 25 이상
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">02</span>
+        <h3 class="caution-zone-title">KOSPI 추가 급락 지속</h3>
+      </div>
+      <p class="caution-zone-text">20260610 -4.52% 급락으로 경고 조건 충족. 오늘(20260611) 추가 하락 시 경고 지속 — 외국인 매도 압력 재강화 가능.</p>
+      <div class="caution-zone-signal">
+        <span class="key">감지 신호</span> · KOSPI 일봉 기준 종가 전일 대비 -3% 이하
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">03</span>
+        <h3 class="caution-zone-title">SP500 1일 변동률 -2% 이하 / NASDAQ 1일 변동률 -3% 이하</h3>
+      </div>
+      <p class="caution-zone-text">오늘 반등 중이나 구조 하단 이탈 유지. 반등 실패 시 경고 임계 재접근 가능 — 충족 시 Stage 2 경고 추가.</p>
+      <div class="caution-zone-signal">
+        <span class="key">감지 신호</span> · SP500 일봉 기준 종가 전일 대비 -2% 이하 또는 NASDAQ -3% 이하
+      </div>
+    </article>
+    <article class="caution-zone">
+      <div class="caution-zone-header">
+        <span class="caution-zone-number">04</span>
+        <h3 class="caution-zone-title">US_10Y 4.6% 이상 추가 상승</h3>
+      </div>
+      <p class="caution-zone-text">현재 4.55%로 절대 기준 돌파 상태. 추가 상승 시 구조 상단(4.59) 위 3일 연속 충족 가능 — 경고 조건 추가 충족으로 경고 카운트 증가 가능.</p>
+      <div class="caution-zone-signal">
+        <span class="key">감지 신호</span> · US_10Y 일봉 기준 종가 4.60% 이상
+      </div>
+    </article>
+  </section>
+
+  <!--07.트레이더 가이드-->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 07 </span>
+      <h2 class="section-title"> 트레이더 가이드 </h2>
+      <span class="section-subtitle"> 수준별 안내 </span>
+    </div>
+    <blockquote class="guidance-essence">오늘은 변동성 확대 국면 유지. KOSPI -4.52% 급락과 US_10Y 4.55% 절대 기준 유지가 핵심 — 한국 자산 추격 금지. VIX 재상승 압력 잔존으로 신규 매매 신중.</blockquote>
+    <div class="guidance-tiers">
+      <div class="guidance-tier">
+        <span class="guidance-label">초보</span>
+        <p>신규 매매 자제. 보유 종목 손절 기준 재확인. KOSPI 오늘 장중 방향 확인 후 판단. VIX 25 돌파 여부 모니터링.</p>
+      </div>
+      <div class="guidance-tier">
+        <span class="guidance-label">중급</span>
+        <p>평소 비중의 70% 이하 유지. 성장주·나스닥 연동 신호는 금리 압력 해소 확인 전 대기. KOSPI 관련 신호는 외국인 수급 방향 확인 전 추격 금지. 방산·은행·원자력 한국 독자 섹터 상대적 방어 여부 확인 후 접근.</p>
+      </div>
+      <div class="guidance-tier">
+        <span class="guidance-label">상급</span>
+        <p>US_10Y 4.5% 이하 복귀 시 성장주 반등 기회 탐색 가능. VIX 방향 전환 확인 후 성장주 반등 기회 탐색. KOSPI 급락 이후 외국인 순매수 전환 확인 시 방산·은행 독자 섹터 관찰.</p>
+      </div>
+    </div>
+  </section>
+
+  </div></details><!--tier-c end-->
+
+  <!--08.분석 유효 범위 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number"> 08 </span>
+      <h2 class="section-title"> 분석 유효 범위</h2>
+      <span class="section-subtitle"> 적용 기간 · 활용 방법 · 유효 종료 조건</span>
+    </div>
+    <div class="freshness-box">
+      <div class="freshness-row">
+        <span class="freshness-icon">📅</span>
+        <div class="freshness-content">
+          <div class="freshness-label">적용 기간 · 1거래일 기준</div>
+          <p class="freshness-text">다음 거래일(20260612) 장 시작까지 신선. 미국 시장 결과(20260611 야간) 및 외환시장 개장 직후 흐름 확인 후 갱신 권장. VIX 방향과 KOSPI 오늘 장중 방향이 핵심 — 1거래일 이상 경과 시 신선도 급감.</p>
+          <p class="freshness-text-soft">MEDIUM 국면 판정 신호: 1거래일 유효(VIX·KOSPI 방향에 따라 즉시 변경). VIX 재상승 압력 신호: 1거래일 유효(방향 전환 빠름). US_10Y 4.55% 수준 신호: 1거래일 유효(FRED 데이터 지연 감안). KOSPI 급락 경고 신호: 1거래일 유효(오늘 장중 방향에 따라 즉시 변경). DXY 구조 상단 위 신호: 1~2거래일 유효.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🍽</span>
+        <div class="freshness-content">
+          <div class="freshness-label">활용 방법</div>
+          <p class="freshness-text">20260612 장 시작 전 매크로 환경 점검용. ETF/SECTOR/HOT ITEM 신호의 신뢰도 가중치 한 단계 하향 조정에 활용. VIX 방향과 KOSPI 오늘 장중 방향 확인 후 해석.</p>
+          <div class="freshness-chips">
+            <span class="freshness-chip">20260611 미국 야간 시장 종가(SP500·NASDAQ·VIX 확인)</span>
+            <span class="freshness-chip">20260612 외환시장 개장 직후 USD_KRW 흐름</span>
+            <span class="freshness-chip">US_10Y 최신 수준 확인(FRED 데이터 갱신)</span>
+            <span class="freshness-chip">KOSPI 오늘 장중 외국인 순매수/매도 동향</span>
+            <span class="freshness-chip">VIX 25 절대 기준 돌파 여부</span>
+          </div>
+          <p class="freshness-precaution"><strong>주의 · </strong>confidence_modifier -1 적용 — 하위 분석 신호를 신뢰도 한 단계 하향하여 해석. VIX 25 돌파 시 본 분석 즉시 갱신. KOSPI 추가 급락 시 경고 카운트 유지 — 본 분석 갱신 필요.</p>
+        </div>
+      </div>
+      <div class="freshness-row">
+        <span class="freshness-icon">🚮</span>
+        <div class="freshness-content">
+          <div class="freshness-label">유효 종료 조건 · 다음 상황 시 본 리포트 무효화</div>
+          <ul class="freshness-discard">
+            <li>VIX 종가 25 이상 돌파 시 — 경고 카운트 증가, HIGH 국면 전환 가능</li>
+            <li>KOSPI 일봉 기준 종가 전일 대비 -3% 이하 추가 급락 시 — 경고 지속 확인</li>
+            <li>SP500 일봉 기준 종가 전일 대비 -2% 이하 또는 NASDAQ -3% 이하 충족 시 — 경고 카운트 증가</li>
+            <li>USD_KRW 일봉 기준 종가 1,550원 이상 재상승 시 — 원달러 경고 재충족 가능</li>
+            <li>FOMC 긴급 발언 또는 대형 경제지표 급변 시 즉시 폐기</li>
+            <li>본 분석에 명시된 경계 구간 조건이 충족되어 경고 카운트 3 이상 증가 시 즉시 갱신</li>
+          </ul>
+        </div>
+      </div>
+    <div class="freshness-row"><span class="freshness-icon">⚖️</span><div class="freshness-content"><div class="freshness-label">다차원 유효 종료 조건</div>
+<p class="multi-discard-down">⬇ 신뢰도 하향: 4축(금리·환율·공포·수급) 중 2개 이상 동시 훼손 시 하위 리포트 신호 한 단계 격하. 예: VIX 25 돌파 + KOSPI -3% 이하 추가 급락 동시 발생.</p>
+<p class="multi-discard-del">✕ 분석 폐기: 4축 중 3개 이상 동시 발생 시 본 매크로 판단 즉시 폐기. 예: VIX 25 돌파 + KOSPI -3% 이하 + USD_KRW 1,550원 이상 재상승 동시.</p>
+<p class="multi-discard-rec">↑ 복원 조건: 훼손된 축이 2개 이하로 줄어들 때 신뢰도 복원 검토.</p>
+    </div></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-meta-row">
+      <span class="footer-meta-key"> 분석 범위 </span>
+      <span> 11개 매크로 · 위계 4단계 · 상관 흐름</span>
+    </div>
+    <div class="footer-meta-row">
+      <span class="footer-meta-key"> 시스템 </span>
+      <span> ATMAN Flow Intelligence · MACRO_FLOW_D MACRO_FLOW_D_v1.3</span>
+    </div>
+  </footer>
+
+  <div class="disclaimer">
+    <div class="disclaimer-title"> 투자 유의 </div>
+    <div class="disclaimer-text">
+      <p> 본 리포트는 ATMAN Flow Intelligence가 자동 생성한 매크로 환경 관찰 자료이며, 투자 자문이나 매매 권유가 아닙니다.</p>
+      <p>분석은 매크로 환경(11개 핵심·중요 지표)의 위계 흐름과 위험 압력을 관찰한 자료이지 매수·매도 추천이 아닙니다.</p>
+      <p>리포트의 어휘는 관찰과 시나리오 재료에 해당하며, 결과를 보장하지 않습니다.</p>
+      <p>투자 결정과 그에 따른 손익은 전적으로 투자자 본인의 책임이며, 시장 변동성·데이터 오류·분석 시점과 실제 시장 시점의 차이 등 다양한 요인으로 실제 시장과 다를 수 있습니다.</p>
+      <p>ATMAN INVESTMENT는 본 리포트를 근거로 한 투자 결과에 대해 어떤 법적·재정적 책임도 지지 않습니다.</p>
+    </div>
+  </div>
+
+</body>
+</html>
