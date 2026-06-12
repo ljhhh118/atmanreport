@@ -314,12 +314,17 @@ const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim
 const isMobile=()=>window.matchMedia('(max-width:640px)').matches;
 let LOCALE='ko-KR';
 let PRICE_DEC=0;   // 가격 소수 자릿수 — 데이터에서 자동 감지(한국=0, 미국=2 등)
-// 데이터(updown_bb 종가)에서 최대 소수 자릿수를 감지(최대 4자리)
+// '기준 일봉'(raw_daily 있으면 그것, 없으면 대파동) 종가의 의미있는 소수 자릿수만 감지.
+// 중·소파동은 평균봉이라 .333 같은 인위적 소수가 생기므로 제외 → 종목 실제 호가단위 기준.
 function detectDecimals(){
-  let dec=0; const ub=(DATA&&DATA.indicators&&DATA.indicators.updown_bb)||{};
-  for(const w in ub){
-    const blk=ub[w], ci=blk.columns.indexOf('close'); if(ci<0)continue;
-    for(const r of blk.rows){ const s=String(r[ci]); const i=s.indexOf('.'); if(i>=0) dec=Math.max(dec, s.length-i-1); }
+  const src=pickAnchorSrc(); if(!src)return 0;
+  const ci=src.columns.indexOf('close'); if(ci<0)return 0;
+  let dec=0;
+  for(const r of src.rows){
+    const v=parseFloat(r[ci]); if(!Number.isFinite(v))continue;
+    const frac=v.toString().split('.')[1];           // 끝의 0 제거 후 실제 소수 자릿수
+    if(frac) dec=Math.max(dec, frac.replace(/0+$/,'').length);
+    if(dec>=4) return 4;
   }
   return Math.min(dec,4);
 }
