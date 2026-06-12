@@ -481,15 +481,24 @@ function legendHtml(indKey){
 }
 
 /* ================= 기준 일봉 닻 차트 ================= */
-const RAW_SRC={ind:'updown_bb', wave:'WAVE_L'};   // 추후 진짜 원본 일봉이 오면 ind/wave만 교체
+// 우선순위: raw_daily/RAW(진짜 원본 일봉) → 없으면 updown_bb/WAVE_L(대파동) 폴백
+function pickAnchorSrc(){
+  const ind=DATA.indicators||{};
+  if(ind.raw_daily && ind.raw_daily.RAW) return ind.raw_daily.RAW;
+  if(ind.updown_bb && ind.updown_bb.WAVE_L) return ind.updown_bb.WAVE_L;
+  return null;
+}
 function renderAnchor(){
   const wrap=document.getElementById('anchorWrap');
-  const src=DATA.indicators[RAW_SRC.ind] && DATA.indicators[RAW_SRC.ind][RAW_SRC.wave];
+  const src=pickAnchorSrc();
   document.getElementById('anchorName').textContent=T().anchorName;
   document.getElementById('anchorBadge').textContent=T().anchorBadge;
-  document.getElementById('anchorLegend').innerHTML=
-    OVERLAY.updown_bb.map(([c,key])=>`<span class="lg" style="color:var(${COLORMAP[key]})"><i></i>${OVERLAY_LABEL[c]||c}<span class="ax">Y2</span></span>`).join('');
-  if(!src){ wrap.innerHTML=`<div class="empty">${T().empty}</div>`; anchorRef=null; return; }
+  if(!src){ wrap.innerHTML=`<div class="empty">${T().empty}</div>`; document.getElementById('anchorLegend').innerHTML=''; anchorRef=null; return; }
+  // UpDownBB 밴드는 해당 소스에 컬럼이 있을 때만 (raw_daily는 보통 OHLCV만 → 밴드 생략)
+  const hasBands=colIdx(src,'upbb_u')>=0;
+  document.getElementById('anchorLegend').innerHTML= hasBands
+    ? OVERLAY.updown_bb.map(([c,key])=>`<span class="lg" style="color:var(${COLORMAP[key]})"><i></i>${OVERLAY_LABEL[c]||c}<span class="ax">Y2</span></span>`).join('')
+    : '';
   const {candles,vols,times}=buildCandles(src,false);
   const chart=LightweightCharts.createChart(wrap,{
     autoSize:true,
@@ -510,8 +519,8 @@ function renderAnchor(){
     wickUpColor:css('--c-up'),wickDownColor:css('--c-dn'),
   },0);
   cs.setData(candles);
-  // UpDownBB 밴드(상·중·하) 오버레이 — 캔들과 동일한 우측 Y축
-  for(const [colName,colKey] of OVERLAY.updown_bb){
+  // UpDownBB 밴드(상·중·하) 오버레이 — 컬럼이 있을 때만
+  if(hasBands) for(const [colName,colKey] of OVERLAY.updown_bb){
     const ls=chart.addSeries(LightweightCharts.LineSeries,{
       priceScaleId:'right',color:css(COLORMAP[colKey]),lineWidth:colKey==='mid'?1:2,
       lineStyle:colKey==='mid'?2:0,priceLineVisible:false,lastValueVisible:false,
