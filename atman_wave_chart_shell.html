@@ -313,15 +313,27 @@ const ZONE_ALPHA={strong:'33', light:'14'};
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const isMobile=()=>window.matchMedia('(max-width:640px)').matches;
 let LOCALE='ko-KR';
-// 가격축: 데스크탑=천단위 콤마 / 모바일=축약(134K·1.3M)으로 축 너비 절약
-function priceComma(p){ return Math.round(p).toLocaleString(LOCALE); }
+let PRICE_DEC=0;   // 가격 소수 자릿수 — 데이터에서 자동 감지(한국=0, 미국=2 등)
+// 데이터(updown_bb 종가)에서 최대 소수 자릿수를 감지(최대 4자리)
+function detectDecimals(){
+  let dec=0; const ub=(DATA&&DATA.indicators&&DATA.indicators.updown_bb)||{};
+  for(const w in ub){
+    const blk=ub[w], ci=blk.columns.indexOf('close'); if(ci<0)continue;
+    for(const r of blk.rows){ const s=String(r[ci]); const i=s.indexOf('.'); if(i>=0) dec=Math.max(dec, s.length-i-1); }
+  }
+  return Math.min(dec,4);
+}
+const decOpts=()=>({minimumFractionDigits:PRICE_DEC,maximumFractionDigits:PRICE_DEC});
+// 데스크탑=천단위 콤마(+소수) / 모바일=1000 이상만 축약, 1000 미만(미국주가 대부분)은 소수 그대로
+function priceComma(p){ return p.toLocaleString(LOCALE, decOpts()); }
 function priceCompact(p){
   const a=Math.abs(p), s=p<0?'-':'';
   if(a>=1e6) return s+(a/1e6).toFixed(a>=1e7?0:1).replace(/\.0$/,'')+'M';
   if(a>=1e3) return s+(a/1e3).toFixed(a>=1e4?0:1).replace(/\.0$/,'')+'K';
-  return s+Math.round(a).toLocaleString(LOCALE);
+  return s+a.toLocaleString(LOCALE, decOpts());
 }
 const priceFmt=()=>isMobile()?priceCompact:priceComma;
+const priceFormatOpt=()=>({type:'custom', minMove:PRICE_DEC>0?1/Math.pow(10,PRICE_DEC):1, formatter:priceFmt()});
 // 패널 높이를 stretch로 결정 → 대/중파동의 RSI 영역 높이가 동일하게 맞음
 function layoutPanes(chart, container, oscPane, volPane){
   const H=(container&&container.clientHeight)||460, oscH=92, volH=66;
@@ -395,7 +407,7 @@ function renderChart(container,indKey,wave){
 
   const chart=LightweightCharts.createChart(container,{
     autoSize:true,
-    layout:{background:{color:'#fff'},textColor:'#5b6675',fontFamily:css('--mono'),fontSize:11,
+    layout:{background:{color:'#fff'},textColor:'#5b6675',fontFamily:css('--mono'),fontSize:isMobile()?9:11,
             panes:{separatorColor:'#E3E8EF',separatorHoverColor:'#cfd8e3',enableResize:false}},
     grid:{vertLines:{color:'#F0F3F7'},horzLines:{color:'#F0F3F7'}},
     rightPriceScale:{borderColor:'#E3E8EF',scaleMargins:{top:0.08,bottom:0.08}},
@@ -426,7 +438,7 @@ function renderChart(container,indKey,wave){
 
   const cs=chart.addSeries(LightweightCharts.CandlestickSeries,{
     priceScaleId:'right',
-    priceFormat:{type:'custom',minMove:1,formatter:priceFmt()},
+    priceFormat:priceFormatOpt(),
     upColor:css('--c-up'),downColor:css('--c-dn'),
     borderUpColor:css('--c-up'),borderDownColor:css('--c-dn'),
     wickUpColor:css('--c-up'),wickDownColor:css('--c-dn'),
@@ -438,6 +450,7 @@ function renderChart(container,indKey,wave){
     const ls=chart.addSeries(LightweightCharts.LineSeries,{
       priceScaleId:'right',color:css(COLORMAP[colKey]),lineWidth:colKey==='mid'?1:2,
       lineStyle:colKey==='mid'?2:0,priceLineVisible:false,lastValueVisible:false,
+      priceFormat:priceFormatOpt(),
     },0);
     ls.setData(buildLine(oBlock,times,colName));
   }
@@ -484,8 +497,9 @@ function legendHtml(indKey){
 // 우선순위: raw_daily/RAW(진짜 원본 일봉) → 없으면 updown_bb/WAVE_L(대파동) 폴백
 function pickAnchorSrc(){
   const ind=DATA.indicators||{};
-  if(ind.raw_daily && ind.raw_daily.RAW) return ind.raw_daily.RAW;
-  if(ind.updown_bb && ind.updown_bb.WAVE_L) return ind.updown_bb.WAVE_L;
+  const raw=ind.raw_daily && ind.raw_daily.RAW;
+  if(raw && raw.rows && raw.rows.length>0) return raw;   // 행이 실제로 있을 때만 원본 사용
+  if(ind.updown_bb && ind.updown_bb.WAVE_L) return ind.updown_bb.WAVE_L;  // 없거나 비어있으면 대파동 폴백
   return null;
 }
 function renderAnchor(){
@@ -502,7 +516,7 @@ function renderAnchor(){
   const {candles,vols,times}=buildCandles(src,false);
   const chart=LightweightCharts.createChart(wrap,{
     autoSize:true,
-    layout:{background:{color:'#fff'},textColor:'#5b6675',fontFamily:css('--mono'),fontSize:11,
+    layout:{background:{color:'#fff'},textColor:'#5b6675',fontFamily:css('--mono'),fontSize:isMobile()?9:11,
             panes:{separatorColor:'#E3E8EF',separatorHoverColor:'#cfd8e3',enableResize:false}},
     grid:{vertLines:{color:'#F0F3F7'},horzLines:{color:'#F0F3F7'}},
     rightPriceScale:{borderColor:'#E3E8EF',scaleMargins:{top:0.08,bottom:0.08}},
@@ -513,7 +527,7 @@ function renderAnchor(){
   });
   const cs=chart.addSeries(LightweightCharts.CandlestickSeries,{
     priceScaleId:'right',
-    priceFormat:{type:'custom',minMove:1,formatter:priceFmt()},
+    priceFormat:priceFormatOpt(),
     upColor:css('--c-up'),downColor:css('--c-dn'),
     borderUpColor:css('--c-up'),borderDownColor:css('--c-dn'),
     wickUpColor:css('--c-up'),wickDownColor:css('--c-dn'),
@@ -524,6 +538,7 @@ function renderAnchor(){
     const ls=chart.addSeries(LightweightCharts.LineSeries,{
       priceScaleId:'right',color:css(COLORMAP[colKey]),lineWidth:colKey==='mid'?1:2,
       lineStyle:colKey==='mid'?2:0,priceLineVisible:false,lastValueVisible:false,
+      priceFormat:priceFormatOpt(),
     },0);
     ls.setData(buildLine(src,times,colName));
   }
@@ -679,6 +694,7 @@ async function boot(){
       symbol_name: qs.get('name')||meta.name||symFromFile.name,
       indicators, __url:url,
     };
+    PRICE_DEC=detectDecimals();   // 가격 소수 자릿수 자동 감지(KR=0 / US=2 등)
 
     await libP;
 
