@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ATMAN OS · WAVE CHART</title>
 <style>
-  :root{ 
+  :root{
     --navy:#0F1B2D; --navy-line:#22354f; --accent:#4DA3FF;
     --ink:#0F1B2D; --body:#F4F6F9; --card:#FFFFFF; --card-line:#E3E8EF;
     --muted:#6B7787; --muted-2:#9AA6B5;
@@ -173,7 +173,7 @@ const STR={
     anchorName:'기준 일봉', anchorBadge:'일봉',
     legendNote:'음영 = 과열·침체 (둘 다 충족 = 진함)',
     provHead:'분석 근거 데이터 · Provenance',
-    provCols:['파동','압축(일봉기준)','구간','표본'],
+    provCols:['파동','압축(일봉기준)','표본'],
     compBase:'일봉 (기준)', compFrac:r=>`일봉 × 1/${r}`, sampleUnit:'봉',
     metaSource:'데이터 출처', metaIndic:'지표 가공', metaHash:'데이터 지문', metaAsOf:'데이터 기준', metaBuilt:'리포트 작성',
     source:'거래소 시장 데이터(시세) · ATMAN OS 가공 export',
@@ -202,7 +202,7 @@ const STR={
     anchorName:'Daily', anchorBadge:'Daily',
     legendNote:'Shading = overbought / oversold (both met = darker)',
     provHead:'Source Data · Provenance',
-    provCols:['Wave','Compression (vs daily)','Range','Sample'],
+    provCols:['Wave','Compression (vs daily)','Sample'],
     compBase:'Daily (base)', compFrac:r=>`Daily × 1/${r}`, sampleUnit:' bars',
     metaSource:'Source', metaIndic:'Indicators', metaHash:'Fingerprint', metaAsOf:'Data as-of', metaBuilt:'Built',
     source:'Exchange market data (quotes) · processed by ATMAN OS',
@@ -258,23 +258,27 @@ function symbolFromUrl(url){
   }catch(e){ return {code:'',name:''}; }
 }
 
-/* ---------- 2) .txt 파서 ---------- */
+/* ---------- 2) .txt 파서 ([ind / WAVE] 섹션 + 선택적 [meta]) ---------- */
 function parseTxt(text){
   const lines=text.split(/\r?\n/);
   const indicators={};
-  let cur=null;
+  const meta={};
+  let cur=null, metaMode=false;
   const openRe=/^\[([^/\]]+?)\s*\/\s*([^\]]+?)\]$/;
   const closeRe=/^\[\/(.+?)\s*\/\s*(.+?)\]$/;
   for(const raw of lines){
     const line=raw.trim();
     if(!line) continue;
+    if(line==='[meta]'){ metaMode=true; cur=null; continue; }
+    if(line==='[/meta]'){ metaMode=false; continue; }
+    if(metaMode){ const i=line.indexOf(','); if(i>0) meta[line.slice(0,i).trim().toLowerCase()]=line.slice(i+1).trim(); continue; }
     if(closeRe.test(line)){ if(cur){ (indicators[cur.ind]=indicators[cur.ind]||{})[cur.wave]={columns:cur.columns,rows:cur.rows}; cur=null; } continue; }
     const m=line.match(openRe);
     if(m){ cur={ind:m[1].trim(),wave:m[2].trim(),columns:null,rows:[]}; continue; }
     if(cur){ const cells=line.split(','); if(cur.columns===null) cur.columns=cells.map(c=>c.trim()); else cur.rows.push(cells); }
   }
   if(cur){ (indicators[cur.ind]=indicators[cur.ind]||{})[cur.wave]={columns:cur.columns,rows:cur.rows}; }
-  return indicators;
+  return {indicators, meta};
 }
 
 /* ---------- 3) SHA-256 ---------- */
@@ -308,6 +312,25 @@ const ZONE_ALPHA={strong:'33', light:'14'};
 /* ================= helpers ================= */
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const isMobile=()=>window.matchMedia('(max-width:640px)').matches;
+let LOCALE='ko-KR';
+// 가격축: 데스크탑=천단위 콤마 / 모바일=축약(134K·1.3M)으로 축 너비 절약
+function priceComma(p){ return Math.round(p).toLocaleString(LOCALE); }
+function priceCompact(p){
+  const a=Math.abs(p), s=p<0?'-':'';
+  if(a>=1e6) return s+(a/1e6).toFixed(a>=1e7?0:1).replace(/\.0$/,'')+'M';
+  if(a>=1e3) return s+(a/1e3).toFixed(a>=1e4?0:1).replace(/\.0$/,'')+'K';
+  return s+Math.round(a).toLocaleString(LOCALE);
+}
+const priceFmt=()=>isMobile()?priceCompact:priceComma;
+// 패널 높이를 stretch로 결정 → 대/중파동의 RSI 영역 높이가 동일하게 맞음
+function layoutPanes(chart, container, oscPane, volPane){
+  const H=(container&&container.clientHeight)||460, oscH=92, volH=66;
+  const panes=chart.panes();
+  const used=(oscPane!=null?oscH:0)+(volPane!=null?volH:0);
+  if(panes[0]) panes[0].setStretchFactor(Math.max(80, H-used));
+  if(oscPane!=null && panes[oscPane]) panes[oscPane].setStretchFactor(oscH);
+  if(volPane!=null && panes[volPane]) panes[volPane].setStretchFactor(volH);
+}
 function toTime(dt){
   const [d,t]=dt.trim().split(' ');
   const [Y,M,D]=d.split('-').map(Number);
@@ -379,6 +402,7 @@ function renderChart(container,indKey,wave){
     leftPriceScale:{visible:false},
     timeScale:{borderColor:'#E3E8EF',timeVisible:true,secondsVisible:false},
     crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+    localization:{locale:LOCALE},
   });
 
   if(osc){
@@ -402,6 +426,7 @@ function renderChart(container,indKey,wave){
 
   const cs=chart.addSeries(LightweightCharts.CandlestickSeries,{
     priceScaleId:'right',
+    priceFormat:{type:'custom',minMove:1,formatter:priceFmt()},
     upColor:css('--c-up'),downColor:css('--c-dn'),
     borderUpColor:css('--c-up'),borderDownColor:css('--c-dn'),
     wickUpColor:css('--c-up'),wickDownColor:css('--c-dn'),
@@ -437,10 +462,7 @@ function renderChart(container,indKey,wave){
     vs.setData(vols);
   }
 
-  const panes=chart.panes();
-  if(oscPane!=null && panes[oscPane]) panes[oscPane].setHeight(92);
-  if(volPane!=null && panes[volPane]) panes[volPane].setHeight(66);
-
+  layoutPanes(chart, container, oscPane, volPane);
   applyView(chart, candles.length);
   return {chart, len:candles.length};
 }
@@ -478,9 +500,11 @@ function renderAnchor(){
     leftPriceScale:{visible:false},
     timeScale:{borderColor:'#E3E8EF',timeVisible:true,secondsVisible:false},
     crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+    localization:{locale:LOCALE},
   });
   const cs=chart.addSeries(LightweightCharts.CandlestickSeries,{
     priceScaleId:'right',
+    priceFormat:{type:'custom',minMove:1,formatter:priceFmt()},
     upColor:css('--c-up'),downColor:css('--c-dn'),
     borderUpColor:css('--c-up'),borderDownColor:css('--c-dn'),
     wickUpColor:css('--c-up'),wickDownColor:css('--c-dn'),
@@ -552,8 +576,7 @@ function renderProvenance(){
   const rows=[];
   for(const [ind,w] of order){
     const blk=DATA.indicators[ind]&&DATA.indicators[ind][w]; if(!blk)continue;
-    const ti=colIdx(blk,'datetime');
-    rows.push(`<tr><td>${T().wave[w]||w}</td><td>${compLabel(medInterval(blk),base)}</td><td>${blk.rows[0][ti]} ~ ${blk.rows[blk.rows.length-1][ti]}</td><td>${blk.rows.length}${T().sampleUnit}</td></tr>`);
+    rows.push(`<tr><td>${T().wave[w]||w}</td><td>${compLabel(medInterval(blk),base)}</td><td>${blk.rows.length}${T().sampleUnit}</td></tr>`);
   }
   const chips=IND_KEYS.map(k=>`<span class="prov-chip">${T().ind[k][0]}</span>`).join('');
   const c=T().provCols;
@@ -561,7 +584,7 @@ function renderProvenance(){
     <div class="prov-head"><span class="seal">&#10003;</span>${T().provHead}</div>
     <div class="prov-body">
       <table class="prov-table">
-        <thead><tr><th>${c[0]}</th><th>${c[1]}</th><th>${c[2]}</th><th>${c[3]}</th></tr></thead>
+        <thead><tr><th>${c[0]}</th><th>${c[1]}</th><th>${c[2]}</th></tr></thead>
         <tbody>${rows.join('')}</tbody>
       </table>
       <div class="prov-meta">
@@ -607,6 +630,7 @@ async function boot(){
   const qs=new URLSearchParams(location.search);
   LANG=(qs.get('lang')||'ko').toLowerCase()==='en'?'en':'ko';
   MOBILE_BARS=Math.max(8, +(qs.get('mbars'))||36);
+  LOCALE=LANG==='en'?'en-US':'ko-KR';
 
   // 언어 적용: html lang, 제목, 캔들색(영문=서구식 상승 초록/하락 빨강)
   document.documentElement.lang=T().htmlLang;
@@ -636,11 +660,16 @@ async function boot(){
     const text=new TextDecoder('utf-8').decode(buf);
 
     setLoading(T().loadParse);
-    const indicators=parseTxt(text);
+    const {indicators, meta}=parseTxt(text);
     if(!indicators.updown_bb) throw Object.assign(new Error('parse'), {code:'PARSE', url});
 
+    // 심볼 우선순위: URL 파라미터 > 파일 [meta] > 파일명
     const symFromFile=symbolFromUrl(url);
-    DATA={ symbol_code:qs.get('code')||symFromFile.code, symbol_name:qs.get('name')||symFromFile.name, indicators, __url:url };
+    DATA={
+      symbol_code: qs.get('code')||meta.code||symFromFile.code,
+      symbol_name: qs.get('name')||meta.name||symFromFile.name,
+      indicators, __url:url,
+    };
 
     await libP;
 
