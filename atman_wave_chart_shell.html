@@ -21,22 +21,47 @@
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--body);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  header{background:var(--navy);color:#fff;border-bottom:1px solid var(--navy-line);position:sticky;top:0;z-index:20}
-  .topbar{display:flex;align-items:baseline;gap:14px;padding:14px 20px 10px}
-  .sym-code{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--accent)}
-  .sym-name{font-size:18px;font-weight:650;letter-spacing:-.01em}
-  .sym-meta{margin-left:auto;font-family:var(--mono);font-size:11px;color:#7d8ba0;letter-spacing:.04em}
-  .tabs{display:flex;gap:2px;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+  header{background:linear-gradient(180deg,#13243c 0%,#0F1B2D 100%);color:#fff;
+         border-bottom:1px solid var(--navy-line);position:sticky;top:0;z-index:20;
+         box-shadow:0 2px 12px rgba(8,15,28,.18)}
+  .topbar{display:flex;align-items:center;gap:12px;padding:13px 20px 11px}
+  .brand-dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto;
+             background:radial-gradient(circle at 30% 30%,#7CC0FF,#3B82E0);
+             box-shadow:0 0 0 3px rgba(77,163,255,.18)}
+  .sym-code{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#a8d3ff;
+            border:1px solid rgba(122,176,255,.35);background:rgba(77,163,255,.08);
+            padding:2px 8px;border-radius:999px;line-height:1.5}
+  .sym-name{font-size:18px;font-weight:680;letter-spacing:-.01em}
+  .sym-meta{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:#88a3c4;letter-spacing:.06em;
+            padding-left:14px;border-left:1px solid rgba(255,255,255,.09);white-space:nowrap}
+  /* 탭바: 우측 페이드로 '더 있음' 힌트 (모바일 스크롤) */
+  .tabbar{position:relative}
+  .tabbar::after,.tabbar::before{content:"";position:absolute;top:0;bottom:0;width:34px;pointer-events:none;
+            opacity:0;transition:opacity .2s;z-index:2}
+  .tabbar::after{right:0;background:linear-gradient(90deg,rgba(15,27,45,0),#0F1B2D 75%)}
+  .tabbar::before{left:0;background:linear-gradient(270deg,rgba(15,27,45,0),#0F1B2D 75%)}
+  .tabbar.ov-right::after{opacity:1}
+  .tabbar.ov-left::before{opacity:1}
+  .tab-chevron{position:absolute;right:7px;top:50%;transform:translateY(-50%);z-index:3;
+            color:#bcd4f0;font-size:15px;pointer-events:none;opacity:0;transition:opacity .2s;
+            text-shadow:0 0 6px rgba(15,27,45,.9)}
+  .tabbar.ov-right .tab-chevron{opacity:.9;animation:nudge 1.4s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(3px)}}
+  @media (prefers-reduced-motion:reduce){.tabbar.ov-right .tab-chevron{animation:none}}
+  .tabs{display:flex;gap:1px;padding:0 12px;overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth}
   .tabs::-webkit-scrollbar{display:none}
-  .tab{appearance:none;background:transparent;border:0;border-bottom:2px solid transparent;color:#8ea0b8;
-       font-family:var(--sans);font-size:13px;font-weight:550;padding:9px 14px;cursor:pointer;white-space:nowrap;
-       transition:color .15s,border-color .15s}
+  .tab{position:relative;appearance:none;background:transparent;border:0;color:#90a3bd;
+       font-family:var(--sans);font-size:13px;font-weight:560;padding:10px 15px 11px;cursor:pointer;white-space:nowrap;
+       border-radius:8px 8px 0 0;transition:color .16s,background .16s}
+  .tab::after{content:"";position:absolute;left:11px;right:11px;bottom:0;height:2px;border-radius:2px;
+       background:transparent;transition:background .16s}
   .tab .sub{display:block;font-family:var(--mono);font-size:10px;font-weight:400;color:#5d6e85;margin-top:2px;letter-spacing:.02em}
   .tab .sub:empty{display:none}
-  .tab:hover{color:#cdd8e6}
-  .tab[aria-selected="true"]{color:#fff;border-bottom-color:var(--accent)}
-  .tab[aria-selected="true"] .sub{color:var(--accent)}
-  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:4px}
+  .tab:hover{color:#dbe6f4;background:rgba(255,255,255,.04)}
+  .tab[aria-selected="true"]{color:#fff;background:rgba(77,163,255,.10)}
+  .tab[aria-selected="true"]::after{background:linear-gradient(90deg,#4DA3FF,#7CC0FF);box-shadow:0 0 8px rgba(77,163,255,.5)}
+  .tab[aria-selected="true"] .sub{color:#a8d3ff}
+  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:6px}
   main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
   .stack{display:flex;flex-direction:column;gap:16px}
   .chart-card{background:var(--card);border:1px solid var(--card-line);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(15,27,45,.04)}
@@ -60,29 +85,31 @@
 
   /* ===== 모바일: 상단/헤더/차트 높이 축소 ===== */
   @media (max-width:640px){
-    .topbar{padding:10px 14px 6px;gap:9px}
+    .topbar{padding:9px 13px 8px;gap:9px}
     .sym-name{font-size:15px}
-    .sym-code{font-size:11px}
+    .sym-code{font-size:10px;padding:2px 7px}
     .sym-meta{display:none}
     .tabs{padding:0 8px}
-    .tab{font-size:12px;padding:7px 10px}
+    .tab{font-size:12px;padding:8px 12px 9px}
     .tab .sub{font-size:9px}
+    .tab::after{left:9px;right:9px}
     main{padding:12px 9px 40px}
     .stack{gap:12px}
     .chart-head{padding:9px 11px}
     .legend{display:none}
     .chart-wrap{height:340px}
     .anchor-wrap{height:200px}
-    .data-notice{font-size:11.5px;padding:9px 11px;margin-bottom:12px}
+    .data-notice{font-size:11.5px;padding:10px 12px;margin-bottom:12px}
     .wave-code{display:none}
   }
 
   /* ===== 시장데이터 고지 ===== */
-  .data-notice{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;padding:11px 14px;
-    background:#FFF7E6;border:1px solid #F2D9A0;border-left:3px solid #D98E04;border-radius:10px;
-    font-size:12.5px;line-height:1.55;color:#7A5A12}
-  .data-notice .ic{flex:0 0 auto;font-weight:800;color:#D98E04}
-  .data-notice b{color:#5C4409}
+  .data-notice{display:flex;gap:11px;align-items:flex-start;margin-bottom:16px;padding:12px 15px;
+    background:linear-gradient(180deg,#FFFBF1,#FFF6E3);border:1px solid #EFD9A6;border-radius:12px;
+    font-size:12.5px;line-height:1.6;color:#7A5A12;box-shadow:0 1px 2px rgba(150,110,20,.05)}
+  .data-notice .ic{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#E8A317;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;font-style:normal;margin-top:1px}
+  .data-notice b{color:#5C4409;font-weight:680}
   /* ===== provenance ===== */
   .provenance{margin-top:22px;border:1px solid var(--card-line);border-radius:12px;background:var(--card);overflow:hidden}
   .prov-head{display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--card-line);font-size:13px;font-weight:650;color:var(--ink)}
@@ -121,11 +148,15 @@
 <body>
 <header>
   <div class="topbar">
+    <span class="brand-dot"></span>
     <span class="sym-code" id="symCode"></span>
     <span class="sym-name" id="symName"></span>
     <span class="sym-meta" id="symMeta"></span>
   </div>
-  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="tabbar" id="tabbar">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <span class="tab-chevron" aria-hidden="true">&#8250;</span>
+  </div>
 </header>
 
 <div class="state" id="stateBox">
@@ -134,7 +165,7 @@
 
 <main id="mainBox" class="hidden">
   <div class="data-notice">
-    <span class="ic">&#9432;</span>
+    <span class="ic">i</span>
     <div id="noticeText"></div>
   </div>
   <section class="chart-card anchor-card">
@@ -167,7 +198,7 @@ const STR={
     htmlLang:'ko',
     title:'ATMAN OS · WAVE CHART',
     symMeta:n=>`ATMAN OS · WAVE CHART${n?` · ${n} bars`:''}`,
-    notice:'본 화면의 <b>모든 값은 거래소 시장 데이터를 ATMAN OS가 자체 지표로 가공·분석한 2차 결과</b>입니다. 시장의 원본 시세·체결값이 아니며, 특정 종목의 매매를 권유하지 않습니다. 분석 보조 참고용입니다.',
+    notice:'이 화면의 <b>모든 값은 거래소 시장 데이터를 ATMAN OS가 자체 지표로 재가공한 2차 분석 결과</b>입니다. 실시간 호가·체결 화면이 아니며, 특정 종목의 매매를 권유하지 않습니다. 분석 보조 참고용입니다.',
     wave:{WAVE_L:'대파동',WAVE_M:'중파동',WAVE_S:'소파동',FUND_WAVE_L:'자금 대파동'},
     ind:{updown_bb:['추세 압력대','Trend Pressure'],slope_bb:['추진력','Thrust'],sr_band:['세력 경계','Force Zones'],divergence:['이격','Divergence'],price_index:['가격 중심','Value Center'],fund_updown_bb:['자금 흐름','Capital Flow']},
     anchorName:'기준 일봉', anchorBadge:'일봉',
@@ -196,7 +227,7 @@ const STR={
     htmlLang:'en',
     title:'ATMAN OS · WAVE CHART',
     symMeta:n=>`ATMAN OS · WAVE CHART${n?` · ${n} bars`:''}`,
-    notice:'Every value shown here is a <b>secondary result, produced by ATMAN OS applying its own indicators to exchange market data</b>. These are not raw exchange quotes or trades, and nothing here is a recommendation to buy or sell. For analytical reference only.',
+    notice:'Every value here is a <b>secondary analysis — exchange market data reprocessed through ATMAN OS\'s own indicators</b>. This is not a real-time quote or order-book screen, and nothing here is a recommendation to buy or sell. For analytical reference only.',
     wave:{WAVE_L:'Large Wave',WAVE_M:'Mid Wave',WAVE_S:'Small Wave',FUND_WAVE_L:'Capital · Large Wave'},
     ind:{updown_bb:['Trend Pressure',''],slope_bb:['Thrust',''],sr_band:['Force Zones',''],divergence:['Divergence',''],price_index:['Value Center',''],fund_updown_bb:['Capital Flow','']},
     anchorName:'Daily', anchorBadge:'Daily',
@@ -434,6 +465,8 @@ function renderChart(container,indKey,wave){
     leftPriceScale:{visible:false},
     timeScale:{borderColor:'#E3E8EF',timeVisible:true,secondsVisible:false},
     crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+    handleScroll:{vertTouchDrag:false},   // 모바일 세로 스와이프는 페이지 스크롤로 넘김(차트가 안 늘어남)
+    handleScale:{axisPressedMouseMove:{time:true,price:false}, pinch:true, mouseWheel:true},
     localization:{locale:LOCALE},
   });
 
@@ -539,6 +572,8 @@ function renderAnchor(){
     leftPriceScale:{visible:false},
     timeScale:{borderColor:'#E3E8EF',timeVisible:true,secondsVisible:false},
     crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+    handleScroll:{vertTouchDrag:false},   // 모바일 세로 스와이프는 페이지 스크롤로 넘김(차트가 안 늘어남)
+    handleScale:{axisPressedMouseMove:{time:true,price:false}, pinch:true, mouseWheel:true},
     localization:{locale:LOCALE},
   });
   const cs=chart.addSeries(LightweightCharts.CandlestickSeries,{
@@ -586,7 +621,14 @@ function setAnchorOverlay(indKey){
 function selectIndicator(indKey){
   stackRefs.forEach(r=>{try{r.chart.remove();}catch(e){}}); stackRefs=[];
   const stack=document.getElementById('stack');stack.innerHTML='';
-  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.key===indKey));
+  const tabsEl=document.getElementById('tabs'); let active=null;
+  document.querySelectorAll('.tab').forEach(t=>{ const on=t.dataset.key===indKey; t.setAttribute('aria-selected',on); if(on)active=t; });
+  if(active && tabsEl){   // 활성 탭이 가려져 있으면 가로로만 스크롤(세로/부모 영향 없음)
+    const l=active.offsetLeft, r=l+active.offsetWidth;
+    if(l < tabsEl.scrollLeft) tabsEl.scrollLeft=l-12;
+    else if(r > tabsEl.scrollLeft+tabsEl.clientWidth) tabsEl.scrollLeft=r-tabsEl.clientWidth+12;
+  }
+  setTimeout(updateTabHint, 50);
   setAnchorOverlay(indKey);   // 원본 캔들 위에 '선택 지표 대파동' 라인 갱신
   const indLabel=T().ind[indKey]?T().ind[indKey][0]:indKey;
   const waves=DATA.indicators[indKey]?Object.keys(DATA.indicators[indKey]):[];
@@ -665,8 +707,16 @@ function postHeight(){
 
 /* ---------- 폭 변경 시: 차트 보이는 범위 재적용(스케일 리셋) + 높이 통지 ---------- */
 let rzT;
-function onResize(){ clearTimeout(rzT); rzT=setTimeout(()=>{ applyAllViews(); postHeight(); }, 160); }
+function onResize(){ clearTimeout(rzT); rzT=setTimeout(()=>{ applyAllViews(); updateTabHint(); postHeight(); }, 160); }
 window.addEventListener('resize', onResize);
+// 탭 가로 스크롤 가능 여부에 따라 좌/우 페이드 힌트 토글
+function updateTabHint(){
+  const el=document.getElementById('tabs'), bar=document.getElementById('tabbar');
+  if(!el||!bar) return;
+  const max=el.scrollWidth-el.clientWidth;
+  bar.classList.toggle('ov-right', max>2 && el.scrollLeft < max-2);
+  bar.classList.toggle('ov-left',  el.scrollLeft > 2);
+}
 window.addEventListener('orientationchange', onResize);
 
 /* ---------- 상태 UI ---------- */
@@ -763,6 +813,8 @@ function renderUI(){
     b.onclick=()=>selectIndicator(key);
     tabsEl.appendChild(b);
   });
+  tabsEl.addEventListener('scroll', updateTabHint, {passive:true});
+  setTimeout(updateTabHint, 60);
 
   hideState();
   document.getElementById('mainBox').classList.remove('hidden');
