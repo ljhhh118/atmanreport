@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN LENS · 한미반도체(042700)</title>
+<meta property="og:title" content="ATMAN LENS · 한미반도체(042700)">
+<meta property="og:description" content="양면 · 동력과 과밀 공존">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root{
+    --ink:#142231; --ink-2:#1B2D3F; --ink-line:#2C3F52;
+    --paper:#EDF1F2; --surface:#FFFFFF; --surface-2:#F6F8F9;
+    --text:#19262F; --text-soft:#5B6772; --text-faint:#8C97A0;
+    --hair:#DBE2E6; --hair-soft:#E7ECEE;
+    --sector:#2C7C8A;  /* 전제 · 배경 물살 */
+    --pattern:#BE7A2A; /* 동력 · 엔진 */
+    --crowding:#565C94;/* 관문 · 필터 */
+    --gold:#A9821F;
+    --sector-bg:#E3EEF0; --pattern-bg:#F4E9D9; --crowding-bg:#E7E8F1;
+    --warn:#B0671F;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Pretendard Variable',Pretendard,-apple-system,'Noto Sans KR',sans-serif;
+    background:var(--paper); color:var(--text);
+    line-height:1.72; font-size:16px; letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Noto Serif KR',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace; font-feature-settings:"tnum";}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{background:var(--ink); color:#EAF0F3; position:relative; overflow:hidden;
+    border-bottom:1px solid var(--ink-line);}
+  .masthead::before{content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(120% 90% at 78% 50%, rgba(190,122,42,0.16), transparent 55%),
+      radial-gradient(90% 80% at 30% 120%, rgba(44,124,138,0.18), transparent 60%);
+    pointer-events:none;}
+  .mh-inner{max-width:var(--maxw); margin:0 auto; padding:38px 24px 34px; position:relative;}
+  .brandrow{display:flex; align-items:center; gap:12px; margin-bottom:24px;}
+  .lensmark{flex:none;}
+  .wordmark{font-family:'IBM Plex Mono',monospace; font-weight:600; letter-spacing:0.42em;
+    font-size:13px; color:#E4ECEF; text-transform:uppercase;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.28em;
+    text-transform:uppercase; color:#A9BBC6;}
+  .mh-title{font-family:'Noto Serif KR',serif; font-weight:600;
+    font-size:clamp(29px,5.6vw,44px); line-height:1.1; color:#FBFCFD; margin:13px 0 5px;}
+  .mh-code{font-family:'IBM Plex Mono',monospace; font-size:14px; color:#C2D0D8; letter-spacing:0.08em;}
+  .mh-meta{display:flex; flex-wrap:wrap; align-items:center; gap:8px 9px; margin-top:20px;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.04em;
+    padding:5px 11px; border:1px solid #3A4D60; border-radius:999px; color:#C2D0D8;}
+  .chip b{color:#EAF1F4; font-weight:600;}
+  .chip.conf{display:inline-flex; align-items:center; gap:8px; font-size:12.5px;
+    padding:7px 14px; border-color:rgba(190,122,42,0.5); color:#EAD2AF; background:rgba(190,122,42,0.12);}
+  .chip.conf b{color:#F1C98C; font-weight:600; letter-spacing:0.06em;}
+  .chip.conf .cdot{width:9px; height:9px; border-radius:50%;
+    background:linear-gradient(135deg,#5FB3C0,#E0A24E);}
+  .chip-btn{appearance:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11.5px;
+    font-weight:600; letter-spacing:0.02em; padding:6px 14px 6px 12px; border-radius:999px; color:#1B2A18;
+    border:1px solid #D9A557; background:linear-gradient(180deg,#E9B96B,#D69A3F);
+    display:inline-flex; align-items:center; gap:7px;
+    box-shadow:0 2px 6px -1px rgba(190,122,42,0.5); transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;}
+  .chip-btn:hover{filter:brightness(1.05); box-shadow:0 4px 11px -2px rgba(190,122,42,0.6);}
+  .chip-btn:active{transform:translateY(1px); box-shadow:0 1px 4px -1px rgba(190,122,42,0.5);}
+  .chip-btn .bcaret{font-size:13px; line-height:1; margin-left:1px; color:#3A2A10;}
+  .chip-btn:focus-visible{outline:2px solid var(--pattern); outline-offset:2px;}
+  .chip-btn svg{flex:none;}
+  .mh-identity{margin-top:24px; padding-top:20px; border-top:1px solid #324456;
+    max-width:660px; color:#C6D4DC; font-size:14px; line-height:1.7;}
+  .mh-identity b{color:#F3F7F9; font-weight:600;}
+  .id-short{display:none;}
+
+  /* ---------- SECTIONS ---------- */
+  main{padding:8px 0 40px;}
+  section{padding:54px 0 4px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:18px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500;
+    color:var(--text-faint); letter-spacing:0.1em; flex:none; padding-top:3px;}
+  .sec-title{font-family:'Noto Serif KR',serif; font-weight:600; font-size:21px; color:var(--text);}
+  .sec-kicker{font-size:13.5px; color:var(--text-soft); margin-top:2px;}
+
+  /* lead 판독 */
+  .lead{background:var(--surface); border:1px solid var(--hair); border-left:3px solid var(--pattern);
+    border-radius:4px; padding:24px 26px;}
+  .lead .status{display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;
+    font-size:12px; font-weight:600; letter-spacing:0.01em; color:#9A5A16; background:var(--pattern-bg);
+    padding:6px 14px; border-radius:999px; margin-bottom:16px;}
+  .lead .status .sdot{width:7px; height:7px; border-radius:50%; background:var(--pattern); flex:none;}
+  .lead p{font-size:17px; line-height:1.82; color:var(--text);}
+  .lead .em{color:var(--pattern); font-weight:600;}
+
+  /* summary dashboard */
+  .dash{display:flex; flex-direction:column; gap:14px;}
+
+  .dash-tension{border:1px solid var(--hair); border-radius:8px; overflow:hidden; background:var(--surface);}
+  .dt-poles{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch;}
+  .dt-pole{padding:20px 22px;}
+  .dt-pole.left{background:linear-gradient(180deg,#F8F0E3,#FFFFFF 78%);}
+  .dt-pole.right{background:linear-gradient(180deg,#EEEFF6,#FFFFFF 78%); text-align:right;}
+  .dt-pole .plab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em;
+    text-transform:uppercase; font-weight:600; margin-bottom:9px;}
+  .dt-pole.left .plab{color:var(--pattern);} .dt-pole.right .plab{color:var(--crowding);}
+  .dt-pole .pbig{font-family:'Noto Serif KR',serif; font-size:clamp(19px,4.5vw,24px); font-weight:600; line-height:1.2;}
+  .dt-pole.left .pbig{color:#9A5A16;} .dt-pole.right .pbig{color:#474D80;}
+  .dt-mid{display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 14px;
+    background:var(--surface);}
+  .dt-mid .arrow{font-size:24px; color:var(--gold); line-height:1;}
+  .dt-mid .mlab{font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.06em;
+    color:#7A8893; font-weight:500; margin-top:6px;}
+  .dt-status{display:flex; align-items:baseline; gap:12px; padding:13px 22px; border-top:1px solid var(--hair);
+    background:var(--surface-2);}
+  .dt-status .slab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em;
+    text-transform:uppercase; color:#7A8893; font-weight:500; flex:none;}
+  .dt-status .sval{font-weight:600; font-size:15px; color:var(--text);}
+
+  .dash-gauges{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .gtile{border:1px solid var(--hair); border-top:3px solid var(--gc); border-radius:8px;
+    background:var(--surface); padding:17px 18px 19px;}
+  .gtile.s{--gc:var(--sector);} .gtile.p{--gc:var(--pattern);} .gtile.c{--gc:var(--crowding);}
+  .gtile .glab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em;
+    text-transform:uppercase; color:#7A8893; font-weight:500;}
+  .gbar{height:7px; border-radius:99px; background:var(--hair-soft); overflow:hidden; margin:13px 0 11px;}
+  .gbar i{display:block; height:100%; border-radius:99px; background:var(--gc);}
+  .gval{font-size:15px; font-weight:600; color:var(--gc);}
+  .gsub{font-size:12.5px; color:var(--text-soft); margin-top:3px;}
+
+  .dash-conf{display:flex; align-items:center; flex-wrap:wrap; gap:9px 16px; border:1px solid var(--hair);
+    border-radius:8px; background:var(--surface); padding:14px 20px;}
+  .dash-conf .clab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em;
+    text-transform:uppercase; color:#7A8893; font-weight:500;}
+  .conf-steps{display:inline-flex; gap:6px; align-items:center;}
+  .cstep{width:9px; height:9px; border-radius:50%; background:var(--hair);}
+  .cstep.on{background:linear-gradient(135deg,var(--sector),var(--pattern));}
+  .dash-conf .cval{font-weight:600; font-size:15px; color:var(--text);}
+  .conf-div{flex:1; height:1px; background:var(--hair-soft); min-width:16px;}
+  .dash-conf .ckv{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--text-soft);}
+  .dash-conf .ckv b{color:var(--text); font-weight:600;}
+
+  /* prose block */
+  .prose{font-size:15.5px; line-height:1.88; color:var(--text);}
+  .prose + .prose{margin-top:18px;}
+  .note{font-size:13px; color:var(--text-soft); margin-top:16px; padding-left:14px;
+    border-left:2px solid var(--hair);}
+
+  /* inline highlight + pull-quote + verdict banner */
+  .hl{background:linear-gradient(transparent 62%, var(--pattern-bg) 62%); font-weight:600; padding:0 1px;}
+  .hl.c{background:linear-gradient(transparent 62%, var(--crowding-bg) 62%);}
+  .stat{color:var(--pattern); font-weight:700; letter-spacing:-0.01em;}
+  .pull{font-family:'Noto Serif KR',serif; font-size:clamp(18px,3.4vw,23px); line-height:1.5;
+    color:var(--text); margin:0 0 22px; padding:4px 0 4px 22px; border-left:3px solid var(--gold);}
+  .pull .a{color:var(--pattern);} .pull .b{color:var(--crowding);}
+  .verdict-banner{display:flex; align-items:center; gap:14px; margin-top:16px;
+    background:var(--ink); color:#EAF0F3; border-radius:8px; padding:16px 20px;}
+  .verdict-banner .vk{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em;
+    text-transform:uppercase; color:#7F94A1; flex:none;}
+  .verdict-banner .vv{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600;}
+  .verdict-banner .dot{flex:none; width:11px; height:11px; border-radius:50%;
+    background:linear-gradient(135deg,#2C7C8A,#BE7A2A);}
+
+  /* convergence figure */
+  .figure{background:var(--surface); border:1px solid var(--hair); border-radius:6px; padding:20px 16px 14px;}
+  .figure svg{display:block; width:100%; height:auto;}
+  .figcap{font-size:12.5px; color:var(--text-soft); text-align:center; margin-top:6px;
+    font-family:'IBM Plex Mono',monospace; letter-spacing:0.02em;}
+
+  /* lens trio */
+  .lenses{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px;}
+  .lens{background:var(--surface); border:1px solid var(--hair); border-radius:6px; padding:22px 22px 24px;
+    border-top:3px solid var(--c);}
+  .lens.sector{--c:var(--sector); --bg:var(--sector-bg);}
+  .lens.pattern{--c:var(--pattern); --bg:var(--pattern-bg);}
+  .lens.crowd{--c:var(--crowding); --bg:var(--crowding-bg);}
+  .lens .role{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em;
+    text-transform:uppercase; font-weight:500; color:var(--c); margin-bottom:5px;}
+  .lens h3{font-family:'Noto Serif KR',serif; font-size:18px; font-weight:600; margin-bottom:10px; color:var(--text);}
+  .lens p{font-size:14px; line-height:1.72; color:var(--text-soft);}
+  .lens .key{color:var(--c); font-weight:600;}
+  .lens .flag{color:var(--text); font-weight:600;
+    background:linear-gradient(transparent 60%, var(--bg) 60%); padding:0 1px;}
+  .lens .verdict{display:inline-block; margin-top:12px; font-size:12px; font-weight:600;
+    color:var(--c); background:var(--bg); padding:4px 10px; border-radius:4px;}
+  .lens.sector .verdict{--bg:var(--sector-bg);} .lens.pattern .verdict{--bg:var(--pattern-bg);}
+  .lens.crowd .verdict{--bg:var(--crowding-bg);}
+
+  /* key tension */
+  .tension{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:0;
+    border:1px solid var(--hair); border-radius:6px; overflow:hidden; margin-top:18px;}
+  .tside{padding:20px 22px; background:var(--surface);}
+  .tside.left{background:linear-gradient(180deg,#FAF4EB,#FFFFFF 70%);}
+  .tside.right{background:linear-gradient(180deg,#EFF0F6,#FFFFFF 70%);}
+  .tside .lbl{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.02em;
+    font-weight:600; margin-bottom:9px;}
+  .tside.left .lbl{color:var(--pattern);} .tside.right .lbl{color:var(--crowding);}
+  .tside p{font-size:14.5px; line-height:1.7; color:var(--text);}
+  .tside.left b{color:#9A5A16; font-weight:700;} .tside.right b{color:#474D80; font-weight:700;}
+  .tmid{display:flex; align-items:center; justify-content:center; padding:0 16px;
+    background:var(--ink); color:#E4CDA6;}
+  .tmid span{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; font-weight:600;
+    writing-mode:vertical-rl; text-orientation:mixed; line-height:1.5; text-align:center;}
+  .tmid span em{color:#9FB0BB; font-style:normal; font-weight:400;}
+  .tnote{margin-top:14px; font-size:13.5px; color:var(--text-soft); text-align:center;}
+
+  /* scenario chart */
+  .probbar{display:flex; height:46px; border-radius:6px; overflow:hidden; border:1px solid var(--hair); margin-top:6px;}
+  .probseg{display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#fff; font-family:'IBM Plex Mono',monospace; position:relative;}
+  .probseg .pid{font-size:12px; font-weight:600; letter-spacing:0.06em;}
+  .probseg .pct{font-size:11px; opacity:0.92;}
+  .probseg.a{background:var(--sector);} .probseg.b{background:var(--crowding);} .probseg.c{background:#7E8995;}
+  .problegend{font-size:12px; color:var(--text-soft); margin-top:8px; text-align:center;}
+  .scen{border:1px solid var(--hair); border-radius:6px; background:var(--surface);
+    padding:20px 22px; margin-top:14px; border-left:3px solid var(--c);}
+  .scen.a{--c:var(--sector); --cbg:var(--sector-bg);}
+  .scen.b{--c:var(--crowding); --cbg:var(--crowding-bg);}
+  .scen.c{--c:#7E8995; --cbg:#ECEEF0;}
+  .scen.b{border:1px solid #B9BFDE; background:linear-gradient(180deg,#F3F4FA,#FFFFFF 42%);
+    box-shadow:0 8px 26px -12px rgba(86,92,148,0.6); border-left-width:4px;}
+  .scen.b .scen-track{height:11px;}
+  .scen-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .scen-name{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600; color:var(--text);}
+  .scen.b .scen-name{font-size:18.5px;}
+  .scen-name .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--c); margin-right:8px;}
+  .scen-prob{font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--c); flex:none;}
+  .scen.b .scen-prob{font-size:28px;}
+  /* per-card probability bar */
+  .scen-meter{display:flex; align-items:center; gap:10px; margin-top:13px;}
+  .scen-track{flex:1; height:9px; border-radius:99px; background:var(--hair-soft); overflow:hidden;}
+  .scen-track i{display:block; height:100%; border-radius:99px; background:var(--c);}
+  .scen-meter .mpct{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); flex:none;}
+  .scen-row{margin-top:13px; font-size:14px; line-height:1.72; color:var(--text);}
+  .scen-row .rk{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em; font-weight:500;
+    text-transform:uppercase; color:#7A8893; display:block; margin-bottom:3px;}
+  .scen-row b{color:var(--c); font-weight:700;}
+  .scen-reframe{margin-top:15px; font-size:13px; font-weight:600; color:var(--c);
+    background:var(--cbg); padding:9px 13px; border-radius:5px; display:inline-block;}
+  .dominant{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.04em; font-weight:600;
+    color:#fff; background:var(--crowding); padding:4px 11px; border-radius:999px; vertical-align:middle;
+    box-shadow:0 2px 6px -2px rgba(86,92,148,0.6); white-space:nowrap;}
+
+  /* position cards */
+  .positions{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px;}
+  .pos{background:var(--surface); border:1px solid var(--hair); border-top:3px solid var(--pc);
+    border-radius:8px; padding:20px 20px 22px;}
+  .pos.new{--pc:#6B7785; --pcbg:#EDEFF1;}
+  .pos.profit{--pc:#4F8A6B; --pcbg:#E6F0EA;}
+  .pos.loss{--pc:#B07A45; --pcbg:#F3EADF;}
+  .pos .ptag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em; font-weight:500;
+    color:var(--pc); text-transform:uppercase; display:block; margin-bottom:9px;}
+  .pos .phead{display:flex; align-items:center; gap:9px; margin-bottom:4px;}
+  .pos .picon{flex:none; width:26px; height:26px; border-radius:50%; background:var(--pcbg);
+    display:flex; align-items:center; justify-content:center;}
+  .pos .ptitle{font-family:'Noto Serif KR',serif; font-size:16px; font-weight:600; color:var(--text);}
+  .pos .pq{font-size:13px; color:var(--text-soft); font-style:italic; margin:10px 0 14px;
+    padding:10px 12px; border-radius:6px; background:var(--surface-2); line-height:1.6;}
+  .pos p{font-size:14px; line-height:1.74; color:var(--text);}
+  .pos p b{color:var(--pc); font-weight:700;}
+
+  /* observe list */
+  .observe{background:var(--surface); border:1px solid var(--hair); border-radius:6px; padding:8px 4px;}
+  .observe li{list-style:none; display:flex; gap:14px; padding:13px 18px; border-bottom:1px solid var(--hair-soft);
+    font-size:14.5px; line-height:1.6;}
+  .observe li:last-child{border-bottom:none;}
+  .observe .marker{flex:none; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--sector);
+    width:18px; padding-top:2px;}
+  .observe b{font-weight:600;}
+  .observe .px{font-family:'IBM Plex Mono',monospace; color:var(--pattern);}
+
+  /* action buttons */
+  .actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;}
+  .btn{appearance:none; cursor:pointer; font-family:inherit; font-size:14.5px; font-weight:600;
+    border-radius:6px; padding:15px 20px; border:1px solid var(--ink); background:var(--ink); color:#EAF0F3;
+    display:flex; align-items:center; gap:12px; transition:transform .15s ease, box-shadow .15s ease; flex:1; min-width:240px;}
+  .btn:hover{transform:translateY(-1px); box-shadow:0 8px 22px -12px rgba(20,34,49,0.5);}
+  .btn:focus-visible{outline:2px solid var(--pattern); outline-offset:2px;}
+  .btn small{display:block; font-weight:400; font-size:12px; color:#9DB0BC; margin-top:2px;}
+  .btn .bi{flex:none;}
+  .related{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .rcard{display:block; text-decoration:none; color:inherit; background:var(--surface);
+    border:1px solid var(--hair); border-radius:6px; padding:18px 20px; transition:border-color .15s;}
+  .rcard:hover{border-color:var(--sector);}
+  .rcard .rk{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; color:var(--sector);}
+  .rcard .rn{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600; margin:4px 0 5px;}
+  .rcard .rd{font-size:13px; color:var(--text-soft);}
+  .related-note{font-size:13.5px; color:var(--text-soft); margin-top:14px; line-height:1.7;}
+
+  /* caveat + disclaimer */
+  .caveat{background:var(--surface-2); border:1px solid var(--hair); border-radius:6px; padding:20px 22px;
+    font-size:13.5px; line-height:1.78; color:var(--text-soft);}
+  .disclaimer{margin-top:34px; padding:26px 0 56px; border-top:1px solid var(--hair); color:var(--text-faint); font-size:12px; line-height:1.7;}
+  .disclaimer .dk{font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em; color:var(--text-soft); display:block; margin-bottom:8px;}
+  .disclaimer p+p{margin-top:10px;}
+  .footmark{margin-top:22px; display:flex; align-items:center; gap:10px; color:var(--text-soft);}
+  .footmark .wordmark{font-size:11px; color:var(--text-soft);}
+
+  /* modal */
+  .modal{position:fixed; inset:0; background:rgba(20,34,49,0.62); display:none; align-items:center;
+    justify-content:center; padding:24px; z-index:50; backdrop-filter:blur(3px);}
+  .modal.open{display:flex;}
+  .modal-card{background:var(--surface); border-radius:10px; max-width:760px; width:100%; max-height:90vh;
+    overflow:auto; padding:28px 28px 30px; position:relative;}
+  .modal-card h3{font-family:'Noto Serif KR',serif; font-size:20px; margin-bottom:4px;}
+  .modal-card .msub{font-size:13px; color:var(--text-soft); margin-bottom:20px;}
+  .modal-close{position:absolute; top:18px; right:18px; appearance:none; border:1px solid var(--hair);
+    background:var(--surface); border-radius:6px; width:34px; height:34px; cursor:pointer; font-size:18px; color:var(--text-soft);}
+  .modal-close:hover{background:var(--surface-2);}
+  .wavewrap iframe{width:100%; height:calc(90vh - 150px); min-height:360px; border:0;
+    border-radius:8px; background:var(--surface-2); display:block;}
+  .wavelegend{font-size:12.5px; color:var(--text-soft); margin-top:14px; line-height:1.7;}
+  .wavelegend b{color:var(--text);}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(14px);}
+  @media (prefers-reduced-motion:no-preference){
+    .rv{transition:opacity .6s ease, transform .6s ease;}
+    .rv.in{opacity:1; transform:none;}
+    .beam{stroke-dasharray:var(--len); stroke-dashoffset:var(--len); animation:draw 1.4s ease forwards;}
+    @keyframes draw{to{stroke-dashoffset:0;}}
+  }
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1; transform:none;} }
+
+  /* responsive */
+  @media (max-width:760px){
+    body{font-size:15px;}
+    .mh-inner{padding:26px 22px 24px;}
+    .brandrow{margin-bottom:16px; gap:10px;}
+    .mh-title{margin:10px 0 5px;}
+    .mh-meta{margin-top:15px;}
+    .mh-identity{margin-top:17px; padding-top:15px; font-size:13px; line-height:1.6;}
+    .id-full{display:none;} .id-short{display:inline;}
+    .dash-gauges{grid-template-columns:1fr;}
+    .dt-pole{padding:16px 16px;}
+    .dt-mid{padding:0 8px;}
+    .lenses{grid-template-columns:1fr;}
+    .positions{grid-template-columns:1fr;}
+    .related{grid-template-columns:1fr;}
+    .tension{grid-template-columns:1fr;}
+    .tmid{padding:8px;}
+    .tmid span{writing-mode:horizontal-tb;}
+    .btn{min-width:0;}
+    .modal{padding:0;}
+    .modal-card{max-width:100%; width:100%; height:100vh; max-height:100vh; border-radius:0; padding:20px 16px 16px;}
+    .wavewrap iframe{height:calc(100vh - 150px);}
+    .verdict-banner{flex-wrap:wrap; gap:8px 12px;}
+  }
+  @media (max-width:460px){ .dt-pole .pbig{font-size:18px;} }
+</style>
+</head>
+<body>
+
+<!-- ===================== MASTHEAD ===================== -->
+<header class="masthead">
+  <div class="mh-inner">
+    <div class="brandrow">
+      <svg class="lensmark" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <ellipse cx="15" cy="15" rx="6.2" ry="13" fill="none" stroke="#AFC0CB" stroke-width="1.3"/>
+        <line x1="2" y1="15" x2="9.2" y2="15" stroke="#BE7A2A" stroke-width="1.3"/>
+        <line x1="20.8" y1="15" x2="28" y2="15" stroke="#2C7C8A" stroke-width="1.3"/>
+        <circle cx="28" cy="15" r="1.8" fill="#E7BE86"/>
+      </svg>
+      <span class="wordmark">ATMAN&nbsp;LENS</span>
+    </div>
+    <div class="eyebrow">Data-driven Stock Flow Analysis</div>
+    <h1 class="mh-title">한미반도체</h1>
+    <div class="mh-code">042700 · KRX · 기준일 2026-06-13</div>
+    <div class="mh-meta">
+      <span class="chip conf"><span class="cdot"></span>종합 신뢰도 <b>MEDIUM</b></span>
+      <span class="chip">유효 기간 : <b>단기</b></span>
+      <button class="chip-btn" id="openWaveTop" aria-haspopup="dialog"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 10 Q3.2 4 5 7.5 T9 5.5 T13 3" fill="none" stroke="#3A2A10" stroke-width="1.5" stroke-linecap="round"/></svg>분석 데이터 보기<span class="bcaret" aria-hidden="true">›</span></button>
+    </div>
+    <p class="mh-identity">
+      <span class="id-full">ATMAN LENS는 하나의 결론을 강요하지 않습니다. <b>한 종목의 한 자리를 세 관점으로 투과</b>해,
+      세 소견의 정합·충돌·침묵을 읽고, 보유 위치마다 다른 판단 기준을 제공합니다. 격자가 아니라 렌즈입니다.</span>
+      <span class="id-short"><b>한 자리를 세 관점으로 투과</b>합니다. 격자가 아니라 렌즈.</span>
+    </p>
+  </div>
+</header>
+
+<main class="wrap"><section class="rv"><div class="sec-head"><span class="sec-num">01</span><div><div class="sec-title">한 줄 판독</div></div></div><div class="lead"><span class="status"><span class="sdot"></span>양면 · 동력과 과밀 공존</span><p>1차 반등은 실재했고 거래량을 동반했습니다. 그러나 그 자금이 바닥을 받친 것이 아니라 상단에 하루 만에 집중된 신규 군중 자금이라는 점에서, 같은 거래량 폭증이 동력인가 과밀인가라는 해석 충돌이 이 자리의 핵심입니다. 1차 반등 수혜는 이미 실현된 자리(저점 대비 약 39%)이며, 자금 정렬이 유지되는지를 확인하는 구간입니다.</p></div></section><section class="rv"><div class="sec-head"><span class="sec-num">02</span><div><div class="sec-title">핵심 요약</div><div class="sec-kicker">결론을 박는 점수표가 아니라, 현재 상태를 빠르게 읽는 카드입니다.</div></div></div><div class="dash"><div class="dash-tension"><div class="dt-poles"><div class="dt-pole left"><div class="plab">패턴 · 동력</div><div class="pbig">반등 에너지</div></div><div class="dt-mid"><div class="arrow">⇄</div><div class="mlab">거울 충돌</div></div><div class="dt-pole right"><div class="plab">밀집 · 무게</div><div class="pbig">상단 과밀</div></div></div><div class="dt-status"><span class="slab">현재 상태</span><span class="sval">검증 구간</span></div></div><div class="dash-gauges"><div class="gtile s"><div class="glab">섹터 · 우호도</div><div class="gbar"><i style="width:62%"></i></div><div class="gval">초입 물살 · 조건부 우호</div><div class="gsub">외국인 수급 미확인 · MEDIUM 국면 유지</div></div><div class="gtile p"><div class="glab">패턴 · 반등 강도</div><div class="gbar"><i style="width:86%"></i></div><div class="gval">1차 반등 실재 · 양면</div><div class="gsub">소파동 과열 극단 · 지속성 조건부</div></div><div class="gtile c"><div class="glab">밀집 · 과밀도</div><div class="gbar"><i style="width:86%"></i></div><div class="gval">상단 과밀 · 강한 수비</div><div class="gsub">세 축 동시 돌파 · 과거 2사례 하락 전환 확인</div></div></div><div class="dash-conf"><span class="clab">종합 신뢰도</span><span class="conf-steps"><span class="cstep on"></span><span class="cstep on"></span><span class="cstep"></span></span><span class="cval">Medium</span><span class="conf-div"></span><span class="ckv">유효 기간 : <b>단기</b></span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">03</span><div><div class="sec-title">왜 이 종목을 보는가</div></div></div><p class="prose">저점 대비 약 39% 반등이 하루 만에 발생했고, 거래량이 평소 대비 5~10배 폭증하며 반도체 섹터 내 선두 움직임을 보였습니다. 섹터 물살은 초입 단계로 방향은 우호적이나, 외국인 수급 방향이 아직 확인되지 않은 상태에서 자금이 상단에 집중된 구조라 동력과 과밀이 한 자리에 공존합니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">04</span><div><div class="sec-title">세 관점의 수렴</div><div class="sec-kicker">분석 대상이 섹터·패턴·밀집 세 렌즈를 거쳐 하나의 종합 판독으로 모입니다.</div></div></div><div class="figure">      <svg viewBox="0 0 800 370" role="img" aria-label="분석 대상이 섹터·패턴·밀집 세 렌즈를 거쳐 한 종합 판독으로 수렴하는 구조 다이어그램">
+        <defs>
+          <linearGradient id="focalg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2C7C8A"/><stop offset="1" stop-color="#BE7A2A"/>
+          </linearGradient>
+          <radialGradient id="src" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#142231"/><stop offset="1" stop-color="#2C3F52"/>
+          </radialGradient>
+        </defs>
+
+        <!-- beams: source -> lens -> focal -->
+        <g fill="none" stroke-width="1.6" opacity="0.8">
+          <polyline class="beam" style="--len:760" points="60,175 400,70 740,175" stroke="#2C7C8A"/>
+          <polyline class="beam" style="--len:680" points="60,175 400,175 740,175" stroke="#BE7A2A" stroke-width="2.4"/>
+          <polyline class="beam" style="--len:760" points="60,175 400,280 740,175" stroke="#565C94"/>
+        </g>
+
+        <!-- source (analysis subject) -->
+        <circle cx="60" cy="175" r="9" fill="url(#src)"/>
+        <circle cx="60" cy="175" r="18" fill="none" stroke="#9DB0BC" stroke-width="1" opacity="0.5"/>
+        <circle cx="60" cy="175" r="28" fill="none" stroke="#9DB0BC" stroke-width="1" opacity="0.22"/>
+        <text x="60" y="226" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" fill="#4A5763">분석 대상</text>
+        <text x="60" y="244" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#7A8893">한미반도체 · 6.13</text>
+
+        <!-- sector lens (premise) -->
+        <ellipse cx="400" cy="70" rx="11" ry="25" fill="#E3EEF0" stroke="#2C7C8A" stroke-width="1.8"/>
+        <text x="400" y="28" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="21" font-weight="600" fill="#19262F">섹터</text>
+        <text x="400" y="45" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#2C7C8A">전제 · 배경 물살</text>
+
+        <!-- pattern lens (engine, largest) — label sits in the gap directly above -->
+        <ellipse cx="400" cy="175" rx="15" ry="38" fill="#F4E9D9" stroke="#BE7A2A" stroke-width="2.2"/>
+        <text x="400" y="118" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="21" font-weight="600" fill="#19262F">패턴</text>
+        <text x="400" y="135" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#BE7A2A">동력 · 엔진</text>
+
+        <!-- crowding lens (gate) -->
+        <ellipse cx="400" cy="280" rx="11" ry="25" fill="#E7E8F1" stroke="#565C94" stroke-width="1.8"/>
+        <text x="400" y="328" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="21" font-weight="600" fill="#19262F">밀집</text>
+        <text x="400" y="345" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#565C94">관문 · 필터</text>
+
+        <!-- focal (combined read) -->
+        <circle cx="740" cy="175" r="15" fill="url(#focalg)"/>
+        <circle cx="740" cy="175" r="26" fill="none" stroke="url(#focalg)" stroke-width="1.4" opacity="0.5"/>
+        <text x="740" y="135" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#7A8893">종합 판독</text>
+        <text x="740" y="226" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="20" font-weight="600" fill="#19262F">양면</text>
+        <text x="740" y="244" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#4A5763">동력인가 과밀인가</text>
+      </svg><div class="figcap">패턴이 동력, 밀집이 관문, 섹터가 전제 — 어느 하나도 단독 주인이 아닙니다.</div></div><div class="verdict-banner"><span class="dot"></span><span class="vk">현재 판독</span><span class="vv">양면 · 동력인가 과밀인가 · 유효 기간 단기</span></div><div class="lenses"><div class="lens sector"><div class="role">전제 · 배경 물살</div><h3>섹터 관점</h3><p>반도체 업종 물살은 오늘 섹터 내 가장 강하나, 외국인 수급 방향 미확인으로 pending 이월 중입니다. 섹터 초입이나 이 종목은 이미 선두로 앞서 움직인 자리입니다.</p><span class="verdict">초입 물살 · 조건부 우호</span></div><div class="lens pattern"><div class="role">동력 · 엔진</div><h3>패턴 관점</h3><p>강반등 셋업이 정확히 재현됐고 1차 반등 발생에 확신이 높습니다. 다만 소파동이 이미 과열 극단에 닿아 있고, 1차 반등 이후 지속성은 자금 정렬 유지 여부로 갈리는 조건부 자리입니다.</p><span class="verdict">1차 반등 실재 · 양면</span></div><div class="lens crowd"><div class="role">관문 · 필터</div><h3>밀집도 관점</h3><p>자금이 소·중·대 세 시간축 모두에서 상단 밴드를 동시에 돌파했고, 이 종목 과거 동일 패턴에서 수일~3주 내 하락 전환이 반복 확인됐습니다. 바닥을 받치는 자금이 아니라 상단에 몰린 신규 군중 자금입니다.</p><span class="verdict">상단 과밀 · 강한 수비</span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">05</span><div><div class="sec-title">종합 판독</div></div></div><p class="pull">같은 거래량 폭증을, 패턴은 <span class="a">반등 에너지</span>로 · 밀집은 <span class="b">상단 과밀</span>로 읽는다.</p><p class="prose">세 관점은 &#39;1차 반등이 실재했고 거래량을 동반했다&#39;는 사실과 &#39;단기 과열이 공존한다&#39;는 사실, 그리고 &#39;외국인 수급 확인이 핵심 변수&#39;라는 점에서 일치합니다.</p><p class="prose">갈림은 그 거래량 폭증의 성격입니다. 패턴은 이를 강반등 셋업의 동력으로, 밀집은 상단에 몰린 신규 군중 자금의 과밀로 읽습니다. 두 소견 모두 실제 데이터로 확인됐으나 해석이 정반대인 거울 충돌입니다.</p><div class="tension"><div class="tside left"><div class="lbl">패턴은 이렇게 본다</div><p>가격·자금이 동시에 상단을 돌파했고 거래량이 최근 최대 수준으로 터졌다 — 과거 같은 셋업에서 1차 반등이 열렸던 형태와 일치한다.</p></div><div class="tmid"><span>같은 사실<br><em>정반대 해석</em></span></div><div class="tside right"><div class="lbl">밀집은 이렇게 본다</div><p>그 자금은 바닥을 받친 것이 아니라 상단에 하루 만에 집중된 신규 군중 자금이다. 이 종목에서 과거 동일 패턴이 발생했을 때 수일~3주 내 하락 전환이 반복됐다.</p></div></div><p class="tnote">같은 거래량 폭증을 정반대로 읽는 두 면. 모순이 아니라 같은 사실의 양면입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">06</span><div><div class="sec-title">가능한 시나리오</div><div class="sec-kicker">예측이 아니라 갈림길별 흐름 조건입니다.</div></div></div><div class="probbar" role="img" aria-label="시나리오 확률"><div class="probseg a" style="width:30%"><span class="pid">A</span><span class="pct">30%</span></div><div class="probseg b" style="width:40%"><span class="pid">B</span><span class="pct">40%</span></div><div class="probseg c" style="width:30%"><span class="pid">C</span><span class="pct">30%</span></div></div><p class="problegend">A 단기 소화 후 재상승 (섹터 물살 확인) · <b style="color:var(--crowding)">B 단기 과열 되돌림 후 재시도 — 주 시나리오</b> · C 자금 이탈 후 재하락</p><div class="scen a"><div class="scen-head"><div class="scen-name"><span class="tag">A</span>단기 소화 후 재상승 (섹터 물살 확인)</div><div class="scen-prob">30%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:66%"></i></div><span class="mpct">개연성 30%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>자금 캔들 fund_close가 (437.8) 위를 수일 내 유지하며 가격도 (345,544) 위에서 안정 + 외국인 순매수 전환 확인 + 3일 연속 상승</div><div class="scen-row"><span class="rk">근거</span>패턴 outcome(profit_dev 5/loss_dev 0) + 섹터 초입 물살( 1.72) + 밀집 과거 사례에서 돌파 직후 수일 추가 상승 선행 경우 존재. 단 자기 참조 가중치 낮춤· outcome 미채점·외국인 수급 미확인으로 확률 제한.</div><div class="scen-reframe">→ 자금 정렬이 유지되고 외국인 수급이 전환되면 추가 상승 시나리오의 신뢰도가 높아지는 구간</div></div><div class="scen b"><div class="scen-head"><div class="scen-name"><span class="tag">B</span>단기 과열 되돌림 후 재시도 <span class="dominant">주 시나리오</span></div><div class="scen-prob">40%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:88%"></i></div><span class="mpct">개연성 40%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>stoch이 수일 내 70 아래로 하락하며 가격이 (291,628)~ (283,931) 구간으로 조정 + 자금 캔들이 (315.9) 위를 유지하며 재상승 시도</div><div class="scen-row"><span class="rk">근거</span>밀집 과거 2사례 돌파 직후 수일 추가 상승 선행 후 하락 전환 경향 + 패턴 소파동 과열 되돌림 후 재상승 경로 + outcome neutral 2(검증 전) + 섹터 초입 물살(외국인 수급 확인 조건부). 세 소견의 단기 정합(과열 공존)이 이 갈래를 가장 개연성 높게 만든다.</div><div class="scen-reframe">→ 단기 과열 소화 후 조정 구간에서 자금 정렬 유지 여부를 확인하는 재시도 구간</div></div><div class="scen c"><div class="scen-head"><div class="scen-name"><span class="tag">C</span>자금 이탈 후 재하락</div><div class="scen-prob">30%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:66%"></i></div><span class="mpct">개연성 30%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>fund_close가 (315.9) 아래로 후퇴 + 가격이 (283,931) 아래로 재진입 + 외국인 수급 전환 미확인 지속</div><div class="scen-row"><span class="rk">근거</span>밀집 과거 2사례 모두 수일~3주 내 하락 전환 확인 + 대파동 자금 divergence( &lt; ) 하락 기조 + 섹터 MEDIUM 국면·쏠림 정렬·외국인 수급 미확인 + 패턴 l002 분기 조건(자금 미동반 후퇴). 섹터 물살이 pending 이월 중이라는 점이 이 갈래에 확률을 더한다.</div><div class="scen-reframe">→ 자금 캔들 중심선 이탈이 확인되면 반등 실패 신호로 읽히는 구간</div></div><p class="note">갈래 확률은 현재 데이터 구조에서의 상대적 개연성이며, 위치(미보유·수익·손실)는 갈래를 바꾸지 않고 같은 갈래에 다른 대응을 입힙니다. outcome 미채점으로 중기 방향 불확실성이 남습니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">07</span><div><div class="sec-title">위치별 해석</div><div class="sec-kicker">같은 자리도 보유 위치에 따라 판단 기준이 다릅니다.</div></div></div><div class="positions"><div class="pos new"><span class="ptag">미보유</span><div class="phead"><span class="picon"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#6B7785" stroke-width="1.5"/><line x1="9" y1="9" x2="12.5" y2="12.5" stroke="#6B7785" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">미보유 관점</div></div><div class="pq">지금 새로 들어갈 만큼 가격 흐름과 자금 밀집이 정렬됐는가?</div><p>가장 보수적 — 1차 반등 폭 상단 도달(저점 대비 +39%) + 자금 상단 과밀 + 외국인 수급 미확인. 추격 진입 손익비 불리. 조정 구간 또는 외국인 수급 전환 확인 후 접근.</p></div><div class="pos profit"><span class="ptag">수익 보유</span><div class="phead"><span class="picon"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 9.5 L6 5.5 L8.5 8 L13 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3 L13 6 M13 3 L10 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">수익 보유 관점</div></div><div class="pq">수익을 더 키울 힘이 남았는가, 지킬 때인가?</div><p>1차 반등 수혜 실현 자리. 자금 정렬 유지 확인 시 일부 보유 지속 가능하나, (345,544) 아래로 가격이 밀리는 신호 발생 시 수익 보호 관점 강화. 신규 관찰자와 달리 일부 홀딩 후 관찰 가능.</p></div><div class="pos loss"><span class="ptag">손실 보유</span><div class="phead"><span class="picon"><svg width="14" height="15" viewBox="0 0 14 15" aria-hidden="true"><path d="M7 1.5 L12 3.5 L12 7.5 C12 10.5 9.8 12.5 7 13.5 C4.2 12.5 2 10.5 2 7.5 L2 3.5 Z" fill="none" stroke="#B07A45" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div class="ptitle">손실 보유 관점</div></div><div class="pq">손실을 더 키울 위험이 큰가, 회복 시나리오가 남았는가?</div><p>1차 반등이 발생했으나 자금 과밀로 되돌림 위험 공존. 추가 노출보다 손실 확대 방지 우선. (283,931) 이탈 여부를 관찰 기준으로 삼는다.</p></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">08</span><div><div class="sec-title">주요 관찰 조건</div><div class="sec-kicker">매수·매도가가 아니라 흐름을 판단하는 관찰 구간입니다.</div></div></div><ul class="observe"><li><span class="marker">01</span><span>자금 캔들 이 자금 상단 밴드 위를 수일 내 유지하는지 — 자금 정렬 지속 여부</span></li><li><span class="marker">02</span><span>가격이 (345,544원) 위에서 안정되는지, 아래로 밀리는지 — 단기 강도 확인</span></li><li><span class="marker">03</span><span>(291,628원) 부근 — 단기 되돌림 시 자금 정렬이 유지되는지 확인하는 관찰 구간</span></li><li><span class="marker">04</span><span>(283,931원) 이탈 여부 — 중파동 반등 실패 신호 관찰 기준</span></li><li><span class="marker">05</span><span>SK하이닉스·삼성전자 외국인 순매수 전환 여부 — 섹터 물살 확인의 핵심 조건</span></li><li><span class="marker">06</span><span>3일 연속 상승 여부 — 반도체 군집 물살 지속성 확인</span></li></ul><p class="note">위 가격은 매수·손절가가 아니라 흐름 판단을 위한 관찰 구간이며, 자금 관련 조건은 ATMAN 자금 흐름 지표 기준입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">09</span><div><div class="sec-title">파동 차트</div><div class="sec-kicker">분석에 사용한 데이터를 대·중·소파동 구조로 직접 확인합니다.</div></div></div><div class="actions"><button class="btn" id="openWave" aria-haspopup="dialog"><svg class="bi" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 14 Q5 6 8 11 T14 9 T20 5" fill="none" stroke="#E7BE86" stroke-width="1.8" stroke-linecap="round"/></svg><span>ATMAN Wave Chart 보기<small>대·중·소파동 상단 밴드와 현재 위치를 구조로 확인</small></span></button></div></section><section class="rv"><div class="sec-head"><span class="sec-num">10</span><div><div class="sec-title">관련 시장 리포트</div></div></div><div class="related"><a class="rcard" href="https://ljhhh118.github.io/atmanreport/KrReports/20260613/Report_Brief_Detail_20260613.html"><div class="rk">ATMAN BRIEF</div><div class="rn">오늘 시장 전체 흐름</div><div class="rd">하늘·바람·물길 — 오늘 시장의 배경 조건</div></a><a class="rcard" href="https://ljhhh118.github.io/atmanreport/KrReports/20260613/Report_Radar_Detail_20260613.html"><div class="rk">ATMAN RADAR</div><div class="rn">최근 N일 시장·섹터 흐름</div><div class="rd">자금이 어디로 이동하는지, 며칠의 결을 추적</div></a></div><p class="related-note">이 종목은 하나의 점이 아니라 시장 흐름 속의 한 위치입니다. BRIEF에서 오늘의 시장 배경을, RADAR에서 최근 흐름의 변화를 함께 확인할 수 있습니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">11</span><div><div class="sec-title">해석 한계</div></div></div><div class="caveat">세 관점의 소견을 통합한 데이터 기반 흐름 해석입니다. 시나리오 확률은 현재 데이터 구조에서의 상대적 개연성이지 확정적 예측이 아니며, 매수·매도 지시가 아닙니다.</div></section></main>
+
+<!-- ===================== WAVE MODAL ===================== -->
+<div class="modal" id="waveModal" role="dialog" aria-modal="true" aria-labelledby="waveTitle"><div class="modal-card"><button class="modal-close" id="closeWave" aria-label="닫기">×</button><h3 id="waveTitle">ATMAN Wave Chart</h3><div class="msub">한미반도체(042700) · 대·중·소파동 상단 밴드와 현재 위치</div><div class="wavewrap"><iframe id="waveFrame" title="ATMAN Wave Chart" loading="lazy" data-src="https://ljhhh118.github.io/atmanreport/atman_wave_chart_shell.html?dataUrl=KrReports/20260613/chart_042700_20260613.txt"></iframe></div><p class="wavelegend">기준 일봉부터 대·중·소파동까지, 현재 흐름의 구조를 차트로 확인합니다.</p></div></div>
+
+<script>
+  // modal
+  (function(){
+    var modal=document.getElementById('waveModal');
+    var open=document.getElementById('openWave');
+    var openTop=document.getElementById('openWaveTop');
+    var close=document.getElementById('closeWave');
+    var frame=document.getElementById('waveFrame');
+    var lastFocus=null;
+    if(!modal){return;}
+    function show(trigger){
+      lastFocus=trigger||open;
+      if(frame && !frame.src){frame.src=frame.getAttribute('data-src');}
+      modal.classList.add('open'); close.focus();
+    }
+    function hide(){modal.classList.remove('open'); if(lastFocus)lastFocus.focus();}
+    if(open){open.addEventListener('click',function(){show(open);});}
+    if(openTop){openTop.addEventListener('click',function(){show(openTop);});}
+    close.addEventListener('click',hide);
+    modal.addEventListener('click',function(e){if(e.target===modal)hide();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});
+  })();
+
+  // scroll reveal
+  (function(){
+    var els=document.querySelectorAll('.rv');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in'); io.unobserve(en.target);}});
+    },{threshold:0.12});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>
