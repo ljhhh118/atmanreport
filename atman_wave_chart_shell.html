@@ -383,10 +383,24 @@ function buildLine(block,times,colName){
   for(let k=0;k<times.length&&k<block.rows.length;k++){ const v=num(block.rows[k][ci]); if(v!==null)out.push({time:times[k],value:v}); }
   return out;
 }
+// 블록 자체의 datetime으로 시간축을 잡아 라인 생성(닻 캔들과 행 수가 달라도 시간으로 정합)
+function buildLineByTime(block,colName){
+  const ti=colIdx(block,'datetime'), ci=colIdx(block,colName); if(ti<0||ci<0)return [];
+  const out=[],seen=new Set();
+  for(const r of block.rows){ const t=toTime(r[ti]); if(seen.has(t))continue; seen.add(t); const v=num(r[ci]); if(v!==null)out.push({time:t,value:v}); }
+  out.sort((a,b)=>a.time-b.time);
+  return out;
+}
+// 행 순서 그대로의 시간 배열(인덱스 1:1) — datetime 없는 지표를 master 시간축에 정렬할 때 사용
+function rowTimes(block){
+  const ti=colIdx(block,'datetime'); if(ti<0)return [];
+  return block.rows.map(r=>toTime(r[ti]));
+}
 const lock0to100={autoscaleInfoProvider:()=>({priceRange:{minValue:0,maxValue:100}})};
 
 /* ---------- 차트 레지스트리 + 보이는 범위 적용(모바일=최근 N봉, 데스크탑=전체) ---------- */
 let anchorRef=null;      // {chart,len}
+let anchorOverlay=[];    // 닻 차트에 얹은 '선택 지표 대파동' 라인 시리즈들
 let stackRefs=[];        // [{chart,len}]
 function applyView(chart,len){
   const ts=chart.timeScale();
@@ -513,13 +527,9 @@ function renderAnchor(){
   const src=pickAnchorSrc();
   document.getElementById('anchorName').textContent=T().anchorName;
   document.getElementById('anchorBadge').textContent=T().anchorBadge;
+  anchorOverlay=[];
   if(!src){ wrap.innerHTML=`<div class="empty">${T().empty}</div>`; document.getElementById('anchorLegend').innerHTML=''; anchorRef=null; return; }
-  // UpDownBB 밴드는 해당 소스에 컬럼이 있을 때만 (raw_daily는 보통 OHLCV만 → 밴드 생략)
-  const hasBands=colIdx(src,'upbb_u')>=0;
-  document.getElementById('anchorLegend').innerHTML= hasBands
-    ? OVERLAY.updown_bb.map(([c,key])=>`<span class="lg" style="color:var(${COLORMAP[key]})"><i></i>${OVERLAY_LABEL[c]||c}<span class="ax">Y2</span></span>`).join('')
-    : '';
-  const {candles,vols,times}=buildCandles(src,false);
+  const {candles,vols}=buildCandles(src,false);
   const chart=LightweightCharts.createChart(wrap,{
     autoSize:true,
     layout:{background:{color:'#fff'},textColor:'#5b6675',fontFamily:css('--mono'),fontSize:isMobile()?9:11,
@@ -539,15 +549,6 @@ function renderAnchor(){
     wickUpColor:css('--c-up'),wickDownColor:css('--c-dn'),
   },0);
   cs.setData(candles);
-  // UpDownBB 밴드(상·중·하) 오버레이 — 컬럼이 있을 때만
-  if(hasBands) for(const [colName,colKey] of OVERLAY.updown_bb){
-    const ls=chart.addSeries(LightweightCharts.LineSeries,{
-      priceScaleId:'right',color:css(COLORMAP[colKey]),lineWidth:colKey==='mid'?1:2,
-      lineStyle:colKey==='mid'?2:0,priceLineVisible:false,lastValueVisible:false,
-      priceFormat:priceFormatOpt(),
-    },0);
-    ls.setData(buildLine(src,times,colName));
-  }
   const vs=chart.addSeries(LightweightCharts.HistogramSeries,
     {priceFormat:{type:'volume'},priceLineVisible:false,lastValueVisible:false},1);
   vs.setData(vols);
@@ -555,12 +556,39 @@ function renderAnchor(){
   applyView(chart, candles.length);
   anchorRef={chart, len:candles.length};
 }
+// 닻(원본 일봉) 위에 '선택한 지표의 대파동(WAVE_L) 라인'을 얹음 — 탭 바뀔 때마다 갱신
+function setAnchorOverlay(indKey){
+  if(!anchorRef) return;
+  const chart=anchorRef.chart;
+  anchorOverlay.forEach(s=>{try{chart.removeSeries(s);}catch(e){}}); anchorOverlay=[];
+  const legend=document.getElementById('anchorLegend');
+  // 자금 흐름은 가격축과 단위가 달라(자본 vs 가격) 원본 캔들에 겹쳐 그리지 않음
+  const block=indKey==='fund_updown_bb'?null:(DATA.indicators[indKey] && DATA.indicators[indKey].WAVE_L);
+  const masterL=DATA.indicators.updown_bb && DATA.indicators.updown_bb.WAVE_L;  // 시간축 기준
+  if(!block || !masterL){ legend.innerHTML=''; return; }
+  const mt=rowTimes(masterL);   // 모든 지표 WAVE_L은 updown_bb WAVE_L과 행 인덱스로 정렬됨
+  for(const [colName,colKey] of (OVERLAY[indKey]||[])){
+    const ls=chart.addSeries(LightweightCharts.LineSeries,{
+      priceScaleId:'right',color:css(COLORMAP[colKey]),lineWidth:colKey==='mid'?1:2,
+      lineStyle:colKey==='mid'?2:0,priceLineVisible:false,lastValueVisible:false,
+      priceFormat:priceFormatOpt(),
+    },0);
+    ls.setData(buildLine(block, mt, colName));
+    anchorOverlay.push(ls);
+  }
+  // 어떤 지표의 대파동 라인인지 명시
+  const tag=`<span class="lg note">+ ${T().ind[indKey][0]} ${T().wave.WAVE_L}</span>`;
+  const lines=(OVERLAY[indKey]||[]).map(([c,key])=>`<span class="lg" style="color:var(${COLORMAP[key]})"><i></i>${OVERLAY_LABEL[c]||c}<span class="ax">Y2</span></span>`).join('');
+  legend.innerHTML=tag+lines;
+}
 
 /* ================= stack ================= */
 function selectIndicator(indKey){
   stackRefs.forEach(r=>{try{r.chart.remove();}catch(e){}}); stackRefs=[];
   const stack=document.getElementById('stack');stack.innerHTML='';
   document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.key===indKey));
+  setAnchorOverlay(indKey);   // 원본 캔들 위에 '선택 지표 대파동' 라인 갱신
+  const indLabel=T().ind[indKey]?T().ind[indKey][0]:indKey;
   const waves=DATA.indicators[indKey]?Object.keys(DATA.indicators[indKey]):[];
   const ordered=waves.length>1?WAVE_ORDER.filter(w=>waves.includes(w)):waves;
   for(const wave of ordered){
@@ -568,7 +596,7 @@ function selectIndicator(indKey){
     const tier=WAVE_TIER[wave];
     card.innerHTML=`
       <div class="chart-head">
-        <span class="wave-chip tier-${tier}"><span class="wave-dot"></span><span class="wave-name">${T().wave[wave]||wave}</span></span>
+        <span class="wave-chip tier-${tier}"><span class="wave-dot"></span><span class="wave-name">${indLabel} · ${T().wave[wave]||wave}</span></span>
         <span class="wave-code">${wave}</span>
         <span class="legend">${legendHtml(indKey)}</span>
       </div>
