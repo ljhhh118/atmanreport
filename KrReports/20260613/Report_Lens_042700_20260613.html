@@ -226,6 +226,159 @@
     background:var(--surface-2); border-left:3px solid var(--crowding); border-radius:5px; padding:11px 14px;}
   .prob-why .pw-k{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.06em;
     color:var(--crowding); text-transform:uppercase; display:inline-block; margin-right:8px; font-weight:600;}
+  /* 시나리오 체험 버튼 */
+  .scen-try{display:inline-flex; align-items:center; gap:10px; margin-top:16px; width:100%;
+    justify-content:center; font-family:inherit; font-size:14.5px; font-weight:600; color:#fff;
+    background:linear-gradient(120deg,#1B2532,#2C3A4D); border:0; border-radius:10px; padding:14px 18px;
+    cursor:pointer; transition:transform .12s, box-shadow .18s;}
+  .scen-try:hover{box-shadow:0 10px 26px -12px rgba(20,30,50,0.5); transform:translateY(-1px);}
+  .scen-try:active{transform:scale(0.99);}
+  .scen-try:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+  .scen-try .pl{width:0;height:0;border-left:11px solid var(--gold);border-top:7px solid transparent;border-bottom:7px solid transparent;}
+  .scen-try small{display:block; font-weight:400; font-size:11.5px; color:#AFBCCB; margin-top:1px;}
+  .scen-go{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px; letter-spacing:0.04em; font-weight:600; color:var(--c); background:var(--cbg);
+    border:1px solid transparent; border-radius:999px; padding:7px 13px; cursor:pointer; transition:all .14s;}
+  .scen-go:hover{border-color:var(--c);}
+  .scen-go:focus-visible{outline:2px solid var(--c); outline-offset:1px;}
+  .scen-go .pg{width:0;height:0;border-left:7px solid var(--c);border-top:5px solid transparent;border-bottom:5px solid transparent;}
+  .modal-card.sim-modal{max-width:1040px; width:100%; padding:0; overflow:auto; position:relative;}
+  #scenModal .film-top{position:relative;}
+  #scenModal .modal-close{position:absolute; top:13px; right:14px; width:30px; height:30px; border-radius:50%;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.28); color:#fff;
+    font-size:17px; line-height:1; display:flex; align-items:center; justify-content:center; padding:0; z-index:10;
+    transition:background .14s;}
+  #scenModal .modal-close:hover{background:rgba(255,255,255,0.22);}
+  #scenModal .modal-close:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+  /* v2 변수 보강(리포트에 없던 것) */
+  #scenModal{--soft:var(--text-soft); --faint:var(--text-faint); --inv:#E8EDF3; --hair-d:#2A3848;
+    --pos-new:#6B7785; --pos-profit:#4F8A6B; --pos-loss:#B07A45;
+    --pos-new-bg:#EDEFF1; --pos-profit-bg:#E6F0EA; --pos-loss-bg:#F3EADF;}
+  .stage{padding:16px 18px 20px;}
+  .experience{border:1px solid var(--hair); border-radius:18px; overflow:hidden; background:#fff;}
+  .film-top{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:13px 56px 13px 18px; background:var(--ink); color:var(--inv); border-bottom:1px solid var(--hair-d);}
+  .film-title{font-family:'Noto Serif KR',serif; font-weight:600; letter-spacing:-0.01em;}
+  .film-title small{display:block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#9FB3C0; letter-spacing:0.1em; margin-top:2px;}
+  /* 갈래 전환 탭 */
+  .branch-seg{display:inline-flex; gap:4px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:999px; padding:4px;}
+  .branch-seg button{font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:#AFC0CB; background:transparent; border:0; border-radius:999px; padding:6px 13px; cursor:pointer; transition:.14s;}
+  .branch-seg button[aria-pressed="true"]{color:#fff;}
+  .branch-seg button[data-id="A"][aria-pressed="true"]{background:var(--sector);}
+  .branch-seg button[data-id="B"][aria-pressed="true"]{background:var(--pattern);}
+  .branch-seg button[data-id="C"][aria-pressed="true"]{background:var(--crowding);}
+  .branch-seg button:focus-visible{outline:2px solid var(--gold); outline-offset:1px;}
+
+  /* 차트 (전체 흐름 한 장) */
+  .chart{position:relative; background:linear-gradient(180deg,#FAFBFC,#EFF3F5);}
+  .chart svg{display:block; width:100%; height:auto;}
+  .chart-cap{position:absolute; left:18px; bottom:14px; right:18px; pointer-events:none;}
+  .cc-phase{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:#fff; background:var(--cc,var(--ink)); border-radius:999px; padding:4px 11px; margin-bottom:8px;}
+  .cc-text{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vw,20px); font-weight:600; color:var(--text);
+    max-width:78%; text-shadow:0 1px 0 rgba(255,255,255,0.8); transition:opacity .25s;}
+
+  /* 스크럽 타임라인 */
+  .scrub{padding:14px 18px 4px; background:#fff;}
+  .scrub-track{position:relative; height:34px; cursor:pointer;}
+  .scrub-rail{position:absolute; top:15px; left:0; right:0; height:4px; border-radius:999px; background:#E3E8EC;}
+  .scrub-fill{position:absolute; top:15px; left:0; height:4px; border-radius:999px;
+    background:linear-gradient(90deg,var(--sector),var(--pattern)); width:0;}
+  .scrub-ticks{position:absolute; inset:0;}
+  .scrub-tick{position:absolute; top:9px; width:2px; height:16px; background:#CCD4DA; transform:translateX(-1px);}
+  .scrub-tick.passed{background:var(--pattern);}
+  .scrub-knob{position:absolute; top:7px; width:20px; height:20px; border-radius:50%; background:#fff;
+    border:3px solid var(--pattern); box-shadow:0 4px 10px -3px rgba(20,30,50,0.5); transform:translateX(-10px); transition:left .1s linear;}
+  .scrub-knob:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+  .phase-labels{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--faint); margin-top:2px; padding:0 2px;}
+
+  /* 하단: 한 줄 설명 + 내 위치 */
+  .readout{padding:14px 18px 18px; background:#fff; border-top:1px solid var(--hair);}
+  .ro-line{font-size:15px; line-height:1.6; color:var(--text);}
+  .ro-line b{color:var(--pattern); font-weight:700;}
+  .mypos{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:13px;}
+  .mypos-lab{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--faint); text-transform:uppercase;}
+  .pos-seg{display:inline-flex; gap:4px; background:var(--surface-2); border:1px solid var(--hair); border-radius:999px; padding:4px;}
+  .pos-seg button{font-family:inherit; font-size:12.5px; font-weight:600; color:var(--soft); background:transparent; border:0; border-radius:999px; padding:7px 12px; cursor:pointer; transition:.14s;}
+  .pos-seg button[aria-pressed="true"]{color:#fff; background:var(--pp,var(--ink));}
+  .pos-seg button[data-id="new"]{--pp:var(--pos-new);}
+  .pos-seg button[data-id="profit"]{--pp:var(--pos-profit);}
+  .pos-seg button[data-id="loss"]{--pp:var(--pos-loss);}
+  .pos-seg button:focus-visible{outline:2px solid currentColor; outline-offset:1px;}
+  .pos-resp{margin-top:12px; border:1px solid var(--hair); border-left:3px solid var(--pc); border-radius:10px; padding:13px 15px; background:var(--surface);}
+  .pos-resp.new{--pc:var(--pos-new);} .pos-resp.profit{--pc:var(--pos-profit);} .pos-resp.loss{--pc:var(--pos-loss);}
+  .pos-resp .pr-h{display:flex; align-items:center; gap:8px; margin-bottom:6px;}
+  .pos-resp .pr-ic{width:22px; height:22px; border-radius:50%; background:var(--pcb); flex:none; display:flex; align-items:center; justify-content:center;}
+  .pos-resp.new .pr-ic{--pcb:var(--pos-new-bg);} .pos-resp.profit .pr-ic{--pcb:var(--pos-profit-bg);} .pos-resp.loss .pr-ic{--pcb:var(--pos-loss-bg);}
+  .pos-resp .pr-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.04em; color:var(--pc);}
+  .pos-resp .pr-view{font-size:14.5px; line-height:1.55; color:var(--text); font-weight:600;}
+  .pos-resp .pr-do{margin-top:11px; border-top:1px dashed var(--hair); padding-top:10px;}
+  .pos-resp .pr-do-lab{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--faint); margin-bottom:7px;}
+  .pos-resp .pr-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px;}
+  .pos-resp .pr-list li{display:flex; gap:8px; font-size:13.5px; line-height:1.5; color:var(--text);}
+  .pos-resp .pr-list li .mk{flex:none; width:18px; text-align:center; font-weight:700;}
+  .pos-resp .pr-list li.chk .mk{color:var(--pc);}
+  .pos-resp .pr-list li.wat{color:var(--soft);}
+  .pos-resp .pr-list li.wat .mk{color:#B0764A;}
+
+  .controls{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:14px;}
+  .hint{font-size:12.5px; color:var(--soft); max-width:48ch;}
+  .cgroup{display:flex; gap:8px; flex-wrap:wrap;}
+  .tiny{border:1px solid var(--hair); background:#fff; border-radius:11px; padding:9px 13px; font-family:inherit; font-weight:600; font-size:13px; cursor:pointer; color:var(--ink);}
+  .tiny:hover{background:var(--surface-2);} .tiny:focus-visible{outline:2px solid var(--ink); outline-offset:1px;}
+  .disc{margin:16px 2px 0; font-size:12px; color:var(--faint); line-height:1.7;}
+
+  /* svg dynamic */
+  .grid{stroke:#D8E1E5; stroke-width:1;}
+  .axis-label{font-family:'IBM Plex Mono',monospace; font-size:12px; fill:#7A8893;}
+  .branch{fill:none; stroke-linecap:round; stroke-linejoin:round; transition:opacity .3s, stroke-width .3s;}
+  .branch.dim{opacity:0.16;}
+  .progress{fill:none; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:var(--len); stroke-dashoffset:var(--len);}
+  .head{filter:drop-shadow(0 0 6px rgba(190,122,42,0.55));}
+
+
+  /* 좌우 2단 레이아웃 — 한 화면에 흐름+내 행동 */
+  .stage-grid{display:grid; grid-template-columns:1.25fr 0.95fr; align-items:stretch;}
+  .stage-grid .col-left{border-right:1px solid var(--hair); display:flex; flex-direction:column; min-width:0;}
+  .stage-grid .col-right{display:flex; flex-direction:column; min-width:0;}
+  .chart svg{max-height:230px;}
+  .readout{border-top:0; height:100%;}
+
+  /* ── 모바일(C: 세로 스토리 + 차트 상단 고정) ── */
+  @media (max-width:760px){
+    .stage-grid{grid-template-columns:1fr;}
+    .stage-grid .col-left{border-right:0;
+      position:sticky; top:0; z-index:8; background:#fff;
+      box-shadow:0 6px 16px -10px rgba(20,30,50,0.35); border-bottom:1px solid var(--hair);}
+    .chart svg{max-height:185px;}
+    /* 모바일: SVG 안 글자 키우기 (viewBox 좌표 기준) */
+    .chart .axis-label{font-size:26px;}
+    .chart #endA,.chart #endB,.chart #endC{font-size:25px;}
+    .chart svg text{font-weight:700;}
+    .chart .grid-skip{display:none;}
+    .chart-cap{position:static; padding:12px 16px 2px;}
+    .cc-phase{font-size:11px;}
+    .cc-text{max-width:100%; font-size:18px; font-weight:700; line-height:1.45;}
+    .scrub{padding:10px 16px 6px;}
+    /* 할 일 영역: 큼직하게 읽어 내려가기 */
+    .col-right{padding-bottom:6px;}
+    .readout{padding:16px 16px 18px;}
+    .ro-line{font-size:15.5px;}
+    .pos-resp{padding:15px 16px;}
+    .pos-resp .pr-view{font-size:17px; line-height:1.5;}
+    .pos-resp .pr-list li{font-size:16px; line-height:1.55;}
+    /* 내 위치 토글을 sticky 차트 바로 아래 눈에 띄게 */
+    .mypos{position:sticky; top:0; background:#fff; padding:10px 0; margin-top:0; z-index:6;}
+  }
+
+  @media (max-width:680px){
+    .cc-text{max-width:100%; font-size:15px;}
+    #scenModal{padding:0;} #scenModal .modal-card.sim-modal{height:100vh; max-height:100vh; border-radius:0;}
+    .film-top{flex-direction:column; align-items:flex-start; gap:10px;}
+    .controls{flex-direction:column; align-items:stretch;} .cgroup{justify-content:space-between;}
+  }
+  @media (prefers-reduced-motion:reduce){ .scrub-knob{transition:none;} }
   .scen{border:1px solid var(--hair); border-radius:6px; background:var(--surface);
     padding:20px 22px; margin-top:14px; border-left:3px solid var(--c);}
   .scen.a{--c:var(--sector); --cbg:var(--sector-bg);}
@@ -449,7 +602,109 @@
         <text x="740" y="135" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#7A8893">종합 판독</text>
         <text x="740" y="226" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="20" font-weight="600" fill="#19262F">늦은 자리</text>
         <text x="740" y="244" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#4A5763">1차 반등 상단 · 조건부 관찰</text>
-      </svg><div class="figcap">패턴이 동력, 밀집이 관문, 섹터가 전제 — 어느 하나도 단독 주인이 아닙니다.</div></div><div class="verdict-banner"><span class="dot"></span><span class="vk">현재 판독</span><span class="vv">늦은 자리 · 1차 반등 상단 · 조건부 관찰 · 유효 기간 단기</span></div><div class="lenses"><div class="lens sector"><div class="role">전제 · 배경 물살</div><h3>섹터 관점</h3><p>반도체 군집 물살이 초입 단계로 도착 중이며 이 종목이 선두 명단에 올랐습니다. 그러나 <b>외국인 수급이 미확인이고 MEDIUM 국면</b>이 유지돼 섹터 우호는 조건부입니다.</p><span class="verdict">우호적 · 조건부</span></div><div class="lens pattern"><div class="role">동력 · 엔진</div><h3>패턴 관점</h3><p>가격·자금·거래량이 동시에 상단을 돌파해 <b>1차 반등의 에너지는 실재</b>합니다. 다만 1차 반등 폭이 이미 상단에 도달했고 소파동이 극단 과열 상태라 추가 여력은 조건부입니다.</p><span class="verdict">양면 · 1차 반등 실재</span></div><div class="lens crowd"><div class="role">관문 · 필터</div><h3>밀집도 관점</h3><p>자금이 소·중·대 세 시간축 모두에서 상단 밴드를 동시에 돌파했고, 이는 바닥 받침이 아닌 <b>상단 신규 군중 집중</b>입니다. 과거 동일 패턴 2사례에서 수일~3주 내 하락 전환이 확인됐습니다.</p><span class="verdict">상단 과밀 · 신뢰도 높음</span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">05</span><div><div class="sec-title">종합 판독</div></div></div><p class="pull">같은 거래량 폭증을, 패턴은 <span class="a">반등 에너지</span>로 · 밀집은 <span class="b">상단 과밀</span>로 읽는다.</p><p class="prose">세 관점은 &#39;1차 반등이 실재했다&#39;는 사실에서 일치합니다. 거래량이 동반된 실체 있는 반등이었고, 반도체 군집 물살이 이를 뒷받침했습니다.</p><p class="prose">갈림은 그 자금의 성격입니다. 패턴은 이를 <b>상승을 받친 동력</b>으로, 밀집은 <b>상단에 뒤늦게 몰린 과밀</b>로 읽습니다. 같은 거래량 폭증을 정반대로 해석하는 거울 충돌이며, 밀집의 자체검증 근거(2사례 확인)가 패턴의 미검증 구간(neutral)보다 더 단단합니다.</p><div class="tension"><div class="tside left"><div class="lbl">패턴은 이렇게 본다</div><p>가격·자금·거래량이 동시에 상단을 돌파했고, 비슷한 과거 자리에서 1차 반등이 크게 열렸다 — <b>반등 에너지는 실재</b>한다.</p></div><div class="tmid"><span>같은 사실<br><em>정반대 해석</em></span></div><div class="tside right"><div class="lbl">밀집은 이렇게 본다</div><p>그 자금은 바닥을 받친 게 아니라 상단에 하루 만에 몰린 군중 자금이다. 과거 동일 패턴 2사례에서 수일~3주 내 하락 전환이 반복됐다 — <b>상단 과밀</b>이다.</p></div></div><p class="tnote">같은 거래량 폭증을 정반대로 읽는 두 면. 모순이 아니라 같은 사실의 양면입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">06</span><div><div class="sec-title">가능한 시나리오</div><div class="sec-kicker">예측이 아니라 갈림길별 흐름 조건입니다.</div></div></div><div class="probbar" role="img" aria-label="시나리오 확률"><div class="probseg a" style="width:50%"><span class="pid">A</span><span class="pct">50%</span></div><div class="probseg b" style="width:30%"><span class="pid">B</span><span class="pct">30%</span></div><div class="probseg c" style="width:20%"><span class="pid">C</span><span class="pct">20%</span></div></div><p class="problegend"><b style="color:var(--crowding)">A 단기 추가 상승 후 하락 전환 — 주 시나리오</b> · B 즉각 과열 소화 후 횡보·조정 · C 자금 정렬 유지 → 대파동 추세 전환 시도</p><p class="prob-why"><span class="pw-k">주 시나리오 근거</span><b>상단 과밀의 근거(자체검증 2사례 확인)가 지속성의 근거(미검증)보다 더 단단</b>하고, 과거 사례에서 돌파 직후 수일 추가 상승 후 하락 전환이 반복됐기 때문에 갈래 A를 주 시나리오로 둔다.</p><div class="scen a"><div class="scen-head"><div class="scen-name"><span class="tag">A</span>단기 추가 상승 후 하락 전환 <span class="dominant">주 시나리오</span></div><div class="scen-prob">50%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:88%"></i></div><span class="mpct">개연성 50%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>자금 흐름이 상단 밴드 위에서 수일간 유지되고 가격이 단기 상단 부근에서 안정되면 단기 추가 상승이 선행되나, 이후 자금이 중간 밴드 아래로 후퇴하고 가격이 단기 중간 구간 아래로 밀리면 하락 전환</div><div class="scen-row"><span class="rk">근거</span>과거 동일 패턴 2사례 모두 돌파 직후 수일 추가 상승 후 하락 전환했습니다. <b>단기 추가 상승이 선행될 수 있으나 결국 하락 전환이 주 경로</b>입니다.</div><div class="scen-reframe">→ 단기 추가 상승이 나오더라도 자금 정렬 이탈 신호를 먼저 확인하는 구간</div></div><div class="scen b"><div class="scen-head"><div class="scen-name"><span class="tag">B</span>즉각 과열 소화 후 횡보·조정</div><div class="scen-prob">30%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:52.8%"></i></div><span class="mpct">개연성 30%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>다음 봉에서 자금이 중간 밴드 아래로 즉각 후퇴하고 가격이 단기 중간 구간 아래로 밀리면</div><div class="scen-row"><span class="rk">근거</span>소파동 극단 과열이 즉각 되돌림으로 이어지는 경로입니다. 위꼬리가 단기 매도 압력의 실재를 보여줬습니다.</div><div class="scen-reframe">→ 소파동 극단 과열이 즉각 소화되는 경우 — 조정 후 재안정 여부 관찰</div></div><div class="scen c"><div class="scen-head"><div class="scen-name"><span class="tag">C</span>자금 정렬 유지 → 대파동 추세 전환 시도</div><div class="scen-prob">20%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:35.2%"></i></div><span class="mpct">개연성 20%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>자금 흐름이 상단 밴드 위를 지속 유지하고 외국인 순매수 전환이 확인되며 미국 반도체 지수 상승이 3일 연속 동반되면</div><div class="scen-row"><span class="rk">근거</span>대파동 추세 전환이 확인되는 경로로, 현재 위상에서 가장 낮은 확률입니다. 대파동 자금 추세가 아직 하락 기조이고 외국인 수급이 미확인입니다.</div><div class="scen-reframe">→ 외국인 수급 전환 + 미국 반도체 지수 연속 상승이 동반될 때만 추세 전환 시나리오가 열리는 구간</div></div><p class="note">갈래 확률은 현재 데이터 구조에서의 상대적 개연성이며, 위치(미보유·수익·손실)는 갈래를 바꾸지 않고 같은 갈래에 다른 대응을 입힙니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">07</span><div><div class="sec-title">위치별 해석</div><div class="sec-kicker">같은 자리도 보유 위치에 따라 판단 기준이 다릅니다.</div></div></div><div class="positions"><div class="pos new"><span class="ptag">미보유</span><div class="phead"><span class="picon"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#6B7785" stroke-width="1.5"/><line x1="9" y1="9" x2="12.5" y2="12.5" stroke="#6B7785" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">미보유 관점</div></div><div class="pq">지금 새로 들어갈 만큼 가격 흐름과 자금 밀집이 정렬됐는가?</div><p>가장 보수적 — 진입 정당성을 먼저 묻는다. 현재 자리는 1차 반등 수혜가 이미 실현된 자리이며 손익비가 불리하다. 자금 상단 밴드 위 유지 + 외국인 수급 전환 확인 전까지 추가 확인 필요.</p></div><div class="pos profit"><span class="ptag">수익 보유</span><div class="phead"><span class="picon"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 9.5 L6 5.5 L8.5 8 L13 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3 L13 6 M13 3 L10 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">수익 보유 관점</div></div><div class="pq">수익을 더 키울 힘이 남았는가, 지킬 때인가?</div><p>단기 추가 상승 가능성(갈래 A 선행 구간)이 있으나 자금이 상단 밴드를 이탈하기 시작하면 수익 보호 관점으로 전환. 신규 관찰자보다 여유가 있으나 과신 금지.</p></div><div class="pos loss"><span class="ptag">손실 보유</span><div class="phead"><span class="picon"><svg width="14" height="15" viewBox="0 0 14 15" aria-hidden="true"><path d="M7 1.5 L12 3.5 L12 7.5 C12 10.5 9.8 12.5 7 13.5 C4.2 12.5 2 10.5 2 7.5 L2 3.5 Z" fill="none" stroke="#B07A45" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div class="ptitle">손실 보유 관점</div></div><div class="pq">손실을 더 키울 위험이 큰가, 회복 시나리오가 남았는가?</div><p>추가 노출보다 손실 확대 방지 우선. 주 시나리오(A, 50%)에서도 결국 하락 전환이 오므로 본전 회복 구간에서 비중 조절 검토. 갈래 C(20%) 발동 조건 모니터링하되 확률이 낮음을 인지.</p></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">08</span><div><div class="sec-title">주요 관찰 조건</div><div class="sec-kicker">매수·매도가가 아니라 흐름을 판단하는 관찰 구간입니다.</div></div></div><ul class="observe"><li><span class="marker">01</span><span>자금 흐름이 자금 상단 밴드 위에서 유지되는지 — 자금 정렬의 지속 여부</span></li><li><span class="marker">02</span><span>가격이 <b>3.4만원대 후반</b> 위에서 안정되는지, 아니면 <b>2.9만원대 초반</b> 아래로 밀리는지 — 단기 강도 확인</span></li><li><span class="marker">03</span><span>외국인 순매수 전환 여부 — 섹터 물살의 진정성 확인</span></li><li><span class="marker">04</span><span>미국 반도체 지수 3일 연속 상승 동반 여부 — 갈래 C 발동 조건</span></li><li><span class="marker">05</span><span>거래량이 오늘 수준의 절반 이상 유지되는지 — 에너지 지속성 확인</span></li></ul><p class="note">위 가격은 매수·손절가가 아니라 흐름 판단을 위한 관찰 구간이며, 자금 관련 조건은 ATMAN 자금 흐름 지표 기준입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">09</span><div><div class="sec-title">파동 차트</div><div class="sec-kicker">분석에 사용한 데이터를 대·중·소파동 구조로 직접 확인합니다.</div></div></div><div class="actions"><button class="btn" id="openWave" aria-haspopup="dialog"><svg class="bi" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 14 Q5 6 8 11 T14 9 T20 5" fill="none" stroke="#E7BE86" stroke-width="1.8" stroke-linecap="round"/></svg><span>ATMAN Wave Chart 보기<small>대·중·소파동 상단 밴드와 현재 위치를 구조로 확인</small></span></button></div></section><section class="rv"><div class="sec-head"><span class="sec-num">10</span><div><div class="sec-title">관련 시장 리포트</div><div class="sec-kicker">카드를 누르면 해당 리포트로 이동합니다.</div></div></div><div class="related"><a class="rcard brief" href="https://ljhhh118.github.io/atmanreport/KrReports/20260613/Report_Brief_Detail_20260613.html"><div class="rc-body"><div class="rk">ATMAN BRIEF</div><div class="rn">오늘 시장 전체 흐름</div><div class="rd">매크로·글로벌·섹터를 묶은 오늘의 시장 지도</div></div><span class="rgo" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 13 13"><path d="M4 2.5 L8.5 6.5 L4 10.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="rcard radar" href="https://ljhhh118.github.io/atmanreport/KrReports/20260613/Report_Radar_Detail_20260613.html"><div class="rc-body"><div class="rk">ATMAN RADAR</div><div class="rn">최근 N일 시장·섹터 흐름</div><div class="rd">자금이 어디로 이동하는지, 며칠의 결을 추적</div></div><span class="rgo" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 13 13"><path d="M4 2.5 L8.5 6.5 L4 10.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div><p class="related-note">이 종목은 하나의 점이 아니라 시장 흐름 속의 한 위치입니다. BRIEF에서 오늘의 시장 배경을, RADAR에서 최근 흐름의 변화를 함께 확인할 수 있습니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">11</span><div><div class="sec-title">해석 한계</div></div></div><div class="caveat">세 관점의 소견을 통합한 데이터 기반 흐름 해석입니다. 시나리오 확률은 현재 데이터 구조에서의 상대적 개연성이지 확정적 예측이 아니며, 매수·매도 지시가 아닙니다.</div></section><footer class="disclaimer"><span class="dk">DISCLAIMER</span><p>본 리포트는 특정 종목의 매수·매도 권유가 아니라, 공개 시장 데이터와 ATMAN 지표를 바탕으로 한 흐름 해석 및 시나리오 분석입니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.</p><p>This report is not a buy or sell recommendation. It provides data-driven market interpretation and scenario analysis based on publicly available market data and ATMAN indicators. All investment decisions and outcomes remain the responsibility of the investor.</p><div class="footmark"><svg width="22" height="22" viewBox="0 0 30 30" aria-hidden="true"><ellipse cx="15" cy="15" rx="6.2" ry="13" fill="none" stroke="#8C97A0" stroke-width="1.3"/><line x1="2" y1="15" x2="9.2" y2="15" stroke="#BE7A2A" stroke-width="1.3"/><line x1="20.8" y1="15" x2="28" y2="15" stroke="#2C7C8A" stroke-width="1.3"/></svg><span class="wordmark">ATMAN&nbsp;LENS · ITEM CONVERGENCE</span></div></footer></main>
+      </svg><div class="figcap">패턴이 동력, 밀집이 관문, 섹터가 전제 — 어느 하나도 단독 주인이 아닙니다.</div></div><div class="verdict-banner"><span class="dot"></span><span class="vk">현재 판독</span><span class="vv">늦은 자리 · 1차 반등 상단 · 조건부 관찰 · 유효 기간 단기</span></div><div class="lenses"><div class="lens sector"><div class="role">전제 · 배경 물살</div><h3>섹터 관점</h3><p>반도체 군집 물살이 초입 단계로 도착 중이며 이 종목이 선두 명단에 올랐습니다. 그러나 <b>외국인 수급이 미확인이고 MEDIUM 국면</b>이 유지돼 섹터 우호는 조건부입니다.</p><span class="verdict">우호적 · 조건부</span></div><div class="lens pattern"><div class="role">동력 · 엔진</div><h3>패턴 관점</h3><p>가격·자금·거래량이 동시에 상단을 돌파해 <b>1차 반등의 에너지는 실재</b>합니다. 다만 1차 반등 폭이 이미 상단에 도달했고 소파동이 극단 과열 상태라 추가 여력은 조건부입니다.</p><span class="verdict">양면 · 1차 반등 실재</span></div><div class="lens crowd"><div class="role">관문 · 필터</div><h3>밀집도 관점</h3><p>자금이 소·중·대 세 시간축 모두에서 상단 밴드를 동시에 돌파했고, 이는 바닥 받침이 아닌 <b>상단 신규 군중 집중</b>입니다. 과거 동일 패턴 2사례에서 수일~3주 내 하락 전환이 확인됐습니다.</p><span class="verdict">상단 과밀 · 신뢰도 높음</span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">05</span><div><div class="sec-title">종합 판독</div></div></div><p class="pull">같은 거래량 폭증을, 패턴은 <span class="a">반등 에너지</span>로 · 밀집은 <span class="b">상단 과밀</span>로 읽는다.</p><p class="prose">세 관점은 &#39;1차 반등이 실재했다&#39;는 사실에서 일치합니다. 거래량이 동반된 실체 있는 반등이었고, 반도체 군집 물살이 이를 뒷받침했습니다.</p><p class="prose">갈림은 그 자금의 성격입니다. 패턴은 이를 <b>상승을 받친 동력</b>으로, 밀집은 <b>상단에 뒤늦게 몰린 과밀</b>로 읽습니다. 같은 거래량 폭증을 정반대로 해석하는 거울 충돌이며, 밀집의 자체검증 근거(2사례 확인)가 패턴의 미검증 구간(neutral)보다 더 단단합니다.</p><div class="tension"><div class="tside left"><div class="lbl">패턴은 이렇게 본다</div><p>가격·자금·거래량이 동시에 상단을 돌파했고, 비슷한 과거 자리에서 1차 반등이 크게 열렸다 — <b>반등 에너지는 실재</b>한다.</p></div><div class="tmid"><span>같은 사실<br><em>정반대 해석</em></span></div><div class="tside right"><div class="lbl">밀집은 이렇게 본다</div><p>그 자금은 바닥을 받친 게 아니라 상단에 하루 만에 몰린 군중 자금이다. 과거 동일 패턴 2사례에서 수일~3주 내 하락 전환이 반복됐다 — <b>상단 과밀</b>이다.</p></div></div><p class="tnote">같은 거래량 폭증을 정반대로 읽는 두 면. 모순이 아니라 같은 사실의 양면입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">06</span><div><div class="sec-title">가능한 시나리오</div><div class="sec-kicker">예측이 아니라 갈림길별 흐름 조건입니다.</div></div></div><div class="probbar" role="img" aria-label="시나리오 확률"><div class="probseg a" style="width:50%"><span class="pid">A</span><span class="pct">50%</span></div><div class="probseg b" style="width:30%"><span class="pid">B</span><span class="pct">30%</span></div><div class="probseg c" style="width:20%"><span class="pid">C</span><span class="pct">20%</span></div></div><p class="problegend"><b style="color:var(--crowding)">A 단기 추가 상승 후 하락 전환 — 주 시나리오</b> · B 즉각 과열 소화 후 횡보·조정 · C 자금 정렬 유지 → 대파동 추세 전환 시도</p><p class="prob-why"><span class="pw-k">주 시나리오 근거</span><b>상단 과밀의 근거(자체검증 2사례 확인)가 지속성의 근거(미검증)보다 더 단단</b>하고, 과거 사례에서 돌파 직후 수일 추가 상승 후 하락 전환이 반복됐기 때문에 갈래 A를 주 시나리오로 둔다.</p><button class="scen-try" data-scen="" aria-haspopup="dialog"><span class="pl"></span><span style="text-align:left">시나리오 체험하기<small>세 갈래의 미래를 재생하고, 내 위치에서 직접 따라가 보세요</small></span></button><div class="scen a"><div class="scen-head"><div class="scen-name"><span class="tag">A</span>단기 추가 상승 후 하락 전환 <span class="dominant">주 시나리오</span></div><div class="scen-prob">50%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:88%"></i></div><span class="mpct">개연성 50%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>자금 흐름이 상단 밴드 위에서 수일간 유지되고 가격이 단기 상단 부근에서 안정되면 단기 추가 상승이 선행되나, 이후 자금이 중간 밴드 아래로 후퇴하고 가격이 단기 중간 구간 아래로 밀리면 하락 전환</div><div class="scen-row"><span class="rk">근거</span>과거 동일 패턴 2사례 모두 돌파 직후 수일 추가 상승 후 하락 전환했습니다. <b>단기 추가 상승이 선행될 수 있으나 결국 하락 전환이 주 경로</b>입니다.</div><div class="scen-reframe">→ 단기 추가 상승이 나오더라도 자금 정렬 이탈 신호를 먼저 확인하는 구간</div><button class="scen-go" data-scen="A" aria-haspopup="dialog"><span class="pg"></span>이 갈래 체험</button></div><div class="scen b"><div class="scen-head"><div class="scen-name"><span class="tag">B</span>즉각 과열 소화 후 횡보·조정</div><div class="scen-prob">30%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:52.8%"></i></div><span class="mpct">개연성 30%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>다음 봉에서 자금이 중간 밴드 아래로 즉각 후퇴하고 가격이 단기 중간 구간 아래로 밀리면</div><div class="scen-row"><span class="rk">근거</span>소파동 극단 과열이 즉각 되돌림으로 이어지는 경로입니다. 위꼬리가 단기 매도 압력의 실재를 보여줬습니다.</div><div class="scen-reframe">→ 소파동 극단 과열이 즉각 소화되는 경우 — 조정 후 재안정 여부 관찰</div><button class="scen-go" data-scen="B" aria-haspopup="dialog"><span class="pg"></span>이 갈래 체험</button></div><div class="scen c"><div class="scen-head"><div class="scen-name"><span class="tag">C</span>자금 정렬 유지 → 대파동 추세 전환 시도</div><div class="scen-prob">20%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:35.2%"></i></div><span class="mpct">개연성 20%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>자금 흐름이 상단 밴드 위를 지속 유지하고 외국인 순매수 전환이 확인되며 미국 반도체 지수 상승이 3일 연속 동반되면</div><div class="scen-row"><span class="rk">근거</span>대파동 추세 전환이 확인되는 경로로, 현재 위상에서 가장 낮은 확률입니다. 대파동 자금 추세가 아직 하락 기조이고 외국인 수급이 미확인입니다.</div><div class="scen-reframe">→ 외국인 수급 전환 + 미국 반도체 지수 연속 상승이 동반될 때만 추세 전환 시나리오가 열리는 구간</div><button class="scen-go" data-scen="C" aria-haspopup="dialog"><span class="pg"></span>이 갈래 체험</button></div><p class="note">갈래 확률은 현재 데이터 구조에서의 상대적 개연성이며, 위치(미보유·수익·손실)는 갈래를 바꾸지 않고 같은 갈래에 다른 대응을 입힙니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">07</span><div><div class="sec-title">위치별 해석</div><div class="sec-kicker">같은 자리도 보유 위치에 따라 판단 기준이 다릅니다.</div></div></div><div class="positions"><div class="pos new"><span class="ptag">미보유</span><div class="phead"><span class="picon"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#6B7785" stroke-width="1.5"/><line x1="9" y1="9" x2="12.5" y2="12.5" stroke="#6B7785" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">미보유 관점</div></div><div class="pq">지금 새로 들어갈 만큼 가격 흐름과 자금 밀집이 정렬됐는가?</div><p>가장 보수적 — 진입 정당성을 먼저 묻는다. 현재 자리는 1차 반등 수혜가 이미 실현된 자리이며 손익비가 불리하다. 자금 상단 밴드 위 유지 + 외국인 수급 전환 확인 전까지 추가 확인 필요.</p></div><div class="pos profit"><span class="ptag">수익 보유</span><div class="phead"><span class="picon"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 9.5 L6 5.5 L8.5 8 L13 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3 L13 6 M13 3 L10 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">수익 보유 관점</div></div><div class="pq">수익을 더 키울 힘이 남았는가, 지킬 때인가?</div><p>단기 추가 상승 가능성(갈래 A 선행 구간)이 있으나 자금이 상단 밴드를 이탈하기 시작하면 수익 보호 관점으로 전환. 신규 관찰자보다 여유가 있으나 과신 금지.</p></div><div class="pos loss"><span class="ptag">손실 보유</span><div class="phead"><span class="picon"><svg width="14" height="15" viewBox="0 0 14 15" aria-hidden="true"><path d="M7 1.5 L12 3.5 L12 7.5 C12 10.5 9.8 12.5 7 13.5 C4.2 12.5 2 10.5 2 7.5 L2 3.5 Z" fill="none" stroke="#B07A45" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div class="ptitle">손실 보유 관점</div></div><div class="pq">손실을 더 키울 위험이 큰가, 회복 시나리오가 남았는가?</div><p>추가 노출보다 손실 확대 방지 우선. 주 시나리오(A, 50%)에서도 결국 하락 전환이 오므로 본전 회복 구간에서 비중 조절 검토. 갈래 C(20%) 발동 조건 모니터링하되 확률이 낮음을 인지.</p></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">08</span><div><div class="sec-title">주요 관찰 조건</div><div class="sec-kicker">매수·매도가가 아니라 흐름을 판단하는 관찰 구간입니다.</div></div></div><ul class="observe"><li><span class="marker">01</span><span>자금 흐름이 자금 상단 밴드 위에서 유지되는지 — 자금 정렬의 지속 여부</span></li><li><span class="marker">02</span><span>가격이 <b>3.4만원대 후반</b> 위에서 안정되는지, 아니면 <b>2.9만원대 초반</b> 아래로 밀리는지 — 단기 강도 확인</span></li><li><span class="marker">03</span><span>외국인 순매수 전환 여부 — 섹터 물살의 진정성 확인</span></li><li><span class="marker">04</span><span>미국 반도체 지수 3일 연속 상승 동반 여부 — 갈래 C 발동 조건</span></li><li><span class="marker">05</span><span>거래량이 오늘 수준의 절반 이상 유지되는지 — 에너지 지속성 확인</span></li></ul><p class="note">위 가격은 매수·손절가가 아니라 흐름 판단을 위한 관찰 구간이며, 자금 관련 조건은 ATMAN 자금 흐름 지표 기준입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">09</span><div><div class="sec-title">파동 차트</div><div class="sec-kicker">분석에 사용한 데이터를 대·중·소파동 구조로 직접 확인합니다.</div></div></div><div class="actions"><button class="btn" id="openWave" aria-haspopup="dialog"><svg class="bi" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 14 Q5 6 8 11 T14 9 T20 5" fill="none" stroke="#E7BE86" stroke-width="1.8" stroke-linecap="round"/></svg><span>ATMAN Wave Chart 보기<small>대·중·소파동 상단 밴드와 현재 위치를 구조로 확인</small></span></button></div></section><section class="rv"><div class="sec-head"><span class="sec-num">10</span><div><div class="sec-title">관련 시장 리포트</div><div class="sec-kicker">카드를 누르면 해당 리포트로 이동합니다.</div></div></div><div class="related"><a class="rcard brief" href="https://ljhhh118.github.io/atmanreport/KrReports/20260613/Report_Brief_Detail_20260613.html"><div class="rc-body"><div class="rk">ATMAN BRIEF</div><div class="rn">오늘 시장 전체 흐름</div><div class="rd">매크로·글로벌·섹터를 묶은 오늘의 시장 지도</div></div><span class="rgo" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 13 13"><path d="M4 2.5 L8.5 6.5 L4 10.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="rcard radar" href="https://ljhhh118.github.io/atmanreport/KrReports/20260613/Report_Radar_Detail_20260613.html"><div class="rc-body"><div class="rk">ATMAN RADAR</div><div class="rn">최근 N일 시장·섹터 흐름</div><div class="rd">자금이 어디로 이동하는지, 며칠의 결을 추적</div></div><span class="rgo" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 13 13"><path d="M4 2.5 L8.5 6.5 L4 10.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div><p class="related-note">이 종목은 하나의 점이 아니라 시장 흐름 속의 한 위치입니다. BRIEF에서 오늘의 시장 배경을, RADAR에서 최근 흐름의 변화를 함께 확인할 수 있습니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">11</span><div><div class="sec-title">해석 한계</div></div></div><div class="caveat">세 관점의 소견을 통합한 데이터 기반 흐름 해석입니다. 시나리오 확률은 현재 데이터 구조에서의 상대적 개연성이지 확정적 예측이 아니며, 매수·매도 지시가 아닙니다.</div></section><footer class="disclaimer"><span class="dk">DISCLAIMER</span><p>본 리포트는 특정 종목의 매수·매도 권유가 아니라, 공개 시장 데이터와 ATMAN 지표를 바탕으로 한 흐름 해석 및 시나리오 분석입니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.</p><p>This report is not a buy or sell recommendation. It provides data-driven market interpretation and scenario analysis based on publicly available market data and ATMAN indicators. All investment decisions and outcomes remain the responsibility of the investor.</p><div class="footmark"><svg width="22" height="22" viewBox="0 0 30 30" aria-hidden="true"><ellipse cx="15" cy="15" rx="6.2" ry="13" fill="none" stroke="#8C97A0" stroke-width="1.3"/><line x1="2" y1="15" x2="9.2" y2="15" stroke="#BE7A2A" stroke-width="1.3"/><line x1="20.8" y1="15" x2="28" y2="15" stroke="#2C7C8A" stroke-width="1.3"/></svg><span class="wordmark">ATMAN&nbsp;LENS · ITEM CONVERGENCE</span></div></footer></main>
+
+<!-- ===================== SCENARIO MODAL ===================== -->
+<div class="modal" id="scenModal" role="dialog" aria-modal="true" aria-label="시나리오 체험">
+  <div class="modal-card sim-modal">
+    <div class="stage">
+      <div class="experience">
+        <div class="film-top">
+          <button class="modal-close" id="closeScen" aria-label="닫기">×</button>
+          <div class="film-title">시나리오 흐름<small>WHOLE PATH · ONE VIEW</small></div>
+          <div class="branch-seg" role="group" aria-label="갈래 선택">
+            <button data-id="A" aria-pressed="false">A 재상승</button>
+            <button data-id="B" aria-pressed="true">B 주 시나리오</button>
+            <button data-id="C" aria-pressed="false">C 되돌림</button>
+          </div>
+        </div>
+
+        <div class="stage-grid">
+          <div class="col-left">
+          <div class="chart">
+          <svg viewBox="0 0 760 380" role="img" aria-label="현재에서 세 갈래로 갈라지는 전체 흐름과 재생 위치">
+            <defs>
+              <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#142231" flood-opacity="0.14"/></filter>
+            </defs>
+            <!-- grid + 관찰구간 라벨(숫자 비노출) -->
+            <g opacity="0.9">
+              <line x1="120" y1="70" x2="724" y2="70" class="grid"/>
+              <line x1="120" y1="170" x2="724" y2="170" class="grid"/>
+              <line x1="120" y1="270" x2="724" y2="270" class="grid"/>
+              <text x="12" y="74" class="axis-label">자금 상단 밴드</text>
+              <text x="12" y="174" class="axis-label">단기 상단~중간</text>
+              <text x="12" y="274" class="axis-label">단기 하단</text>
+            </g>
+            <!-- 과거(현재까지) -->
+            <path id="pastPath" class="branch" d="M120 250 C150 232 175 214 200 206 C235 194 262 182 290 170" stroke="#9AA7B2" stroke-width="3.5" opacity="0.7"/>
+            <!-- 현재 divider -->
+            <line x1="290" y1="46" x2="290" y2="338" stroke="#C8D0D8" stroke-width="1" stroke-dasharray="2 6"/>
+            <text x="296" y="60" class="axis-label grid-skip" fill="#8A96A4">현재 → 미래</text>
+            <circle cx="290" cy="170" r="6" fill="#1C2430"/>
+            <!-- 세 갈래 (전체 항상 표시) -->
+            <path id="brA" class="branch" d="M290 170 C360 150 440 120 530 100 C600 85 670 78 724 74" stroke="#2C7C8A" stroke-width="5"/>
+            <path id="brB" class="branch" d="M290 170 C350 150 410 138 470 150 C545 165 620 210 724 250" stroke="#BE7A2A" stroke-width="8"/>
+            <path id="brC" class="branch" d="M290 170 C355 185 415 205 480 240 C560 282 645 312 724 330" stroke="#565C94" stroke-width="5"/>
+            <!-- 진행(지나온 길) — 현재 갈래만 -->
+            <path id="prog" class="progress" d="" stroke="#BE7A2A" stroke-width="9"/>
+            <!-- 끝 라벨 -->
+            <text id="endA" x="722" y="64" text-anchor="end" class="axis-label" fill="#2C7C8A" font-weight="600">A · 재상승 30%</text>
+            <text id="endB" x="722" y="242" text-anchor="end" class="axis-label" fill="#BE7A2A" font-weight="600">B · 주 시나리오 40%</text>
+            <text id="endC" x="722" y="348" text-anchor="end" class="axis-label" fill="#565C94" font-weight="600">C · 되돌림 30%</text>
+            <!-- 재생 헤드 -->
+            <g id="head" class="head" style="opacity:0">
+              <circle r="13" fill="#BE7A2A" opacity="0.18"/>
+              <circle r="7" fill="#BE7A2A"/>
+              <circle r="3" fill="#fff"/>
+            </g>
+          </svg>
+          <div class="chart-cap">
+            <span class="cc-phase" id="ccPhase">현재</span>
+            <div class="cc-text" id="ccText">상단 검증 구간 — 동력과 과밀이 공존하는 자리</div>
+          </div>
+        </div>
+
+        <div class="scrub">
+          <div class="scrub-track" id="scrubTrack" role="slider" tabindex="0"
+            aria-label="시나리오 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="scrub-rail"></div>
+            <div class="scrub-fill" id="scrubFill"></div>
+            <div class="scrub-ticks" id="scrubTicks"></div>
+            <div class="scrub-knob" id="scrubKnob" style="left:0%"></div>
+          </div>
+          <div class="phase-labels" id="phaseLabels"></div>
+        </div>
+
+          </div><!-- /col-left -->
+          <div class="col-right">
+          <div class="readout">
+          <div class="ro-line" id="roLine"></div>
+          <div class="mypos">
+            <span class="mypos-lab">내 위치에서는</span>
+            <div class="pos-seg" role="group" aria-label="내 위치 선택">
+              <button data-id="new" aria-pressed="true">미보유</button>
+              <button data-id="profit" aria-pressed="false">수익</button>
+              <button data-id="loss" aria-pressed="false">손실</button>
+            </div>
+          </div>
+          <div class="pos-resp new" id="posResp"></div>
+        </div>
+          </div><!-- /col-right -->
+        </div><!-- /stage-grid -->
+      </div>
+
+      <div class="controls">
+        <div class="hint">재생하면 흐름이 따라갑니다. 정지한 뒤 타임라인을 잡아끌면(스크럽) 원하는 국면으로 바로 이동할 수 있습니다.</div>
+        <div class="cgroup">
+          <button class="tiny" id="playPause">정지</button>
+          <button class="tiny" id="restart">처음부터</button>
+        </div>
+      </div>
+      <p class="disc">이 체험은 미래 가격을 예측하지 않습니다. 곡선은 방향의 은유이며, 가격대는 매수·손절가가 아니라 관찰 구간입니다.
+      같은 자리도 보유 위치에 따라 판단 기준이 다릅니다. 투자 판단과 결과의 책임은 투자자 본인에게 있습니다.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ===================== WAVE MODAL ===================== -->
 <div class="modal" id="waveModal" role="dialog" aria-modal="true" aria-labelledby="waveTitle"><div class="modal-card"><button class="modal-close" id="closeWave" aria-label="닫기">×</button><h3 id="waveTitle">ATMAN Wave Chart</h3><div class="msub">한미반도체(042700) · 대·중·소파동 상단 밴드와 현재 위치</div><div class="wavewrap"><iframe id="waveFrame" title="ATMAN Wave Chart" loading="lazy" data-src="https://ljhhh118.github.io/atmanreport/atman_wave_chart_shell.html?dataUrl=KrReports/20260613/chart_042700_20260613.txt"></iframe></div><p class="wavelegend">기준 일봉부터 대·중·소파동까지, 현재 흐름의 구조를 차트로 확인합니다.</p></div></div>
@@ -493,6 +748,225 @@
     // 안전망: 2.5초 뒤에도 안 풀린 섹션은 강제로 표시(뷰어가 스크롤/관측 안 할 때)
     setTimeout(showAll,2500);
   })();
+
+  // ===== 시나리오 시뮬레이터(내장) =====
+  (function(){
+  "use strict";
+  // ── 데이터 (렌더러는 display 에서 주입) ── 각 갈래의 국면 phase 들 (t: 0~1 위치)
+  var BRANCH={
+    A:{ color:"#2C7C8A", pathId:"brA",
+      phases:[
+        {t:0.00, phase:"현재", text:"상단 검증 구간 — 동력과 과밀이 공존하는 자리",
+          line:"기본 흐름은 B지만, <b>자금이 상단 밴드 위에서 버티면</b> A로 강해집니다.",
+          pos:{
+            new:{view:"추격보다 자금 정렬 유지 확인이 먼저", chk:["자금이 상단 밴드 위에서 유지되는지 확인","가격만 오르는지, 자금이 동반되는지 구분"], wat:["자금 없이 가격만 튀면 신규 관찰 보류"]},
+            profit:{view:"정렬 유지면 보유 지속 가능", chk:["상단 밴드 지지 유지 여부 확인","수익 보호 기준선 미리 정해두기"], wat:["자금 중간 밴드로 후퇴하면 보호 강화"]},
+            loss:{view:"회복 흐름 — 본전 부근 대응을 미리 계획", chk:["회복 시 대응 기준 미리 정해두기","자금 정렬이 살아있는지 확인"], wat:["추격 노출 확대는 신중"]} } },
+        {t:0.5, phase:"전개", text:"가격과 자금이 함께 상단 위를 지킨다",
+          line:"가격만이 아니라 <b>자금이 동반</b>해 상단을 지키는 그림.",
+          pos:{
+            new:{view:"동반 확인되면 신규 관찰의 근거가 생김", chk:["가격·자금 동반 상승인지 확인","상단 과밀이 완화되는지 관찰"], wat:["과밀 유지 상태면 진입 근거 약함"]},
+            profit:{view:"보유 지속 — 정렬 유지가 조건", chk:["자금 정렬 지속 여부 확인"], wat:["정렬 흔들리면 수익 보호로 전환"]},
+            loss:{view:"회복 시나리오 확인 — 추격은 신중", chk:["본전 부근 대응 계획 점검","동반 반등인지 가격만인지 구분"], wat:["가격만 반등이면 회복 신뢰 낮춤"]} } },
+        {t:1.0, phase:"도착 · A", text:"재상승 시도가 이어지는 흐름",
+          line:"상승 에너지가 재점화 — <b>A(재상승 30%)</b> 경로.",
+          pos:{
+            new:{view:"정렬 재확인 후에야 신규 관찰이 의미", chk:["자금 정렬 재확인","상단 과밀 해소 여부 확인"], wat:["과밀 동반 상승이면 추격 신중"]},
+            profit:{view:"보유 지속, 다만 상단 과밀은 계속 점검", chk:["수익 보호 기준 유지","상단 과밀 신호 모니터링"], wat:["과밀 심화 시 보호 강화"]},
+            loss:{view:"회복 구간 — 비중·대응 계획 재정비", chk:["회복 속도 확인","대응 기준 재정비"], wat:["회복 둔화 시 재점검"]} } }
+      ]},
+    B:{ color:"#BE7A2A", pathId:"brB",
+      phases:[
+        {t:0.00, phase:"현재", text:"상단 검증 구간 — 동력과 과밀이 공존하는 자리",
+          line:"<b>주 시나리오</b> — 단기 추가 상승 뒤 하락으로 전환되는 흐름.",
+          pos:{
+            new:{view:"지금은 추가 확인이 필요한 구간", chk:["자금 정렬 유지 여부 확인","섹터 수급 전환 신호 확인"], wat:["상단 과밀 상태에서 추격 진입은 신중"]},
+            profit:{view:"수익 보호 관점을 함께 켜 둘 자리", chk:["수익 보호 기준선 미리 정해두기","자금 중간 밴드 위치 확인"], wat:["자금 후퇴 시작되면 보호 강화"]},
+            loss:{view:"보유 리스크 재점검 구간", chk:["보유 근거가 아직 유효한지 점검","추가 노출 한도 미리 정해두기"], wat:["단기 하단 이탈 시 반등 실패로 해석"]} } },
+        {t:0.38, phase:"전개 ①", text:"단기적으로 한 번 더 밀어올린다",
+          line:"추가 상승은 나오지만 <b>자금 확산이 따라붙지 않는</b> 게 관건.",
+          pos:{
+            new:{view:"군중이 올라탄 자리 — 뒤늦은 합류 신중", chk:["자금이 확산되는지, 상단에만 몰리는지 확인"], wat:["자금 확산 없는 상승은 신규 관찰 보류"]},
+            profit:{view:"고점 부근 수익 보호 강화", chk:["수익 보호 실행 기준 점검","고점 대비 자금 흐름 확인"], wat:["자금 확산 없으면 보호 우선"]},
+            loss:{view:"반등 시 리스크 축소 기회로 점검", chk:["반등 구간에서 대응 계획 점검"], wat:["자금 동반 없는 반등은 신뢰 낮춤"]} } },
+        {t:0.7, phase:"전개 ②", text:"상단 집중이 풀리며 무게가 드러난다",
+          line:"<b>자금 중간 밴드 후퇴</b>가 하락 전환의 신호.",
+          pos:{
+            new:{view:"관찰 유지 — 진입 근거 아직 약함", chk:["자금 중간 밴드 후퇴 여부 확인"], wat:["후퇴 확인되면 진입 보류 유지"]},
+            profit:{view:"수익 보호 관점 강화 조건 충족", chk:["수익 보호 기준 도달 여부 확인"], wat:["중간 밴드 이탈 시 보호 우선"]},
+            loss:{view:"보유 리스크 재점검 — 추가 노출 신중", chk:["보유 리스크 한도 재확인"], wat:["하단 접근 시 반등 실패 경계"]} } },
+        {t:1.0, phase:"도착 · B", text:"과열을 소화하며 하락으로 전환",
+          line:"이미 반등이 상당 부분 진행된 자리에서 <b>하락 전환(B 40%)</b>.",
+          pos:{
+            new:{view:"추가 확인 필요 — 신규 관찰 보류 우위", chk:["과밀 해소·재정렬 신호 대기"], wat:["하락 전환 중 추격은 신중"]},
+            profit:{view:"수익 보호 우선 구간", chk:["수익 보호 실행 여부 점검"], wat:["전환 확인 시 보호 우선"]},
+            loss:{view:"보유 리스크 재점검 — 회복 전제 약화", chk:["보유 근거 재점검","중기 지지 위치 확인"], wat:["중기 지지 이탈 시 반등 실패로 해석"]} } }
+      ]},
+    C:{ color:"#565C94", pathId:"brC",
+      phases:[
+        {t:0.00, phase:"현재", text:"상단 검증 구간 — 동력과 과밀이 공존하는 자리",
+          line:"<b>자금이 상단 밴드를 곧장 이탈</b>하면 C가 강해집니다.",
+          pos:{
+            new:{view:"상단 과밀 경고 — 신규 관찰을 미루는 자리", chk:["자금 상단 밴드 이탈 여부 확인"], wat:["이탈 동반 하락이면 관찰 보류"]},
+            profit:{view:"수익 보호 우선", chk:["수익 보호 기준 즉시 점검"], wat:["이탈 가속 시 보호 우선"]},
+            loss:{view:"반등 실패 경계", chk:["중기 지지 위치 확인","대응 기준 미리 정해두기"], wat:["지지 이탈 시 반등 실패로 해석"]} } },
+        {t:0.5, phase:"전개", text:"받칠 자금이 보이지 않는다",
+          line:"가격이 단기 중간 구간 아래로 밀리고 <b>자금도 약화</b>.",
+          pos:{
+            new:{view:"신규 관찰 보류 — 방어가 우선", chk:["자금 약화 지속 여부 확인"], wat:["약화 지속 시 진입 보류"]},
+            profit:{view:"수익 보호를 더 단단히", chk:["수익 보호 실행 점검"], wat:["중간 구간 이탈 시 보호 강화"]},
+            loss:{view:"중기 지지 이탈 여부가 분기점", chk:["중기 지지 이탈 여부 확인","대응 기준 점검"], wat:["이탈 확인 시 반등 실패 경계"]} } },
+        {t:1.0, phase:"도착 · C", text:"즉각 되돌림 — 반등 실패 경로",
+          line:"단기 하단 이탈 + 자금 약화가 겹친 <b>되돌림(C 30%)</b>.",
+          pos:{
+            new:{view:"관찰 보류 — 과밀 해소 전까지", chk:["과밀 해소·바닥 신호 대기"], wat:["해소 전 진입은 신중"]},
+            profit:{view:"수익 보호 마무리 검토", chk:["수익 보호 마무리 여부 점검"], wat:["되돌림 가속 대비"]},
+            loss:{view:"반등 실패 경계 — 희망보다 방어", chk:["방어 기준 재확인","중기 지지 위치 점검"], wat:["지지 이탈 지속 시 반등 실패로 해석"]} } }
+      ]},
+  };
+  var POS={ new:{tag:"미보유"}, profit:{tag:"수익 보유"}, loss:{tag:"손실 보유"} };
+  var DURATION=7000; // 전체 한 갈래를 따라가는 총 시간
+
+  function $(id){ return document.getElementById(id); }
+  function reduced(){ return window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches; }
+  function icon(p){
+    if(p==="new") return '<svg width="12" height="12" viewBox="0 0 14 14"><circle cx="6" cy="6" r="4" fill="none" stroke="#6B7785" stroke-width="1.5"/><line x1="9" y1="9" x2="12.5" y2="12.5" stroke="#6B7785" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    if(p==="profit") return '<svg width="13" height="13" viewBox="0 0 15 15"><path d="M2 9.5 L6 5.5 L8.5 8 L13 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3 L13 6 M13 3 L10 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    return '<svg width="12" height="13" viewBox="0 0 14 15"><path d="M7 1.5 L12 3.5 L12 7.5 C12 10.5 9.8 12.5 7 13.5 C4.2 12.5 2 10.5 2 7.5 L2 3.5 Z" fill="none" stroke="#B07A45" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+  }
+
+  var modal=$("scenModal"), head=$("head"), prog=$("prog"), knob=$("scrubKnob"), fill=$("scrubFill");
+  var curBranch="B", curPos="new", progressLen=1, pathEl=null, raf=null, startTs=0, pausedAt=0, playing=false;
+
+  function setBranchPaths(){
+    // 선택 갈래 강조, 나머지 dim + 진행 path를 선택 갈래로 복제
+    ["A","B","C"].forEach(function(id){
+      var el=$( BRANCH[id].pathId );
+      if(id===curBranch){ el.classList.remove("dim"); el.setAttribute("stroke-width", id==="B"?8:6); }
+      else { el.classList.add("dim"); }
+    });
+    pathEl=$( BRANCH[curBranch].pathId );
+    var d=pathEl.getAttribute("d");
+    prog.setAttribute("d", d);
+    prog.setAttribute("stroke", BRANCH[curBranch].color);
+    progressLen = prog.getTotalLength ? prog.getTotalLength() : 600;
+    if(!progressLen || isNaN(progressLen)) progressLen=600;
+    prog.style.setProperty("--len", progressLen);
+    // 헤드 색
+    head.querySelectorAll("circle").forEach(function(c,i){ if(i<2) c.setAttribute("fill", BRANCH[curBranch].color); });
+    head.style.filter="drop-shadow(0 0 6px "+BRANCH[curBranch].color+"88)";
+    // 틱(국면 위치) 다시
+    buildTicks();
+  }
+  function buildTicks(){
+    var ph=BRANCH[curBranch].phases, ticks=$("scrubTicks"), labels=$("phaseLabels");
+    ticks.innerHTML=""; labels.innerHTML="";
+    for(var i=0;i<ph.length;i++){
+      var tk=document.createElement("div"); tk.className="scrub-tick"; tk.style.left=(ph[i].t*100)+"%"; ticks.appendChild(tk);
+      var lb=document.createElement("span"); lb.textContent=ph[i].phase.replace(" · "+curBranch,""); labels.appendChild(lb);
+    }
+  }
+  function phaseAt(t){
+    var ph=BRANCH[curBranch].phases, cur=ph[0];
+    for(var i=0;i<ph.length;i++){ if(t+0.0001>=ph[i].t) cur=ph[i]; }
+    return cur;
+  }
+  function renderPos(p){
+    var box=$("posResp"); box.className="pos-resp "+curPos;
+    var d=p.pos[curPos];
+    var html='<div class="pr-h"><span class="pr-ic">'+icon(curPos)+'</span><span class="pr-tag">'+POS[curPos].tag+'</span></div>';
+    html+='<div class="pr-view">'+d.view+'</div>';
+    html+='<div class="pr-do"><div class="pr-do-lab">지금 할 일</div><ul class="pr-list">';
+    var i;
+    for(i=0;i<d.chk.length;i++){ html+='<li class="chk"><span class="mk">\u2713</span>'+d.chk[i]+'</li>'; }
+    for(i=0;i<d.wat.length;i++){ html+='<li class="wat"><span class="mk">\u26d1</span>'+d.wat[i]+'</li>'; }
+    html+='</ul></div>';
+    box.innerHTML=html;
+  }
+  function applyT(t){
+    t=Math.max(0,Math.min(1,t));
+    // 진행 path
+    prog.style.transition="none";
+    prog.style.strokeDashoffset = (progressLen*(1-t));
+    // 헤드 위치
+    var pt = pathEl.getPointAtLength ? pathEl.getPointAtLength(progressLen*t) : null;
+    if(pt){ head.setAttribute("transform","translate("+pt.x+","+pt.y+")"); head.style.opacity=1; }
+    // 스크럽 UI
+    knob.style.left=(t*100)+"%"; fill.style.width=(t*100)+"%";
+    var ticks=$("scrubTicks").children, ph=BRANCH[curBranch].phases;
+    for(var i=0;i<ticks.length;i++){ ticks[i].classList.toggle("passed", t+0.0001>=ph[i].t); }
+    $("scrubTrack").setAttribute("aria-valuenow", Math.round(t*100));
+    // 캡션/한줄/위치
+    var p=phaseAt(t);
+    $("ccPhase").textContent=p.phase; $("ccPhase").style.setProperty("--cc", BRANCH[curBranch].color);
+    var cc=$("ccText"); cc.style.opacity=0; setTimeout(function(){ cc.textContent=p.text; cc.style.opacity=1; },120);
+    $("roLine").innerHTML=p.line;
+    renderPos(p);
+  }
+
+  var curT=0;
+  function tick(ts){
+    if(!startTs) startTs=ts;
+    var elapsed=ts-startTs + pausedAt;
+    var t=elapsed/DURATION;
+    if(t>=1){ t=1; applyT(1); stopPlay(true); return; }
+    applyT(t); curT=t;
+    raf=requestAnimationFrame(tick);
+  }
+  function startPlay(fromZero){
+    if(fromZero){ curT=0; pausedAt=0; }
+    else { pausedAt=curT*DURATION; }
+    if(curT>=1){ curT=0; pausedAt=0; }
+    playing=true; startTs=0; $("playPause").textContent="정지";
+    if(reduced()){ applyT(1); stopPlay(true); return; }
+    cancelAnimationFrame(raf); raf=requestAnimationFrame(tick);
+  }
+  function stopPlay(ended){
+    playing=false; cancelAnimationFrame(raf); $("playPause").textContent= ended?"다시 재생":"재생";
+  }
+
+  function selectBranch(id){
+    curBranch=id; var btns=document.querySelectorAll(".branch-seg button");
+    for(var i=0;i<btns.length;i++){ btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-id")===id?"true":"false"); }
+    setBranchPaths(); applyT(0); curT=0; pausedAt=0; startPlay(true);
+  }
+  function open(){ modal.classList.add("open"); setBranchPaths(); selectBranch("B"); $("closeScen").focus(); }
+  function hide(){ modal.classList.remove("open"); stopPlay(false); }
+
+  // 스크럽 상호작용
+  function scrubTo(clientX){
+    var tr=$("scrubTrack").getBoundingClientRect();
+    var t=(clientX-tr.left)/tr.width; stopPlay(false); applyT(t); curT=Math.max(0,Math.min(1,t));
+  }
+  var dragging=false;
+  $("scrubTrack").addEventListener("mousedown", function(e){ dragging=true; scrubTo(e.clientX); });
+  document.addEventListener("mousemove", function(e){ if(dragging) scrubTo(e.clientX); });
+  document.addEventListener("mouseup", function(){ dragging=false; });
+  $("scrubTrack").addEventListener("touchstart", function(e){ scrubTo(e.touches[0].clientX); }, {passive:true});
+  $("scrubTrack").addEventListener("touchmove", function(e){ scrubTo(e.touches[0].clientX); }, {passive:true});
+  $("scrubTrack").addEventListener("keydown", function(e){
+    if(e.key==="ArrowRight"){ stopPlay(false); curT=Math.min(1,curT+0.05); applyT(curT); }
+    else if(e.key==="ArrowLeft"){ stopPlay(false); curT=Math.max(0,curT-0.05); applyT(curT); }
+  });
+
+  var _trg=document.querySelectorAll(".scen-try,.scen-go");
+  for(var _i=0;_i<_trg.length;_i++){ (function(b){ b.addEventListener("click", function(){ var sc=b.getAttribute("data-scen"); open(); if(sc==="A"||sc==="B"||sc==="C"){ selectBranch(sc); } }); })(_trg[_i]); }
+  $("closeScen").addEventListener("click", hide);
+  modal.addEventListener("click", function(e){ if(e.target===modal) hide(); });
+  document.addEventListener("keydown", function(e){ if(modal.classList.contains("open") && e.key==="Escape") hide(); });
+  $("playPause").addEventListener("click", function(){ if(playing) stopPlay(false); else startPlay(false); });
+  $("restart").addEventListener("click", function(){ applyT(0); startPlay(true); });
+  document.querySelector(".branch-seg").addEventListener("click", function(e){ var b=e.target.closest("button"); if(b) selectBranch(b.getAttribute("data-id")); });
+  document.querySelector(".pos-seg").addEventListener("click", function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    var btns=this.querySelectorAll("button"); for(var i=0;i<btns.length;i++){ btns[i].setAttribute("aria-pressed", btns[i]===b?"true":"false"); }
+    curPos=b.getAttribute("data-id"); renderPos(phaseAt(curT));
+  });
+
+  // 초기(모달 닫힌 상태) — 좌표 계산 실패해도 무시, open 시 재계산
+  try{ setBranchPaths(); applyT(0); }catch(e){}
+})();
+
 </script>
 </body>
 </html>
