@@ -365,12 +365,13 @@ function buildCandles(block,fund){
   const p=fund?'fund_':'';
   const ti=colIdx(block,'datetime'),oi=colIdx(block,p+'open'),hi=colIdx(block,p+'high'),
         li=colIdx(block,p+'low'),ci=colIdx(block,p+'close'),vi=colIdx(block,p+'volume');
+  const hasVol=vi>=0;   // WAVE_M/WAVE_S 등 volume 컬럼이 없을 수 있음
   const seen=new Set(),candles=[],vols=[],times=[];
   for(const r of block.rows){
     const t=toTime(r[ti]); if(seen.has(t))continue; seen.add(t);
     const o=num(r[oi]),h=num(r[hi]),l=num(r[li]),c=num(r[ci]);
     candles.push({time:t,open:o,high:h,low:l,close:c});
-    vols.push({time:t,value:num(r[vi])||0,color:(c>=o?css('--c-up'):css('--c-dn'))+'AA'});
+    if(hasVol) vols.push({time:t,value:num(r[vi])||0,color:(c>=o?css('--c-up'):css('--c-dn'))+'AA'});
     times.push(t);
   }
   candles.sort((a,b)=>a.time-b.time);vols.sort((a,b)=>a.time-b.time);
