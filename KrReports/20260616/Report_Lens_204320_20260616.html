@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN LENS · HL만도(204320)</title>
+<meta property="og:title" content="ATMAN LENS · HL만도(204320)">
+<meta property="og:description" content="양면 · 과열 극단 검증 구간">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root{
+    --ink:#142231; --ink-2:#1B2D3F; --ink-line:#2C3F52;
+    --paper:#EDF1F2; --surface:#FFFFFF; --surface-2:#F6F8F9;
+    --text:#19262F; --text-soft:#5B6772; --text-faint:#8C97A0;
+    --hair:#DBE2E6; --hair-soft:#E7ECEE;
+    --sector:#2C7C8A;  /* 전제 · 배경 */
+    --pattern:#BE7A2A; /* 동력 · 엔진 */
+    --crowding:#565C94;/* 관문 · 필터 */
+    --tensor:#5E8B7E;  /* 관계 · 검증 */
+    --gold:#A9821F;
+    --sector-bg:#E3EEF0; --pattern-bg:#F4E9D9; --crowding-bg:#E7E8F1; --tensor-bg:#E4EDEA;
+    --warn:#B0671F;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Pretendard Variable',Pretendard,-apple-system,'Noto Sans KR',sans-serif;
+    background:var(--paper); color:var(--text);
+    line-height:1.72; font-size:16px; letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Noto Serif KR',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace; font-feature-settings:"tnum";}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{background:var(--ink); color:#EAF0F3; position:relative; overflow:hidden;
+    border-bottom:1px solid var(--ink-line);}
+  .masthead::before{content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(120% 90% at 78% 50%, rgba(190,122,42,0.16), transparent 55%),
+      radial-gradient(90% 80% at 30% 120%, rgba(44,124,138,0.18), transparent 60%);
+    pointer-events:none;}
+  .mh-inner{max-width:var(--maxw); margin:0 auto; padding:38px 24px 34px; position:relative;}
+  .brandrow{display:flex; align-items:center; gap:12px; margin-bottom:24px;}
+  .lensmark{flex:none;}
+  .wordmark{font-family:'IBM Plex Mono',monospace; font-weight:600; letter-spacing:0.42em;
+    font-size:13px; color:#E4ECEF; text-transform:uppercase;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.28em;
+    text-transform:uppercase; color:#A9BBC6;}
+  .mh-title{font-family:'Noto Serif KR',serif; font-weight:600;
+    font-size:clamp(29px,5.6vw,44px); line-height:1.1; color:#FBFCFD; margin:13px 0 5px;}
+  .mh-code{font-family:'IBM Plex Mono',monospace; font-size:14px; color:#C2D0D8; letter-spacing:0.08em;}
+  .mh-meta{display:flex; flex-wrap:wrap; align-items:center; gap:8px 9px; margin-top:20px;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.04em;
+    padding:5px 11px; border:1px solid #3A4D60; border-radius:999px; color:#C2D0D8;}
+  .chip b{color:#EAF1F4; font-weight:600;}
+  .chip.conf{display:inline-flex; align-items:center; gap:8px; font-size:12.5px;
+    padding:7px 14px; border-color:rgba(190,122,42,0.5); color:#EAD2AF; background:rgba(190,122,42,0.12);}
+  .chip.conf b{color:#F1C98C; font-weight:600; letter-spacing:0.06em;}
+  .chip.conf .cdot{width:9px; height:9px; border-radius:50%;
+    background:linear-gradient(135deg,#5FB3C0,#E0A24E);}
+  .chip-btn{appearance:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11.5px;
+    font-weight:600; letter-spacing:0.02em; padding:6px 14px 6px 12px; border-radius:999px; color:#1B2A18;
+    border:1px solid #D9A557; background:linear-gradient(180deg,#E9B96B,#D69A3F);
+    display:inline-flex; align-items:center; gap:7px;
+    box-shadow:0 2px 6px -1px rgba(190,122,42,0.5); transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;}
+  .chip-btn:hover{filter:brightness(1.05); box-shadow:0 4px 11px -2px rgba(190,122,42,0.6);}
+  .chip-btn:active{transform:translateY(1px); box-shadow:0 1px 4px -1px rgba(190,122,42,0.5);}
+  .chip-btn .bcaret{font-size:13px; line-height:1; margin-left:1px; color:#3A2A10;}
+  .chip-btn:focus-visible{outline:2px solid var(--pattern); outline-offset:2px;}
+  .chip-btn svg{flex:none;}
+  .mh-identity{margin-top:24px; padding-top:20px; border-top:1px solid #324456;
+    max-width:660px; color:#C6D4DC; font-size:14px; line-height:1.7;}
+  .mh-identity b{color:#F3F7F9; font-weight:600;}
+  .id-short{display:none;}
+
+  /* ---------- SECTIONS ---------- */
+  main{padding:8px 0 40px;}
+  section{padding:54px 0 4px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:18px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500;
+    color:var(--text-faint); letter-spacing:0.1em; flex:none; padding-top:3px;}
+  .sec-title{font-family:'Noto Serif KR',serif; font-weight:600; font-size:21px; color:var(--text);}
+  .sec-kicker{font-size:13.5px; color:var(--text-soft); margin-top:2px;}
+
+  /* lead 판독 */
+  .lead{background:var(--surface); border:1px solid var(--hair); border-left:3px solid var(--pattern);
+    border-radius:4px; padding:24px 26px;}
+  .lead .status{display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;
+    font-size:12px; font-weight:600; letter-spacing:0.01em; color:#9A5A16; background:var(--pattern-bg);
+    padding:6px 14px; border-radius:999px; margin-bottom:16px;}
+  .lead .status .sdot{width:7px; height:7px; border-radius:50%; background:var(--pattern); flex:none;}
+  .lead p{font-size:17px; line-height:1.82; color:var(--text);}
+  .lead .em{color:var(--pattern); font-weight:600;}
+
+  /* summary dashboard */
+  .dash{display:flex; flex-direction:column; gap:14px;}
+
+  .dash-tension{border:1px solid var(--hair); border-radius:8px; overflow:hidden; background:var(--surface);}
+  .dt-poles{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch;}
+  .dt-pole{padding:20px 22px;}
+  .dt-pole.left{background:linear-gradient(180deg,#F8F0E3,#FFFFFF 78%);}
+  .dt-pole.right{background:linear-gradient(180deg,#EEEFF6,#FFFFFF 78%); text-align:right;}
+  .dt-pole .plab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em;
+    text-transform:uppercase; font-weight:600; margin-bottom:9px;}
+  .dt-pole.left .plab{color:var(--pattern);} .dt-pole.right .plab{color:var(--crowding);}
+  .dt-pole .pbig{font-family:'Noto Serif KR',serif; font-size:clamp(19px,4.5vw,24px); font-weight:600; line-height:1.2;}
+  .dt-pole.left .pbig{color:#9A5A16;} .dt-pole.right .pbig{color:#474D80;}
+  .dt-mid{display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 14px;
+    background:var(--surface);}
+  .dt-mid .arrow{font-size:24px; color:var(--gold); line-height:1;}
+  .dt-mid .mlab{font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.06em;
+    color:#7A8893; font-weight:500; margin-top:6px;}
+  .dt-status{display:flex; align-items:baseline; gap:12px; padding:13px 22px; border-top:1px solid var(--hair);
+    background:var(--surface-2);}
+  .dt-status .slab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em;
+    text-transform:uppercase; color:#7A8893; font-weight:500; flex:none;}
+  .dt-status .sval{font-weight:600; font-size:15px; color:var(--text);}
+
+  .dash-gauges{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .gtile{border:1px solid var(--hair); border-top:3px solid var(--gc); border-radius:8px;
+    background:var(--surface); padding:17px 18px 19px;}
+  .gtile.s{--gc:var(--sector);} .gtile.p{--gc:var(--pattern);} .gtile.c{--gc:var(--crowding);}
+  .gtile .glab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em;
+    text-transform:uppercase; color:#7A8893; font-weight:500;}
+  .gbar{height:7px; border-radius:99px; background:var(--hair-soft); overflow:hidden; margin:13px 0 11px;}
+  .gbar i{display:block; height:100%; border-radius:99px; background:var(--gc);}
+  .gval{font-size:15px; font-weight:600; color:var(--gc);}
+  .gsub{font-size:12.5px; color:var(--text-soft); margin-top:3px;}
+
+  .dash-conf{display:flex; align-items:center; flex-wrap:wrap; gap:9px 16px; border:1px solid var(--hair);
+    border-radius:8px; background:var(--surface); padding:14px 20px;}
+  .dash-conf .clab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em;
+    text-transform:uppercase; color:#7A8893; font-weight:500;}
+  .conf-steps{display:inline-flex; gap:6px; align-items:center;}
+  .cstep{width:9px; height:9px; border-radius:50%; background:var(--hair);}
+  .cstep.on{background:linear-gradient(135deg,var(--sector),var(--pattern));}
+  .dash-conf .cval{font-weight:600; font-size:15px; color:var(--text);}
+  .conf-div{flex:1; height:1px; background:var(--hair-soft); min-width:16px;}
+  .dash-conf .ckv{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--text-soft);}
+  .dash-conf .ckv b{color:var(--text); font-weight:600;}
+
+  /* prose block */
+  .prose{font-size:15.5px; line-height:1.88; color:var(--text);}
+  .prose + .prose{margin-top:18px;}
+  .note{font-size:13px; color:var(--text-soft); margin-top:16px; padding-left:14px;
+    border-left:2px solid var(--hair);}
+
+  /* inline highlight + pull-quote + verdict banner */
+  .hl{background:linear-gradient(transparent 62%, var(--pattern-bg) 62%); font-weight:600; padding:0 1px;}
+  .hl.c{background:linear-gradient(transparent 62%, var(--crowding-bg) 62%);}
+  .stat{color:var(--pattern); font-weight:700; letter-spacing:-0.01em;}
+  .pull{font-family:'Noto Serif KR',serif; font-size:clamp(18px,3.4vw,23px); line-height:1.5;
+    color:var(--text); margin:0 0 22px; padding:4px 0 4px 22px; border-left:3px solid var(--gold);}
+  .pull .a{color:var(--pattern);} .pull .b{color:var(--crowding);}
+  /* 렌더러 강조(**…**→<b>) 본문 색 — 섹션별 의미색 */
+  .lead p b{color:var(--pattern);}
+  .prose b{color:var(--pattern);}
+  .tside.left p b{color:var(--pattern);} .tside.right p b{color:var(--crowding);}
+  .lens p b{color:var(--c);}
+  .gtile .gval b{color:var(--gc);}
+  .verdict-banner{display:flex; align-items:center; gap:14px; margin-top:16px;
+    background:var(--ink); color:#EAF0F3; border-radius:8px; padding:16px 20px;}
+  .verdict-banner .vk{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em;
+    text-transform:uppercase; color:#7F94A1; flex:none;}
+  .verdict-banner .vv{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600;}
+  .verdict-banner .dot{flex:none; width:11px; height:11px; border-radius:50%;
+    background:linear-gradient(135deg,#2C7C8A,#BE7A2A);}
+
+  /* convergence figure */
+  .figure{background:var(--surface); border:1px solid var(--hair); border-radius:6px; padding:20px 16px 14px;}
+  .figure svg{display:block; width:100%; height:auto;}
+  .figcap{font-size:12.5px; color:var(--text-soft); text-align:center; margin-top:6px;
+    font-family:'IBM Plex Mono',monospace; letter-spacing:0.02em;}
+
+  /* lens trio */
+  .lenses{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px;}
+  .lens{background:var(--surface); border:1px solid var(--hair); border-radius:6px; padding:22px 22px 24px;
+    border-top:3px solid var(--c);}
+  .lens.sector{--c:var(--sector); --bg:var(--sector-bg);}
+  .lens.pattern{--c:var(--pattern); --bg:var(--pattern-bg);}
+  .lens.crowd{--c:var(--crowding); --bg:var(--crowding-bg);}
+  .lens .role{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em;
+    text-transform:uppercase; font-weight:500; color:var(--c); margin-bottom:5px;}
+  .lens h3{font-family:'Noto Serif KR',serif; font-size:18px; font-weight:600; margin-bottom:10px; color:var(--text);}
+  .lens p{font-size:14px; line-height:1.72; color:var(--text-soft);}
+  .lens .key{color:var(--c); font-weight:600;}
+  .lens .flag{color:var(--text); font-weight:600;
+    background:linear-gradient(transparent 60%, var(--bg) 60%); padding:0 1px;}
+  .lens .verdict{display:inline-block; margin-top:12px; font-size:12px; font-weight:600;
+    color:var(--c); background:var(--bg); padding:4px 10px; border-radius:4px;}
+  .lens.sector .verdict{--bg:var(--sector-bg);} .lens.pattern .verdict{--bg:var(--pattern-bg);}
+  .lens.crowd .verdict{--bg:var(--crowding-bg);}
+
+  /* key tension */
+  .tension{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:0;
+    border:1px solid var(--hair); border-radius:6px; overflow:hidden; margin-top:18px;}
+  .tside{padding:20px 22px; background:var(--surface);}
+  .tside.left{background:linear-gradient(180deg,#FAF4EB,#FFFFFF 70%);}
+  .tside.right{background:linear-gradient(180deg,#EFF0F6,#FFFFFF 70%);}
+  .tside .lbl{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.02em;
+    font-weight:600; margin-bottom:9px;}
+  .tside.left .lbl{color:var(--pattern);} .tside.right .lbl{color:var(--crowding);}
+  .tside p{font-size:14.5px; line-height:1.7; color:var(--text);}
+  .tside.left b{color:#9A5A16; font-weight:700;} .tside.right b{color:#474D80; font-weight:700;}
+  .tmid{display:flex; align-items:center; justify-content:center; padding:0 16px;
+    background:var(--ink); color:#E4CDA6;}
+  .tmid span{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; font-weight:600;
+    writing-mode:vertical-rl; text-orientation:mixed; line-height:1.5; text-align:center;}
+  .tmid span em{color:#9FB0BB; font-style:normal; font-weight:400;}
+  .tnote{margin-top:14px; font-size:13.5px; color:var(--text-soft); text-align:center;}
+
+  /* scenario chart */
+  .probbar{display:flex; height:46px; border-radius:6px; overflow:hidden; border:1px solid var(--hair); margin-top:6px;}
+  .probseg{display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#fff; font-family:'IBM Plex Mono',monospace; position:relative;}
+  .probseg .pid{font-size:12px; font-weight:600; letter-spacing:0.06em;}
+  .probseg .pct{font-size:11px; opacity:0.92;}
+  .probseg.a{background:var(--sector);} .probseg.b{background:var(--crowding);} .probseg.c{background:#7E8995;}
+  .problegend{font-size:12px; color:var(--text-soft); margin-top:8px; text-align:center;}
+  .prob-why{font-size:13px; line-height:1.6; color:var(--text); margin-top:12px;
+    background:var(--surface-2); border-left:3px solid var(--crowding); border-radius:5px; padding:11px 14px;}
+  .prob-why .pw-k{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.06em;
+    color:var(--crowding); text-transform:uppercase; display:inline-block; margin-right:8px; font-weight:600;}
+  /* 시나리오 체험 버튼 */
+  .scen-try{display:inline-flex; align-items:center; gap:10px; margin-top:16px; width:100%;
+    justify-content:center; font-family:inherit; font-size:14.5px; font-weight:600; color:#fff;
+    background:linear-gradient(120deg,#1B2532,#2C3A4D); border:0; border-radius:10px; padding:14px 18px;
+    cursor:pointer; transition:transform .12s, box-shadow .18s;}
+  .scen-try:hover{box-shadow:0 10px 26px -12px rgba(20,30,50,0.5); transform:translateY(-1px);}
+  .scen-try:active{transform:scale(0.99);}
+  .scen-try:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+  .scen-try .pl{width:0;height:0;border-left:11px solid var(--gold);border-top:7px solid transparent;border-bottom:7px solid transparent;}
+  .scen-try small{display:block; font-weight:400; font-size:11.5px; color:#AFBCCB; margin-top:1px;}
+  .scen-go{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px; letter-spacing:0.04em; font-weight:600; color:var(--c); background:var(--cbg);
+    border:1px solid transparent; border-radius:999px; padding:7px 13px; cursor:pointer; transition:all .14s;}
+  .scen-go:hover{border-color:var(--c);}
+  .scen-go:focus-visible{outline:2px solid var(--c); outline-offset:1px;}
+  .scen-go .pg{width:0;height:0;border-left:7px solid var(--c);border-top:5px solid transparent;border-bottom:5px solid transparent;}
+  .modal-card.sim-modal{max-width:1040px; width:100%; padding:0; overflow:auto; position:relative;}
+  #scenModal .film-top{position:relative;}
+  #scenModal .modal-close{position:absolute; top:13px; right:14px; width:30px; height:30px; border-radius:50%;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.28); color:#fff;
+    font-size:17px; line-height:1; display:flex; align-items:center; justify-content:center; padding:0; z-index:10;
+    transition:background .14s;}
+  #scenModal .modal-close:hover{background:rgba(255,255,255,0.22);}
+  #scenModal .modal-close:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+  /* v2 변수 보강(리포트에 없던 것) */
+  #scenModal{--soft:var(--text-soft); --faint:var(--text-faint); --inv:#E8EDF3; --hair-d:#2A3848;
+    --pos-new:#6B7785; --pos-profit:#4F8A6B; --pos-loss:#B07A45;
+    --pos-new-bg:#EDEFF1; --pos-profit-bg:#E6F0EA; --pos-loss-bg:#F3EADF;}
+  .stage{padding:16px 18px 20px;}
+  .experience{border:1px solid var(--hair); border-radius:18px; overflow:hidden; background:#fff;}
+  .film-top{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:13px 56px 13px 18px; background:var(--ink); color:var(--inv); border-bottom:1px solid var(--hair-d);}
+  .film-title{font-family:'Noto Serif KR',serif; font-weight:600; letter-spacing:-0.01em;}
+  .film-title small{display:block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#9FB3C0; letter-spacing:0.1em; margin-top:2px;}
+  /* 갈래 전환 탭 */
+  .branch-seg{display:inline-flex; gap:4px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:999px; padding:4px;}
+  .branch-seg button{font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:#AFC0CB; background:transparent; border:0; border-radius:999px; padding:6px 13px; cursor:pointer; transition:.14s;}
+  .branch-seg button[aria-pressed="true"]{color:#fff;}
+  .branch-seg button[data-id="A"][aria-pressed="true"]{background:var(--sector);}
+  .branch-seg button[data-id="B"][aria-pressed="true"]{background:var(--pattern);}
+  .branch-seg button[data-id="C"][aria-pressed="true"]{background:var(--crowding);}
+  .branch-seg button:focus-visible{outline:2px solid var(--gold); outline-offset:1px;}
+
+  /* 차트 (전체 흐름 한 장) */
+  .chart{position:relative; background:linear-gradient(180deg,#FAFBFC,#EFF3F5);}
+  .chart svg{display:block; width:100%; height:auto;}
+  .chart-cap{position:absolute; left:18px; bottom:14px; right:18px; pointer-events:none;}
+  .cc-phase{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:#fff; background:var(--cc,var(--ink)); border-radius:999px; padding:4px 11px; margin-bottom:8px;}
+  .cc-text{font-family:'Noto Serif KR',serif; font-size:clamp(15px,2.6vw,20px); font-weight:600; color:var(--text);
+    max-width:78%; text-shadow:0 1px 0 rgba(255,255,255,0.8); transition:opacity .25s;}
+
+  /* 스크럽 타임라인 */
+  .scrub{padding:14px 18px 4px; background:#fff;}
+  .scrub-track{position:relative; height:34px; cursor:pointer;}
+  .scrub-rail{position:absolute; top:15px; left:0; right:0; height:4px; border-radius:999px; background:#E3E8EC;}
+  .scrub-fill{position:absolute; top:15px; left:0; height:4px; border-radius:999px;
+    background:linear-gradient(90deg,var(--sector),var(--pattern)); width:0;}
+  .scrub-ticks{position:absolute; inset:0;}
+  .scrub-tick{position:absolute; top:9px; width:2px; height:16px; background:#CCD4DA; transform:translateX(-1px);}
+  .scrub-tick.passed{background:var(--pattern);}
+  .scrub-knob{position:absolute; top:7px; width:20px; height:20px; border-radius:50%; background:#fff;
+    border:3px solid var(--pattern); box-shadow:0 4px 10px -3px rgba(20,30,50,0.5); transform:translateX(-10px); transition:left .1s linear;}
+  .scrub-knob:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+  .phase-labels{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--faint); margin-top:2px; padding:0 2px;}
+
+  /* 하단: 한 줄 설명 + 내 위치 */
+  .readout{padding:14px 18px 18px; background:#fff; border-top:1px solid var(--hair);}
+  .ro-line{font-size:15px; line-height:1.6; color:var(--text);}
+  .ro-line b{color:var(--pattern); font-weight:700;}
+  .cc-text b{color:var(--pattern); font-weight:700;}
+  .pos-resp .pr-view b{color:var(--pc); font-weight:700;}
+  .scene-main b, .scene-sub b{color:var(--pattern); font-weight:700;}
+  .mypos{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:13px;}
+  .mypos-lab{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--faint); text-transform:uppercase;}
+  .pos-seg{display:inline-flex; gap:4px; background:var(--surface-2); border:1px solid var(--hair); border-radius:999px; padding:4px;}
+  .pos-seg button{font-family:inherit; font-size:12.5px; font-weight:600; color:var(--soft); background:transparent; border:0; border-radius:999px; padding:7px 12px; cursor:pointer; transition:.14s;}
+  .pos-seg button[aria-pressed="true"]{color:#fff; background:var(--pp,var(--ink));}
+  .pos-seg button[data-id="new"]{--pp:var(--pos-new);}
+  .pos-seg button[data-id="profit"]{--pp:var(--pos-profit);}
+  .pos-seg button[data-id="loss"]{--pp:var(--pos-loss);}
+  .pos-seg button:focus-visible{outline:2px solid currentColor; outline-offset:1px;}
+  .pos-resp{margin-top:12px; border:1px solid var(--hair); border-left:3px solid var(--pc); border-radius:10px; padding:13px 15px; background:var(--surface);}
+  .pos-resp.new{--pc:var(--pos-new);} .pos-resp.profit{--pc:var(--pos-profit);} .pos-resp.loss{--pc:var(--pos-loss);}
+  .pos-resp .pr-h{display:flex; align-items:center; gap:8px; margin-bottom:6px;}
+  .pos-resp .pr-ic{width:22px; height:22px; border-radius:50%; background:var(--pcb); flex:none; display:flex; align-items:center; justify-content:center;}
+  .pos-resp.new .pr-ic{--pcb:var(--pos-new-bg);} .pos-resp.profit .pr-ic{--pcb:var(--pos-profit-bg);} .pos-resp.loss .pr-ic{--pcb:var(--pos-loss-bg);}
+  .pos-resp .pr-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.04em; color:var(--pc);}
+  .pos-resp .pr-view{font-size:14.5px; line-height:1.55; color:var(--text); font-weight:600;}
+  .pos-resp .pr-do{margin-top:11px; border-top:1px dashed var(--hair); padding-top:10px;}
+  .pos-resp .pr-do-lab{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--faint); margin-bottom:7px;}
+  .pos-resp .pr-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px;}
+  .pos-resp .pr-list li{display:flex; gap:8px; font-size:13.5px; line-height:1.5; color:var(--text);}
+  .pos-resp .pr-list li .mk{flex:none; width:18px; text-align:center; font-weight:700;}
+  .pos-resp .pr-list li.chk .mk{color:var(--pc);}
+  .pos-resp .pr-list li.wat{color:var(--soft);}
+  .pos-resp .pr-list li.wat .mk{color:#B0764A;}
+
+  .controls{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:14px;}
+  .hint{font-size:12.5px; color:var(--soft); max-width:48ch;}
+  .cgroup{display:flex; gap:8px; flex-wrap:wrap;}
+  .tiny{border:1px solid var(--hair); background:#fff; border-radius:11px; padding:9px 13px; font-family:inherit; font-weight:600; font-size:13px; cursor:pointer; color:var(--ink);}
+  .tiny:hover{background:var(--surface-2);} .tiny:focus-visible{outline:2px solid var(--ink); outline-offset:1px;}
+  .disc{margin:16px 2px 0; font-size:12px; color:var(--faint); line-height:1.7;}
+
+  /* svg dynamic */
+  .grid{stroke:#D8E1E5; stroke-width:1;}
+  .axis-label{font-family:'IBM Plex Mono',monospace; font-size:12px; fill:#7A8893;}
+  .branch{fill:none; stroke-linecap:round; stroke-linejoin:round; transition:opacity .3s, stroke-width .3s;}
+  .branch.dim{opacity:0.16;}
+  .progress{fill:none; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:var(--len); stroke-dashoffset:var(--len);}
+  .head{filter:drop-shadow(0 0 6px rgba(190,122,42,0.55));}
+
+
+  /* 좌우 2단 레이아웃 — 한 화면에 흐름+내 행동 */
+  .stage-grid{display:grid; grid-template-columns:1.25fr 0.95fr; align-items:stretch;}
+  .stage-grid .col-left{border-right:1px solid var(--hair); display:flex; flex-direction:column; min-width:0;}
+  .stage-grid .col-right{display:flex; flex-direction:column; min-width:0;}
+  .chart svg{max-height:230px;}
+  .readout{border-top:0; height:100%;}
+
+  /* ── 모바일(C: 세로 스토리 + 차트 상단 고정) ── */
+  @media (max-width:760px){
+    .stage-grid{grid-template-columns:1fr;}
+    .stage-grid .col-left{border-right:0;
+      position:sticky; top:0; z-index:8; background:#fff;
+      box-shadow:0 6px 16px -10px rgba(20,30,50,0.35); border-bottom:1px solid var(--hair);}
+    .chart svg{max-height:185px;}
+    /* 모바일: SVG 안 글자 키우기 (viewBox 좌표 기준) */
+    .chart .axis-label{font-size:26px;}
+    .chart #endA,.chart #endB,.chart #endC{font-size:25px;}
+    .chart svg text{font-weight:700;}
+    .chart .grid-skip{display:none;}
+    .chart-cap{position:static; padding:12px 16px 2px;}
+    .cc-phase{font-size:11px;}
+    .cc-text{max-width:100%; font-size:18px; font-weight:700; line-height:1.45;}
+    .scrub{padding:10px 16px 6px;}
+    /* 할 일 영역: 큼직하게 읽어 내려가기 */
+    .col-right{padding-bottom:6px;}
+    .readout{padding:16px 16px 18px;}
+    .ro-line{font-size:15.5px;}
+    .pos-resp{padding:15px 16px;}
+    .pos-resp .pr-view{font-size:17px; line-height:1.5;}
+    .pos-resp .pr-list li{font-size:16px; line-height:1.55;}
+    /* 내 위치 토글을 sticky 차트 바로 아래 눈에 띄게 */
+    .mypos{position:sticky; top:0; background:#fff; padding:10px 0; margin-top:0; z-index:6;}
+  }
+
+  @media (max-width:680px){
+    .cc-text{max-width:100%; font-size:15px;}
+    #scenModal{padding:0;} #scenModal .modal-card.sim-modal{height:100vh; max-height:100vh; border-radius:0;}
+    .film-top{flex-direction:column; align-items:flex-start; gap:10px;}
+    .controls{flex-direction:column; align-items:stretch;} .cgroup{justify-content:space-between;}
+  }
+  @media (prefers-reduced-motion:reduce){ .scrub-knob{transition:none;} }
+  .scen{border:1px solid var(--hair); border-radius:6px; background:var(--surface);
+    padding:20px 22px; margin-top:14px; border-left:3px solid var(--c);}
+  .scen.a{--c:var(--sector); --cbg:var(--sector-bg);}
+  .scen.b{--c:var(--crowding); --cbg:var(--crowding-bg);}
+  .scen.c{--c:#7E8995; --cbg:#ECEEF0;}
+  .scen.b{border:1px solid #B9BFDE; background:linear-gradient(180deg,#F3F4FA,#FFFFFF 42%);
+    box-shadow:0 8px 26px -12px rgba(86,92,148,0.6); border-left-width:4px;}
+  .scen.b .scen-track{height:11px;}
+  .scen-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .scen-name{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600; color:var(--text);}
+  .scen.b .scen-name{font-size:18.5px;}
+  .scen-name .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--c); margin-right:8px;}
+  .scen-prob{font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--c); flex:none;}
+  .scen.b .scen-prob{font-size:28px;}
+  /* per-card probability bar */
+  .scen-meter{display:flex; align-items:center; gap:10px; margin-top:13px;}
+  .scen-track{flex:1; height:9px; border-radius:99px; background:var(--hair-soft); overflow:hidden;}
+  .scen-track i{display:block; height:100%; border-radius:99px; background:var(--c);}
+  .scen-meter .mpct{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); flex:none;}
+  .scen-row{margin-top:13px; font-size:14px; line-height:1.72; color:var(--text);}
+  .scen-row .rk{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em; font-weight:500;
+    text-transform:uppercase; color:#7A8893; display:block; margin-bottom:3px;}
+  .scen-row b{color:var(--c); font-weight:700;}
+  .scen-reframe{margin-top:15px; font-size:13px; font-weight:600; color:var(--c);
+    background:var(--cbg); padding:9px 13px; border-radius:5px; display:inline-block;}
+  .dominant{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.04em; font-weight:600;
+    color:#fff; background:var(--crowding); padding:4px 11px; border-radius:999px; vertical-align:middle;
+    box-shadow:0 2px 6px -2px rgba(86,92,148,0.6); white-space:nowrap;}
+
+  /* position cards */
+  .positions{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px;}
+  .pos{background:var(--surface); border:1px solid var(--hair); border-top:3px solid var(--pc);
+    border-radius:8px; padding:20px 20px 22px;}
+  .pos.new{--pc:#6B7785; --pcbg:#EDEFF1;}
+  .pos.profit{--pc:#4F8A6B; --pcbg:#E6F0EA;}
+  .pos.loss{--pc:#B07A45; --pcbg:#F3EADF;}
+  .pos .ptag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.03em; font-weight:500;
+    color:var(--pc); text-transform:uppercase; display:block; margin-bottom:9px;}
+  .pos .phead{display:flex; align-items:center; gap:9px; margin-bottom:4px;}
+  .pos .picon{flex:none; width:26px; height:26px; border-radius:50%; background:var(--pcbg);
+    display:flex; align-items:center; justify-content:center;}
+  .pos .ptitle{font-family:'Noto Serif KR',serif; font-size:16px; font-weight:600; color:var(--text);}
+  .pos .pq{font-size:13px; color:var(--text-soft); font-style:italic; margin:10px 0 14px;
+    padding:10px 12px; border-radius:6px; background:var(--surface-2); line-height:1.6;}
+  .pos p{font-size:14px; line-height:1.74; color:var(--text);}
+  .pos p b{color:var(--pc); font-weight:700;}
+
+  /* observe list */
+  .observe{background:var(--surface); border:1px solid var(--hair); border-radius:6px; padding:8px 4px;}
+  .observe li{list-style:none; display:flex; gap:14px; padding:13px 18px; border-bottom:1px solid var(--hair-soft);
+    font-size:14.5px; line-height:1.6;}
+  .observe li:last-child{border-bottom:none;}
+  .observe .marker{flex:none; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--sector);
+    width:18px; padding-top:2px;}
+  .observe b{font-weight:600;}
+  .observe .px{font-family:'IBM Plex Mono',monospace; color:var(--pattern);}
+
+  /* action buttons */
+  .actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;}
+  .btn{appearance:none; cursor:pointer; font-family:inherit; font-size:14.5px; font-weight:600;
+    border-radius:6px; padding:15px 20px; border:1px solid var(--ink); background:var(--ink); color:#EAF0F3;
+    display:flex; align-items:center; gap:12px; transition:transform .15s ease, box-shadow .15s ease; flex:1; min-width:240px;}
+  .btn:hover{transform:translateY(-1px); box-shadow:0 8px 22px -12px rgba(20,34,49,0.5);}
+  .btn:focus-visible{outline:2px solid var(--pattern); outline-offset:2px;}
+  .btn small{display:block; font-weight:400; font-size:12px; color:#9DB0BC; margin-top:2px;}
+  .btn .bi{flex:none;}
+  .related{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .rcard{position:relative; display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit;
+    background:var(--surface); border:1px solid var(--hair); border-left:3px solid var(--rc);
+    border-radius:8px; padding:18px 46px 18px 20px; cursor:pointer;
+    transition:border-color .15s, box-shadow .18s, transform .18s;}
+  .rcard.brief{--rc:var(--sector);} .rcard.radar{--rc:var(--pattern);}
+  .rcard .rc-body{flex:1 1 auto; min-width:0;}
+  .rcard:hover{border-color:var(--rc); box-shadow:0 7px 20px -9px rgba(28,38,58,0.30); transform:translateY(-1px);}
+  .rcard:focus-visible{outline:2px solid var(--rc); outline-offset:2px;}
+  .rcard .rk{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; color:var(--rc);}
+  .rcard .rn{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600; margin:4px 0 5px;}
+  .rcard .rd{font-size:13px; color:var(--text-soft);}
+  .rcard .rgo{position:absolute; right:15px; top:50%; transform:translateY(-50%);
+    width:24px; height:24px; border-radius:50%; background:var(--rc); color:#fff; opacity:0.85;
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .18s ease, opacity .18s;}
+  .rcard:hover .rgo{opacity:1; transform:translate(3px,-50%);}
+  .related-note{font-size:13.5px; color:var(--text-soft); margin-top:14px; line-height:1.7;}
+
+  /* caveat + disclaimer */
+  .caveat{background:var(--surface-2); border:1px solid var(--hair); border-radius:6px; padding:20px 22px;
+    font-size:13.5px; line-height:1.78; color:var(--text-soft);}
+  .disclaimer{margin-top:34px; padding:26px 0 56px; border-top:1px solid var(--hair); color:var(--text-faint); font-size:12px; line-height:1.7;}
+  .disclaimer .dk{font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em; color:var(--text-soft); display:block; margin-bottom:8px;}
+  .disclaimer p+p{margin-top:10px;}
+  .footmark{margin-top:22px; display:flex; align-items:center; gap:10px; color:var(--text-soft);}
+  .footmark .wordmark{font-size:11px; color:var(--text-soft);}
+
+  /* modal */
+  .modal{position:fixed; inset:0; background:rgba(20,34,49,0.62); display:none; align-items:center;
+    justify-content:center; padding:24px; z-index:50; backdrop-filter:blur(3px);}
+  .modal.open{display:flex;}
+  .modal-card{background:var(--surface); border-radius:10px; max-width:760px; width:100%; max-height:90vh;
+    overflow:auto; padding:28px 28px 30px; position:relative;}
+  .modal-card h3{font-family:'Noto Serif KR',serif; font-size:20px; margin-bottom:4px;}
+  .modal-card .msub{font-size:13px; color:var(--text-soft); margin-bottom:20px;}
+  .modal-close{position:absolute; top:18px; right:18px; appearance:none; border:1px solid var(--hair);
+    background:var(--surface); border-radius:6px; width:34px; height:34px; cursor:pointer; font-size:18px; color:var(--text-soft);}
+  .modal-close:hover{background:var(--surface-2);}
+  .wavewrap iframe{width:100%; height:calc(90vh - 150px); min-height:360px; border:0;
+    border-radius:8px; background:var(--surface-2); display:block;}
+  .wavelegend{font-size:12.5px; color:var(--text-soft); margin-top:14px; line-height:1.7;}
+  .wavelegend b{color:var(--text);}
+
+  /* reveal — 기본은 항상 보임. JS가 'reveal' 클래스를 달 때만 숨겼다 등장(폴백 안전) */
+  .rv{opacity:1; transform:none;}
+  body.reveal .rv{opacity:0; transform:translateY(14px);}
+  @media (prefers-reduced-motion:no-preference){
+    body.reveal .rv{transition:opacity .6s ease, transform .6s ease;}
+    body.reveal .rv.in{opacity:1; transform:none;}
+    .beam{stroke-dasharray:var(--len); stroke-dashoffset:var(--len); animation:draw 1.4s ease forwards;}
+    @keyframes draw{to{stroke-dashoffset:0;}}
+  }
+  body.reveal.reduce .rv{opacity:1; transform:none;}
+
+  /* responsive */
+  @media (max-width:760px){
+    body{font-size:15px;}
+    .mh-inner{padding:26px 22px 24px;}
+    .brandrow{margin-bottom:16px; gap:10px;}
+    .mh-title{margin:10px 0 5px;}
+    .mh-meta{margin-top:15px;}
+    .mh-identity{margin-top:17px; padding-top:15px; font-size:13px; line-height:1.6;}
+    .id-full{display:none;} .id-short{display:inline;}
+    .dash-gauges{grid-template-columns:1fr;}
+    .t3{grid-template-columns:1fr; gap:9px; text-align:center;}
+    .t3-op{transform:rotate(90deg);}
+    .axis{grid-template-columns:62px 1fr auto; gap:9px;}
+    .triplet{grid-template-columns:1fr;}
+    .tri-tension{grid-template-columns:1fr;}
+    .figure svg.conv-d{display:none;} .figure svg.conv-m{display:block;}
+    .print-btn{display:none;}
+    .three{grid-template-columns:1fr;}
+    .subs{grid-template-columns:1fr;}
+    .king-pivot .kp-sub{max-width:100%;}
+    .king-br .kb-pct .kpn{font-size:27px;}
+    .dt-pole{padding:16px 16px;}
+    .dt-mid{padding:0 8px;}
+    .lenses{grid-template-columns:1fr;}
+    .positions{grid-template-columns:1fr;}
+    .related{grid-template-columns:1fr;}
+    .tension{grid-template-columns:1fr;}
+    .tmid{padding:8px;}
+    .tmid span{writing-mode:horizontal-tb;}
+    .btn{min-width:0;}
+    .modal{padding:0;}
+    .modal-card{max-width:100%; width:100%; height:100vh; max-height:100vh; border-radius:0; padding:20px 16px 16px;}
+    .wavewrap iframe{height:calc(100vh - 150px);}
+    .verdict-banner{flex-wrap:wrap; gap:8px 12px;}
+  }
+
+  /* ===== TENSOR v3 컴포넌트 (02 핵심요약 / 04 수렴 / 05 3열) ===== */
+  .dash2{border:1px solid var(--hair); border-radius:12px; overflow:hidden;}
+  .t3{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:6px; padding:18px 20px 14px; background:var(--surface);}
+  .t3-pole{text-align:center;}
+  .t3-pole .plab{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.04em; margin-bottom:6px;}
+  .t3-pole.pat .plab{color:var(--pattern);} .t3-pole.ten .plab{color:var(--tensor);} .t3-pole.cro .plab{color:var(--crowding);}
+  .t3-pole .pbig{font-family:'Noto Serif KR',serif; font-size:clamp(15px,3.4vw,19px); font-weight:600; line-height:1.18;}
+  .t3-pole.pat .pbig{color:#9A5A16;} .t3-pole.ten .pbig{color:#3E6358;} .t3-pole.cro .pbig{color:#474D80;}
+  .t3-op{font-size:18px; color:var(--gold); line-height:1;}
+  .t3-status{display:flex; justify-content:center; align-items:center; gap:10px; padding:0 20px 14px; background:var(--surface); flex-wrap:wrap;}
+  .t3-status .slab{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.03em; color:var(--text-soft);}
+  .t3-status .sval{font-family:'Noto Serif KR',serif; font-weight:600; font-size:15px; color:var(--ink); background:var(--surface-2); border:1px solid var(--hair); padding:4px 14px; border-radius:20px;}
+  .axes{padding:4px 20px 16px; display:grid; gap:11px; background:var(--surface);}
+  .axis{--ac:var(--text-soft); display:grid; grid-template-columns:76px 1fr auto; align-items:center; gap:12px;}
+  .axis.pat{--ac:var(--pattern);} .axis.cro{--ac:var(--crowding);} .axis.ten{--ac:var(--tensor);}
+  .axis .alab{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--ac); line-height:1.3;}
+  .axis .alab small{display:block; font-weight:500; font-size:9.5px; color:#9AA6AE; margin-top:2px;}
+  .axis .abar{height:8px; border-radius:6px; background:var(--surface-2); overflow:hidden; border:1px solid var(--hair);}
+  .axis .abar i{display:block; height:100%; border-radius:6px; background:var(--ac); opacity:0.85;}
+  .axis .aval{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--ac); white-space:nowrap; text-align:right; line-height:1.3;}
+  .axis .aval small{display:block; font-weight:500; font-size:9.5px; color:#9AA6AE; margin-top:2px;}
+  .ground{background:var(--surface); padding:4px 20px 16px;}
+  .ground-inner{background:var(--sector-bg); border:1px solid #CFE0E1; border-radius:10px; padding:13px 15px; display:flex; align-items:center; gap:13px; position:relative;}
+  .ground-inner::before{content:""; position:absolute; left:0; top:10px; bottom:10px; width:3px; background:var(--sector); border-radius:3px;}
+  .ground .gicon{flex:none; width:30px; height:30px; border-radius:8px; background:#fff; display:flex; align-items:center; justify-content:center;}
+  .ground .gtext{flex:1; min-width:0;}
+  .ground .glab{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.14em; color:var(--sector); text-transform:uppercase;}
+  .ground .gval{font-family:'Noto Serif KR',serif; font-weight:600; font-size:14px; color:var(--ink); margin-top:3px;}
+  .ground .gsub{font-size:11px; color:var(--text-soft); margin-top:2px; line-height:1.4;}
+  .ground .gmeter{flex:none; width:52px; text-align:right;}
+  .ground .gm-bar{height:5px; border-radius:4px; background:#fff; overflow:hidden;}
+  .ground .gm-bar i{display:block; height:100%; background:var(--sector); opacity:0.85;}
+  .ground .gm-cap{font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; color:var(--sector); margin-top:4px;}
+  .ground-note{font-size:10.5px; color:#9AA6AE; text-align:center; padding:10px 20px 6px; background:var(--surface);}
+  .dash2 .dash-conf{border-top:1px solid var(--hair);}
+  .conf-steps .cstep.on{background:linear-gradient(135deg,var(--sector),var(--tensor),var(--pattern));}
+  /* 04 진료셋 카드(3) + 섹터 토대 */
+  .lenswrap{border:1px solid var(--hair); border-radius:12px; overflow:hidden; background:var(--surface); margin-top:22px;}
+  .triplet{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hair);}
+  .tlens{--lc:var(--text-soft); background:var(--surface); padding:16px 16px 17px;}
+  .tlens.pat{--lc:var(--pattern);} .tlens.ten{--lc:var(--tensor);} .tlens.cro{--lc:var(--crowding);}
+  .tlens .role{font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:0.04em; color:var(--lc); margin-bottom:7px;}
+  .tlens h3{font-family:'Noto Serif KR',serif; font-size:15px; margin:0 0 8px; color:var(--ink);}
+  .tlens p{font-size:12.5px; line-height:1.65; color:var(--text-soft); margin:0 0 11px;}
+  .tlens .verdict{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--lc); border-top:1px solid var(--hair); padding-top:9px; display:block;}
+  .lens-ground{background:linear-gradient(180deg,#EFF4F4,var(--sector-bg)); border-top:2px solid var(--sector); padding:15px 16px; display:flex; gap:12px; align-items:flex-start;}
+  .lens-ground .lg-icon{flex:none; width:28px; height:28px; border-radius:8px; background:#fff; border:1px solid var(--sector); display:flex; align-items:center; justify-content:center;}
+  .lens-ground .lg-role{font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:0.1em; color:var(--sector); text-transform:uppercase;}
+  .lens-ground h3{font-family:'Noto Serif KR',serif; font-size:14.5px; margin:4px 0 7px; color:var(--ink);}
+  .lens-ground p{font-size:12.5px; line-height:1.65; color:var(--text-soft); margin:0;}
+  .lens-ground .lg-verdict{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--sector); margin-top:9px; display:inline-block;}
+  /* 05 종합판독 3열 평등 */
+  .tri-tension{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hair); border:1px solid var(--hair); border-radius:10px; overflow:hidden; margin:16px 0 6px;}
+  .tt{--tc:var(--text-soft); background:var(--surface); padding:18px 17px;}
+  .tt.pat{--tc:var(--pattern);} .tt.ten{--tc:var(--tensor);} .tt.cro{--tc:var(--crowding);}
+  .tt .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.02em; color:var(--tc); margin-bottom:9px;}
+  .tt p{font-size:13.5px; line-height:1.7; color:var(--text); margin:0;}
+  .tt p b{color:var(--tc); font-weight:700;}
+  .tri-note{font-size:12.5px; color:var(--text-soft); text-align:center; margin:10px 0 0; line-height:1.6;}
+  /* 04 수렴 SVG 데스크탑/모바일 전환 */
+  .figure svg.conv-m{display:none;}
+
+
+  /* ===== 00 HERO — 결론 입구 ===== */
+  .hero-sec{padding:30px 0 4px;}
+  .hero-card{background:var(--surface); border:1px solid var(--hair); border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(20,34,49,0.05);}
+  /* 헤드라인(대비형 한 줄) */
+  .hero-headline{padding:22px 24px 18px; border-bottom:1px solid var(--hair);}
+  .hero-headline .hl-k{font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:11px;}
+  .hero-headline .hl-q{font-family:'Noto Serif KR',serif; font-weight:600; font-size:clamp(19px,4vw,25px); line-height:1.4; color:var(--ink); letter-spacing:-0.01em;}
+  .hero-headline .hl-q .turn{color:var(--pattern);}
+  /* 분기점 = 왕 (모드 B 주연 / 모드 A 조연 공용 도장) */
+  .king-pivot{margin:18px 24px 8px; background:linear-gradient(135deg,#15232E,#203848); border-radius:16px; padding:24px 24px 22px; position:relative; overflow:hidden;}
+  .king-pivot::after{content:""; position:absolute; right:-30px; top:-30px; width:140px; height:140px; border:2px solid rgba(143,176,190,0.13); border-radius:50%;}
+  .king-pivot::before{content:""; position:absolute; right:-8px; bottom:-40px; width:110px; height:110px; border:2px solid rgba(143,176,190,0.10); border-radius:50%;}
+  .king-pivot .kp-k{font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:#7E94A0; text-transform:uppercase; margin-bottom:13px;}
+  .king-pivot .kp-main{font-family:'Noto Serif KR',serif; font-weight:700; font-size:clamp(24px,5.6vw,34px); color:#fff; line-height:1.2; letter-spacing:-0.015em; position:relative; z-index:1;}
+  .king-pivot .kp-main .em{color:#E7BE86;}
+  .king-pivot .kp-sub{font-size:13px; color:#AEC0CA; margin-top:13px; line-height:1.6; max-width:90%; position:relative; z-index:1;}
+  .king-pivot .kp-note{font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:0.02em; color:#8FB0BE; margin-top:14px; display:inline-flex; align-items:center; gap:7px; background:rgba(143,176,190,0.10); padding:7px 12px; border-radius:7px;}
+  /* 세 갈래 — 평등 (모드 B) */
+  .equal{padding:16px 24px 6px;}
+  .equal-intro{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:13px; flex-wrap:wrap;}
+  .equal-intro .ei-t{font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.16em; color:#9AA6AE; text-transform:uppercase;}
+  .equal-intro .ei-note{font-size:11.5px; color:var(--text-soft);}
+  .equal-intro .ei-note b{color:var(--ink);}
+  .three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+  .br{border:1px solid var(--hair); border-radius:11px; padding:13px 13px 14px; background:var(--surface);}
+  .br.top{border-color:#D9C3A0; background:linear-gradient(180deg,#FCF9F3,#fff);}
+  .br .br-h{display:flex; align-items:center; justify-content:space-between; gap:6px;}
+  .br .br-id{font-family:'Noto Serif KR',serif; font-weight:600; font-size:14px; display:flex; align-items:center; gap:6px; color:var(--ink);}
+  .br .br-id::before{content:""; width:9px; height:9px; border-radius:50%; flex:none;}
+  .br.a .br-id::before{background:var(--sector);} .br.b .br-id::before{background:var(--pattern);} .br.c .br-id::before{background:var(--crowding);} .br.d .br-id::before{background:#6B7785;}
+  .br .br-pct{font-family:'Noto Serif KR',serif; font-weight:700; font-size:19px;}
+  .br.a .br-pct{color:var(--sector);} .br.b .br-pct{color:var(--pattern);} .br.c .br-pct{color:var(--crowding);} .br.d .br-pct{color:#6B7785;}
+  .br .br-nm{font-size:11.5px; color:var(--text-soft); margin-top:7px; line-height:1.5;}
+  .br .br-bar{height:4px; border-radius:3px; background:var(--surface-2); overflow:hidden; margin-top:10px; border:1px solid var(--hair);}
+  .br .br-bar i{display:block; height:100%;}
+  .br.a .br-bar i{background:var(--sector);} .br.b .br-bar i{background:var(--pattern);} .br.c .br-bar i{background:var(--crowding);} .br.d .br-bar i{background:#6B7785;}
+  .br .br-most{font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:600; letter-spacing:0.06em; color:#fff; background:var(--gold); padding:2px 5px; border-radius:4px; margin-left:6px;}
+  /* 갈래 = 왕 (모드 A) */
+  .king-br{margin:18px 24px 6px; border:2px solid var(--gold); border-radius:14px; overflow:hidden; background:linear-gradient(135deg,#FCF8F1,#fff);}
+  .king-br .kb-top{display:flex; align-items:center; gap:13px; padding:16px 18px 13px;}
+  .king-br .kb-badge{flex:none; display:flex; align-items:center; justify-content:center; width:54px; height:54px; border-radius:13px; background:var(--gold); color:#fff; font-family:'Noto Serif KR',serif; font-weight:700; font-size:22px;}
+  .king-br .kb-head{flex:1; min-width:0;}
+  .king-br .kb-tag{font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase;}
+  .king-br .kb-nm{font-family:'Noto Serif KR',serif; font-weight:600; font-size:18px; color:var(--ink); margin-top:5px; line-height:1.25;}
+  .king-br .kb-pct{flex:none; text-align:right;}
+  .king-br .kb-pct .kpn{font-family:'Noto Serif KR',serif; font-weight:700; font-size:32px; line-height:0.9; color:var(--gold);}
+  .king-br .kb-pct .kpl{font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:0.08em; color:var(--gold); text-transform:uppercase; margin-top:3px;}
+  .king-br .kb-desc{padding:0 18px 15px; font-size:12.5px; line-height:1.65; color:var(--text-soft);}
+  .subs{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:8px 24px 4px;}
+  .sub{border:1px solid var(--hair); border-radius:11px; padding:12px 14px; background:var(--surface);}
+  .sub .s-top{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .sub .s-id{font-family:'Noto Serif KR',serif; font-weight:600; font-size:14px; display:flex; align-items:center; gap:7px; color:var(--ink);}
+  .sub .s-id::before{content:""; width:9px; height:9px; border-radius:50%; flex:none;}
+  .sub.a .s-id::before{background:var(--sector);} .sub.b .s-id::before{background:var(--pattern);} .sub.c .s-id::before{background:var(--crowding);} .sub.d .s-id::before{background:#6B7785;}
+  .sub .s-pct{font-family:'Noto Serif KR',serif; font-weight:700; font-size:17px;}
+  .sub.a .s-pct{color:var(--sector);} .sub.b .s-pct{color:var(--pattern);} .sub.c .s-pct{color:var(--crowding);} .sub.d .s-pct{color:#6B7785;}
+  .sub .s-nm{font-size:11px; color:var(--text-soft); margin-top:6px; line-height:1.45;}
+  /* 모드 A의 분기점(조연): king-pivot를 작게 */
+  .king-pivot.compact{padding:16px 18px;} .king-pivot.compact .kp-main{font-size:clamp(18px,4vw,22px);} .king-pivot.compact .kp-sub{font-size:12px;}
+  /* CTA / 신뢰도 */
+  .hero-cta{display:flex; gap:10px; padding:14px 24px 18px; flex-wrap:wrap; align-items:center;}
+  .hero-cta .scen-try.hcta-primary{appearance:none; cursor:pointer; border:1px solid var(--ink); background:var(--ink); color:#fff; border-radius:9px; padding:12px 18px; font-family:'Pretendard Variable',Pretendard,sans-serif; font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:8px; box-shadow:none; width:auto; margin-top:0;}
+  .hero-cta .scen-try.hcta-primary::before{content:none;}
+  .hero-cta .scen-try.hcta-primary:hover{filter:brightness(1.12);}
+  .hero-cta .hcta-ghost{font-family:'Pretendard Variable',Pretendard,sans-serif; font-size:12.5px; font-weight:600; color:var(--text-soft); text-decoration:none; padding:11px 14px; border:1px solid var(--hair); border-radius:9px; background:var(--surface-2);}
+  .hero-cta .hcta-ghost:hover{color:var(--ink); border-color:#C9D2D7;}
+  .hero-conf{display:flex; align-items:center; gap:8px; padding:11px 24px; border-top:1px solid var(--hair); font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--text-soft);}
+  .hero-conf .steps{display:flex; gap:3px;} .hero-conf .s{width:18px; height:5px; border-radius:3px; background:var(--hair);}
+  .hero-conf .s.on{background:linear-gradient(135deg,var(--sector),var(--tensor),var(--pattern));}
+  .hero-conf b{color:var(--ink);}
+
+  /* ===== 인쇄 (PC) ===== */
+  @media print{
+    body{background:#fff;}
+    .masthead::before{display:none;}
+    .chip-btn, .print-btn, .hero-cta, .scen-try, .chip.conf .cdot{display:none !important;}
+    .modal{display:none !important;}
+    section{padding:18px 0 4px; break-inside:avoid;}
+    .hero-card, .dash2, .lenswrap, .figure, .tri-tension{break-inside:avoid;}
+    .masthead{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    a[href]:after{content:"";}
+  }
+
+  @media (max-width:460px){ .dt-pole .pbig{font-size:18px;} }
+</style>
+</head>
+<body>
+
+<!-- ===================== MASTHEAD ===================== -->
+<header class="masthead">
+  <div class="mh-inner">
+    <div class="brandrow">
+      <svg class="lensmark" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <ellipse cx="15" cy="15" rx="6.2" ry="13" fill="none" stroke="#AFC0CB" stroke-width="1.3"/>
+        <line x1="2" y1="15" x2="9.2" y2="15" stroke="#BE7A2A" stroke-width="1.3"/>
+        <line x1="20.8" y1="15" x2="28" y2="15" stroke="#2C7C8A" stroke-width="1.3"/>
+        <circle cx="28" cy="15" r="1.8" fill="#E7BE86"/>
+      </svg>
+      <span class="wordmark">ATMAN&nbsp;LENS</span>
+    </div>
+    <div class="eyebrow">Data-driven Stock Flow Analysis</div>
+    <h1 class="mh-title">HL만도</h1>
+    <div class="mh-code">204320 · KRX · 기준일 2026-06-16</div>
+    <div class="mh-meta">
+      <span class="chip conf"><span class="cdot"></span>종합 신뢰도 <b>LOW</b></span>
+      <span class="chip">유효 기간 : <b>단기</b></span>
+      <button class="chip-btn" id="openWaveTop" aria-haspopup="dialog"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 10 Q3.2 4 5 7.5 T9 5.5 T13 3" fill="none" stroke="#3A2A10" stroke-width="1.5" stroke-linecap="round"/></svg>분석 데이터 보기<span class="bcaret" aria-hidden="true">›</span></button>
+      <button class="chip-btn print-btn" type="button" onclick="window.print()" aria-label="이 리포트 인쇄">
+        <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6V2h8v4M4 12H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1M4 10h8v4H4z" fill="none" stroke="#3A2A10" stroke-width="1.3" stroke-linejoin="round"/></svg>인쇄</button>
+    </div>
+    <p class="mh-identity">
+      <span class="id-full">ATMAN LENS는 하나의 결론을 강요하지 않습니다. <b>한 종목의 한 자리를 세 관점으로 투과</b>해,
+      세 소견의 정합·충돌·침묵을 읽고, 보유 위치마다 다른 판단 기준을 제공합니다. 격자가 아니라 렌즈입니다.</span>
+      <span class="id-short"><b>한 자리를 세 관점으로 투과</b>합니다. 격자가 아니라 렌즈.</span>
+    </p>
+  </div>
+</header>
+
+<main class="wrap"><section class="rv hero-sec" id="hero"><div class="hero-card"><div class="hero-headline"><div class="hl-k">현재 판단</div><div class="hl-q">반등의 실체는 확인됐다.<br><span class="turn">그러나 지금은 추격이 아니라 자금 재유입을 확인하는 구간이다</span></div></div><div class="king-pivot"><div class="kp-k">오늘 볼 단 하나</div><div class="kp-main">지금의 질문은 &#39;더 오를까&#39;가 아니라, &#39;다음 봉에서 자금이 다시 강하게 유입되는가&#39;다</div><div class="kp-sub">자금이 상단 밴드 위에서 재유입되면 추세 지속(A) 쪽으로, 거래량이 급감하며 자금이 식으면 과열 소화(B) 또는 급격한 되돌림(C) 쪽으로 갈린다</div><div class="kp-note">⧈ 세 시나리오가 팽팽하다 — 그래서 예측이 아니라 이 분기점이 핵심이다</div></div><div class="equal"><div class="equal-intro"><span class="ei-t">세 시나리오 · 팽팽함</span><span class="ei-note">1·2위 차 <b>5%p</b> — 지배적 시나리오 없음</span></div><div class="three"><div class="br a"><div class="br-h"><div class="br-id">A</div><div class="br-pct">35%</div></div><div class="br-nm">자금 재유입으로 추세 지속</div><div class="br-bar"><i style="width:88%"></i></div></div><div class="br b top"><div class="br-h"><div class="br-id">B<span class="br-most">최다</span></div><div class="br-pct">40%</div></div><div class="br-nm">단기 과열 소화 후 횡보 또는 완만한 조정</div><div class="br-bar"><i style="width:100%"></i></div></div><div class="br c"><div class="br-h"><div class="br-id">C</div><div class="br-pct">25%</div></div><div class="br-nm">자금 이탈 후 급격한 되돌림</div><div class="br-bar"><i style="width:62%"></i></div></div></div></div><div class="hero-cta"><button class="scen-try hcta-primary" data-scen="" aria-haspopup="dialog">시나리오별 대응 보기 →</button><a class="hcta-ghost" href="#scenario-detail">분석 근거 보기 ↓</a></div><div class="hero-conf">종합 신뢰도 <span class="steps"><span class="s on"></span><span class="s"></span><span class="s"></span></span> <b>Low</b> · 유효 기간 <b>단기</b></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">01</span><div><div class="sec-title">한 줄 판독</div></div></div><div class="lead"><span class="status"><span class="sdot"></span>양면 · 과열 극단 검증 구간</span><p>6월 11~15일 연속 대양봉으로 강하게 반등했고, 역사적 최대 거래량과 함께 자금·가격이 동시에 상단을 돌파했습니다. 반등의 실체는 진짜입니다. 그러나 <b>같은 거래량 폭증이 &#39;추세 지속의 동력&#39;으로도 &#39;상단 과밀의 실체&#39;로도 읽히는 거울 충돌 자리</b>이며, 과거 동일 패턴에서 두 차례 실제 털림이 확인됐습니다. 다음 봉 자금 흐름이 이 자리의 방향을 가르는 유일한 변별자입니다.</p></div></section><section class="rv"><div class="sec-head"><span class="sec-num">02</span><div><div class="sec-title">핵심 요약</div><div class="sec-kicker">섹터라는 토대 위에 세 진단 축이 선다 — 현재 상태를 빠르게 읽는 카드입니다.</div></div></div><div class="dash2"><div class="t3"><div class="t3-pole pat"><div class="plab">패턴 · 동력</div><div class="pbig">강반등 동력</div></div><div class="t3-op">⇄</div><div class="t3-pole ten"><div class="plab">텐서 · 관계</div><div class="pbig">자금 선행 구조 살아있음 · 미검증</div></div><div class="t3-op">⇄</div><div class="t3-pole cro"><div class="plab">밀집 · 무게</div><div class="pbig">상단 과밀</div></div></div><div class="t3-status"><span class="slab">현재 자리</span><span class="sval">과열 극단 검증 구간</span></div><div class="axes"><div class="axis pat"><div class="alab">패턴<small>반등 강도</small></div><div class="abar"><i style="width:62%"></i></div><div class="aval">강반등 실재 · 양면<small>완성이나 과열 극단 동시 형성</small></div></div><div class="axis ten"><div class="alab">텐서<small>관계</small></div><div class="abar"><i style="width:62%"></i></div><div class="aval">자금 선행 구조 살아있음 · 미검증<small>cx001 배치 5회 전량 neutral — 검증 없음</small></div></div><div class="axis cro"><div class="alab">밀집<small>과밀도</small></div><div class="abar"><i style="width:86%"></i></div><div class="aval">역사적 최대 상단 과밀 · 거부<small>과거 2회 동일 패턴 후 실제 털림 확인</small></div></div></div><div class="ground-note">↓ 위 세 축은 모두 아래 섹터 전제 위에서 읽힙니다 — 전제가 바뀌면 세 축의 의미도 바뀝니다</div><div class="ground"><div class="ground-inner"><span class="gicon"><svg width="15" height="15" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 10 Q5 4 7 7 T12 4" fill="none" stroke="#2C7C8A" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="gtext"><div class="glab">섹터 · 전제 배경 (토대)</div><div class="gval">우호적이나 조건부</div><div class="gsub">자동차부품 초입 물살 받침 — 집중유입 환경으로 신중</div></div><div class="gmeter"><div class="gm-bar"><i style="width:62%"></i></div><div class="gm-cap">조건부</div></div></div></div><div class="dash-conf"><span class="clab">종합 신뢰도</span><span class="conf-steps"><span class="cstep on"></span><span class="cstep"></span><span class="cstep"></span></span><span class="cval">Low</span><span class="conf-div"></span><span class="ckv">유효 기간 : <b>단기</b></span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">03</span><div><div class="sec-title">왜 이 종목을 보는가</div></div></div><p class="prose">자동차부품 군집이 오늘 거래대금 급증으로 신규 합류하며 HL만도가 그 선두에 섰습니다. 섹터 물살은 아직 초입이나, <b>이 종목은 이미 단기·중기 과열 극단에 닿아 섹터보다 먼저 달린 상태</b>입니다. 섹터 물살이 지속되면 받쳐주나, 물살이 빠지면 먼저 꺾일 구조입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">04</span><div><div class="sec-title">세 관점의 수렴</div><div class="sec-kicker">섹터 전제를 토대로, 종목을 보는 세 진단(패턴·텐서·밀집)이 하나의 판독으로 모입니다.</div></div></div><div class="figure">      <svg class="conv-d" viewBox="0 0 800 340" role="img" aria-label="종목 종합 판독 수렴 구조 — 전제·진단·판독 위계">
+        <defs><marker id="cvah" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#9DB2BD"/></marker></defs>
+        <text x="28" y="58" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9DB2BD" letter-spacing="1">판독</text>
+        <text x="28" y="170" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9DB2BD" letter-spacing="1">진단</text>
+        <text x="28" y="290" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9DB2BD" letter-spacing="1">전제</text>
+        <line x1="64" y1="20" x2="64" y2="320" stroke="#E0E6E9" stroke-width="1"/>
+        <rect x="300" y="34" width="220" height="48" rx="9" fill="#142231"/>
+        <text x="410" y="53" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" letter-spacing="1.6" fill="#9DB2BD">CONVERGENCE</text>
+        <text x="410" y="71" text-anchor="middle" font-family="Noto Serif KR,serif" font-size="14" font-weight="600" fill="#EAF0F3">양면</text>
+        <path d="M210 150 L390 86" fill="none" stroke="#BE7A2A" stroke-width="1.3" opacity=".5" marker-end="url(#cvah)"/>
+        <path d="M410 146 L410 86" fill="none" stroke="#5E8B7E" stroke-width="1.3" opacity=".5" marker-end="url(#cvah)"/>
+        <path d="M610 150 L430 86" fill="none" stroke="#565C94" stroke-width="1.3" opacity=".5" marker-end="url(#cvah)"/>
+        <g font-family="Noto Serif KR,serif">
+        <rect x="120" y="150" width="180" height="46" rx="8" fill="#F4E9D9" stroke="#BE7A2A" stroke-width="1.2"/>
+        <text x="138" y="172" font-family="IBM Plex Mono,monospace" font-size="10" fill="#9A5A16">PATTERN</text>
+        <text x="138" y="186" font-family="Noto Serif KR,serif" font-size="13" font-weight="600" fill="#19262F">동력 · 엔진</text>
+        <rect x="320" y="150" width="180" height="46" rx="8" fill="#E4EDEA" stroke="#5E8B7E" stroke-width="1.2"/>
+        <text x="338" y="172" font-family="IBM Plex Mono,monospace" font-size="10" fill="#3E6358">TENSOR</text>
+        <text x="338" y="186" font-family="Noto Serif KR,serif" font-size="13" font-weight="600" fill="#19262F">관계 · 검증</text>
+        <rect x="520" y="150" width="180" height="46" rx="8" fill="#E7E8F1" stroke="#565C94" stroke-width="1.2"/>
+        <text x="538" y="172" font-family="IBM Plex Mono,monospace" font-size="10" fill="#3F4477">CROWDING</text>
+        <text x="538" y="186" font-family="Noto Serif KR,serif" font-size="13" font-weight="600" fill="#19262F">무게 · 필터</text>
+        </g>
+        <path d="M410 256 L210 202" fill="none" stroke="#2C7C8A" stroke-width="1" opacity=".35"/>
+        <path d="M410 256 L410 200" fill="none" stroke="#2C7C8A" stroke-width="1" opacity=".35"/>
+        <path d="M410 256 L610 202" fill="none" stroke="#2C7C8A" stroke-width="1" opacity=".35"/>
+        <rect x="120" y="258" width="580" height="44" rx="9" fill="#E3EEF0" stroke="#2C7C8A" stroke-width="1.3"/>
+        <text x="138" y="280" font-family="IBM Plex Mono,monospace" font-size="9.5" letter-spacing="1" fill="#2C7C8A">SECTOR · 전제 배경</text>
+        <text x="138" y="295" font-family="Noto Serif KR,serif" font-size="12.5" font-weight="600" fill="#19262F">우호적이나 조건부</text>
+      </svg>
+      <svg class="conv-m" viewBox="0 0 380 420" role="img" aria-label="종목 종합 판독 수렴 구조(모바일)">
+        <defs><marker id="cvahm" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#9DB2BD"/></marker></defs>
+        <text x="14" y="42" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#9DB2BD" letter-spacing="1">판독</text>
+        <text x="14" y="190" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#9DB2BD" letter-spacing="1">진단</text>
+        <text x="14" y="384" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#9DB2BD" letter-spacing="1">전제</text>
+        <line x1="44" y1="16" x2="44" y2="404" stroke="#E0E6E9" stroke-width="1"/>
+        <rect x="96" y="20" width="220" height="46" rx="9" fill="#142231"/>
+        <text x="206" y="39" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" letter-spacing="1.4" fill="#9DB2BD">CONVERGENCE</text>
+        <text x="206" y="56" text-anchor="middle" font-family="Noto Serif KR,serif" font-size="13" font-weight="600" fill="#EAF0F3">양면</text>
+        <path d="M206 96 L206 72" fill="none" stroke="#9DB2BD" stroke-width="1.2" opacity=".5" marker-end="url(#cvahm)"/>
+        <g font-family="Noto Serif KR,serif">
+        <rect x="68" y="98" width="280" height="40" rx="8" fill="#F4E9D9" stroke="#BE7A2A" stroke-width="1.2"/>
+        <text x="84" y="122" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9A5A16">PATTERN</text>
+        <text x="340" y="122" text-anchor="end" font-family="Noto Serif KR,serif" font-size="12.5" font-weight="600" fill="#19262F">동력 · 엔진</text>
+        <rect x="68" y="146" width="280" height="40" rx="8" fill="#E4EDEA" stroke="#5E8B7E" stroke-width="1.2"/>
+        <text x="84" y="170" font-family="IBM Plex Mono,monospace" font-size="9" fill="#3E6358">TENSOR</text>
+        <text x="340" y="170" text-anchor="end" font-family="Noto Serif KR,serif" font-size="12.5" font-weight="600" fill="#19262F">관계 · 검증</text>
+        <rect x="68" y="194" width="280" height="40" rx="8" fill="#E7E8F1" stroke="#565C94" stroke-width="1.2"/>
+        <text x="84" y="218" font-family="IBM Plex Mono,monospace" font-size="9" fill="#3F4477">CROWDING</text>
+        <text x="340" y="218" text-anchor="end" font-family="Noto Serif KR,serif" font-size="12.5" font-weight="600" fill="#19262F">무게 · 필터</text>
+        </g>
+        <path d="M206 340 L206 240" fill="none" stroke="#2C7C8A" stroke-width="1" opacity=".3"/>
+        <rect x="68" y="344" width="280" height="48" rx="9" fill="#E3EEF0" stroke="#2C7C8A" stroke-width="1.3"/>
+        <text x="84" y="365" font-family="IBM Plex Mono,monospace" font-size="9" letter-spacing="1" fill="#2C7C8A">SECTOR · 전제 배경</text>
+        <text x="84" y="381" font-family="Noto Serif KR,serif" font-size="12" font-weight="600" fill="#19262F">우호적이나 조건부</text>
+      </svg><div class="figcap">전제(섹터) → 진단(패턴·텐서·밀집) → 종합 판독. 아래에서 위로 쌓이는 판단 위계이며, 세 진단은 모두 섹터 전제 위에서 읽힙니다.</div></div><div class="verdict-banner"><span class="dot"></span><span class="vk">현재 판독</span><span class="vv">양면 · 과열 극단 검증 구간 · 유효 기간 단기</span></div><div class="lenswrap"><div class="triplet"><div class="tlens pat"><div class="role">동력 · 엔진</div><h3>패턴 관점</h3><p>연속 대양봉과 자금 폭발로 강반등 추세 굳힘 형태가 완성됐습니다. 그러나 단기·중기 지표가 과열 극단에 닿고 <b>위꼬리가 실제로 확인돼</b>, 추세 지속과 과열 되돌림 두 갈래가 동등하게 열려 있습니다.</p><span class="verdict">양면 · 강반등 실재</span></div><div class="tlens ten"><div class="role">관계 · 검증</div><h3>텐서 관점</h3><p>자금이 가격보다 훨씬 먼저, 훨씬 빠르게 올라 가격이 아직 따라잡지 못한 이격 상태입니다. 관계 구조는 상방을 떠받치나, <b>이 배치에서 실제로 상승으로 이어진 사례가 아직 없어</b> 확신을 높이기 어렵습니다.</p><span class="verdict">자금 선행 구조 · 미검증</span></div><div class="tlens cro"><div class="role">관문 · 필터</div><h3>밀집도 관점</h3><p>단기·중기·장기 세 시간대 모두 자금이 상단에 비정상적으로 쏠렸고, 역사적 최대 거래량으로 그 실체가 확인됐습니다. <b>과거 동일 패턴 두 차례 모두 이후 실제 하락으로 이어졌습니다.</b></p><span class="verdict">역사적 최대 상단 과밀 · 거부</span></div></div><div class="lens-ground"><span class="lg-icon"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 10 Q5 4 7 7 T12 4" fill="none" stroke="#2C7C8A" stroke-width="1.5" stroke-linecap="round"/></svg></span><div><div class="lg-role">전제 · 배경 물살</div><h3>섹터 관점</h3><p>자동차부품 군집이 거래대금 급증으로 신규 합류하며 HL만도가 명단 선두에 섰습니다. <b>섹터 물살은 초입으로 우호적이나</b>, 집중유입 환경(소수 군집 쏠림)으로 모든 진입을 신중하게 봐야 합니다.</p><span class="lg-verdict">우호적 · 조건부</span></div></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">05</span><div><div class="sec-title">종합 판독</div></div></div><p class="pull">같은 자금 폭발을 — 패턴은 <span class="a">강반등 동력</span>로, 밀집은 <span class="b">상단 과밀</span>로 읽는다.</p><p class="prose">세 관점은 &#39;반등이 진짜&#39;라는 사실에서 일치합니다. 역사적 최대 거래량, 자금·가격 동시 상단 돌파, 자금이 가격을 선행하는 구조 — 이 사실들은 공통 인식입니다.</p><p class="prose">갈림은 그 반등의 성격입니다. 패턴은 이를 <b>추세 지속의 동력</b>으로, 밀집은 <b>상단에 뒤늦게 몰린 과밀</b>로 읽습니다. 같은 역사적 최대 거래량을 정반대로 해석하는 거울 충돌이며, RAW 검증이 두 소견을 각각 강화해 충돌이 더 선명해졌습니다.</p><div class="tri-tension"><div class="tt pat"><div class="lbl">패턴은 이렇게 본다</div><p>연속 대양봉과 자금 폭발로 강반등 추세 굳힘이 완성됐고, 비슷한 과거 자리에서 추가 상승이 이어진 사례가 많았다 — <b>반등 동력은 실재한다.</b></p></div><div class="tt ten"><div class="lbl">텐서는 이렇게 본다</div><p>자금 선행 구조 살아있음 · 미검증</p></div><div class="tt cro"><div class="lbl">밀집은 이렇게 본다</div><p>그 자금은 바닥을 받친 게 아니라 상단에 새로 몰린 무게다. 과거 동일한 자금 쏠림 패턴이 나타났던 두 차례 모두 이후 실제 하락으로 이어졌다 — <b>상단 과밀이다.</b></p></div></div><p class="tri-note">같은 자금 폭발을 세 진단이 각자의 렌즈로 읽습니다. 모순이 아니라 한 사실의 세 얼굴이며, 셋이 갈리는 지점이 가장 큰 정보입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">06</span><div><div class="sec-title">가능한 시나리오</div><div class="sec-kicker">예측이 아니라 갈림길별 흐름 조건입니다.</div></div></div><div class="probbar" role="img" aria-label="시나리오 확률"><div class="probseg a" style="width:35%"><span class="pid">A</span><span class="pct">35%</span></div><div class="probseg b" style="width:40%"><span class="pid">B</span><span class="pct">40%</span></div><div class="probseg c" style="width:25%"><span class="pid">C</span><span class="pct">25%</span></div></div><p class="problegend">A 자금 재유입으로 추세 지속 · <b style="color:var(--crowding)">B 단기 과열 소화 후 횡보 또는 완만한 조정 — 주 시나리오</b> · C 자금 이탈 후 급격한 되돌림</p><p class="prob-why"><span class="pw-k">주 시나리오 근거</span>지금은 강반등 동력보다 <b>단기·중기 과열 극단과 역사적 최대 상단 과밀의 소화 필요성이 더 강하게</b> 보이기 때문에, 과열 소화 후 횡보 또는 완만한 조정(B)을 주 시나리오로 두나 A와 차이가 작아 사실상 양면이다.</p><button class="scen-try" data-scen="" aria-haspopup="dialog"><span class="pl"></span><span style="text-align:left">시나리오별 대응 보기<small>세 시나리오를 재생하고, 내 위치에서 직접 따라가 보세요</small></span></button><div class="scen a"><div class="scen-head"><div class="scen-name"><span class="tag">A</span>자금 재유입으로 추세 지속</div><div class="scen-prob">35%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:77%"></i></div><span class="mpct">개연성 35%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>거래량이 다시 크게 늘며 자금이 상단 밴드 위에서 유지되고, 가격이 7만원 부근 위에서 안정되면 살아나고, 거래량이 급감하며 그 자리를 내주면 약해집니다</div><div class="scen-row"><span class="rk">근거</span>강반등 추세 굳힘이 완성됐고, 자금이 가격을 선행하는 구조가 살아있어 가격이 따라잡을 여력이 이론적으로 남아 있습니다.</div><div class="scen-reframe">→ 자금 재유입이 확인되면 추세 지속 시나리오의 신뢰도가 높아지는 구간</div><button class="scen-go" data-scen="A" aria-haspopup="dialog"><span class="pg"></span>이 시나리오 체험</button></div><div class="scen b"><div class="scen-head"><div class="scen-name"><span class="tag">B</span>단기 과열 소화 후 횡보 또는 완만한 조정 <span class="dominant">주 시나리오</span></div><div class="scen-prob">40%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:88%"></i></div><span class="mpct">개연성 40%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>가격이 7만원 부근에서 버티나 거래량이 급감하며 자금 확산이 없을 때</div><div class="scen-row"><span class="rk">근거</span>단기·중기 지표가 과열 극단에 닿았고, 이 종목이 섹터 물살보다 먼저 달려 <b>과열을 소화할 필요성이 더 강한</b> 자리입니다.</div><div class="scen-reframe">→ 단기 과열 소화 후 재진입 기회를 탐색하는 구간</div><button class="scen-go" data-scen="B" aria-haspopup="dialog"><span class="pg"></span>이 시나리오 체험</button></div><div class="scen c"><div class="scen-head"><div class="scen-name"><span class="tag">C</span>자금 이탈 후 급격한 되돌림</div><div class="scen-prob">25%</div></div><div class="scen-meter"><div class="scen-track"><i style="width:55%"></i></div><span class="mpct">개연성 25%</span></div><div class="scen-row"><span class="rk">흐름 조건</span>자금이 상단 밴드를 이탈하고 가격이 단기 중간 구간(6만원 초반 부근) 아래로 밀리면</div><div class="scen-row"><span class="rk">근거</span>과거 동일한 자금 쏠림 패턴에서 두 차례 모두 실제 하락으로 이어진 경로로, 역사적 최대 거래량으로 상단에 몰린 군중이 빠르게 풀리는 경우입니다.</div><div class="scen-reframe">→ 자금 상단 밴드 이탈이 확인되면 과거 털림 패턴의 재현 신호로 읽히는 구간</div><button class="scen-go" data-scen="C" aria-haspopup="dialog"><span class="pg"></span>이 시나리오 체험</button></div><p class="note">갈래 확률은 현재 데이터 구조에서의 상대적 개연성이며, cx001· 모두 분포가 비어 있어 신뢰도가 낮습니다. 위치(미보유·수익·손실)는 갈래를 바꾸지 않고 같은 갈래에 다른 대응을 입힙니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">07</span><div><div class="sec-title">위치별 해석</div><div class="sec-kicker">같은 자리도 보유 위치에 따라 판단 기준이 다릅니다.</div></div></div><div class="positions"><div class="pos new"><span class="ptag">미보유</span><div class="phead"><span class="picon"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#6B7785" stroke-width="1.5"/><line x1="9" y1="9" x2="12.5" y2="12.5" stroke="#6B7785" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">미보유 관점</div></div><div class="pq">지금 새로 들어갈 만큼 가격 흐름과 자금 밀집이 정렬됐는가?</div><p>가장 보수적 — 진입 정당성을 먼저 묻는다. 패턴 양면 + 밀집 거부(높은 신뢰도) + 텐서 검증 없음 = 자금 재유입 확인 전까지 진입 정당성 없음</p></div><div class="pos profit"><span class="ptag">수익 보유</span><div class="phead"><span class="picon"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 9.5 L6 5.5 L8.5 8 L13 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3 L13 6 M13 3 L10 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="ptitle">수익 보유 관점</div></div><div class="pq">수익을 더 키울 힘이 남았는가, 지킬 때인가?</div><p>갈래 A가 살아있어 보유 지속 가능하나, 자금 상단 밴드 이탈 신호 시 수익 보호 관점 강화 준비 병행 (현재가 &gt; 평단)</p></div><div class="pos loss"><span class="ptag">손실 보유</span><div class="phead"><span class="picon"><svg width="14" height="15" viewBox="0 0 14 15" aria-hidden="true"><path d="M7 1.5 L12 3.5 L12 7.5 C12 10.5 9.8 12.5 7 13.5 C4.2 12.5 2 10.5 2 7.5 L2 3.5 Z" fill="none" stroke="#B07A45" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div class="ptitle">손실 보유 관점</div></div><div class="pq">손실을 더 키울 위험이 큰가, 회복 시나리오가 남았는가?</div><p>갈래 B+C 합산 65% &gt; 갈래 A 35% — 회복 시나리오가 살아있으나 위험 쪽에 무게. 추가 노출보다 손실 확대 방지 우선 (현재가 &lt; 평단)</p></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">08</span><div><div class="sec-title">주요 관찰 조건</div><div class="sec-kicker">매수·매도가가 아니라 흐름을 판단하는 관찰 구간입니다.</div></div></div><ul class="observe"><li><span class="marker">01</span><span>다음 봉 자금 흐름이 자금 상단 밴드 위에서 유지되는지 — 자금 재유입 여부(갈래 A·B·C의 핵심 분기점)</span></li><li><span class="marker">02</span><span>가격이 7만원 부근 위에서 안정되는지 — 단기 추세 유지 여부</span></li><li><span class="marker">03</span><span>거래량이 오늘 수준의 절반 이상 유지되는지 — 자금 지속성 확인</span></li><li><span class="marker">04</span><span>6만원 초반 부근 — 단기 흐름이 약화되는지 확인하는 관찰 구간</span></li><li><span class="marker">05</span><span>자동차부품 군집 전체 거래대금 지속성 확인 — 섹터 물살 유지 여부</span></li><li><span class="marker">06</span><span>원달러 환율 추가 상승 여부 — 외국인 수급 방향 변화 가능성</span></li></ul><p class="note">위 가격은 매수·손절가가 아니라 흐름 판단을 위한 관찰 구간이며, 자금 관련 조건은 ATMAN 자금 흐름 지표 기준입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">09</span><div><div class="sec-title">파동 차트</div><div class="sec-kicker">분석에 사용한 데이터를 대·중·소파동 구조로 직접 확인합니다.</div></div></div><div class="actions"><button class="btn" id="openWave" aria-haspopup="dialog"><svg class="bi" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 14 Q5 6 8 11 T14 9 T20 5" fill="none" stroke="#E7BE86" stroke-width="1.8" stroke-linecap="round"/></svg><span>ATMAN Wave Chart 보기<small>대·중·소파동 상단 밴드와 현재 위치를 구조로 확인</small></span></button></div></section><section class="rv"><div class="sec-head"><span class="sec-num">10</span><div><div class="sec-title">관련 시장 리포트</div><div class="sec-kicker">카드를 누르면 해당 리포트로 이동합니다.</div></div></div><div class="related"><a class="rcard brief" href="https://ljhhh118.github.io/atmanreport/KrReports/20260616/Report_Brief_Detail_20260616.html"><div class="rc-body"><div class="rk">ATMAN BRIEF</div><div class="rn">오늘 시장 전체 흐름</div><div class="rd">매크로·글로벌·섹터를 묶은 오늘의 시장 지도</div></div><span class="rgo" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 13 13"><path d="M4 2.5 L8.5 6.5 L4 10.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="rcard radar" href="https://ljhhh118.github.io/atmanreport/KrReports/20260616/Report_Radar_Detail_20260616.html"><div class="rc-body"><div class="rk">ATMAN RADAR</div><div class="rn">최근 N일 시장·섹터 흐름</div><div class="rd">자금이 어디로 이동하는지, 며칠의 결을 추적</div></div><span class="rgo" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 13 13"><path d="M4 2.5 L8.5 6.5 L4 10.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div><p class="related-note">이 종목은 하나의 점이 아니라 시장 흐름 속의 한 위치입니다. BRIEF에서 오늘의 시장 배경을, RADAR에서 최근 흐름의 변화를 함께 확인할 수 있습니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">11</span><div><div class="sec-title">해석 한계</div></div></div><div class="caveat">세 관점의 소견을 통합한 데이터 기반 흐름 해석입니다. 시나리오 확률은 현재 데이터 구조에서의 상대적 개연성이지 확정적 예측이 아니며, 매수·매도 지시가 아닙니다. 핵심 모델(cx001·)의 분포가 비어 있어 신뢰도가 낮습니다.</div></section><footer class="disclaimer"><span class="dk">DISCLAIMER</span><p>본 리포트는 특정 종목의 매수·매도 권유가 아니라, 공개 시장 데이터와 ATMAN 지표를 바탕으로 한 흐름 해석 및 시나리오 분석입니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.</p><p>This report is not a buy or sell recommendation. It provides data-driven market interpretation and scenario analysis based on publicly available market data and ATMAN indicators. All investment decisions and outcomes remain the responsibility of the investor.</p><div class="footmark"><svg width="22" height="22" viewBox="0 0 30 30" aria-hidden="true"><ellipse cx="15" cy="15" rx="6.2" ry="13" fill="none" stroke="#8C97A0" stroke-width="1.3"/><line x1="2" y1="15" x2="9.2" y2="15" stroke="#BE7A2A" stroke-width="1.3"/><line x1="20.8" y1="15" x2="28" y2="15" stroke="#2C7C8A" stroke-width="1.3"/></svg><span class="wordmark">ATMAN&nbsp;LENS · ITEM CONVERGENCE</span></div></footer></main>
+
+<!-- ===================== SCENARIO MODAL ===================== -->
+<div class="modal" id="scenModal" role="dialog" aria-modal="true" aria-label="시나리오 체험">
+  <div class="modal-card sim-modal">
+    <div class="stage">
+      <div class="experience">
+        <div class="film-top">
+          <button class="modal-close" id="closeScen" aria-label="닫기">×</button>
+          <div class="film-title">시나리오 흐름<small>WHOLE PATH · ONE VIEW</small></div>
+          <div class="branch-seg" role="group" aria-label="갈래 선택">
+            <button data-id="A" aria-pressed="false">A 재상승</button>
+            <button data-id="B" aria-pressed="true">B 주 시나리오</button>
+            <button data-id="C" aria-pressed="false">C 되돌림</button>
+          </div>
+        </div>
+
+        <div class="stage-grid">
+          <div class="col-left">
+          <div class="chart">
+          <svg viewBox="0 0 760 380" role="img" aria-label="현재에서 세 갈래로 갈라지는 전체 흐름과 재생 위치">
+            <defs>
+              <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#142231" flood-opacity="0.14"/></filter>
+            </defs>
+            <!-- grid + 관찰구간 라벨(숫자 비노출) -->
+            <g opacity="0.9">
+              <line x1="120" y1="70" x2="724" y2="70" class="grid"/>
+              <line x1="120" y1="170" x2="724" y2="170" class="grid"/>
+              <line x1="120" y1="270" x2="724" y2="270" class="grid"/>
+              <text x="12" y="74" class="axis-label">자금 상단 밴드</text>
+              <text x="12" y="174" class="axis-label">단기 상단~중간</text>
+              <text x="12" y="274" class="axis-label">단기 하단</text>
+            </g>
+            <!-- 과거(현재까지) -->
+            <path id="pastPath" class="branch" d="M120 250 C150 232 175 214 200 206 C235 194 262 182 290 170" stroke="#9AA7B2" stroke-width="3.5" opacity="0.7"/>
+            <!-- 현재 divider -->
+            <line x1="290" y1="46" x2="290" y2="338" stroke="#C8D0D8" stroke-width="1" stroke-dasharray="2 6"/>
+            <text x="296" y="60" class="axis-label grid-skip" fill="#8A96A4">현재 → 미래</text>
+            <circle cx="290" cy="170" r="6" fill="#1C2430"/>
+            <!-- 세 갈래 (전체 항상 표시) -->
+            <path id="brA" class="branch" d="M290 170 C360 150 440 120 530 100 C600 85 670 78 724 74" stroke="#2C7C8A" stroke-width="5"/>
+            <path id="brB" class="branch" d="M290 170 C350 150 410 138 470 150 C545 165 620 210 724 250" stroke="#BE7A2A" stroke-width="8"/>
+            <path id="brC" class="branch" d="M290 170 C355 185 415 205 480 240 C560 282 645 312 724 330" stroke="#565C94" stroke-width="5"/>
+            <!-- 진행(지나온 길) — 현재 갈래만 -->
+            <path id="prog" class="progress" d="" stroke="#BE7A2A" stroke-width="9"/>
+            <!-- 끝 라벨 -->
+            <text id="endA" x="722" y="64" text-anchor="end" class="axis-label" fill="#2C7C8A" font-weight="600">A · 재상승 30%</text>
+            <text id="endB" x="722" y="242" text-anchor="end" class="axis-label" fill="#BE7A2A" font-weight="600">B · 주 시나리오 40%</text>
+            <text id="endC" x="722" y="348" text-anchor="end" class="axis-label" fill="#565C94" font-weight="600">C · 되돌림 30%</text>
+            <!-- 재생 헤드 -->
+            <g id="head" class="head" style="opacity:0">
+              <circle r="13" fill="#BE7A2A" opacity="0.18"/>
+              <circle r="7" fill="#BE7A2A"/>
+              <circle r="3" fill="#fff"/>
+            </g>
+          </svg>
+          <div class="chart-cap">
+            <span class="cc-phase" id="ccPhase">현재</span>
+            <div class="cc-text" id="ccText">상단 검증 구간 — 동력과 과밀이 공존하는 자리</div>
+          </div>
+        </div>
+
+        <div class="scrub">
+          <div class="scrub-track" id="scrubTrack" role="slider" tabindex="0"
+            aria-label="시나리오 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="scrub-rail"></div>
+            <div class="scrub-fill" id="scrubFill"></div>
+            <div class="scrub-ticks" id="scrubTicks"></div>
+            <div class="scrub-knob" id="scrubKnob" style="left:0%"></div>
+          </div>
+          <div class="phase-labels" id="phaseLabels"></div>
+        </div>
+
+          </div><!-- /col-left -->
+          <div class="col-right">
+          <div class="readout">
+          <div class="ro-line" id="roLine"></div>
+          <div class="mypos">
+            <span class="mypos-lab">내 위치에서는</span>
+            <div class="pos-seg" role="group" aria-label="내 위치 선택">
+              <button data-id="new" aria-pressed="true">미보유</button>
+              <button data-id="profit" aria-pressed="false">수익</button>
+              <button data-id="loss" aria-pressed="false">손실</button>
+            </div>
+          </div>
+          <div class="pos-resp new" id="posResp"></div>
+        </div>
+          </div><!-- /col-right -->
+        </div><!-- /stage-grid -->
+      </div>
+
+      <div class="controls">
+        <div class="hint">재생하면 흐름이 따라갑니다. 정지한 뒤 타임라인을 잡아끌면(스크럽) 원하는 국면으로 바로 이동할 수 있습니다.</div>
+        <div class="cgroup">
+          <button class="tiny" id="playPause">정지</button>
+          <button class="tiny" id="restart">처음부터</button>
+        </div>
+      </div>
+      <p class="disc">이 체험은 미래 가격을 예측하지 않습니다. 곡선은 방향의 은유이며, 가격대는 매수·손절가가 아니라 관찰 구간입니다.
+      같은 자리도 보유 위치에 따라 판단 기준이 다릅니다. 투자 판단과 결과의 책임은 투자자 본인에게 있습니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== WAVE MODAL ===================== -->
+<div class="modal" id="waveModal" role="dialog" aria-modal="true" aria-labelledby="waveTitle"><div class="modal-card"><button class="modal-close" id="closeWave" aria-label="닫기">×</button><h3 id="waveTitle">ATMAN Wave Chart</h3><div class="msub">HL만도(204320) · 대·중·소파동 상단 밴드와 현재 위치</div><div class="wavewrap"><iframe id="waveFrame" title="ATMAN Wave Chart" loading="lazy" data-src="https://ljhhh118.github.io/atmanreport/atman_wave_chart_shell.html?dataUrl=KrReports/20260616/chart_204320_20260616.txt"></iframe></div><p class="wavelegend">기준 일봉부터 대·중·소파동까지, 현재 흐름의 구조를 차트로 확인합니다.</p></div></div>
+
+<script>
+  // modal
+  (function(){
+    var modal=document.getElementById('waveModal');
+    var open=document.getElementById('openWave');
+    var openTop=document.getElementById('openWaveTop');
+    var close=document.getElementById('closeWave');
+    var frame=document.getElementById('waveFrame');
+    var lastFocus=null;
+    if(!modal){return;}
+    function show(trigger){
+      lastFocus=trigger||open;
+      if(frame && !frame.src){frame.src=frame.getAttribute('data-src');}
+      modal.classList.add('open'); close.focus();
+    }
+    function hide(){modal.classList.remove('open'); if(lastFocus)lastFocus.focus();}
+    if(open){open.addEventListener('click',function(){show(open);});}
+    if(openTop){openTop.addEventListener('click',function(){show(openTop);});}
+    close.addEventListener('click',hide);
+    modal.addEventListener('click',function(e){if(e.target===modal)hide();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});
+  })();
+
+  // scroll reveal (폴백 안전: JS 없으면 CSS 기본값으로 항상 보임)
+  (function(){
+    var els=document.querySelectorAll('.rv');
+    if(!els.length){return;}
+    document.body.classList.add('reveal');
+    function showAll(){var i;for(i=0;i<els.length;i++){els[i].classList.add('in');}}
+    // 모션 최소화 선호 시 즉시 표시
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches){showAll();return;}
+    if(!('IntersectionObserver' in window)){showAll();return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in'); io.unobserve(en.target);}});
+    },{threshold:0.12});
+    var i;for(i=0;i<els.length;i++){io.observe(els[i]);}
+    // 안전망: 2.5초 뒤에도 안 풀린 섹션은 강제로 표시(뷰어가 스크롤/관측 안 할 때)
+    setTimeout(showAll,2500);
+  })();
+
+  // ===== 시나리오 시뮬레이터(내장) =====
+  (function(){
+  "use strict";
+  // ── 데이터 (렌더러는 display 에서 주입) ── 각 갈래의 국면 phase 들 (t: 0~1 위치)
+  var BRANCH={"A":{"color":"#2C7C8A","pathId":"brA","label":"자금 재유입으로 추세 지속","prob":35.0,"phases":[{"t":0.0,"phase":"현재","text":"과열 극단 검증 구간","line":"거래량이 다시 크게 늘며 자금이 상단 밴드 위에서 유지되고, 가격이 7만원 부근 위에서 안정되면 살아나고, 거래량이 급감하며 그 자리를 내주면 약해집니다","pos":{"new":{"view":"자금 재유입 확인 전까지 추가 확인 필요 — 확인 후 소량 검토 가능"},"profit":{"view":"보유 지속, 자금 상단 밴드 이탈 시 수익 보호 관점 강화"},"loss":{"view":"추가 노출보다 자금 재유입 확인 후 판단 — 확인 전 추가 진입 자제"}}},{"t":1.0,"phase":"도착 · A","text":"자금 재유입으로 추세 지속","line":"→ 자금 재유입이 확인되면 추세 지속 시나리오의 신뢰도가 높아지는 구간","pos":{"new":{"view":"자금 재유입 확인 전까지 추가 확인 필요 — 확인 후 소량 검토 가능"},"profit":{"view":"보유 지속, 자금 상단 밴드 이탈 시 수익 보호 관점 강화"},"loss":{"view":"추가 노출보다 자금 재유입 확인 후 판단 — 확인 전 추가 진입 자제"}}}]},"B":{"color":"#BE7A2A","pathId":"brB","label":"단기 과열 소화 후 횡보 또는 완만한 조정","prob":40.0,"phases":[{"t":0.0,"phase":"현재","text":"과열 극단 검증 구간","line":"가격이 7만원 부근에서 버티나 거래량이 급감하며 자금 확산이 없을 때","pos":{"new":{"view":"추가 확인 필요 — 과열 소화 확인 후 재진입 기회 탐색"},"profit":{"view":"일부 수익 보호 검토, 잔여 관찰 가능"},"loss":{"view":"추가 손실 확대 방지 우선 — 본전 회복 시 비중 조절 검토"}}},{"t":1.0,"phase":"도착 · B","text":"단기 과열 소화 후 횡보 또는 완만한 조정","line":"→ 단기 과열 소화 후 재진입 기회를 탐색하는 구간","pos":{"new":{"view":"추가 확인 필요 — 과열 소화 확인 후 재진입 기회 탐색"},"profit":{"view":"일부 수익 보호 검토, 잔여 관찰 가능"},"loss":{"view":"추가 손실 확대 방지 우선 — 본전 회복 시 비중 조절 검토"}}}]},"C":{"color":"#565C94","pathId":"brC","label":"자금 이탈 후 급격한 되돌림","prob":25.0,"phases":[{"t":0.0,"phase":"현재","text":"과열 극단 검증 구간","line":"자금이 상단 밴드를 이탈하고 가격이 단기 중간 구간(6만원 초반 부근) 아래로 밀리면","pos":{"new":{"view":"신규 추가 확인 필요 — 이 갈래 발동 시 관망"},"profit":{"view":"수익 보전 전환 검토 — 자금 상단 밴드 이탈 확인 시 비중 축소"},"loss":{"view":"손실 확대 방지 우선 — 소파동 중심선(6만원 부근) 이탈 확인 시 보유 리스크 재점검 (밀집 ~4주 참조)"}}},{"t":1.0,"phase":"도착 · C","text":"자금 이탈 후 급격한 되돌림","line":"→ 자금 상단 밴드 이탈이 확인되면 과거 털림 패턴의 재현 신호로 읽히는 구간","pos":{"new":{"view":"신규 추가 확인 필요 — 이 갈래 발동 시 관망"},"profit":{"view":"수익 보전 전환 검토 — 자금 상단 밴드 이탈 확인 시 비중 축소"},"loss":{"view":"손실 확대 방지 우선 — 소파동 중심선(6만원 부근) 이탈 확인 시 보유 리스크 재점검 (밀집 ~4주 참조)"}}}]}};
+  var POS={ new:{tag:"미보유"}, profit:{tag:"수익 보유"}, loss:{tag:"손실 보유"} };
+  var DURATION=7000; // 전체 한 갈래를 따라가는 총 시간
+
+  function $(id){ return document.getElementById(id); }
+  function reduced(){ return window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches; }
+  function icon(p){
+    if(p==="new") return '<svg width="12" height="12" viewBox="0 0 14 14"><circle cx="6" cy="6" r="4" fill="none" stroke="#6B7785" stroke-width="1.5"/><line x1="9" y1="9" x2="12.5" y2="12.5" stroke="#6B7785" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    if(p==="profit") return '<svg width="13" height="13" viewBox="0 0 15 15"><path d="M2 9.5 L6 5.5 L8.5 8 L13 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3 L13 6 M13 3 L10 3" fill="none" stroke="#4F8A6B" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    return '<svg width="12" height="13" viewBox="0 0 14 15"><path d="M7 1.5 L12 3.5 L12 7.5 C12 10.5 9.8 12.5 7 13.5 C4.2 12.5 2 10.5 2 7.5 L2 3.5 Z" fill="none" stroke="#B07A45" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+  }
+
+  var modal=$("scenModal"), head=$("head"), prog=$("prog"), knob=$("scrubKnob"), fill=$("scrubFill");
+  var curBranch="B", curPos="new", progressLen=1, pathEl=null, raf=null, startTs=0, pausedAt=0, playing=false;
+
+  function setBranchPaths(){
+    // 선택 갈래 강조, 나머지 dim + 진행 path를 선택 갈래로 복제
+    ["A","B","C"].forEach(function(id){
+      var el=$( BRANCH[id].pathId );
+      if(id===curBranch){ el.classList.remove("dim"); el.setAttribute("stroke-width", id==="B"?8:6); }
+      else { el.classList.add("dim"); }
+    });
+    pathEl=$( BRANCH[curBranch].pathId );
+    var d=pathEl.getAttribute("d");
+    prog.setAttribute("d", d);
+    prog.setAttribute("stroke", BRANCH[curBranch].color);
+    progressLen = prog.getTotalLength ? prog.getTotalLength() : 600;
+    if(!progressLen || isNaN(progressLen)) progressLen=600;
+    prog.style.setProperty("--len", progressLen);
+    // 헤드 색
+    head.querySelectorAll("circle").forEach(function(c,i){ if(i<2) c.setAttribute("fill", BRANCH[curBranch].color); });
+    head.style.filter="drop-shadow(0 0 6px "+BRANCH[curBranch].color+"88)";
+    // 틱(국면 위치) 다시
+    buildTicks();
+  }
+  function buildTicks(){
+    var ph=BRANCH[curBranch].phases, ticks=$("scrubTicks"), labels=$("phaseLabels");
+    ticks.innerHTML=""; labels.innerHTML="";
+    for(var i=0;i<ph.length;i++){
+      var tk=document.createElement("div"); tk.className="scrub-tick"; tk.style.left=(ph[i].t*100)+"%"; ticks.appendChild(tk);
+      var lb=document.createElement("span"); lb.textContent=ph[i].phase.replace(" · "+curBranch,""); labels.appendChild(lb);
+    }
+  }
+  function phaseAt(t){
+    var ph=BRANCH[curBranch].phases, cur=ph[0];
+    for(var i=0;i<ph.length;i++){ if(t+0.0001>=ph[i].t) cur=ph[i]; }
+    return cur;
+  }
+  function renderPos(p){
+    var box=$("posResp"); box.className="pos-resp "+curPos;
+    var d=(p&&p.pos)?p.pos[curPos]:null;
+    if(!d){ box.innerHTML=""; return; }
+    var html='<div class="pr-h"><span class="pr-ic">'+icon(curPos)+'</span><span class="pr-tag">'+POS[curPos].tag+'</span></div>';
+    html+='<div class="pr-view">'+(d.view||"")+'</div>';
+    var chk=d.chk||[], wat=d.wat||[], i;
+    if(chk.length+wat.length>0){
+      html+='<div class="pr-do"><div class="pr-do-lab">지금 할 일</div><ul class="pr-list">';
+      for(i=0;i<chk.length;i++){ html+='<li class="chk"><span class="mk">\u2713</span>'+chk[i]+'</li>'; }
+      for(i=0;i<wat.length;i++){ html+='<li class="wat"><span class="mk">\u26d1</span>'+wat[i]+'</li>'; }
+      html+='</ul></div>';
+    }
+    box.innerHTML=html;
+  }
+  function applyT(t){
+    t=Math.max(0,Math.min(1,t));
+    // 진행 path
+    prog.style.transition="none";
+    prog.style.strokeDashoffset = (progressLen*(1-t));
+    // 헤드 위치
+    var pt = pathEl.getPointAtLength ? pathEl.getPointAtLength(progressLen*t) : null;
+    if(pt){ head.setAttribute("transform","translate("+pt.x+","+pt.y+")"); head.style.opacity=1; }
+    // 스크럽 UI
+    knob.style.left=(t*100)+"%"; fill.style.width=(t*100)+"%";
+    var ticks=$("scrubTicks").children, ph=BRANCH[curBranch].phases;
+    for(var i=0;i<ticks.length;i++){ ticks[i].classList.toggle("passed", t+0.0001>=ph[i].t); }
+    $("scrubTrack").setAttribute("aria-valuenow", Math.round(t*100));
+    // 캡션/한줄/위치
+    var p=phaseAt(t);
+    $("ccPhase").textContent=p.phase; $("ccPhase").style.setProperty("--cc", BRANCH[curBranch].color);
+    var cc=$("ccText"); cc.style.opacity=0; setTimeout(function(){ cc.textContent=p.text; cc.style.opacity=1; },120);
+    $("roLine").innerHTML=p.line;
+    renderPos(p);
+  }
+
+  var curT=0;
+  function tick(ts){
+    if(!startTs) startTs=ts;
+    var elapsed=ts-startTs + pausedAt;
+    var t=elapsed/DURATION;
+    if(t>=1){ t=1; applyT(1); stopPlay(true); return; }
+    applyT(t); curT=t;
+    raf=requestAnimationFrame(tick);
+  }
+  function startPlay(fromZero){
+    if(fromZero){ curT=0; pausedAt=0; }
+    else { pausedAt=curT*DURATION; }
+    if(curT>=1){ curT=0; pausedAt=0; }
+    playing=true; startTs=0; $("playPause").textContent="정지";
+    if(reduced()){ applyT(1); stopPlay(true); return; }
+    cancelAnimationFrame(raf); raf=requestAnimationFrame(tick);
+  }
+  function stopPlay(ended){
+    playing=false; cancelAnimationFrame(raf); $("playPause").textContent= ended?"다시 재생":"재생";
+  }
+
+  function selectBranch(id){
+    curBranch=id; var btns=document.querySelectorAll(".branch-seg button");
+    for(var i=0;i<btns.length;i++){ btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-id")===id?"true":"false"); }
+    setBranchPaths(); applyT(0); curT=0; pausedAt=0; startPlay(true);
+  }
+  function open(){ modal.classList.add("open"); setBranchPaths(); selectBranch("B"); $("closeScen").focus(); }
+  function hide(){ modal.classList.remove("open"); stopPlay(false); }
+
+  // 스크럽 상호작용
+  function scrubTo(clientX){
+    var tr=$("scrubTrack").getBoundingClientRect();
+    var t=(clientX-tr.left)/tr.width; stopPlay(false); applyT(t); curT=Math.max(0,Math.min(1,t));
+  }
+  var dragging=false;
+  $("scrubTrack").addEventListener("mousedown", function(e){ dragging=true; scrubTo(e.clientX); });
+  document.addEventListener("mousemove", function(e){ if(dragging) scrubTo(e.clientX); });
+  document.addEventListener("mouseup", function(){ dragging=false; });
+  $("scrubTrack").addEventListener("touchstart", function(e){ scrubTo(e.touches[0].clientX); }, {passive:true});
+  $("scrubTrack").addEventListener("touchmove", function(e){ scrubTo(e.touches[0].clientX); }, {passive:true});
+  $("scrubTrack").addEventListener("keydown", function(e){
+    if(e.key==="ArrowRight"){ stopPlay(false); curT=Math.min(1,curT+0.05); applyT(curT); }
+    else if(e.key==="ArrowLeft"){ stopPlay(false); curT=Math.max(0,curT-0.05); applyT(curT); }
+  });
+
+  var _trg=document.querySelectorAll(".scen-try,.scen-go");
+  for(var _i=0;_i<_trg.length;_i++){ (function(b){ b.addEventListener("click", function(){ var sc=b.getAttribute("data-scen"); open(); if(sc==="A"||sc==="B"||sc==="C"){ selectBranch(sc); } }); })(_trg[_i]); }
+  $("closeScen").addEventListener("click", hide);
+  modal.addEventListener("click", function(e){ if(e.target===modal) hide(); });
+  document.addEventListener("keydown", function(e){ if(modal.classList.contains("open") && e.key==="Escape") hide(); });
+  $("playPause").addEventListener("click", function(){ if(playing) stopPlay(false); else startPlay(false); });
+  $("restart").addEventListener("click", function(){ applyT(0); startPlay(true); });
+  document.querySelector(".branch-seg").addEventListener("click", function(e){ var b=e.target.closest("button"); if(b) selectBranch(b.getAttribute("data-id")); });
+  document.querySelector(".pos-seg").addEventListener("click", function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    var btns=this.querySelectorAll("button"); for(var i=0;i<btns.length;i++){ btns[i].setAttribute("aria-pressed", btns[i]===b?"true":"false"); }
+    curPos=b.getAttribute("data-id"); renderPos(phaseAt(curT));
+  });
+
+  // 초기(모달 닫힌 상태) — 좌표 계산 실패해도 무시, open 시 재계산
+  function applyLabels(){
+    var tabs=document.querySelectorAll(".branch-seg button");
+    for(var i=0;i<tabs.length;i++){
+      var id=tabs[i].getAttribute("data-id"), b=BRANCH[id];
+      if(b&&b.label){ tabs[i].textContent=id+" "+b.label; }
+    }
+    ["A","B","C"].forEach(function(id){
+      var el=$("end"+id), b=BRANCH[id];
+      if(el&&b){ el.textContent=id+" · "+(b.label||"")+(b.prob!=null?("  "+b.prob+"%"):""); }
+    });
+  }
+  try{ applyLabels(); setBranchPaths(); applyT(0); }catch(e){}
+})();
+
+</script>
+</body>
+</html>
