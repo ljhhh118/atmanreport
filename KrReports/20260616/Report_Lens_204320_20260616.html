@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ATMAN LENS · HL만도(204320)</title>
 <meta property="og:title" content="ATMAN LENS · HL만도(204320)">
-<meta property="og:description" content="양면 · 과열 극단 검증 구간">
+<meta property="og:description" content="반등 실체 확인 · 추격보다 자금 재유입 확인">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
@@ -507,6 +507,12 @@
   /* responsive */
   @media (max-width:760px){
     body{font-size:15px;}
+    .hero-position{margin:10px 16px 0;}
+    .hero-position .hp-head{padding:10px 12px 8px;}
+    .hero-position .hp-one{display:none;}
+    .hero-position .hp-grid{grid-template-columns:1fr;}
+    .hero-position .hp-item{padding:10px 12px;}
+    .hero-position .hp-text{font-size:13.5px; line-height:1.45;}
     .mh-inner{padding:26px 22px 24px;}
     .brandrow{margin-bottom:16px; gap:10px;}
     .mh-title{margin:10px 0 5px;}
@@ -673,6 +679,19 @@
   .hero-conf .steps{display:flex; gap:3px;} .hero-conf .s{width:18px; height:5px; border-radius:3px; background:var(--hair);}
   .hero-conf .s.on{background:linear-gradient(135deg,var(--sector),var(--tensor),var(--pattern));}
   .hero-conf b{color:var(--ink);}
+  .hero-position{margin:10px 24px 2px; border:1px solid var(--hair); border-radius:12px; overflow:hidden; background:linear-gradient(180deg,#FFFFFF,#F8FAFB);}
+  .hero-position .hp-head{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 15px 9px; border-bottom:1px solid var(--hair-soft);}
+  .hero-position .hp-k{font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:0.16em; color:var(--gold); text-transform:uppercase;}
+  .hero-position .hp-one{font-size:11.5px; color:var(--text-soft); font-weight:600;}
+  .hero-position .hp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hair-soft);}
+  .hero-position .hp-item{background:#fff; padding:12px 13px 13px; display:flex; gap:10px; align-items:flex-start;}
+  .hero-position .hp-dot{flex:none; width:9px; height:9px; border-radius:50%; margin-top:6px; background:var(--hp);}
+  .hero-position .hp-item.new{--hp:#6B7785;}
+  .hero-position .hp-item.profit{--hp:#4F8A6B;}
+  .hero-position .hp-item.loss{--hp:#B07A45;}
+  .hero-position .hp-label{font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:0.05em; color:var(--hp); text-transform:uppercase; margin-bottom:4px;}
+  .hero-position .hp-text{font-size:12.6px; line-height:1.52; color:var(--text); font-weight:600; letter-spacing:-0.015em;}
+  .hero-position .hp-text b{color:var(--hp); font-weight:800;}
 
   /* ===== 인쇄 (PC) ===== */
   @media print{
@@ -687,6 +706,38 @@
   }
 
   @media (max-width:460px){ .dt-pole .pbig{font-size:18px;} }
+
+
+  /* ===== ATMAN FIRST VIEW v2 — 첫 화면 핵심판독 강화 ===== */
+  .atman-firstview{margin:16px 24px 6px; border:1px solid rgba(169,130,31,0.38); border-radius:14px; overflow:hidden; background:linear-gradient(180deg,#FFFDF8,#FFFFFF); box-shadow:0 10px 28px -20px rgba(20,34,49,0.45);}
+  .af-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 18px 12px; background:linear-gradient(120deg,#172634,#213746); color:#F2F6F8;}
+  .af-k{font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; letter-spacing:0.18em; color:#E3BC7E; text-transform:uppercase;}
+  .af-main{font-family:'Noto Serif KR',serif; font-size:18px; font-weight:700; line-height:1.35; color:#fff;}
+  .af-main b{color:#E8BF84; font-weight:800;}
+  .af-body{display:grid; grid-template-columns:1.1fr 1fr; gap:0;}
+  .af-verdict{padding:17px 18px 16px; border-right:1px solid var(--hair-soft);}
+  .af-verdict .af-line{font-size:14.5px; line-height:1.65; color:var(--text); font-weight:600;}
+  .af-verdict .af-line b{color:var(--pattern); font-weight:800;}
+  .af-verdict .af-sub{margin-top:9px; font-size:12.5px; line-height:1.55; color:var(--text-soft);}
+  .af-position{display:grid; grid-template-columns:1fr;}
+  .af-row{display:flex; gap:10px; align-items:flex-start; padding:12px 15px; border-bottom:1px solid var(--hair-soft);}
+  .af-row:last-child{border-bottom:0;}
+  .af-dot{flex:none; width:9px; height:9px; border-radius:50%; margin-top:6px; background:var(--afc);}
+  .af-row.new{--afc:#6B7785;} .af-row.profit{--afc:#4F8A6B;} .af-row.loss{--afc:#B07A45;}
+  .af-label{font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:800; letter-spacing:0.06em; color:var(--afc); text-transform:uppercase; margin-bottom:2px;}
+  .af-text{font-size:13px; line-height:1.45; color:var(--text); font-weight:650;}
+  .af-text b{color:var(--afc); font-weight:850;}
+  @media (max-width:760px){
+    .atman-firstview{margin:12px 16px 4px;}
+    .af-head{align-items:flex-start; flex-direction:column; gap:5px; padding:13px 15px 11px;}
+    .af-main{font-size:16px;}
+    .af-body{grid-template-columns:1fr;}
+    .af-verdict{border-right:0; border-bottom:1px solid var(--hair-soft); padding:14px 15px;}
+    .af-verdict .af-line{font-size:14px;}
+    .af-row{padding:11px 14px;}
+    .af-text{font-size:13.2px;}
+  }
+
 </style>
 </head>
 <body>
@@ -721,7 +772,7 @@
   </div>
 </header>
 
-<main class="wrap"><section class="rv hero-sec" id="hero"><div class="hero-card"><div class="hero-headline"><div class="hl-k">현재 판단</div><div class="hl-q">반등의 실체는 확인됐다.<br><span class="turn">그러나 지금은 추격이 아니라 자금 재유입을 확인하는 구간이다</span></div></div><div class="king-pivot"><div class="kp-k">오늘 볼 단 하나</div><div class="kp-main">지금의 질문은 &#39;더 오를까&#39;가 아니라, &#39;다음 봉에서 자금이 다시 강하게 유입되는가&#39;다</div><div class="kp-sub">자금이 상단 밴드 위에서 재유입되면 추세 지속(A) 쪽으로, 거래량이 급감하며 자금이 식으면 과열 소화(B) 또는 급격한 되돌림(C) 쪽으로 갈린다</div><div class="kp-note">⧈ 세 시나리오가 팽팽하다 — 그래서 예측이 아니라 이 분기점이 핵심이다</div></div><div class="equal"><div class="equal-intro"><span class="ei-t">세 시나리오 · 팽팽함</span><span class="ei-note">1·2위 차 <b>5%p</b> — 지배적 시나리오 없음</span></div><div class="three"><div class="br a"><div class="br-h"><div class="br-id">A</div><div class="br-pct">35%</div></div><div class="br-nm">자금 재유입으로 추세 지속</div><div class="br-bar"><i style="width:88%"></i></div></div><div class="br b top"><div class="br-h"><div class="br-id">B<span class="br-most">최다</span></div><div class="br-pct">40%</div></div><div class="br-nm">단기 과열 소화 후 횡보 또는 완만한 조정</div><div class="br-bar"><i style="width:100%"></i></div></div><div class="br c"><div class="br-h"><div class="br-id">C</div><div class="br-pct">25%</div></div><div class="br-nm">자금 이탈 후 급격한 되돌림</div><div class="br-bar"><i style="width:62%"></i></div></div></div></div><div class="hero-cta"><button class="scen-try hcta-primary" data-scen="" aria-haspopup="dialog">시나리오별 대응 보기 →</button><a class="hcta-ghost" href="#scenario-detail">분석 근거 보기 ↓</a></div><div class="hero-conf">종합 신뢰도 <span class="steps"><span class="s on"></span><span class="s"></span><span class="s"></span></span> <b>Low</b> · 유효 기간 <b>단기</b></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">01</span><div><div class="sec-title">한 줄 판독</div></div></div><div class="lead"><span class="status"><span class="sdot"></span>양면 · 과열 극단 검증 구간</span><p>6월 11~15일 연속 대양봉으로 강하게 반등했고, 역사적 최대 거래량과 함께 자금·가격이 동시에 상단을 돌파했습니다. 반등의 실체는 진짜입니다. 그러나 <b>같은 거래량 폭증이 &#39;추세 지속의 동력&#39;으로도 &#39;상단 과밀의 실체&#39;로도 읽히는 거울 충돌 자리</b>이며, 과거 동일 패턴에서 두 차례 실제 털림이 확인됐습니다. 다음 봉 자금 흐름이 이 자리의 방향을 가르는 유일한 변별자입니다.</p></div></section><section class="rv"><div class="sec-head"><span class="sec-num">02</span><div><div class="sec-title">핵심 요약</div><div class="sec-kicker">섹터라는 토대 위에 세 진단 축이 선다 — 현재 상태를 빠르게 읽는 카드입니다.</div></div></div><div class="dash2"><div class="t3"><div class="t3-pole pat"><div class="plab">패턴 · 동력</div><div class="pbig">강반등 동력</div></div><div class="t3-op">⇄</div><div class="t3-pole ten"><div class="plab">텐서 · 관계</div><div class="pbig">자금 선행 구조 살아있음 · 미검증</div></div><div class="t3-op">⇄</div><div class="t3-pole cro"><div class="plab">밀집 · 무게</div><div class="pbig">상단 과밀</div></div></div><div class="t3-status"><span class="slab">현재 자리</span><span class="sval">과열 극단 검증 구간</span></div><div class="axes"><div class="axis pat"><div class="alab">패턴<small>반등 강도</small></div><div class="abar"><i style="width:62%"></i></div><div class="aval">강반등 실재 · 양면<small>완성이나 과열 극단 동시 형성</small></div></div><div class="axis ten"><div class="alab">텐서<small>관계</small></div><div class="abar"><i style="width:62%"></i></div><div class="aval">자금 선행 구조 살아있음 · 미검증<small>cx001 배치 5회 전량 neutral — 검증 없음</small></div></div><div class="axis cro"><div class="alab">밀집<small>과밀도</small></div><div class="abar"><i style="width:86%"></i></div><div class="aval">역사적 최대 상단 과밀 · 거부<small>과거 2회 동일 패턴 후 실제 털림 확인</small></div></div></div><div class="ground-note">↓ 위 세 축은 모두 아래 섹터 전제 위에서 읽힙니다 — 전제가 바뀌면 세 축의 의미도 바뀝니다</div><div class="ground"><div class="ground-inner"><span class="gicon"><svg width="15" height="15" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 10 Q5 4 7 7 T12 4" fill="none" stroke="#2C7C8A" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="gtext"><div class="glab">섹터 · 전제 배경 (토대)</div><div class="gval">우호적이나 조건부</div><div class="gsub">자동차부품 초입 물살 받침 — 집중유입 환경으로 신중</div></div><div class="gmeter"><div class="gm-bar"><i style="width:62%"></i></div><div class="gm-cap">조건부</div></div></div></div><div class="dash-conf"><span class="clab">종합 신뢰도</span><span class="conf-steps"><span class="cstep on"></span><span class="cstep"></span><span class="cstep"></span></span><span class="cval">Low</span><span class="conf-div"></span><span class="ckv">유효 기간 : <b>단기</b></span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">03</span><div><div class="sec-title">왜 이 종목을 보는가</div></div></div><p class="prose">자동차부품 군집이 오늘 거래대금 급증으로 신규 합류하며 HL만도가 그 선두에 섰습니다. 섹터 물살은 아직 초입이나, <b>이 종목은 이미 단기·중기 과열 극단에 닿아 섹터보다 먼저 달린 상태</b>입니다. 섹터 물살이 지속되면 받쳐주나, 물살이 빠지면 먼저 꺾일 구조입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">04</span><div><div class="sec-title">세 관점의 수렴</div><div class="sec-kicker">섹터 전제를 토대로, 종목을 보는 세 진단(패턴·텐서·밀집)이 하나의 판독으로 모입니다.</div></div></div><div class="figure">      <svg class="conv-d" viewBox="0 0 800 340" role="img" aria-label="종목 종합 판독 수렴 구조 — 전제·진단·판독 위계">
+<main class="wrap"><section class="rv hero-sec" id="hero"><div class="hero-card"><div class="hero-headline"><div class="hl-k">현재 판단</div><div class="hl-q">반등의 실체는 확인됐다.<br><span class="turn">그러나 지금은 추격이 아니라 자금 재유입을 확인하는 구간이다</span></div></div><div class="atman-firstview"><div class="af-head"><div class="af-k">ATMAN 핵심 판독</div><div class="af-main"><b>추격 판단이 아니라, 다음 봉 자금 재유입 검증</b>이 오늘의 핵심입니다</div></div><div class="af-body"><div class="af-verdict"><div class="af-line">강반등의 실체는 확인됐지만, 역사적 최대 거래량은 <b>추세 동력</b>이면서 동시에 <b>상단 과밀</b>입니다.</div><div class="af-sub">따라서 첫 판단은 “더 오를까?”가 아니라 “자금이 다시 들어오는가?”입니다. 재유입 없으면 B/C 쪽으로 기웁니다.</div></div><div class="af-position"><div class="af-row new"><span class="af-dot"></span><div><div class="af-label">신규 진입자</div><div class="af-text"><b>추격 보류.</b> 자금 재유입 확인 전까지 대기</div></div></div><div class="af-row profit"><span class="af-dot"></span><div><div class="af-label">수익 보유자</div><div class="af-text">A는 열려 있으나 <b>자금 이탈 시 수익 보호</b></div></div></div><div class="af-row loss"><span class="af-dot"></span><div><div class="af-label">손실 보유자</div><div class="af-text"><b>물타기보다 손실 확대 방지</b> 우선</div></div></div></div></div></div><div class="king-pivot"><div class="kp-k">오늘 볼 단 하나</div><div class="kp-main">지금의 질문은 &#39;더 오를까&#39;가 아니라, &#39;다음 봉에서 자금이 다시 강하게 유입되는가&#39;다</div><div class="kp-sub">자금이 상단 밴드 위에서 재유입되면 추세 지속(A) 쪽으로, 거래량이 급감하며 자금이 식으면 과열 소화(B) 또는 급격한 되돌림(C) 쪽으로 갈린다</div><div class="kp-note">⧈ 세 시나리오가 팽팽하다 — 그래서 예측이 아니라 이 분기점이 핵심이다</div></div><div class="equal"><div class="equal-intro"><span class="ei-t">세 시나리오 · 팽팽함</span><span class="ei-note">1·2위 차 <b>5%p</b> — 지배적 시나리오 없음</span></div><div class="three"><div class="br a"><div class="br-h"><div class="br-id">A</div><div class="br-pct">35%</div></div><div class="br-nm">자금 재유입으로 추세 지속</div><div class="br-bar"><i style="width:88%"></i></div></div><div class="br b top"><div class="br-h"><div class="br-id">B<span class="br-most">최다</span></div><div class="br-pct">40%</div></div><div class="br-nm">단기 과열 소화 후 횡보 또는 완만한 조정</div><div class="br-bar"><i style="width:100%"></i></div></div><div class="br c"><div class="br-h"><div class="br-id">C</div><div class="br-pct">25%</div></div><div class="br-nm">자금 이탈 후 급격한 되돌림</div><div class="br-bar"><i style="width:62%"></i></div></div></div></div><div class="hero-cta"><button class="scen-try hcta-primary" data-scen="" aria-haspopup="dialog">시나리오별 대응 보기 →</button><a class="hcta-ghost" href="#scenario-detail">분석 근거 보기 ↓</a></div><div class="hero-conf">종합 신뢰도 <span class="steps"><span class="s on"></span><span class="s"></span><span class="s"></span></span> <b>Low</b> · 유효 기간 <b>단기</b></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">01</span><div><div class="sec-title">한 줄 판독</div></div></div><div class="lead"><span class="status"><span class="sdot"></span>양면 · 과열 극단 검증 구간</span><p>6월 11~15일 연속 대양봉으로 강하게 반등했고, 역사적 최대 거래량과 함께 자금·가격이 동시에 상단을 돌파했습니다. 반등의 실체는 진짜입니다. 그러나 <b>같은 거래량 폭증이 &#39;추세 지속의 동력&#39;으로도 &#39;상단 과밀의 실체&#39;로도 읽히는 거울 충돌 자리</b>이며, 과거 동일 패턴에서 두 차례 실제 털림이 확인됐습니다. 다음 봉 자금 흐름이 이 자리의 방향을 가르는 유일한 변별자입니다.</p></div></section><section class="rv"><div class="sec-head"><span class="sec-num">02</span><div><div class="sec-title">핵심 요약</div><div class="sec-kicker">섹터라는 토대 위에 세 진단 축이 선다 — 현재 상태를 빠르게 읽는 카드입니다.</div></div></div><div class="dash2"><div class="t3"><div class="t3-pole pat"><div class="plab">패턴 · 동력</div><div class="pbig">강반등 동력</div></div><div class="t3-op">⇄</div><div class="t3-pole ten"><div class="plab">텐서 · 관계</div><div class="pbig">자금 선행 구조 살아있음 · 미검증</div></div><div class="t3-op">⇄</div><div class="t3-pole cro"><div class="plab">밀집 · 무게</div><div class="pbig">상단 과밀</div></div></div><div class="t3-status"><span class="slab">현재 자리</span><span class="sval">과열 극단 검증 구간</span></div><div class="axes"><div class="axis pat"><div class="alab">패턴<small>반등 강도</small></div><div class="abar"><i style="width:62%"></i></div><div class="aval">강반등 실재 · 양면<small>완성이나 과열 극단 동시 형성</small></div></div><div class="axis ten"><div class="alab">텐서<small>관계</small></div><div class="abar"><i style="width:62%"></i></div><div class="aval">자금 선행 구조 살아있음 · 미검증<small>cx001 배치 5회 전량 neutral — 검증 없음</small></div></div><div class="axis cro"><div class="alab">밀집<small>과밀도</small></div><div class="abar"><i style="width:86%"></i></div><div class="aval">역사적 최대 상단 과밀 · 거부<small>과거 2회 동일 패턴 후 실제 털림 확인</small></div></div></div><div class="ground-note">↓ 위 세 축은 모두 아래 섹터 전제 위에서 읽힙니다 — 전제가 바뀌면 세 축의 의미도 바뀝니다</div><div class="ground"><div class="ground-inner"><span class="gicon"><svg width="15" height="15" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 10 Q5 4 7 7 T12 4" fill="none" stroke="#2C7C8A" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="gtext"><div class="glab">섹터 · 전제 배경 (토대)</div><div class="gval">우호적이나 조건부</div><div class="gsub">자동차부품 초입 물살 받침 — 집중유입 환경으로 신중</div></div><div class="gmeter"><div class="gm-bar"><i style="width:62%"></i></div><div class="gm-cap">조건부</div></div></div></div><div class="dash-conf"><span class="clab">종합 신뢰도</span><span class="conf-steps"><span class="cstep on"></span><span class="cstep"></span><span class="cstep"></span></span><span class="cval">Low</span><span class="conf-div"></span><span class="ckv">유효 기간 : <b>단기</b></span></div></div></section><section class="rv"><div class="sec-head"><span class="sec-num">03</span><div><div class="sec-title">왜 이 종목을 보는가</div></div></div><p class="prose">자동차부품 군집이 오늘 거래대금 급증으로 신규 합류하며 HL만도가 그 선두에 섰습니다. 섹터 물살은 아직 초입이나, <b>이 종목은 이미 단기·중기 과열 극단에 닿아 섹터보다 먼저 달린 상태</b>입니다. 섹터 물살이 지속되면 받쳐주나, 물살이 빠지면 먼저 꺾일 구조입니다.</p></section><section class="rv"><div class="sec-head"><span class="sec-num">04</span><div><div class="sec-title">세 관점의 수렴</div><div class="sec-kicker">섹터 전제를 토대로, 종목을 보는 세 진단(패턴·텐서·밀집)이 하나의 판독으로 모입니다.</div></div></div><div class="figure">      <svg class="conv-d" viewBox="0 0 800 340" role="img" aria-label="종목 종합 판독 수렴 구조 — 전제·진단·판독 위계">
         <defs><marker id="cvah" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#9DB2BD"/></marker></defs>
         <text x="28" y="58" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9DB2BD" letter-spacing="1">판독</text>
         <text x="28" y="170" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9DB2BD" letter-spacing="1">진단</text>
