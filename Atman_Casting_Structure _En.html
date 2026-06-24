@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ATMAN Invest Casting: from multi-lens market analysis to executable, rule-based investment scenarios." />
+<title>ATMAN Invest Casting — From Data to Execution</title>
+<style>
+:root{
+  --bg:#f4f7fb;
+  --panel:#ffffff;
+  --ink:#142033;
+  --muted:#667085;
+  --line:#dbe3ee;
+  --blue:#3157d5;
+  --blue-soft:#edf2ff;
+  --teal:#0f8b8d;
+  --teal-soft:#e9f8f6;
+  --violet:#7047c7;
+  --violet-soft:#f2edff;
+  --amber:#b9760c;
+  --amber-soft:#fff4dc;
+  --rose:#c84763;
+  --rose-soft:#fff0f4;
+  --green:#188552;
+  --green-soft:#eaf8f0;
+  --navy:#25365f;
+  --shadow:0 16px 40px rgba(29,52,85,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 0%,rgba(49,87,213,.11),transparent 30%),
+    radial-gradient(circle at 95% 8%,rgba(15,139,141,.09),transparent 27%),
+    var(--bg);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.62;
+}
+.wrap{max-width:1440px;margin:0 auto;padding:32px 22px 72px}
+.hero{
+  position:relative;overflow:hidden;
+  padding:42px 44px;border:1px solid rgba(49,87,213,.15);border-radius:30px;
+  background:linear-gradient(135deg,#fff 0%,#f8faff 56%,#eef9f7 100%);
+  box-shadow:var(--shadow)
+}
+.hero:after{
+  content:"";position:absolute;right:-80px;top:-120px;width:360px;height:360px;
+  border-radius:50%;background:rgba(49,87,213,.06)
+}
+.eyebrow{
+  position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;color:var(--blue);
+  font-size:12px;font-weight:900;letter-spacing:.15em;text-transform:uppercase
+}
+.eyebrow:before{content:"";width:28px;height:3px;border-radius:999px;background:var(--blue)}
+h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.05;letter-spacing:-.045em}
+.hero p{position:relative;z-index:1;max-width:1080px;margin:0;color:var(--muted);font-size:18px}
+.hero-highlight{
+  position:relative;z-index:1;margin-top:24px;padding:18px 20px;border-radius:18px;
+  background:rgba(255,255,255,.82);border:1px solid var(--line);
+  max-width:1010px;font-size:14px
+}
+.hero-highlight b{color:var(--blue)}
+.section{margin-top:32px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:15px}
+.section-head h2{margin:0;font-size:26px;letter-spacing:-.035em;line-height:1.25}
+.section-head p{margin:0;color:var(--muted);font-size:13px;max-width:720px;text-align:right}
+.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.step-card{
+  position:relative;background:#fff;border:1px solid var(--line);border-radius:21px;
+  padding:18px;box-shadow:var(--shadow);min-height:228px
+}
+.step-card:after{
+  content:"›";position:absolute;right:-11px;top:50%;transform:translateY(-50%);
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:var(--bg);color:#8a98aa;font-size:20px;font-weight:900;z-index:2
+}
+.step-card:last-child:after{display:none}
+.num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:12px;font-weight:900;margin-bottom:11px}
+.step-card:nth-child(1) .num{background:var(--blue-soft);color:var(--blue)}
+.step-card:nth-child(2) .num{background:var(--teal-soft);color:var(--teal)}
+.step-card:nth-child(3) .num{background:var(--violet-soft);color:var(--violet)}
+.step-card:nth-child(4) .num{background:var(--amber-soft);color:var(--amber)}
+.step-card:nth-child(5) .num{background:var(--rose-soft);color:var(--rose)}
+.step-card:nth-child(6) .num{background:var(--green-soft);color:var(--green)}
+.step-card h3{margin:0 0 7px;font-size:18px;letter-spacing:-.02em;line-height:1.25}
+.step-card p{margin:0;color:var(--muted);font-size:12px}
+.step-card .mini{margin-top:12px;padding-top:11px;border-top:1px solid #e8edf4;font-size:10px;color:#4d5b70}
+.lens-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.lens{background:#fff;border:1px solid var(--line);border-radius:21px;padding:20px;box-shadow:var(--shadow)}
+.lens .icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-weight:900;margin-bottom:12px}
+.lens:nth-child(1) .icon{background:var(--blue-soft);color:var(--blue)}
+.lens:nth-child(2) .icon{background:var(--teal-soft);color:var(--teal)}
+.lens:nth-child(3) .icon{background:var(--violet-soft);color:var(--violet)}
+.lens:nth-child(4) .icon{background:var(--amber-soft);color:var(--amber)}
+.lens h3{margin:0 0 7px;font-size:18px}
+.lens p{margin:0;color:var(--muted);font-size:12px}
+.feature{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:23px;padding:22px;box-shadow:var(--shadow)}
+.panel h3{margin:0 0 6px;font-size:20px}
+.panel>p{margin:0 0 16px;color:var(--muted);font-size:12px}
+.checks{display:grid;gap:9px}
+.check{display:flex;gap:11px;align-items:flex-start;padding:11px;border-radius:14px;background:#fbfcfe;border:1px solid var(--line)}
+.check i{font-style:normal;width:30px;height:30px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-size:10px;font-weight:900}
+.check b{display:block;font-size:12px;margin-bottom:2px}
+.check span{display:block;color:var(--muted);font-size:10px}
+.role-box{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.role{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe}
+.role b{display:block;font-size:12px;margin-bottom:2px}
+.role span{font-size:10px;color:var(--muted)}
+.note{margin-top:16px;padding:17px 19px;border-radius:18px;background:linear-gradient(135deg,#25365f,#3157d5 58%,#0f8b8d);color:#fff;box-shadow:var(--shadow)}
+.note b{display:block;font-size:14px;margin-bottom:4px}
+.note span{font-size:11px;opacity:.9}
+.note strong{color:#fff;font-weight:900}
+.value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.value{background:#fff;border:1px solid var(--line);border-radius:21px;padding:19px;box-shadow:var(--shadow)}
+.value .tag{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900;margin-bottom:9px}
+.value:nth-child(1) .tag{background:var(--blue-soft);color:var(--blue)}
+.value:nth-child(2) .tag{background:var(--teal-soft);color:var(--teal)}
+.value:nth-child(3) .tag{background:var(--violet-soft);color:var(--violet)}
+.value:nth-child(4) .tag{background:var(--amber-soft);color:var(--amber)}
+.value h3{margin:0 0 7px;font-size:17px;line-height:1.3}
+.value p{margin:0;color:var(--muted);font-size:11px}
+.scenario-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.scenario{background:#fff;border:1px solid var(--line);border-radius:21px;padding:20px;box-shadow:var(--shadow)}
+.scenario .letter{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+.scenario:nth-child(1) .letter{background:var(--green-soft);color:var(--green)}
+.scenario:nth-child(2) .letter{background:var(--amber-soft);color:var(--amber)}
+.scenario:nth-child(3) .letter{background:var(--rose-soft);color:var(--rose)}
+.scenario h3{margin:0 0 6px;font-size:18px}
+.scenario p{margin:0;color:var(--muted);font-size:12px}
+.engine{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.engine-card{background:#fff;border:1px solid var(--line);border-radius:23px;padding:21px;box-shadow:var(--shadow)}
+.engine-card h3{margin:0 0 6px;font-size:20px}
+.engine-card>p{margin:0 0 14px;color:var(--muted);font-size:12px}
+.engine-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.engine-item{padding:11px;border:1px solid var(--line);border-radius:13px;background:#fbfcfe}
+.engine-item b{display:block;font-size:11px;margin-bottom:2px}
+.engine-item span{font-size:10px;color:var(--muted)}
+.closing{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,#25365f,#3157d5 58%,#0f8b8d);color:#fff;box-shadow:var(--shadow)}
+.closing b{display:block;font-size:14px;margin-bottom:4px}
+.closing span{font-size:11px;opacity:.9}
+.disclaimer{margin-top:28px;padding:16px 18px;border:1px solid var(--line);border-radius:17px;background:#fff;color:var(--muted);font-size:11px}
+@media(max-width:1200px){
+  .flow{grid-template-columns:repeat(3,1fr)}
+  .step-card:nth-child(3n):after{display:none}
+}
+@media(max-width:900px){
+  .value-grid,.lens-grid{grid-template-columns:repeat(2,1fr)}
+  .feature,.engine{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .wrap{padding:17px 11px 46px}
+  .hero{padding:27px 20px;border-radius:23px}
+  .flow,.value-grid,.lens-grid,.scenario-grid,.role-box,.engine-grid{grid-template-columns:1fr}
+  .step-card:after{display:none}
+  .section-head{display:block}
+  .section-head p{margin-top:4px;text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">ATMAN Invest Casting</div>
+  <h1>Read the flow embedded in data,<br>then turn it into an executable scenario.</h1>
+  <p>
+    ATMAN Invest Casting is not a system for simply finding the strongest stocks.
+    It analyzes price and capital flow, a stock’s role within its sector, recurring behavioral traits,
+    current risk, and remaining opportunity space. It then determines what role the stock can play now
+    and connects it to an executable scenario only when the conditions are aligned.
+  </p>
+  <div class="hero-highlight">
+    <b>The objective is not a single-point forecast, but prepared response.</b>
+    Rather than committing to one direction, ATMAN prepares three paths: reaching the objective,
+    taking longer than expected, or invalidating the original thesis.
+  </div>
+</header>
+
+<section class="section">
+  <div class="section-head">
+    <h2>1. How a stock becomes an execution candidate</h2>
+    <p>Only stocks that pass multiple layers of observation and validation are connected to an executable scenario.</p>
+  </div>
+  <div class="flow">
+    <div class="step-card">
+      <div class="num">01</div>
+      <h3>Multi-angle observation</h3>
+      <p>The same stock is examined through four perspectives: sector, pattern, relationships, and capital concentration.</p>
+      <div class="mini">No conclusion depends on a single indicator or a single point of view.</div>
+    </div>
+    <div class="step-card">
+      <div class="num">02</div>
+      <h3>Stock behavior model</h3>
+      <p>Repeated patterns of success, failure, and recovery are accumulated into a living behavioral profile.</p>
+      <div class="mini">Each stock’s distinct character and conditions are remembered separately.</div>
+    </div>
+    <div class="step-card">
+      <div class="num">03</div>
+      <h3>Environment-fit candidates</h3>
+      <p>Market and sector conditions are checked first, and only stocks worth examining now enter the candidate pool.</p>
+      <div class="mini">Not every stock is evaluated by the same standard every day.</div>
+    </div>
+    <div class="step-card">
+      <div class="num">04</div>
+      <h3>Discover the current role</h3>
+      <p>Historical behavior models are compared with today’s price and capital-flow structure to identify the role the stock can play now.</p>
+      <div class="mini">The role is discovered from current data rather than assigned in advance.</div>
+    </div>
+    <div class="step-card">
+      <div class="num">05</div>
+      <h3>Scenario contract</h3>
+      <p>Entry conditions, expected objective, invalidation point, and valid time window are assembled into one execution scenario.</p>
+      <div class="mini">ATMAN selects executable stocks, not merely attractive-looking ones.</div>
+    </div>
+    <div class="step-card">
+      <div class="num">06</div>
+      <h3>Rule-based execution</h3>
+      <p>Orders are placed only when real-time data satisfies the agreed conditions. Objectives, stops, and time expiry are then handled by rule.</p>
+      <div class="mini">Action follows predefined conditions, not emotion.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>2. Four lenses that make ATMAN different</h2>
+    <p>The same dataset is read through four specialist perspectives and integrated into one stock behavior model.</p>
+  </div>
+  <div class="lens-grid">
+    <div class="lens">
+      <div class="icon">S</div>
+      <h3>Sector Lens</h3>
+      <p>Determines whether the sector is alive, whether capital is spreading, and whether the stock is acting as a leader, follower, or supporting player.</p>
+    </div>
+    <div class="lens">
+      <div class="icon">P</div>
+      <h3>Pattern Lens</h3>
+      <p>Observes the shape of price movement, how long it persists, and how it tends to fail or recover.</p>
+    </div>
+    <div class="lens">
+      <div class="icon">T</div>
+      <h3>Tensor Lens</h3>
+      <p>Reads which moves first—price or capital—whether they align, collide, transmit, or lose their relationship.</p>
+    </div>
+    <div class="lens">
+      <div class="icon">C</div>
+      <h3>Concentration Lens</h3>
+      <p>Examines where capital is compressed or overheated, whether pressure persists or fades, and how much time may be needed for release.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>3. We look for a wave that can be ridden now—not simply a strong stock</h2>
+    <p>ATMAN focuses on how a small change is transmitted into a larger flow, rather than reducing the market to up or down.</p>
+  </div>
+  <div class="feature">
+    <div class="panel">
+      <h3>Does capital hold even when price pauses?</h3>
+      <p>What matters is not the initial surge itself, but whether higher-order capital flow supports the new price space during the pause that follows.</p>
+      <div class="checks">
+        <div class="check"><i>01</i><div><b>Change in the smaller wave</b><span>Has a meaningful move begun beyond the previous range?</span></div></div>
+        <div class="check"><i>02</i><div><b>Holding the new space</b><span>Does the newly created price space remain intact even during a pullback?</span></div></div>
+        <div class="check"><i>03</i><div><b>Capital handoff</b><span>When the shorter move cools, does the higher-order capital flow take over and support the space?</span></div></div>
+        <div class="check"><i>04</i><div><b>Alignment with the larger flow</b><span>Is the intermediate change linking into the larger wave or beginning to alter the prior structure?</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>The stock’s current role</h3>
+      <p>Stocks are not traded with the same horizon or response logic. The valid cycle and management style change according to the role revealed by current data.</p>
+      <div class="role-box">
+        <div class="role"><b>Short-wave reaction</b><span>Only the smaller wave is alive, while confirmation from higher-order flows remains limited.</span></div>
+        <div class="role"><b>Intermediate transition</b><span>A smaller-wave change is beginning to transfer into intermediate capital flow.</span></div>
+        <div class="role"><b>Long-wave trend</b><span>Short, intermediate, and long flows are connected and the trend is progressing.</span></div>
+        <div class="role"><b>Counter-trend recovery</b><span>The larger flow remains weak, but recovery strength is appearing in smaller and intermediate waves.</span></div>
+      </div>
+      <div class="note">
+        <b>A role is an analytical output, not an input label.</b>
+        <span>
+          The four labels above are simplified explanations for external readers. In the actual ATMAN system,
+          a role is defined as <strong>the wave being ridden + valid cycle N</strong>, for example
+          <strong>Swing Short Wave (10) · Swing Medium Wave (6) · Swing Long Wave (4)</strong>.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>4. The audition is not a search for “good stocks”</h2>
+    <p>Even a high-quality stock does not pass if it has already moved too far, offers too little remaining space relative to risk, or lacks clear execution boundaries.</p>
+  </div>
+  <div class="value-grid">
+    <div class="value">
+      <span class="tag">Current similarity</span>
+      <h3>Are its historical strengths still alive?</h3>
+      <p>ATMAN checks whether the behavioral traits stored in the stock model still resemble today’s price and capital-flow structure.</p>
+    </div>
+    <div class="value">
+      <span class="tag">Remaining space</span>
+      <h3>Is the opportunity already too late?</h3>
+      <p>Even if the trend looks strong, the stock is excluded when little space remains before the expected objective.</p>
+    </div>
+    <div class="value">
+      <span class="tag">Asymmetry</span>
+      <h3>Is the reward-to-risk structure favorable?</h3>
+      <p>Expected objective, invalidation, and time uncertainty are evaluated together rather than collapsed into a single score.</p>
+    </div>
+    <div class="value">
+      <span class="tag">Executability</span>
+      <h3>Can the conditions be defined clearly?</h3>
+      <p>A stock does not proceed to execution if entry, objective, exit, and valid time boundaries cannot be specified.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>5. Three response paths—not one prediction</h2>
+    <p>Once execution begins, the outcome is managed through three distinct paths.</p>
+  </div>
+  <div class="scenario-grid">
+    <div class="scenario">
+      <div class="letter">A</div>
+      <h3>Objective reached</h3>
+      <p>If the expected price structure is reached within the valid time window, the objective path is completed.</p>
+    </div>
+    <div class="scenario">
+      <div class="letter">B</div>
+      <h3>Time expiry</h3>
+      <p>If neither the objective nor invalidation occurs before time expires, the contract is not extended automatically; it is reviewed or closed.</p>
+    </div>
+    <div class="scenario">
+      <div class="letter">C</div>
+      <h3>Thesis invalidated</h3>
+      <p>If the price-and-capital conditions supporting the thesis break first, the loss is accepted and the contract is closed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>6. AI interpretation and system execution are separated</h2>
+    <p>AI interprets relationships and meaning. The execution engine verifies predefined conditions without emotion.</p>
+  </div>
+  <div class="engine">
+    <div class="engine-card">
+      <h3>What AI does</h3>
+      <p>AI reads complex data relationships and designs the stock’s current role and execution scenario.</p>
+      <div class="engine-grid">
+        <div class="engine-item"><b>Behavior-model comparison</b><span>Compare recurring historical traits with the current flow</span></div>
+        <div class="engine-item"><b>Price–capital interpretation</b><span>Assess lead–lag, alignment, collision, and transmission</span></div>
+        <div class="engine-item"><b>Current-role discovery</b><span>Determine the active wave and its valid cycle</span></div>
+        <div class="engine-item"><b>Scenario design</b><span>Create entry, objective, invalidation, and time boundaries</span></div>
+      </div>
+    </div>
+    <div class="engine-card">
+      <h3>What the execution engine does</h3>
+      <p>The system monitors real-time price and capital data and acts only when the scenario conditions are satisfied.</p>
+      <div class="engine-grid">
+        <div class="engine-item"><b>Condition monitoring</b><span>Continuously verify the confirmed price-and-capital structure</span></div>
+        <div class="engine-item"><b>Entry execution</b><span>Place an order only when predefined entry conditions are met</span></div>
+        <div class="engine-item"><b>Position management</b><span>Track objectives, warnings, invalidation, and time boundaries</span></div>
+        <div class="engine-item"><b>Exit and review</b><span>Close or reassess on objective, stop, or time expiry</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="closing">
+    <b>The purpose of ATMAN Invest Casting</b>
+    <span>Not to trade more often, but to select only stocks that have been sufficiently observed, can be clearly explained, and still offer a viable reward-to-risk structure—then act according to a scenario defined in advance.</span>
+  </div>
+</section>
+
+<div class="disclaimer">
+  This document is an introduction to the analytical and operational structure of ATMAN Invest Casting.
+  It does not constitute a recommendation to buy or sell any security, nor does it guarantee investment returns.
+  All investment decisions and responsibilities remain with the user.
+</div>
+</div>
+</body>
+</html>
