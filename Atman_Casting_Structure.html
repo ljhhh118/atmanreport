@@ -177,6 +177,52 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
 .engine-item b{display:block;font-size:11px;margin-bottom:2px}
 .engine-item span{font-size:10px;color:var(--muted)}
 
+
+/* Audition after-process */
+.state-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.state-card{
+  position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);
+  border-radius:23px;padding:21px;box-shadow:var(--shadow);min-height:260px
+}
+.state-card:before{
+  content:"";position:absolute;left:0;top:0;right:0;height:5px;background:var(--line)
+}
+.state-card.pass:before{background:var(--green)}
+.state-card.fail:before{background:var(--rose)}
+.state-card.unknown:before{background:var(--amber)}
+.state-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.state-code{
+  display:inline-flex;align-items:center;justify-content:center;min-width:88px;height:34px;
+  padding:0 13px;border-radius:999px;font-size:12px;font-weight:950;letter-spacing:.08em
+}
+.state-card.pass .state-code{background:var(--green-soft);color:var(--green)}
+.state-card.fail .state-code{background:var(--rose-soft);color:var(--rose)}
+.state-card.unknown .state-code{background:var(--amber-soft);color:var(--amber)}
+.state-symbol{font-size:24px;font-weight:950;opacity:.22}
+.state-card h3{margin:0 0 7px;font-size:20px;letter-spacing:-.025em}
+.state-card>p{margin:0 0 14px;color:var(--muted);font-size:12px}
+.state-list{display:grid;gap:8px}
+.state-item{padding:10px 11px;border:1px solid var(--line);border-radius:13px;background:#fbfcfe}
+.state-item b{display:block;font-size:11px;margin-bottom:2px}
+.state-item span{display:block;color:var(--muted);font-size:10px}
+
+.after-panel{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:23px;padding:21px;box-shadow:var(--shadow)}
+.after-panel h3{margin:0 0 6px;font-size:20px}
+.after-panel>p{margin:0 0 16px;color:var(--muted);font-size:12px}
+.after-flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.after-step{position:relative;padding:13px 12px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;min-height:112px}
+.after-step:after{
+  content:"›";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;border-radius:50%;display:grid;place-items:center;
+  background:var(--bg);color:#8a98aa;font-size:16px;font-weight:900;z-index:2
+}
+.after-step:last-child:after{display:none}
+.after-step i{font-style:normal;display:inline-flex;width:25px;height:25px;border-radius:8px;align-items:center;justify-content:center;background:var(--blue-soft);color:var(--blue);font-size:9px;font-weight:900;margin-bottom:7px}
+.after-step b{display:block;font-size:11px;margin-bottom:3px}
+.after-step span{display:block;font-size:10px;color:var(--muted)}
+.state-note{margin-top:14px;padding:15px 17px;border-radius:17px;background:linear-gradient(135deg,#fff7e8,#f7f9ff);border:1px solid #eadfca;color:#445069;font-size:11px}
+.state-note b{color:var(--navy)}
+
 .note{
   margin-top:16px;padding:17px 19px;border-radius:18px;
   background:linear-gradient(135deg,#25365f,#3157d5 58%,#0f8b8d);color:#fff;box-shadow:var(--shadow)
@@ -197,12 +243,15 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
 @media(max-width:900px){
   .value-grid,.lens-grid{grid-template-columns:repeat(2,1fr)}
   .feature,.engine{grid-template-columns:1fr}
+  .state-grid{grid-template-columns:1fr}
+  .after-flow{grid-template-columns:repeat(3,1fr)}
+  .after-step:nth-child(3n):after{display:none}
 }
 @media(max-width:680px){
   .wrap{padding:17px 11px 46px}
   .hero{padding:27px 20px;border-radius:23px}
-  .flow,.value-grid,.lens-grid,.scenario-grid,.role-box,.engine-grid{grid-template-columns:1fr}
-  .step-card:after{display:none}
+  .flow,.value-grid,.lens-grid,.scenario-grid,.role-box,.engine-grid,.after-flow{grid-template-columns:1fr}
+  .step-card:after,.after-step:after{display:none}
   .section-head{display:block}
   .section-head p{margin-top:4px;text-align:left}
 }
@@ -258,15 +307,15 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
     </div>
     <div class="step-card">
       <div class="num">05</div>
-      <h3>시나리오 계약</h3>
-      <p>진입 조건, 기대 목표, 무효화 지점, 유효 시간을 하나의 실행 시나리오로 만듭니다.</p>
-      <div class="mini">좋아 보이는 종목보다 실행 가능한 종목을 선택합니다.</div>
+      <h3>오디션 상태 판정</h3>
+      <p>현재 종목을 PASS·FAIL·UNKNOWN으로 구분하고, 그 판단의 근거와 다음 상태 조건을 함께 남깁니다.</p>
+      <div class="mini">합격만 찾지 않고, 합격으로 바뀔 가능성까지 기록합니다.</div>
     </div>
     <div class="step-card">
       <div class="num">06</div>
-      <h3>규칙 기반 실행</h3>
-      <p>실시간 데이터가 약속된 조건을 충족할 때만 진입하고, 목표·손절·시간 만료를 규칙대로 처리합니다.</p>
-      <div class="mini">감정이 아니라 사전에 정한 조건으로 행동합니다.</div>
+      <h3>상태별 후속 관리</h3>
+      <p>PASS는 계약을 관리하고, FAIL은 합격 조건을 추적하며, UNKNOWN은 판정 가능 조건을 기다립니다.</p>
+      <div class="mini">최신 파동으로 매일 점검하고 필요한 종목만 재오디션합니다.</div>
     </div>
   </div>
 </section>
@@ -369,9 +418,69 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
   </div>
 </section>
 
+
 <section class="section">
   <div class="section-head">
-    <h2>5. 하나의 예측이 아니라 세 가지 대응 경로</h2>
+    <h2>5. 오디션 이후, 종목은 세 상태로 계속 관리됩니다</h2>
+    <p>오디션은 종목을 한 번 고르고 버리는 과정이 아닙니다. PASS·FAIL·UNKNOWN마다 다음 행동과 재심사 조건을 다르게 관리합니다.</p>
+  </div>
+
+  <div class="state-grid">
+    <div class="state-card pass">
+      <div class="state-top"><span class="state-code">PASS</span><span class="state-symbol">＋</span></div>
+      <h3>실행 계약 관리</h3>
+      <p>현재 배역·방향·유효 시간·목표·무효화가 실행 가능한 상태입니다.</p>
+      <div class="state-list">
+        <div class="state-item"><b>계약 감시</b><span>진입·목표·경고·청산·시간 만료 조건을 추적합니다.</span></div>
+        <div class="state-item"><b>자격 강등 경계</b><span>핵심 근거가 무너지면 신규 진입을 중단하고 재오디션합니다.</span></div>
+        <div class="state-item"><b>결과 기록</b><span>A·B·C 경로와 실제 결과를 종목 행동 모델에 다시 축적합니다.</span></div>
+      </div>
+    </div>
+
+    <div class="state-card fail">
+      <div class="state-top"><span class="state-code">FAIL</span><span class="state-symbol">−</span></div>
+      <h3>합격 가능 조건 추적</h3>
+      <p>현재는 실행할 수 없지만, 왜 실패했고 무엇이 바뀌면 다시 볼 수 있는지가 명확한 상태입니다.</p>
+      <div class="state-list">
+        <div class="state-item"><b>실패 원인 저장</b><span>방향 불일치·늦은 가격·비대칭 불리·배역 미형성 등을 기록합니다.</span></div>
+        <div class="state-item"><b>PASS 경계 감시</b><span>최신 가격·자금 파동으로 합격 가능 조건을 매일 확인합니다.</span></div>
+        <div class="state-item"><b>재오디션 호출</b><span>조건 충족은 자동 합격이 아니라 새 구조를 다시 심사하는 신호입니다.</span></div>
+      </div>
+    </div>
+
+    <div class="state-card unknown">
+      <div class="state-top"><span class="state-code">UNKNOWN</span><span class="state-symbol">0</span></div>
+      <h3>판정 가능 조건 대기</h3>
+      <p>가능·불가능을 확정할 만큼 입력·독립성·전이 근거가 아직 충분하지 않은 상태입니다.</p>
+      <div class="state-list">
+        <div class="state-item"><b>부족한 근거 명시</b><span>충돌한 파동·누락된 좌표·미성숙 모델·동일 스냅샷 문제를 남깁니다.</span></div>
+        <div class="state-item"><b>해소 조건 감시</b><span>어떤 데이터가 더 확인되면 PASS 또는 FAIL을 판정할 수 있는지 추적합니다.</span></div>
+        <div class="state-item"><b>중성 상태 보존</b><span>판정할 수 없는 종목을 억지로 FAIL에 넣지 않습니다.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="after-panel">
+    <h3>오디션 이후의 일일 순환</h3>
+    <p>한 번 오디션에 참가한 종목은 모두 관리 대상이 됩니다. 매일 새 파동을 만들고, 상태를 벗어나는 경계가 발생한 종목만 다시 심사합니다.</p>
+    <div class="after-flow">
+      <div class="after-step"><i>01</i><b>상태 저장</b><span>PASS·FAIL·UNKNOWN과 근거를 DB에 기록</span></div>
+      <div class="after-step"><i>02</i><b>최신 파동 생성</b><span>가격·자금의 장·중·단 파동을 매일 갱신</span></div>
+      <div class="after-step"><i>03</i><b>경계 자동 점검</b><span>강등·합격 접근·판정 가능 조건을 C#이 확인</span></div>
+      <div class="after-step"><i>04</i><b>재오디션 선별</b><span>의미 있는 변화가 발생한 종목만 AI 재심사</span></div>
+      <div class="after-step"><i>05</i><b>상태 전이</b><span>PASS↔FAIL↔UNKNOWN을 최신 근거로 갱신</span></div>
+      <div class="after-step"><i>06</i><b>리뷰·모델 축적</b><span>실제 결과를 검증해 종목 행동 모델에 환류</span></div>
+    </div>
+    <div class="state-note">
+      <b>핵심:</b> PASS는 오늘의 실행 기회이고, FAIL은 다음 PASS가 태어날 위치이며, UNKNOWN은 아직 분화되지 않은 가능성입니다.
+      ATMAN은 합격 종목만 찾는 것이 아니라 <b>가능성 있는 FAIL이 PASS로 전환되는 경계</b>를 지속적으로 추적합니다.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>6. 하나의 예측이 아니라 세 가지 대응 경로</h2>
     <p>실행이 시작된 뒤에는 결과를 세 가지 경로로 구분해 관리합니다.</p>
   </div>
   <div class="scenario-grid">
@@ -395,7 +504,7 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
 
 <section class="section">
   <div class="section-head">
-    <h2>6. AI의 해석과 시스템 실행을 분리합니다</h2>
+    <h2>7. AI의 해석과 시스템 실행을 분리합니다</h2>
     <p>AI는 관계와 의미를 해석하고, 실행 엔진은 정해진 조건을 감정 없이 확인합니다.</p>
   </div>
 
@@ -407,7 +516,7 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
         <div class="engine-item"><b>행동 모델 대조</b><span>과거의 반복 특성과 현재 흐름 비교</span></div>
         <div class="engine-item"><b>가격·자금 관계 해석</b><span>선행·정렬·충돌·전이 판단</span></div>
         <div class="engine-item"><b>현재 배역 발견</b><span>단기·중기·장기 역할과 유효 시간 설정</span></div>
-        <div class="engine-item"><b>시나리오 설계</b><span>진입·목표·무효화·시간 경계 생성</span></div>
+        <div class="engine-item"><b>상태·시나리오 설계</b><span>PASS·FAIL·UNKNOWN 판정과 실행·재오디션 경계 생성</span></div>
       </div>
     </div>
 
@@ -418,14 +527,14 @@ h1{margin:12px 0 12px;font-size:clamp(35px,4.5vw,62px);line-height:1.04;letter-s
         <div class="engine-item"><b>조건 감시</b><span>확정된 가격·자금 흐름을 지속 확인</span></div>
         <div class="engine-item"><b>진입 실행</b><span>사전 진입 조건이 충족될 때만 주문</span></div>
         <div class="engine-item"><b>보유 관리</b><span>목표·경고·무효화·시간 경계 추적</span></div>
-        <div class="engine-item"><b>종료·재검토</b><span>목표·손절·시간 만료에 따라 계약 종료</span></div>
+        <div class="engine-item"><b>상태 갱신·재검토</b><span>강등·합격 접근·판정 가능 경계에서 재오디션 요청</span></div>
       </div>
     </div>
   </div>
 
   <div class="note">
     <b>ATMAN Invest Casting의 목적</b>
-    <span>더 많이 매매하는 것이 아니라, 충분히 관측되고 설명 가능하며 손익 구조가 남아 있는 종목만 선택해 사전에 정한 시나리오대로 행동하는 것입니다.</span>
+    <span>더 많이 매매하는 것이 아니라, 종목의 현재 상태와 다음 상태로의 전이 조건을 지속적으로 추적하고, 충분히 관측되며 손익 구조가 남아 있는 순간에만 사전에 정한 시나리오대로 행동하는 것입니다.</span>
   </div>
 </section>
 

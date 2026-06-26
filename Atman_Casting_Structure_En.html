@@ -139,6 +139,52 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
 .engine-item{padding:11px;border:1px solid var(--line);border-radius:13px;background:#fbfcfe}
 .engine-item b{display:block;font-size:11px;margin-bottom:2px}
 .engine-item span{font-size:10px;color:var(--muted)}
+
+/* Audition after-process */
+.state-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.state-card{
+  position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);
+  border-radius:23px;padding:21px;box-shadow:var(--shadow);min-height:276px
+}
+.state-card:before{
+  content:"";position:absolute;left:0;top:0;right:0;height:5px;background:var(--line)
+}
+.state-card.pass:before{background:var(--green)}
+.state-card.fail:before{background:var(--rose)}
+.state-card.unknown:before{background:var(--amber)}
+.state-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.state-code{
+  display:inline-flex;align-items:center;justify-content:center;min-width:88px;height:34px;
+  padding:0 13px;border-radius:999px;font-size:12px;font-weight:950;letter-spacing:.08em
+}
+.state-card.pass .state-code{background:var(--green-soft);color:var(--green)}
+.state-card.fail .state-code{background:var(--rose-soft);color:var(--rose)}
+.state-card.unknown .state-code{background:var(--amber-soft);color:var(--amber)}
+.state-symbol{font-size:24px;font-weight:950;opacity:.22}
+.state-card h3{margin:0 0 7px;font-size:20px;letter-spacing:-.02em}
+.state-card>p{margin:0 0 14px;color:var(--muted);font-size:12px}
+.state-list{display:grid;gap:8px}
+.state-item{padding:10px 11px;border:1px solid var(--line);border-radius:13px;background:#fbfcfe}
+.state-item b{display:block;font-size:11px;margin-bottom:2px}
+.state-item span{display:block;color:var(--muted);font-size:10px}
+
+.after-panel{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:23px;padding:21px;box-shadow:var(--shadow)}
+.after-panel h3{margin:0 0 6px;font-size:20px}
+.after-panel>p{margin:0 0 16px;color:var(--muted);font-size:12px}
+.after-flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.after-step{position:relative;padding:13px 12px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;min-height:120px}
+.after-step:after{
+  content:"›";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;border-radius:50%;display:grid;place-items:center;
+  background:var(--bg);color:#8a98aa;font-size:16px;font-weight:900;z-index:2
+}
+.after-step:last-child:after{display:none}
+.after-step i{font-style:normal;display:inline-flex;width:25px;height:25px;border-radius:8px;align-items:center;justify-content:center;background:var(--blue-soft);color:var(--blue);font-size:9px;font-weight:900;margin-bottom:7px}
+.after-step b{display:block;font-size:11px;margin-bottom:3px}
+.after-step span{display:block;font-size:10px;color:var(--muted)}
+.state-note{margin-top:14px;padding:15px 17px;border-radius:17px;background:linear-gradient(135deg,#fff7e8,#f7f9ff);border:1px solid #eadfca;color:#445069;font-size:11px}
+.state-note b{color:var(--navy)}
+
 .closing{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,#25365f,#3157d5 58%,#0f8b8d);color:#fff;box-shadow:var(--shadow)}
 .closing b{display:block;font-size:14px;margin-bottom:4px}
 .closing span{font-size:11px;opacity:.9}
@@ -150,12 +196,15 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
 @media(max-width:900px){
   .value-grid,.lens-grid{grid-template-columns:repeat(2,1fr)}
   .feature,.engine{grid-template-columns:1fr}
+  .state-grid{grid-template-columns:1fr}
+  .after-flow{grid-template-columns:repeat(3,1fr)}
+  .after-step:nth-child(3n):after{display:none}
 }
 @media(max-width:680px){
   .wrap{padding:17px 11px 46px}
   .hero{padding:27px 20px;border-radius:23px}
-  .flow,.value-grid,.lens-grid,.scenario-grid,.role-box,.engine-grid{grid-template-columns:1fr}
-  .step-card:after{display:none}
+  .flow,.value-grid,.lens-grid,.scenario-grid,.role-box,.engine-grid,.after-flow{grid-template-columns:1fr}
+  .step-card:after,.after-step:after{display:none}
   .section-head{display:block}
   .section-head p{margin-top:4px;text-align:left}
 }
@@ -211,15 +260,15 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
     </div>
     <div class="step-card">
       <div class="num">05</div>
-      <h3>Scenario contract</h3>
-      <p>Entry conditions, expected objective, invalidation point, and valid time window are assembled into one execution scenario.</p>
-      <div class="mini">ATMAN selects executable stocks, not merely attractive-looking ones.</div>
+      <h3>Audition state assessment</h3>
+      <p>Each stock is classified as PASS, FAIL, or UNKNOWN, with the reasoning and conditions for its next possible state recorded together.</p>
+      <div class="mini">The system records not only what passes today, but what could become a future PASS.</div>
     </div>
     <div class="step-card">
       <div class="num">06</div>
-      <h3>Rule-based execution</h3>
-      <p>Orders are placed only when real-time data satisfies the agreed conditions. Objectives, stops, and time expiry are then handled by rule.</p>
-      <div class="mini">Action follows predefined conditions, not emotion.</div>
+      <h3>State-based follow-up</h3>
+      <p>PASS contracts are managed, FAIL conditions are tracked, and UNKNOWN cases wait for enough evidence to become decidable.</p>
+      <div class="mini">Waves are refreshed daily, and only stocks with meaningful changes return to audition.</div>
     </div>
   </div>
 </section>
@@ -319,9 +368,69 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
   </div>
 </section>
 
+
 <section class="section">
   <div class="section-head">
-    <h2>5. Three response paths—not one prediction</h2>
+    <h2>5. After the audition, every stock remains under three-state management</h2>
+    <p>The audition is not a one-time selection-and-discard process. PASS, FAIL, and UNKNOWN each lead to a different follow-up action and re-audition condition.</p>
+  </div>
+
+  <div class="state-grid">
+    <div class="state-card pass">
+      <div class="state-top"><span class="state-code">PASS</span><span class="state-symbol">＋</span></div>
+      <h3>Manage the execution contract</h3>
+      <p>The stock has a defined role, direction, valid horizon, objective, and invalidation structure that can be converted into execution rules.</p>
+      <div class="state-list">
+        <div class="state-item"><b>Contract monitoring</b><span>Track entry, objective, warning, exit, and time-expiry conditions.</span></div>
+        <div class="state-item"><b>PASS downgrade boundary</b><span>If the core evidence breaks, suspend new entry and send the stock back to audition.</span></div>
+        <div class="state-item"><b>Outcome recording</b><span>Feed the actual A, B, or C path back into the stock behavior model.</span></div>
+      </div>
+    </div>
+
+    <div class="state-card fail">
+      <div class="state-top"><span class="state-code">FAIL</span><span class="state-symbol">−</span></div>
+      <h3>Track conditions for a future PASS</h3>
+      <p>The stock is not executable now, but the reason for failure and the changes required for reassessment are clearly defined.</p>
+      <div class="state-list">
+        <div class="state-item"><b>Store the failure reason</b><span>Record direction mismatch, late price, poor asymmetry, missing role, or other blocked gates.</span></div>
+        <div class="state-item"><b>Monitor the PASS boundary</b><span>Use refreshed price and capital waves to test whether the qualifying conditions are forming.</span></div>
+        <div class="state-item"><b>Trigger re-audition</b><span>Meeting a condition does not create an automatic PASS; it calls for a new structural assessment.</span></div>
+      </div>
+    </div>
+
+    <div class="state-card unknown">
+      <div class="state-top"><span class="state-code">UNKNOWN</span><span class="state-symbol">0</span></div>
+      <h3>Wait for enough evidence to decide</h3>
+      <p>Input quality, independent confirmation, or wave-transmission evidence is not yet sufficient to determine whether the stock is executable or not.</p>
+      <div class="state-list">
+        <div class="state-item"><b>Identify the missing evidence</b><span>Preserve unresolved wave conflicts, missing coordinates, immature models, or same-snapshot limitations.</span></div>
+        <div class="state-item"><b>Monitor resolution conditions</b><span>Track what additional evidence would allow the stock to be classified as PASS or FAIL.</span></div>
+        <div class="state-item"><b>Preserve the neutral state</b><span>A stock that cannot yet be judged is not forced into the FAIL category.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="after-panel">
+    <h3>The daily cycle after the audition</h3>
+    <p>Once a stock enters an audition, it remains under management. New waves are generated every day, and only stocks crossing a meaningful state boundary are reassessed by AI.</p>
+    <div class="after-flow">
+      <div class="after-step"><i>01</i><b>Store the state</b><span>Record PASS, FAIL, or UNKNOWN with its supporting evidence</span></div>
+      <div class="after-step"><i>02</i><b>Refresh the waves</b><span>Update short, medium, and long price and capital waves</span></div>
+      <div class="after-step"><i>03</i><b>Check boundaries</b><span>C# tests downgrade, PASS-approach, and resolution conditions</span></div>
+      <div class="after-step"><i>04</i><b>Select re-auditions</b><span>Only stocks with meaningful structural changes return to AI review</span></div>
+      <div class="after-step"><i>05</i><b>Update the state</b><span>Move among PASS, FAIL, and UNKNOWN using the latest evidence</span></div>
+      <div class="after-step"><i>06</i><b>Review and learn</b><span>Validate actual outcomes and feed them back into the behavior model</span></div>
+    </div>
+    <div class="state-note">
+      <b>Core idea:</b> PASS is today’s executable opportunity, FAIL is where the next PASS may be forming, and UNKNOWN preserves a possibility that has not yet resolved.
+      ATMAN does not only search for current winners; it continuously tracks the boundary where a <b>promising FAIL begins to transition into PASS</b>.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>6. Three response paths—not one prediction</h2>
     <p>Once execution begins, the outcome is managed through three distinct paths.</p>
   </div>
   <div class="scenario-grid">
@@ -345,7 +454,7 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
 
 <section class="section">
   <div class="section-head">
-    <h2>6. AI interpretation and system execution are separated</h2>
+    <h2>7. AI interpretation and system execution are separated</h2>
     <p>AI interprets relationships and meaning. The execution engine verifies predefined conditions without emotion.</p>
   </div>
   <div class="engine">
@@ -356,7 +465,7 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
         <div class="engine-item"><b>Behavior-model comparison</b><span>Compare recurring historical traits with the current flow</span></div>
         <div class="engine-item"><b>Price–capital interpretation</b><span>Assess lead–lag, alignment, collision, and transmission</span></div>
         <div class="engine-item"><b>Current-role discovery</b><span>Determine the active wave and its valid cycle</span></div>
-        <div class="engine-item"><b>Scenario design</b><span>Create entry, objective, invalidation, and time boundaries</span></div>
+        <div class="engine-item"><b>State and scenario design</b><span>Classify PASS, FAIL, or UNKNOWN and define execution or re-audition boundaries</span></div>
       </div>
     </div>
     <div class="engine-card">
@@ -366,13 +475,13 @@ h1{position:relative;z-index:1;margin:12px 0 12px;font-size:clamp(35px,4.5vw,62p
         <div class="engine-item"><b>Condition monitoring</b><span>Continuously verify the confirmed price-and-capital structure</span></div>
         <div class="engine-item"><b>Entry execution</b><span>Place an order only when predefined entry conditions are met</span></div>
         <div class="engine-item"><b>Position management</b><span>Track objectives, warnings, invalidation, and time boundaries</span></div>
-        <div class="engine-item"><b>Exit and review</b><span>Close or reassess on objective, stop, or time expiry</span></div>
+        <div class="engine-item"><b>State update and reassessment</b><span>Request re-audition at downgrade, PASS-approach, or resolution boundaries</span></div>
       </div>
     </div>
   </div>
   <div class="closing">
     <b>The purpose of ATMAN Invest Casting</b>
-    <span>Not to trade more often, but to select only stocks that have been sufficiently observed, can be clearly explained, and still offer a viable reward-to-risk structure—then act according to a scenario defined in advance.</span>
+    <span>Not to trade more often, but to continuously track each stock’s current state and the conditions for its next transition—then act only when the structure is sufficiently observed, explainable, and still offers viable asymmetry under a predefined scenario.</span>
   </div>
 </section>
 
